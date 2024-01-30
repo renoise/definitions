@@ -328,41 +328,41 @@ renoise.ApplicationWindow = {
 ---@field sample_record_dialog_is_visible boolean
 ---Diskbrowser Panel.
 ---@field disk_browser_is_visible boolean
----@field disk_browser_is_visible_observable renoise.Observable
+---@field disk_browser_is_visible_observable renoise.Document.Observable
 ---InstrumentBox
 ---@field instrument_box_is_visible boolean
----@field instrument_box_is_visible_observable renoise.Observable
+---@field instrument_box_is_visible_observable renoise.Document.Observable
 ---Instrument Editor detaching.
 ---@field instrument_editor_is_detached boolean
----@field instrument_editor_is_detached_observable renoise.Observable
+---@field instrument_editor_is_detached_observable renoise.Document.Observable
 ---Mixer View detaching.
 ---@field mixer_view_is_detached boolean
----@field mixer_view_is_detached_observable renoise.Observable
+---@field mixer_view_is_detached_observable renoise.Document.Observable
 --Frame with the scopes/master spectrum...
 ---@field upper_frame_is_visible boolean
----@field upper_frame_is_visible_observable renoise.Observable
+---@field upper_frame_is_visible_observable renoise.Document.Observable
 ---@field active_upper_frame renoise.ApplicationWindow.UpperFrame
----@field active_upper_frame_observable renoise.Observable
+---@field active_upper_frame_observable renoise.Document.Observable
 --Frame with the pattern editor, mixer...
 ---@field active_middle_frame renoise.ApplicationWindow.MiddleFrame
----@field active_middle_frame_observable renoise.Observable
+---@field active_middle_frame_observable renoise.Document.Observable
 -- Frame with the DSP chain view, automation, etc.
 ---@field lower_frame_is_visible boolean
----@field lower_frame_is_visible_observable renoise.Observable
+---@field lower_frame_is_visible_observable renoise.Document.Observable
 ---@field active_lower_frame renoise.ApplicationWindow.LowerFrame
----@field active_lower_frame_observable renoise.Observable
+---@field active_lower_frame_observable renoise.Document.Observable
 ---Pattern matrix, visible in pattern editor and mixer only...
 ---@field pattern_matrix_is_visible boolean
----@field pattern_matrix_is_visible_observable renoise.Observable
+---@field pattern_matrix_is_visible_observable renoise.Document.Observable
 ---Pattern advanced edit, visible in pattern editor only...
 ---@field pattern_advanced_edit_is_visible boolean
----@field pattern_advanced_edit_is_visible_observable renoise.Observable
+---@field pattern_advanced_edit_is_visible_observable renoise.Document.Observable
 ---Mixer views Pre/Post volume setting.
 ---@field mixer_view_post_fx boolean
----@field mixer_view_post_fx_observable renoise.Observable
+---@field mixer_view_post_fx_observable renoise.Document.Observable
 ---Mixer fader type setting.
 ---@field mixer_fader_type renoise.ApplicationWindow.MixerFader
----@field mixer_fader_type_observable renoise.Observable
+---@field mixer_fader_type_observable renoise.Document.Observable
 
 ---### functions
 

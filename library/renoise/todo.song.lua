@@ -249,7 +249,7 @@ renoise.song().comments[], _observable
 
 -- Notifier is called as soon as any paragraph in the comments change.
 renoise.song().comments_assignment_observable
-  -> [read-only, renoise.Observable object]
+  -> [read-only, renoise.Document.Observable object]
 -- Set this to true to show the comments dialog after loading a song
 renoise.song().show_comments_after_loading, _observable 
   -> [boolean]
@@ -626,7 +626,7 @@ renoise.song().transport.groove_amounts[]
 -- Attach notifiers that will be called as soon as any
 -- groove amount value changed.
 renoise.song().transport.groove_assignment_observable
-  -> [renoise.Observable object]
+  -> [renoise.Document.Observable object]
 
 -- Global Track Headroom.
 -- To convert to dB:   dB = math.lin2db(renoise.song().transport.track_headroom)
@@ -684,7 +684,7 @@ renoise.song().sequencer:sequence_is_start_of_section(sequence_index)
 renoise.song().sequencer:set_sequence_is_start_of_section(
   sequence_index, true_or_false) 
 renoise.song().sequencer:sequence_is_start_of_section_observable(sequence_index) 
-  -> [renoise.Observable object]
+  -> [renoise.Document.Observable object]
 
 -- Access to a pattern sequence section's name. Section names are only visible
 -- for a sequence pos which starts the section (see sequence_is_start_of_section).
@@ -692,7 +692,7 @@ renoise.song().sequencer:sequence_section_name(sequence_index)
   -> [string]
 renoise.song().sequencer:set_sequence_section_name(sequence_index, string) 
 renoise.song().sequencer:sequence_section_name_observable(sequence_index) 
-  -> [renoise.Observable object]
+  -> [renoise.Document.Observable object]
 
 -- Returns true if the given sequence pos is part of a section, else false.
 renoise.song().sequencer:sequence_is_part_of_section(sequence_index) 
@@ -705,7 +705,7 @@ renoise.song().sequencer:sequence_is_end_of_section(sequence_index)
 -- Observable, which is fired, whenever the section layout in the sequence
 -- changed in any way, i.e. new sections got added, existing ones got deleted
 renoise.song().sequencer:sequence_sections_changed_observable() 
-  -> [renoise.Observable object]
+  -> [renoise.Document.Observable object]
 
 
 -- Access to sequencer slot mute states. Mute slots are memorized in the
@@ -742,12 +742,12 @@ renoise.song().sequencer.pattern_sequence[], _observable
 -- Attach notifiers that will be called as soon as any pattern assignment
 -- at any sequence position changes.
 renoise.song().sequencer.pattern_assignments_observable
-  -> [renoise.Observable object]
+  -> [renoise.Document.Observable object]
 
 -- Attach notifiers that will be fired as soon as any slot muting property
 -- in any track/sequence slot changes.
 renoise.song().sequencer.pattern_slot_mutes_observable
-  -> [renoise.Observable object]
+  -> [renoise.Document.Observable object]
 
 
 --------------------------------------------------------------------------------
@@ -1285,7 +1285,7 @@ renoise.song().instruments[].comments[], _observable
   -> [array of strings]
 -- Notifier which is called as soon as any paragraph in the comments change.
 renoise.song().instruments[].comments_assignment_observable
-  -> [renoise.Observable object]
+  -> [renoise.Document.Observable object]
 -- Set this to true to show the comments dialog after loading a song
 renoise.song().instruments[].show_comments_after_loading, _observable 
   -> [boolean]
