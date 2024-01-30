@@ -22,54 +22,6 @@ API, and scripting for Renoise in general...
 Do not try to execute this file. It uses a .lua extension for markup only.
 
 
--------- Observables
-
-Documents and Views in the Renoise API are modelled after the observer pattern
-(have a look at <http://en.wikipedia.org/wiki/Observer_pattern> if this is new
-to you). This means, in order to track changes, a document is basically just a
-set of raw data (booleans, numbers, lists, nested nodes) which anything can
-attach notifier function (listeners) to. For example, a view in the Renoise
-API is an Observer, which listens to observable values in Documents.
-
-Attaching and removing notifiers can be done with the functions 'add_notifier',
-'remove_notifier' from the Observable base class. These support multiple kinds
-of callbacks, plain functions and methods (functions with a context). Please
-see renoise.Document.Observable for more details. Here is a simple example:
-
-    function bpm_changed()
-      print(("something changed the BPM to %s"):format(
-        renoise.song().transport.bpm))
-    end
-
-    renoise.song().transport.bpm_observable:add_notifier(bpm_changed)
-    -- later on, maybe:
-    renoise.song().transport.bpm_observable:remove_notifier(bpm_changed)
-
-
-When adding notifiers to lists (like the track list in a song) an additional
-context parameter is passed to your notifier function. This way you know what
-happened to the list:
-
-    function tracks_changed(notification)
-      if (notification.type == "insert") then
-        print(("new track was inserted at index: %d"):format(notification.index))
-
-      elseif (notification.type == "remove") then
-        print(("track got removed from index: %d"):format(notification.index))
-
-      elseif (notification.type == "swap") then
-        print(("track at index: %d and %d swapped their positions"):format(
-          notification.index1, notification.index2))
-      end
-    end
-
-    renoise.song().tracks_observable:add_notifier(tracks_changed)
-
-If you only want to use the existing "_observables" in the Renoise API,
-then this is all you need to know. If you want to create your own documents,
-read on.
-
-
 -------- Overall API Design
 
 All renoise.Document classes are wrappers for Renoise's internal document
@@ -268,7 +220,6 @@ at the class docs below.
 
 ]]--
 
-
 --==============================================================================
 -- renoise.Document
 --==============================================================================
@@ -287,224 +238,6 @@ renoise.Document.create(model_name) {[table]}
 -- registered with renoise.Document.create before.
 renoise.Document.instantiate(model_name)
   -> [renoise.Document.DocumentNode object]
-
-
---------------------------------------------------------------------------------
--- renoise.Document.Serializable
---------------------------------------------------------------------------------
-
--------- Functions
-
--- Serialize an object to a string.
-serializable:to_string()
-  -> [string]
-
--- Assign the object's value from a string - when possible. Errors are
--- silently ignored.
-serializable:from_string(string)
-
-
---------------------------------------------------------------------------------
--- renoise.Document.Observable
---------------------------------------------------------------------------------
-
--------- Functions
-
--- Checks if the given function, method was already registered as notifier.
-observable:has_notifier(function or (object, function) or (function, object))
-  -> [boolean]
-
--- Register a function or method as a notifier, which will be called as soon as
--- the observable's value changed.
-observable:add_notifier(function or (object, function) or (function, object))
-
--- Unregister a previously registered notifier. When only passing an object to
--- remove_notifier, all notifier functions that match the given object will be
--- removed; a.k.a. all methods of the given object are removed. They will not
--- fire errors when none are attached.
-observable:remove_notifier(function or (object, function) or
- (function, object) or (object))
-
-
---------------------------------------------------------------------------------
--- renoise.Document.ObservableBang (inherits Observable)
---------------------------------------------------------------------------------
-
--- Observable without a value which sends out notifications when "banging" it.
-
--------- Functions
-
--- fire a notification, calling all registered notifiers.
-observable:bang()
-
-
---------------------------------------------------------------------------------
--- renoise.Document.ObservableBoolean/Number/String (inherits Observable, Serializable)
---------------------------------------------------------------------------------
-
--- Observables which send out notifications on value changes.
-
--------- Properties
-
--- Read/write access to the value of an Observable.
-observable.value
-  -> [boolean, number or string]
-
-
---------------------------------------------------------------------------------
--- renoise.Document.ObservableBoolean/String/NumberList (inherits Observable, Serializable)
---------------------------------------------------------------------------------
-
--------- Operators
-
--- Query a list's size (item count).
-#observable_list
-  -> [Number]
-
--- Access an observable item of the list by index (returns nil for non
--- existing items).
-observable_list[number]
-  -> [renoise.Document.Observable object]
-
-
--------- Functions
-
--- Returns the number of entries of the list.
-observable_list:size()
-  -> [number]
-
-
--- List item access (returns nil for non existing items).
-observable_list:property(index)
-  -> [nil or an renoise.Document.Observable object]
-
--- Find a value in the list by comparing the list values with the passed
--- value. The first successful match is returned. When no match is found, nil
--- is returned.
-observable_list:find([start_pos,] value)
-  -> [nil or number (the index)]
-
--- Insert a new item to the end of the list when no position is specified, or
--- at the specified position. Returns the newly created and inserted Observable.
-observable_list:insert([pos,] value)
-  -> [inserted Observable object]
-
--- Removes an item (or the last one if no index is specified) from the list.
-observable_list:remove([pos])
-
--- Swaps the positions of two items without adding/removing the items.
--- With a series of swaps you can move the item from/to any position.
-observable_list:swap(pos1, pos2)
-
-
--------- Notifiers
-
---[[
-
-Notifiers from renoise.Document.Observable are available for lists as well,
-but will not broadcast changes made to the items, only changes to the
-!list! layout.
-
-This means you will get notified as soon as an item is added, removed or
-changes its position, but not when an item's value has changed. If you are
-interested in value changes, attach notifiers directly to the items and
-not to the list...
-
-List notifiers will also pass a table with information about what
-happened to the list as the first argument to the notifier, example:
-
-`function my_list_changed_notifier(notification)`
-
-When a new element gets added, the "notification" is:
-
-> { type = "insert",  
-> index = index_where_element_got_added }
-
-When a element gets removed, the "notification" is:
-
-> { type = "remove",  
-> index = index_where_element_got_removed_from }
-
-When two entries swap their position, the "notification" is:
-
-> { type = "swap",  
-> index1 = index_swap_pos1,  
-> index2 = index_swap_pos2 }
-
-Please note that all notifications are fired !after! the list is
-changed, so the removed object is no longer available at the index you get
-back in the notification. Also, newly inserted objects will already be present
-in the destination index, and so on...
-
-See renoise.Document.Observable for more info about has/add/remove_notifier
-
-]]--
-
-observable_list:has_notifier(function or (object, function) or
-  (function, object)) -> [boolean]
-
-observable_list:add_notifier(function or (object, function) or
-  (function, object))
-
-observable_list:remove_notifier(function or (object, function) or
- (function, object) or (object))
-
-
---------------------------------------------------------------------------------
--- renoise.Document.DocumentList
---------------------------------------------------------------------------------
-
--------- Operators
-
--- Query a list's size (item count).
-#doc_list
-  -> [Number]
-
--- Access a document item from the list by index (returns nil for non
--- existing items).
-doc_list[number]
-  -> [renoise.Document.DocumentNode object]
-
-
--------- Functions
-
--- Returns the number of entries in the list.
-doc_list:size()
-  -> [number]
-
-
--- List item access by index (returns nil for non existing items).
-doc_list:property(index)
-  -> [nil or renoise.Document.DocumentNode object]
-
--- Insert a new item to the end of the list when no position is specified, or
--- at the specified position. Returns the inserted DocumentNode.
-doc_list:insert([pos,] doc_object)
-  -> [inserted renoise.Document.DocumentNode object]
-
--- Removes an item (or the last one if no index is specified) from the list.
-doc_list:remove([pos])
-
--- Swaps the positions of two items without adding/removing them.
--- With a series of swaps you can move the item from/to any position.
-doc_list:swap(pos1, pos2)
-
-
--------- Notifiers
-
--- Notifiers behave exactly like renoise.Document.ObservableXXXLists. Please
--- have a look at those for more info.
-
-doc_list:has_notifier(function or (object, function) or
-  (function, object)) -> [boolean]
-
-doc_list:add_notifier(function or (object, function) or
-  (function, object))
-
-doc_list:remove_notifier(function or (object, function) or
- (function, object) or (object))
-
-
 
 --------------------------------------------------------------------------------
 -- renoise.Document.DocumentNode
@@ -572,3 +305,58 @@ doc:to_string()
 -- about how properties are parsed and errors are handled.
 doc:from_string(string)
   -> [boolean, error_String]
+
+
+--------------------------------------------------------------------------------
+-- renoise.Document.DocumentList
+--------------------------------------------------------------------------------
+
+-------- Operators
+
+-- Query a list's size (item count).
+#doc_list
+  -> [Number]
+
+-- Access a document item from the list by index (returns nil for non
+-- existing items).
+doc_list[number]
+  -> [renoise.Document.DocumentNode object]
+
+
+-------- Functions
+
+-- Returns the number of entries in the list.
+doc_list:size()
+  -> [number]
+
+
+-- List item access by index (returns nil for non existing items).
+doc_list:property(index)
+  -> [nil or renoise.Document.DocumentNode object]
+
+-- Insert a new item to the end of the list when no position is specified, or
+-- at the specified position. Returns the inserted DocumentNode.
+doc_list:insert([pos,] doc_object)
+  -> [inserted renoise.Document.DocumentNode object]
+
+-- Removes an item (or the last one if no index is specified) from the list.
+doc_list:remove([pos])
+
+-- Swaps the positions of two items without adding/removing them.
+-- With a series of swaps you can move the item from/to any position.
+doc_list:swap(pos1, pos2)
+
+
+-------- Notifiers
+
+-- Notifiers behave exactly like renoise.Document.ObservableXXXLists. Please
+-- have a look at those for more info.
+
+doc_list:has_notifier(function or (object, function) or
+  (function, object)) -> [boolean]
+
+doc_list:add_notifier(function or (object, function) or
+  (function, object))
+
+doc_list:remove_notifier(function or (object, function) or
+ (function, object) or (object))

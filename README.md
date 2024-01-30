@@ -12,7 +12,8 @@ This is a work in progress. Below you can see which Renoise API sections have al
 - [x] `renoise.lua` *main renoise namespace*
 - [ ] `renoise/scripting_tool.lua` *renoise.ScriptingTool*
 - [x] `renoise/application.lua` *renoise.Application and renoise.ApplicationWindow*
-- [ ] `renoise/document.lua` *renoise.Document & Observable*
+- [x] `renoise/document.observable.lua` *renoise.Document.Observable*
+- [ ] `renoise/document.lua` *renoise.Document*
 - [ ] `renoise/midi.lua` *renoise.Midi*
 - [ ] `renoise/socket.lua` *renoise.Socket*
 - [ ] `renoise/osc.lua` *renoise.Osc*
@@ -29,10 +30,12 @@ Then clone or download a copy of this repository, and configure your workspace t
 ```json
 // .vscode/settings.json:
 {
-    "Lua.workspace.library": ["PATH_TO_THE_RENOISE_DEFINITION_FOLDER"]
+    "Lua.workspace.library": ["PATH/TO/RENOISE_DEFINITION_FOLDER"]
 }
 ```
 
 ## Contribute
 
-Contributions are welcome! Please fork the latest git repository and create a feature branch.
+Contributions are welcome!
+
+Please report issues [here](https://github.com/renoise/definitions/issues) or fork the latest git repository and create a feature or bugfix branch.

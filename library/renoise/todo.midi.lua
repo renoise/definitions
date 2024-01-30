@@ -68,7 +68,7 @@ renoise.Midi.available_output_devices()
 -- do nothing. Aka, you can use them as before and they will not fire any
 -- errors. The messages will simply go into the void...
 renoise.Midi.devices_changed_observable()
-  -> [renoise.Observable object]
+  -> [renoise.Document.Observable object]
 
 
 -------- Device Creation
