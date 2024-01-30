@@ -1,8 +1,8 @@
 # LuaCATS definitions for the Renoise Lua API 
 
-This is a [Renoise Tools API](https://github.com/renoise/xrnx) [LuaCATS](https://github.com/LuaCATS) add-on for the [LuaLS Language Server](https://github.com/LuaLS/lua-language-server).
+This is a [Renoise Tools API](https://github.com/renoise/xrnx) add-on for the [LuaLS Language Server](https://github.com/LuaLS/lua-language-server).
 
-LuaLS provides various features for Lua in code editors, such as autocompletion, type hovers, dynamic type checking, diagnostics and more.
+LuaLS provides various features for Lua in code editors, such as autocompletion, type hovers, dynamic type checking, diagnostics and more via [LuaCATS](https://github.com/LuaCATS) annotations.
 
 ## Status
 
@@ -22,7 +22,7 @@ This is a work in progress. Below you can see which Renoise API sections have al
 
 ## Usage
 
-To use the definition in e.g. VSCode, first install the install the sumneko.lua extension as described here:
+To use the definition in e.g. VSCode, first install the **sumneko.lua vscode extension** as described here:
 https://luals.github.io/#vscode-install
 
 Then clone or download a copy of this repository, and configure your workspace to use the Renoise definition files:
