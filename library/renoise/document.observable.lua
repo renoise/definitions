@@ -9,10 +9,10 @@
 ---
 
 --------------------------------------------------------------------------------
----## renoise.Observable
+---## renoise.Document.Observable
 
 ---Documents and views in the Renoise API are modelled after the
----[observer pattern](http://en.wikipedia.org/wiki/Observer_pattern)
+---[observer pattern](http://en.wikipedia.org/wiki/Observer_pattern).
 ---
 ---This means, in order to track changes, a document is basically just a
 ---set of raw data (booleans, numbers, lists, nested nodes) which anything can
@@ -20,8 +20,8 @@
 ---API is an Observer, which listens to observable values in Documents.
 ---
 ---Attaching and removing notifiers can be done with the functions 'add_notifier',
----'remove_notifier' from the renoise.Observable class. These support multiple kinds
----of callbacks, plain functions and methods (functions with a context). 
+---'remove_notifier' from the renoise.Document.Observable class. These support 
+---multiple kinds of callbacks, plain functions and methods (functions with a context). 
 ---
 ---### example:
 ---```lua
@@ -37,26 +37,29 @@
 ---  bpm_observable:remove_notifier(bpm_changed)
 ---end
 ---```
----@class renoise.Observable
-renoise.Observable = {}
+---@class renoise.Document.Observable
+renoise.Document.Observable = {}
 
 --------------------------------------------------------------------------------
----## renoise.Observable
+---## renoise.Document.Observable
 
 ---### functions
 
 ---@alias NotifierFunction fun()
 ---@alias NotifierMemberContext table|userdata
 ---@alias NotifierMemberFunction fun(self: NotifierMemberContext)
----@alias Notifier NotifierFunction|({[1]:NotifierMemberContext,[2]:NotifierMemberFunction})|({[1]:NotifierMemberFunction, [2]:NotifierMemberContext})
+---@alias NotifierMethod1 {[1]:NotifierMemberContext, [2]:NotifierMemberFunction}
+---@alias NotifierMethod2 {[1]:NotifierMemberFunction, [2]:NotifierMemberContext}
 
 ---Checks if the given function, method was already registered as notifier.
 ---@return boolean
----@param notifier Notifier
-function renoise.Observable:has_notifier(notifier) end
+---@param notifier NotifierFunction
+---@overload fun(self, notifer_method: NotifierMethod1)
+---@overload fun(self, notifer_method: NotifierMethod2)
+function renoise.Document.Observable:has_notifier(notifier) end
 
 ---Register a function or method as a notifier, which will be called as soon as
----the observable's value changed. The passed notifier can either be a funtion 
+---the observable's value changed. The passed notifier can either be a function 
 ---or a table with a function and some context (an "object") -> method. 
 ---### example:
 ---```lua
@@ -73,80 +76,98 @@ function renoise.Observable:has_notifier(notifier) end
 ---  end
 ---})
 ---```
----@param notifier Notifier
-function renoise.Observable:add_notifier(notifier) end
+---@param notifier NotifierFunction
+---@overload fun(self, notifer_method: NotifierMethod1)
+---@overload fun(self, notifer_method: NotifierMethod2)
+function renoise.Document.Observable:add_notifier(notifier) end
 
--- Unregister a previously registered notifier. When only passing an object to
--- remove_notifier, all notifier functions that match the given object will be
--- removed; in other words: all methods of the given object are removed. This 
----will not fire errors when no methods for the given object are attached.
+---Unregister a previously registered notifier. When only passing an object,
+---all notifier functions that match the given object will be removed. 
+---This will not fire errors when no methods for the given object are attached.
+---Trying to unregister a function or method which wasn't registered, will resolve 
+---into an error. 
 ---@param notifier NotifierFunction|NotifierMemberContext
-function renoise.Observable:remove_notifier(notifier) end
+---@overload fun(self, notifer_method: NotifierMethod1)
+---@overload fun(self, notifer_method: NotifierMethod2)
+function renoise.Document.Observable:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
----## renoise.Serializable
+---## renoise.Document.Serializable
 
----@class renoise.Serializable 
-renoise.Serializable = {}
+---@class renoise.Document.Serializable 
+renoise.Document.Serializable = {}
 
 ---### functions
 
 ---Serialize an object to a string.
 ---@return string
-function renoise.Serializable:to_string() end
+function renoise.Document.Serializable:to_string() end
 
 ---Assign the object's value from a string - when possible. Errors are
 ---silently ignored.
 ---@return string
-function renoise.Serializable:from_string(string) end
+function renoise.Document.Serializable:from_string(string) end
 
 --------------------------------------------------------------------------------
----## renoise.ObservableBang (inherits Observable)
+---## renoise.Document.ObservableBang (inherits Observable)
 
---- Observable without a value which sends out notifications when "banging" it.
----@class renoise.ObservableBang : renoise.Observable
-renoise.ObservableBang = {}
+---Observable without a value which sends out notifications when "banging" it.
+---@class renoise.Document.ObservableBang : renoise.Document.Observable
+---Construct a new observable bang.
+---@operator call():renoise.Document.ObservableBang
+renoise.Document.ObservableBang = {}
 
 ---### functions
 
 -- fire a notification, calling all registered notifiers.
-function renoise.ObservableBang:bang() end
+function renoise.Document.ObservableBang:bang() end
 
 --------------------------------------------------------------------------------
----## renoise.ObservableBoolean
+---## renoise.Document.ObservableBoolean
 
----@class renoise.ObservableBoolean : renoise.Observable, renoise.Serializable
----@field value boolean Read/write access to the value of an Observable.
-renoise.ObservableBoolean = {}
-
---------------------------------------------------------------------------------
----## renoise.ObservableNumber
-
----@class renoise.ObservableNumber : renoise.Observable, renoise.Serializable
----@field value number Read/write access to the value of an Observable.
-renoise.ObservableNumber = {}
+---@class renoise.Document.ObservableBoolean : renoise.Document.Observable, renoise.Document.Serializable
+---Read/write access to the value of an observable.
+---@field value boolean 
+---Construct a new observable boolean.
+---@operator call():renoise.Document.ObservableBoolean
+renoise.Document.ObservableBoolean = {}
 
 --------------------------------------------------------------------------------
----## renoise.ObservableString
+---## renoise.Document.ObservableNumber
 
----@class renoise.ObservableString : renoise.Observable, renoise.Serializable
----@field value string Read/write access to the value of an Observable.
-renoise.ObservableString = {}
+---@class renoise.Document.ObservableNumber : renoise.Document.Observable, renoise.Document.Serializable
+---Read/write access to the value of an Observable.
+---@field value number
+---Construct a new observable boolean.
+---@operator call():renoise.Document.ObservableNumber
+renoise.Document.ObservableNumber = {}
 
 --------------------------------------------------------------------------------
----## renoise.ObservableList
+---## renoise.Document.ObservableString
+
+---@class renoise.Document.ObservableString : renoise.Document.Observable, renoise.Document.Serializable
+---Read/write access to the value of an Observable.
+---@field value string
+---Construct a new observable string.
+---@operator call():renoise.Document.ObservableString
+renoise.Document.ObservableString = {}
+
+--------------------------------------------------------------------------------
+---## renoise.Document.ObservableList
 
 ---@alias ListElementAdded {type: "insert", index:number}
 ---@alias ListElementRemoved {type: "removed", index:number}
 ---@alias ListElementsSwapped {type: "swapped", index1:number, index2:number}
 ---@alias ListElementChange ListElementAdded|ListElementRemoved|ListElementsSwapped
+
 ---@alias ListNotifierFunction fun(change: ListElementChange)
 ---@alias ListNotifierMemberContext table|userdata
 ---@alias ListNotifierMemberFunction fun(self: NotifierMemberContext, change: ListElementChange)
----@alias ListNotifier ListNotifierFunction|({[1]:ListNotifierMemberContext,[2]:ListNotifierMemberFunction})|({[1]:ListNotifierMemberFunction, [2]:ListNotifierMemberContext})
+---@alias ListNotifierMethod1 {[1]:ListNotifierMemberContext, [2]:ListNotifierMemberFunction}
+---@alias ListNotifierMethod2 {[1]:ListNotifierMemberFunction, [2]:ListNotifierMemberContext}
 
 ---Notifiers from renoise.Document.Observable are available for lists as well,
----but will not broadcast changes made to the items, only changes to the
+---but will not broadcast changes made to the items, but only changes to the
 ---**list** layout.
 ---
 ---This means you will get notified as soon as an item is added, removed or
@@ -159,10 +180,8 @@ renoise.ObservableString = {}
 ---function tracks_changed(notification)
 ---  if (notification.type == "insert") then
 ---    print(("new track was inserted at index: %d"):format(notification.index))
----
 ---  elseif (notification.type == "remove") then
 ---    print(("track got removed from index: %d"):format(notification.index))
----
 ---  elseif (notification.type == "swap") then
 ---    print(("track at index: %d and %d swapped their positions"):format(
 ---      notification.index1, notification.index2))
@@ -171,40 +190,57 @@ renoise.ObservableString = {}
 ---
 ---renoise.song().tracks_observable:add_notifier(tracks_changed)
 ---```
----@class renoise.ObservableList
+---@class renoise.Document.ObservableList
 ---Query a list's size (item count).
 ---@operator len:integer
-renoise.ObservableList = {}
+renoise.Document.ObservableList = {}
 
 ---### functions
 
 ---Returns the number of entries of the list.
 ---@return number
-function renoise.ObservableList:size() end
+function renoise.Document.ObservableList:size() end
 
----@param notifier ListNotifier
+---Checks if the given function, method was already registered as notifier.
+---@param notifier ListNotifierFunction
 ---@returns boolean
-function renoise.ObservableList:has_notifier(notifier) end
+---@overload fun(self, notifer_method: ListNotifierMethod1)
+---@overload fun(self, notifer_method: ListNotifierMethod2)
+function renoise.Document.ObservableList:has_notifier(notifier) end
 
----@param notifier ListNotifier
-function renoise.ObservableList:add_notifier(notifier) end
+---Register a function or method as a notifier, which will be called as soon as
+---the observable lists layout changed. The passed notifier can either be a function 
+---or a table with a function and some context (an "object") -> method. 
+---@param notifier ListNotifierFunction
+---@overload fun(self, notifer_method: ListNotifierMethod1)
+---@overload fun(self, notifer_method: ListNotifierMethod2)
+function renoise.Document.ObservableList:add_notifier(notifier) end
 
+---Unregister a previously registered list notifier. When only passing an object,
+---all notifier functions that match the given object will be removed.
+---This will not fire errors when no methods for the given object are attached.
+---Trying to unregister a function or method which wasn't registered, will resolve 
+---into an error. 
 ---@param notifier ListNotifierFunction|ListNotifierMemberContext
-function renoise.ObservableList:remove_notifier(notifier) end
+---@overload fun(self, notifer_method: ListNotifierMethod1)
+---@overload fun(self, notifer_method: ListNotifierMethod2)
+function renoise.Document.ObservableList:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
----## renoise.ObservableBooleanList
+---## renoise.Document.ObservableBooleanList
 
 ---A observable list of boolean values.
----@class renoise.ObservableBooleanList : renoise.ObservableList, renoise.Serializable
+---@class renoise.Document.ObservableBooleanList : renoise.Document.ObservableList, renoise.Document.Serializable
 ---Query a list's size (item count).
 ---@operator len:integer
-renoise.ObservableBooleanList = {}
+---Construct a new observable list of booleans.
+---@operator call():renoise.Document.ObservableBooleanList
+renoise.Document.ObservableBooleanList = {}
 
----List item access (returns nil for non existing items).
+---List item access by index. returns nil for non existing items.
 ---@param index integer
----@return nil|renoise.ObservableBoolean
-function renoise.ObservableBooleanList:property(index) end
+---@return nil|renoise.Document.ObservableBoolean
+function renoise.Document.ObservableBooleanList:property(index) end
 
 ---Find a value in the list by comparing the list values with the passed
 ---value. The first successful match is returned. When no match is found, nil
@@ -213,40 +249,43 @@ function renoise.ObservableBooleanList:property(index) end
 ---@param value boolean
 ---@return integer|nil
 ---@overload fun(self, value: boolean):integer|nil
-function renoise.ObservableBooleanList:find(start_pos, value) end
+function renoise.Document.ObservableBooleanList:find(start_pos, value) end
 
 ---Insert a new item to the end of the list when no position is specified, or
 ---at the specified position. Returns the newly created and inserted Observable.
 ---@param pos integer
 ---@param value boolean
----@return renoise.ObservableBoolean
----@overload fun(self, value: boolean):renoise.ObservableBoolean
-function renoise.ObservableBooleanList:insert(pos, value) end
+---@return renoise.Document.ObservableBoolean
+---@overload fun(self, value: boolean):renoise.Document.ObservableBoolean
+function renoise.Document.ObservableBooleanList:insert(pos, value) end
 
 ---Removes an item (or the last one if no index is specified) from the list.
 ---@param pos integer
 ---@overload fun(self)
-function renoise.ObservableBooleanList:remove(pos) end
+function renoise.Document.ObservableBooleanList:remove(pos) end
 
 ---Swaps the positions of two items without adding/removing the items.
+---
 ---With a series of swaps you can move the item from/to any position.
 ---@param pos1 integer
 ---@param pos2 integer
-function renoise.ObservableBooleanList:swap(pos1, pos2) end
+function renoise.Document.ObservableBooleanList:swap(pos1, pos2) end
 
 --------------------------------------------------------------------------------
----## renoise.ObservableNumberList
+---## renoise.Document.ObservableNumberList
 
 ---A observable list of number values.
----@class renoise.ObservableNumberList : renoise.ObservableList, renoise.Serializable
+---@class renoise.Document.ObservableNumberList : renoise.Document.ObservableList, renoise.Document.Serializable
 ---Query a list's size (item count).
 ---@operator len:integer
-renoise.ObservableNumberList = {}
+---Construct a new observable list of numbers.
+---@operator call():renoise.Document.ObservableNumberList
+renoise.Document.ObservableNumberList = {}
 
----List item access (returns nil for non existing items).
+---List item access by index. returns nil for non existing items.
 ---@param index integer
----@return nil|renoise.ObservableNumber
-function renoise.ObservableNumberList:property(index) end
+---@return nil|renoise.Document.ObservableNumber
+function renoise.Document.ObservableNumberList:property(index) end
 
 ---Find a value in the list by comparing the list values with the passed
 ---value. The first successful match is returned. When no match is found, nil
@@ -255,40 +294,42 @@ function renoise.ObservableNumberList:property(index) end
 ---@param value number
 ---@return integer|nil
 ---@overload fun(self, value: number):integer|nil
-function renoise.ObservableNumberList:find(start_pos, value) end
+function renoise.Document.ObservableNumberList:find(start_pos, value) end
 
 ---Insert a new item to the end of the list when no position is specified, or
 ---at the specified position. Returns the newly created and inserted Observable.
 ---@param pos integer
 ---@param value number
----@return renoise.ObservableNumber
----@overload fun(self, value: boolean):renoise.ObservableBoolean
-function renoise.ObservableNumberList:insert(pos, value) end
+---@return renoise.Document.ObservableNumber
+---@overload fun(self, value: boolean):renoise.Document.ObservableBoolean
+function renoise.Document.ObservableNumberList:insert(pos, value) end
 
 ---Removes an item (or the last one if no index is specified) from the list.
 ---@param pos integer
 ---@overload fun(self)
-function renoise.ObservableNumberList:remove(pos) end
+function renoise.Document.ObservableNumberList:remove(pos) end
 
 ---Swaps the positions of two items without adding/removing the items.
 ---With a series of swaps you can move the item from/to any position.
 ---@param pos1 integer
 ---@param pos2 integer
-function renoise.ObservableNumberList:swap(pos1, pos2) end
+function renoise.Document.ObservableNumberList:swap(pos1, pos2) end
 
 --------------------------------------------------------------------------------
----## renoise.ObservableStringList
+---## renoise.Document.ObservableStringList
 
 ---A observable list of number values.
----@class renoise.ObservableStringList : renoise.ObservableList, renoise.Serializable
+---@class renoise.Document.ObservableStringList : renoise.Document.ObservableList, renoise.Document.Serializable
 ---Query a list's size (item count).
 ---@operator len:integer
-renoise.ObservableStringList = {}
+---Construct a new observable list of strings.
+---@operator call():renoise.Document.ObservableStringList
+renoise.Document.Document.ObservableStringList = {}
 
----List item access (returns nil for non existing items).
+---List item access by index. returns nil for non existing items.
 ---@param index integer
----@return nil|renoise.ObservableString
-function renoise.ObservableStringList:property(index) end
+---@return nil|renoise.Document.ObservableString
+function renoise.Document.ObservableStringList:property(index) end
 
 ---Find a value in the list by comparing the list values with the passed
 ---value. The first successful match is returned. When no match is found, nil
@@ -297,23 +338,23 @@ function renoise.ObservableStringList:property(index) end
 ---@param value number
 ---@return integer|nil
 ---@overload fun(self, value: number):integer|nil
-function renoise.ObservableStringList:find(start_pos, value) end
+function renoise.Document.ObservableStringList:find(start_pos, value) end
 
 ---Insert a new item to the end of the list when no position is specified, or
 ---at the specified position. Returns the newly created and inserted Observable.
 ---@param pos integer
 ---@param value number
----@return renoise.ObservableString
----@overload fun(self, value: boolean):renoise.ObservableBoolean
-function renoise.ObservableStringList:insert(pos, value) end
+---@return renoise.Document.ObservableString
+---@overload fun(self, value: boolean):renoise.Document.ObservableBoolean
+function renoise.Document.ObservableStringList:insert(pos, value) end
 
 ---Removes an item (or the last one if no index is specified) from the list.
 ---@param pos integer
 ---@overload fun(self)
-function renoise.ObservableStringList:remove(pos) end
+function renoise.Document.ObservableStringList:remove(pos) end
 
 ---Swaps the positions of two items without adding/removing the items.
 ---With a series of swaps you can move the item from/to any position.
 ---@param pos1 integer
 ---@param pos2 integer
-function renoise.ObservableStringList:swap(pos1, pos2) end
+function renoise.Document.ObservableStringList:swap(pos1, pos2) end
