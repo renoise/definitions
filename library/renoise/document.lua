@@ -11,6 +11,7 @@
 
 ---renoise.Document classes are wrappers for Renoise's internal document
 ---classes.
+---
 ---**Please note**: the Lua wrappers are not really "the Lua way" of solving and
 ---expressing things. e.g: theres no support for mixed types in lists, tuples
 ---at the moment.
@@ -77,10 +78,7 @@
 ---@class renoise.Document
 renoise.Document = {}
 
----### function
-
----@class renoise.DocumentModelCreator
----@operator call({ [string]: any }):renoise.Document.DocumentNode
+---### functions
 
 ---Create an empty DocumentNode or a DocumentNode that is modeled after the
 ---passed key value table. "model_name" will be used to identify the documents 
@@ -118,8 +116,14 @@ renoise.Document = {}
 ---my_other_document = renoise.Document.instantiate("MyDoc")
 ---```
 ---@param model_name string
----@return renoise.DocumentModelCreator
-function renoise.Document.create(model_name) end
+---@return fun(properties: { [string]: any }):renoise.Document.DocumentNode
+function renoise.Document.create(model_name) 
+    local new_node = renoise.Document.DocumentNode();
+    return function (properties)
+        new_node:add_properties(properties)
+        return new_node
+    end
+end
 
 ---Create a new instance of the given document model. Given "model_name" must
 ---have been registered with renoise.Document.create before.
@@ -136,7 +140,7 @@ function renoise.Document.instantiate(model_name) end
 
 ---A document node is a sub component in a document which contains other 
 ---documents or observables.
----@class renoise.Document.DocumentNode
+---@class renoise.Document.DocumentNode : table
 ---Property access
 ---@operator index(any):DocumentMember|nil
 ---Construct a new document node.
