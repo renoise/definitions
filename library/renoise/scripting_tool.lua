@@ -1,13 +1,13 @@
 ---@meta
 ---Do not try to execute this file. It's just a type definition file.
 ---
----This reference lists all available Lua functions and classes that are available
----to Renoise XRNX "scripting tool" packages. 
+---This reference lists Lua functions and classes to manage Renoise XRNX 
+---"scripting tool" packages. 
 ---
 ---Please read the Introduction.md first to get an overview about the complete
 ---API, and scripting for Renoise in general...
 ---
----Have a look at the com.renoise.ExampleTool.xrnx for a guided example tool.
+---Also have a look at the com.renoise.ExampleTool.xrnx for guided examples.
 ---
 
 --------------------------------------------------------------------------------
@@ -100,14 +100,13 @@
 ---renoise.tool().preferences = my_options
 ----- 'my_options' will be loaded/saved automatically with the tool now
 ---```
----Please see Renoise.Document.API for more info about
----renoise.Document.DocumentNode.
 ---@field preferences renoise.Document.DocumentNode?
 renoise.ScriptingTool = {}
 
 ---### functions
 
 -------------------------------------------------------------------------------
+
 ---Defines a menu entry somewhere in Renoise's existing context menus or the
 ---global app menu. Insertion can be done during script initialization, but
 ---can also be done dynamically later on.
@@ -116,8 +115,8 @@ renoise.ScriptingTool = {}
 ---To do so, use one of the specified categories in its name:
 ---```lua
 ---+ "Window Menu" -- Renoise icon menu in the window caption on Windows/Linux
----+ "Main Menu" (":File", ":Edit", ":View", ":Tools" or ":Help") -- Main menu
----+ "Scripting Menu" (":File" or ":Tools") -- Scripting Editor & Terminal
+---+ "Main Menu:XXX" (with XXX = ":File", ":Edit", ":View", ":Tools" or ":Help") -- Main menu
+---+ "Scripting Menu:XXX" (with XXX = ":File" or ":Tools") -- Scripting Editor & Terminal
 ---+ "Disk Browser Directories"
 ---+ "Disk Browser Files"
 ---+ "Instrument Box"
@@ -137,6 +136,7 @@ renoise.ScriptingTool = {}
 ---+ "Sample FX Mixer"
 ---+ "Sample Modulation Matrix"
 ---+ "Mixer"
+---+ "Master Spectrum"
 ---+ "Track Automation"
 ---+ "Track Automation List"
 ---+ "DSP Chain"
@@ -146,6 +146,9 @@ renoise.ScriptingTool = {}
 ---+ "DSP Device Automation"
 ---+ "Modulation Set"
 ---+ "Modulation Set List"
+---+ "Tool Browser"
+---+ "Script File Browser"
+---+ "Script File Tabs"
 ---```
 ---Separating entries:
 ---To divide entries into groups (separate entries with a line), prepend one or
@@ -165,7 +168,7 @@ renoise.ScriptingTool = {}
 ---@field selected fun():boolean?
 
 ---Returns true if the given entry already exists, otherwise false.
----@param entry_name string
+---@param entry_name string The menu entry name e.g. "Main Menu:Tools:My Tool".
 ---@return boolean
 function renoise.ScriptingTool:has_menu_entry(entry_name) end
 
@@ -174,9 +177,11 @@ function renoise.ScriptingTool:has_menu_entry(entry_name) end
 function renoise.ScriptingTool:add_menu_entry(entry) end
 
 ---Remove a previously added menu entry by specifying its full name.
+---@param entry_name string The menu entry name e.g. "Main Menu:Tools:My Tool".
 function renoise.ScriptingTool:remove_menu_entry(entry_name) end
 
 -------------------------------------------------------------------------------
+
 ---Register tool key bindings somewhere in Renoise's existing set of bindings.
 ---
 ---Please note: there's no way to define default keyboard shortcuts for your
@@ -189,6 +194,8 @@ function renoise.ScriptingTool:remove_menu_entry(entry_name) end
 ---
 ---`$scope` is where the shortcut will be applied, just like those
 ---in the categories list for the keyboard assignment preference pane.
+---Your key binding will only fire, when the scope is currently focused,
+---except it's the global scope one.
 ---Using an unavailable scope will not fire an error, instead it will render
 ---the binding useless. It will be listed and mappable, but never be invoked.
 ---
@@ -199,9 +206,19 @@ function renoise.ScriptingTool:remove_menu_entry(entry_name) end
 ---
 ----Currently available scopes are:
 ---```lua
----"Global", "Automation", "Disk Browser", "Instrument Box", "Mixer",
----"Pattern Editor", "Pattern Matrix", "Pattern Sequencer", "Sample Editor"
----"Track DSPs Chain"
+---+ "Global"
+---+ "Automation"
+---+ "Disk Browser"
+---+ "DSPs Chain"
+---+ "Instrument Box"
+---+ "Mixer"
+---+ "Pattern Editor" 
+---+ "Pattern Matrix"
+---+ "Pattern Sequencer"
+---+ "Sample Editor"
+---+ "Sample FX Mixer"
+---+ "Sample Keyzones"
+---+ "Sample Modulation Matrix"
 ---```
 ---@field name string
 ---A function that is called as soon as the mapped key is pressed.
@@ -209,7 +226,7 @@ function renoise.ScriptingTool:remove_menu_entry(entry_name) end
 ---@field invoke fun(repeated: boolean)
 
 ---Returns true when the given keybinging already exists, otherwise false.
----@param keybinding_name string
+---@param keybinding_name string Name of the binding e.g. "Global:My Tool:My Action" 
 ---@return boolean
 function renoise.ScriptingTool:has_keybinding(keybinding_name) end
 
@@ -218,9 +235,12 @@ function renoise.ScriptingTool:has_keybinding(keybinding_name) end
 function renoise.ScriptingTool:add_keybinding(keybinding) end
 
 -- Remove a previously added key binding by specifying its name and path.
+---@param keybinding_name string Name of the binding e.g. "Global:My Tool:My Action" 
 function renoise.ScriptingTool:remove_keybinding(keybinding_name) end
 
 -------------------------------------------------------------------------------
+
+---MIDI message as passed to the `invoke` callback in tool midi_mappings.
 ---@class renoise.ScriptingTool.MidiMessage
 ---[0 - 127] for abs values, [-63 - 63] for relative values
 ---valid when `is_rel_value()` or `is_abs_value()` returns true, else undefined
@@ -228,6 +248,7 @@ function renoise.ScriptingTool:remove_keybinding(keybinding_name) end
 -- valid [true OR false] when `is_switch()` returns true, else undefined
 ---@field boolean_value boolean|nil
 renoise.ScriptingTool.MidiMessage = {}
+
 -- returns if action should be invoked
 function renoise.ScriptingTool.MidiMessage:is_trigger() end
 
@@ -243,18 +264,20 @@ function renoise.ScriptingTool.MidiMessage:is_rel_value() end
 function renoise.ScriptingTool.MidiMessage:is_abs_value() end
 
 -------------------------------------------------------------------------------
+
 ---Extend Renoise's default MIDI mapping set, or add custom MIDI mappings
 ---for your tool.
 ---
----A tool's MIDI mappings can be used just like the regular mappings in
----Renoise: Either by manually looking up the mapping in the MIDI mapping list,
----then binding it to a MIDI message, or when your tool has a custom GUI,
----specifying the mapping via a control's "control.midi_mapping" property.
----Such controls will get highlighted as soon as the MIDI mapping dialog is
+---A tool's MIDI mapping can be used just like the regular mappings in
+---Renoise: Either by manually looking its up the mapping in the MIDI mapping
+---list, then binding it to a MIDI message, or when your tool has a custom GUI,
+---specifying the mapping via a control's `control.midi_mapping` property.
+---Such controls will then get highlighted as soon as the MIDI mapping dialog is
 ---opened. Then, users simply click on the highlighted control to map MIDI
 ---messages.
 ---@class ToolMidiMappingEntry
 ---The group, name of the midi mapping; as visible to the user.
+---
 ---The scope, name and category of the midi mapping use the form:
 ---`$topic_name:$optional_sub_topic_name:$name`:
 ---
@@ -270,6 +293,7 @@ function renoise.ScriptingTool.MidiMessage:is_abs_value() end
 ---@field invoke fun(message: renoise.ScriptingTool.MidiMessage)
 
 ---Returns true when the given mapping already exists, otherwise false.
+---@param midi_mapping_name string Name of the mapping. 
 ---@return boolean
 function renoise.ScriptingTool:has_midi_mapping(midi_mapping_name) end
 
@@ -278,9 +302,13 @@ function renoise.ScriptingTool:has_midi_mapping(midi_mapping_name) end
 function renoise.ScriptingTool:add_midi_mapping(midi_mapping) end
 
 -- Remove a previously added midi mapping by specifying its name.
+---@param midi_mapping_name string Name of the mapping. 
 function renoise.ScriptingTool:remove_midi_mapping(midi_mapping_name) end
 
 -------------------------------------------------------------------------------
+
+---@alias FileHookCategory "song"|"instrument"|"effect chain"|"effect preset"|"modulation set"|"phrase"|"sample"|"theme"
+
 ---Add support for new filetypes in Renoise. Registered file types will show up
 ---in Renoise's disk browser and can also be loaded by drag and dropping the
 ---files onto the Renoise window. When adding hooks for files which Renoise
@@ -294,18 +322,17 @@ function renoise.ScriptingTool:remove_midi_mapping(midi_mapping_name) end
 ---
 ---@class ToolFileImportHook
 ---In which disk browser category the file type shows up.
----One of "song", "instrument", "effect chain", "effect preset",
----"modulation set", phrase", "sample" or "theme"
----@field category string
+---One of 
+---@field category FileHookCategory
 --- A list of strings, file extensions, that will invoke your hook, like for
----example {"txt", "swave"}
+---example {"txt", "s_wave"}
 ---@field extensions string[]
 ---function that is called to do the import. return true when the import
 ---succeeded, else false.
 ---@field invoke fun(file_name: string): boolean
 
 ---Returns true when the given hook already exists, otherwise false.
----@param category string
+---@param category FileHookCategory
 ---@param extensions_table string[]
 ---@return boolean
 function renoise.ScriptingTool:has_file_import_hook(category, extensions_table) end
@@ -316,11 +343,12 @@ function renoise.ScriptingTool:add_file_import_hook(file_import_hook) end
 
 ---Remove a previously added file import hook by specifying its category
 ---and extension(s)
----@param category string
+---@param category FileHookCategory
 ---@param extensions_table string[]
 function renoise.ScriptingTool:remove_file_import_hook(category, extensions_table) end
 
 -------------------------------------------------------------------------------
+
 ---@alias TimerFunction fun()
 ---@alias TimerMemberContext table|userdata
 ---@alias TimerMemberFunction fun(self: NotifierMemberContext)
@@ -335,9 +363,11 @@ function renoise.ScriptingTool:remove_file_import_hook(category, extensions_tabl
 function renoise.ScriptingTool:has_timer(timer) end
 
 ---Register a timer function or table with a function and context (a method)
----that periodically gets called by the app_idle_observable for your tool.
+---that periodically gets called by the `app_idle_observable` for your tool.
+---
 ---Modal dialogs will avoid that timers are called. To create a one-shot timer,
 ---simply call remove_timer at the end of your timer function.
+---
 ---`interval_in_ms` must be > 0. The exact interval your function is called
 ---will vary a bit, depending on workload; e.g. when enough CPU time is available
 ---the rounding error will be around +/- 5 ms.
