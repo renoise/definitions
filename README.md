@@ -13,7 +13,7 @@ This is a work in progress. Below you can see which Renoise API sections have al
 - [x] `renoise/application.lua` *renoise.Application and renoise.ApplicationWindow*
 - [x] `renoise/document.observable.lua` *renoise.Document.Observable*
 - [x] `renoise/document.lua` *renoise.Document*
-- [ ] `renoise/scripting_tool.lua` *renoise.ScriptingTool*
+- [x] `renoise/scripting_tool.lua` *renoise.ScriptingTool*
 - [ ] `renoise/midi.lua` *renoise.Midi*
 - [ ] `renoise/socket.lua` *renoise.Socket*
 - [ ] `renoise/osc.lua` *renoise.Osc*
