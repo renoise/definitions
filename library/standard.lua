@@ -46,26 +46,34 @@ function rprint(value) end
 ---
 ---### examples
 ---```lua
------ Base Animal class
+------@class Animal
+------@operator call(string): Animal
+---Animal = {}
 ---class 'Animal'
+---  ---@param name string
 ---  function Animal:__init(name)
 ---    self.name = name
 ---    self.can_fly = nil
 ---  end
----
 ---  function Animal:show()
----    return ("I am a %s (%s) and I %s fly"):format(self.name, type(self), 
+---    return ("I am a %s (%s) and I %s fly"):format(self.name, type(self),
 ---      (self.can_fly and "can fly" or "can not fly"))
 ---  end
 ---
 ----- Mammal class (inherits Animal functions and members)
+------@class Mammal : Animal
+------@operator call(string): Mammal
+---Mammal = {}
 ---class 'Mammal' (Animal)
----  function Mammal:__init(str)
----    Animal.__init(self, str)
+---  ---@param name string
+---  function Mammal:__init(name)
+---    Animal.__init(self, name)
 ---    self.can_fly = false
 ---  end
----  
----  -- show() function and base member are avilable for Mammal too
+---
+----- show() function and base member are avilable for Mammal too
+---local mamal = Mammal("Cow")
+---mamal:show()
 ---```
 ---@param name string
 function class(name)
@@ -87,14 +95,12 @@ function class(name)
       return new_object
     end
   })
-  -- return a callable table which optionally sets a base class
-  return setmetatable({}, {
-    __call = function(self, base)
-      for k, v in pairs(base) do
-        class_table[k] = v
-      end
+  -- return a closure which optionally sets a base class
+  return function(base)
+    for k, v in pairs(base) do
+      class_table[k] = v
     end
-  })
+  end
 end
 
 ---### changed
