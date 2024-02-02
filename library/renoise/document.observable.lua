@@ -4,8 +4,9 @@
 ---This reference lists Lua functions to access observables, a notification system
 ---for value changes in the Renoise API.
 ---
----Please read the INTRODUCTION.txt first to get an overview about the complete
----API, and scripting for Renoise in general...
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for 
+---Renoise in general...
 ---
 
 --------------------------------------------------------------------------------

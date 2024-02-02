@@ -3,8 +3,10 @@
 ---
 ---This reference lists Lua functions to create custom observable documents.
 ---
----Please read the INTRODUCTION.txt first to get an overview about the complete
----API, and scripting for Renoise in general...
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for 
+---Renoise in general...
+---
 
 --------------------------------------------------------------------------------
 ---## renoise.Document

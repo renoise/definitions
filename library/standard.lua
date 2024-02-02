@@ -1,7 +1,7 @@
 ---@meta
 ---Do not try to execute this file. It's just a type definition file.
 ---
----This is a reference for standard global and standard Lua API functions and 
+---This is a reference for standard global and standard Lua API functions and
 ---tools that were added/changed within Renoise.
 ---
 ---All standard Lua libraries are included in Renoise as well. You can find the

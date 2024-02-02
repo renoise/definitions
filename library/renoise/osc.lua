@@ -8,8 +8,9 @@
 ---
 ---Have a look at http://opensoundcontrol.org for general info about OSC.
 ---
----Please read the Introduction.md first to get an overview about the complete
----API, and scripting for Renoise in general...
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for 
+---Renoise in general...
 ---
 ---For some small examples on how to use the OSC and Sockets API, have a
 -- look at the code snippets in the Renoise Documentation "Snippets/Osc.lua".
@@ -17,6 +18,9 @@
 
 --------------------------------------------------------------------------------
 ---## renoise.Osc
+
+---OSC (Open Sound Control) support for Lua scripts in Renoise. 
+renoise.Osc = {}
 
 ---De-packetizing raw (socket) data to OSC messages or bundles:
 ---Converts the binary data to an OSC message or bundle. If the data does not
@@ -43,6 +47,7 @@ function renoise.Osc.from_binary_data(binary_data) end
 ---**READ-ONLY** Raw binary representation of the messsage, as needed when e.g.
 ---sending the message over the network through sockets.
 ---@field binary_data string
+renoise.Osc.Message = {}
 
 ---### functions
 
@@ -100,6 +105,7 @@ function renoise.Osc.Message(pattern, arguments) end
 -- **READ-ONLY** Raw binary representation of the bundle, as needed when e.g.
 ---sending the message over the network through sockets.
 ---@field binary_data string
+renoise.Osc.Bundle = {}
 
 ---Create a new bundle by specifying a time-tag and one or more messages.
 ---If you do not know what to do with the time-tag, use `os.clock()`,

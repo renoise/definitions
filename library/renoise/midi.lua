@@ -4,8 +4,9 @@
 ---This reference describes the raw MIDI IO support for scripts in Renoise; the
 ---ability to send and receive MIDI data.
 ---
----Please read the Introduction.md first to get an overview about the complete
----API, and scripting for Renoise in general...
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for 
+---Renoise in general...
 ---
 ---For some simple examples on how to use MIDI IO in Renoise, have a look at the
 ---"Snippets/Midi.lua" file in the Renoise script Documentation folder.
@@ -13,6 +14,10 @@
 
 --------------------------------------------------------------------------------
 ---## renoise.Midi
+
+---Raw MIDI IO support for scripts in Renoise; the ability to send and receive 
+---MIDI data.
+renoise.Midi = {}
 
 ---### error handling
 
@@ -111,10 +116,10 @@ function renoise.Midi.create_output_device(device_name) end
 
 ---### functions
 
--- Close a running MIDI device. When no other client is using a device, Renoise
--- will also shut off the device driver so that, for example, Windows OS other
--- applications can use the device again. This is automatically done when
--- scripts are closed or your device objects are garbage collected.
+---Close a running MIDI device. When no other client is using a device, Renoise
+---will also shut off the device driver so that, for example, Windows OS other
+---applications can use the device again. This is automatically done when
+---scripts are closed or your device objects are garbage collected.
 function renoise.Midi.MidiDevice:close() end
 
 --------------------------------------------------------------------------------
@@ -122,12 +127,14 @@ function renoise.Midi.MidiDevice:close() end
 ---Midi device interface for receiving MIDI messages.
 ---Instances are created via `renoise.Midi.create_input_device`
 ---@class renoise.Midi.MidiInputDevice
+renoise.Midi.MidiInputDevice = {}
 
 --------------------------------------------------------------------------------
 
 ---Midi device interface for sending MIDI messages.
 ---Instances are created via `renoise.Midi.create_output_device`
 ---@class renoise.Midi.MidiOutputDevice
+renoise.Midi.MidiOutputDevice = {}
 
 ---### functions
 

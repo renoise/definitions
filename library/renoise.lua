@@ -24,7 +24,7 @@ renoise = {}
 ---@type number
 renoise.API_VERSION = 6.1
 
--- Renoise Version "Major.Minor.Revision[AlphaBetaRcVersion][Demo]"
+---Renoise Version "Major.Minor.Revision[AlphaBetaRcVersion][Demo]"
 ---@type string
 renoise.RENOISE_VERSION = "Major.Minor.Revision[AlphaBetaRcVersion][Demo]"
 
@@ -49,9 +49,3 @@ function renoise.song() end
 ---scripting terminal and editor in Renoise.
 ---@return renoise.ScriptingTool
 function renoise.tool() end
-
----Not much else going on here...
----for renoise.Application, see "Documentation/Renoise.Application.API.lua",
----for renoise.Song, see "Documentation/Renoise.Song.API.lua",
----for renoise.ScriptingTool, see "Documentation/Renoise.ScriptingTool.API.lua",
----and so on.
