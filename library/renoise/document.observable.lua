@@ -129,7 +129,7 @@ function renoise.Document.ObservableBang:bang() end
 ---Read/write access to the value of an observable.
 ---@field value boolean 
 ---Construct a new observable boolean.
----@operator call():renoise.Document.ObservableBoolean
+---@operator call(boolean?):renoise.Document.ObservableBoolean
 renoise.Document.ObservableBoolean = {}
 
 --------------------------------------------------------------------------------
@@ -139,7 +139,7 @@ renoise.Document.ObservableBoolean = {}
 ---Read/write access to the value of an Observable.
 ---@field value number
 ---Construct a new observable boolean.
----@operator call():renoise.Document.ObservableNumber
+---@operator call(number?):renoise.Document.ObservableNumber
 renoise.Document.ObservableNumber = {}
 
 --------------------------------------------------------------------------------
@@ -149,7 +149,7 @@ renoise.Document.ObservableNumber = {}
 ---Read/write access to the value of an Observable.
 ---@field value string
 ---Construct a new observable string.
----@operator call():renoise.Document.ObservableString
+---@operator call(string?):renoise.Document.ObservableString
 renoise.Document.ObservableString = {}
 
 --------------------------------------------------------------------------------
