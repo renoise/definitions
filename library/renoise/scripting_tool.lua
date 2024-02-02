@@ -4,8 +4,9 @@
 ---This reference lists Lua functions and classes to manage Renoise XRNX 
 ---"scripting tool" packages. 
 ---
----Please read the Introduction.md first to get an overview about the complete
----API, and scripting for Renoise in general...
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for 
+---Renoise in general...
 ---
 ---Also have a look at the com.renoise.ExampleTool.xrnx for guided examples.
 ---
@@ -234,7 +235,7 @@ function renoise.ScriptingTool:has_keybinding(keybinding_name) end
 ---@param keybinding ToolKeybindingEntry
 function renoise.ScriptingTool:add_keybinding(keybinding) end
 
--- Remove a previously added key binding by specifying its name and path.
+---Remove a previously added key binding by specifying its name and path.
 ---@param keybinding_name string Name of the binding e.g. "Global:My Tool:My Action" 
 function renoise.ScriptingTool:remove_keybinding(keybinding_name) end
 
@@ -245,11 +246,11 @@ function renoise.ScriptingTool:remove_keybinding(keybinding_name) end
 ---[0 - 127] for abs values, [-63 - 63] for relative values
 ---valid when `is_rel_value()` or `is_abs_value()` returns true, else undefined
 ---@field int_value integer|nil
--- valid [true OR false] when `is_switch()` returns true, else undefined
+---valid [true OR false] when `is_switch()` returns true, else undefined
 ---@field boolean_value boolean|nil
 renoise.ScriptingTool.MidiMessage = {}
 
--- returns if action should be invoked
+---returns if action should be invoked
 function renoise.ScriptingTool.MidiMessage:is_trigger() end
 
 ---check if the boolean_value property is valid
@@ -301,7 +302,7 @@ function renoise.ScriptingTool:has_midi_mapping(midi_mapping_name) end
 ---@param midi_mapping ToolMidiMappingEntry
 function renoise.ScriptingTool:add_midi_mapping(midi_mapping) end
 
--- Remove a previously added midi mapping by specifying its name.
+---Remove a previously added midi mapping by specifying its name.
 ---@param midi_mapping_name string Name of the mapping. 
 function renoise.ScriptingTool:remove_midi_mapping(midi_mapping_name) end
 
@@ -324,7 +325,7 @@ function renoise.ScriptingTool:remove_midi_mapping(midi_mapping_name) end
 ---In which disk browser category the file type shows up.
 ---One of 
 ---@field category FileHookCategory
---- A list of strings, file extensions, that will invoke your hook, like for
+---A list of strings, file extensions, that will invoke your hook, like for
 ---example {"txt", "s_wave"}
 ---@field extensions string[]
 ---function that is called to do the import. return true when the import
@@ -351,9 +352,9 @@ function renoise.ScriptingTool:remove_file_import_hook(category, extensions_tabl
 
 ---@alias TimerFunction fun()
 ---@alias TimerMemberContext table|userdata
----@alias TimerMemberFunction fun(self: NotifierMemberContext)
----@alias TimerMethod1 {[1]:NotifierMemberContext, [2]:NotifierMemberFunction}
----@alias TimerMethod2 {[1]:NotifierMemberFunction, [2]:NotifierMemberContext}
+---@alias TimerMemberFunction fun(self: TimerMemberContext)
+---@alias TimerMethod1 {[1]:TimerMemberContext, [2]:TimerMemberFunction}
+---@alias TimerMethod2 {[1]:TimerMemberFunction, [2]:TimerMemberContext}
 
 ---Returns true when the given function or method was registered as a timer.
 ---@return boolean
@@ -377,7 +378,7 @@ function renoise.ScriptingTool:has_timer(timer) end
 ---@overload fun(self, timer_method: TimerMethod2, interval_in_ms: number)
 function renoise.ScriptingTool:add_timer(timer, interval_in_ms) end
 
--- Remove a previously registered timer.
+--Remove a previously registered timer.
 ---@param timer TimerFunction
 ---@overload fun(self, timer_method: TimerMethod1)
 ---@overload fun(self, timer_method: TimerMethod2)

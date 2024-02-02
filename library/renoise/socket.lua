@@ -7,8 +7,9 @@
 ---in Renoise has server support (which can respond to multiple connected clients)
 ---and client support (send/receive data to/from a server).
 ---
----Please read the Introduction.md first to get an overview about the complete
----API, and scripting for Renoise in general...
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for 
+---Renoise in general...
 ---
 ---For examples on how to use sockets, have across look at the code snippets in
 ---the Renoise Documentation "Snippets/Socket.lua"
@@ -47,14 +48,14 @@ renoise.Socket = {
 
 ------ Creating Socket Servers
 
--- Creates a connected UPD or TCP server object. Use "localhost" to use your
--- system's default network address. Protocol can be `renoise.Socket.PROTOCOL_TCP`
--- or `renoise.Socket.PROTOCOL_UDP` (by default TCP).
--- When instantiation and connection succeed, a valid server object is
--- returned, otherwise "error" is set and the server object is nil.
--- Using the create function with no server_address allows you to create a
--- server which allows connections to any address (for example localhost
--- and some IP)
+---Creates a connected UPD or TCP server object. Use "localhost" to use your
+---system's default network address. Protocol can be `renoise.Socket.PROTOCOL_TCP`
+---or `renoise.Socket.PROTOCOL_UDP` (by default TCP).
+---When instantiation and connection succeed, a valid server object is
+---returned, otherwise "error" is set and the server object is nil.
+---Using the create function with no server_address allows you to create a
+---server which allows connections to any address (for example localhost
+---and some IP)
 ---@param server_address string
 ---@param server_port integer
 ---@param protocol renoise.Socket.Protocol? Default: renoise.Socket.PROTOCOL_TCP
@@ -76,7 +77,7 @@ function renoise.Socket.create_server(server_address, server_port, protocol) end
 function renoise.Socket.create_client(server_address, server_port, protocol, timeout) end
 
 --------------------------------------------------------------------------------
--- renoise.Socket.SocketBase
+---## renoise.Socket.SocketBase
 
 ---SocketBase is the base class for socket clients and servers. All
 ---SocketBase properties and functions are available for servers and clients.
