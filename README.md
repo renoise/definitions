@@ -15,7 +15,7 @@ This is a work in progress. Below you can see which Renoise API sections have al
 - [x] `renoise/document.lua` *renoise.Document*
 - [x] `renoise/scripting_tool.lua` *renoise.ScriptingTool*
 - [x] `renoise/midi.lua` *renoise.Midi*
-- [ ] `renoise/socket.lua` *renoise.Socket*
+- [x] `renoise/socket.lua` *renoise.Socket*
 - [x] `renoise/osc.lua` *renoise.Osc*
 - [ ] `renoise/song.lua` *renoise.Song/Track/Instrument...*
 - [ ] `renoise/view_builder.lua` *renoise.View & Widgets*
