@@ -115,7 +115,7 @@ function renoise.Document.Serializable:from_string(string) end
 ---Observable without a value which sends out notifications when "banging" it.
 ---@class renoise.Document.ObservableBang : renoise.Document.Observable
 ---Construct a new observable bang.
----@operator call():renoise.Document.ObservableBang
+---@overload fun():renoise.Document.ObservableBang
 renoise.Document.ObservableBang = {}
 
 ---### functions
@@ -130,7 +130,7 @@ function renoise.Document.ObservableBang:bang() end
 ---Read/write access to the value of an observable.
 ---@field value boolean 
 ---Construct a new observable boolean.
----@operator call(boolean?):renoise.Document.ObservableBoolean
+---@overload fun(boolean?):renoise.Document.ObservableBoolean
 renoise.Document.ObservableBoolean = {}
 
 --------------------------------------------------------------------------------
@@ -140,7 +140,7 @@ renoise.Document.ObservableBoolean = {}
 ---Read/write access to the value of an Observable.
 ---@field value number
 ---Construct a new observable boolean.
----@operator call(number?):renoise.Document.ObservableNumber
+---@overload fun(number?):renoise.Document.ObservableNumber
 renoise.Document.ObservableNumber = {}
 
 --------------------------------------------------------------------------------
@@ -150,7 +150,7 @@ renoise.Document.ObservableNumber = {}
 ---Read/write access to the value of an Observable.
 ---@field value string
 ---Construct a new observable string.
----@operator call(string?):renoise.Document.ObservableString
+---@overload fun(string?):renoise.Document.ObservableString
 renoise.Document.ObservableString = {}
 
 --------------------------------------------------------------------------------
@@ -235,7 +235,7 @@ function renoise.Document.ObservableList:remove_notifier(notifier) end
 ---Query a list's size (item count).
 ---@operator len:integer
 ---Construct a new observable list of booleans.
----@operator call():renoise.Document.ObservableBooleanList
+---@overload fun():renoise.Document.ObservableBooleanList
 renoise.Document.ObservableBooleanList = {}
 
 ---List item access by index. returns nil for non existing items.
@@ -280,7 +280,7 @@ function renoise.Document.ObservableBooleanList:swap(pos1, pos2) end
 ---Query a list's size (item count).
 ---@operator len:integer
 ---Construct a new observable list of numbers.
----@operator call():renoise.Document.ObservableNumberList
+---@overload fun():renoise.Document.ObservableNumberList
 renoise.Document.ObservableNumberList = {}
 
 ---List item access by index. returns nil for non existing items.
@@ -324,8 +324,8 @@ function renoise.Document.ObservableNumberList:swap(pos1, pos2) end
 ---Query a list's size (item count).
 ---@operator len:integer
 ---Construct a new observable list of strings.
----@operator call():renoise.Document.ObservableStringList
-renoise.Document.Document.ObservableStringList = {}
+---@overload fun():renoise.Document.ObservableStringList
+renoise.Document.ObservableStringList = {}
 
 ---List item access by index. returns nil for non existing items.
 ---@param index integer

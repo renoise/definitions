@@ -40,14 +40,15 @@ function oprint(object) end
 function rprint(value) end
 
 ---Luabind "class" registration. Registers a global class object and returns a
----callable table to set the base class.
+---closure to optionally set the base class.
 ---
 ---See also [Luabind class](https://luabind.sourceforge.net/docs.html#class_lua)
 ---
 ---### examples
 ---```lua
 ------@class Animal
-------@operator call(string): Animal
+----- Construct a new animal with the given name.
+------@overload fun(string): Animal
 ---Animal = {}
 ---class 'Animal'
 ---  ---@param name string
@@ -62,7 +63,8 @@ function rprint(value) end
 ---
 ----- Mammal class (inherits Animal functions and members)
 ------@class Mammal : Animal
-------@operator call(string): Mammal
+----- Construct a new mamal with the given name.
+------@overload fun(string): Mammal
 ---Mammal = {}
 ---class 'Mammal' (Animal)
 ---  ---@param name string
@@ -136,7 +138,7 @@ function rawequal(obj1, obj2) end
 
 ---Shortcut to remdebug.session.start(), which starts a debug session:
 ---launches the debugger controller and breaks script execution. See
----"Debugging.txt" in the documentation root folder for more info.
+---"Debugging.md" in the documentation root folder for more info.
 function debug.start() end
 
 ---Shortcut to remdebug.session.stop: stops a running debug session

@@ -4,7 +4,7 @@
 ---This reference lists Lua functions to create custom observable documents.
 ---
 ---Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for 
+---folder first to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -18,13 +18,13 @@
 ---expressing things. e.g: theres no support for mixed types in lists, tuples
 ---at the moment.
 ---
----Documents can be serialzed from/to XML, just like Renoise's internal 
+---Documents can be serialzed from/to XML, just like Renoise's internal
 ---document and are observable.
 ---
 ---An empty document (node) object can be created via
 ---```renoise.Document.create("MyDoc"){}```
 ---
----Such document objects can then be extended with the document's 
+---Such document objects can then be extended with the document's
 ---`add_property` function. Existing properties can also be removed again with the
 ---`remove_property` function.
 ---
@@ -49,7 +49,7 @@
 ---```
 ---As an alternative to `renoise.Document.create`, you can also inherit from
 ---renoise.Document.DocumentNode in order to create your own document classes.
----This is especially recommended when dealing with more complex docs, because 
+---This is especially recommended when dealing with more complex docs, because
 ---you can also use additional methods to deal with your properties, the data.
 ---
 ---### example:
@@ -71,19 +71,19 @@
 ---    }
 ---  end
 ---```
----Instantiating such custom document objects can then be done by simply 
+---Instantiating such custom document objects can then be done by simply
 ---calling the constructor:
 ---```lua
 ---my_document = MyDocument()
 ----- do something with my_document, load/save, add/remove more properties
----``` 
+---```
 ---@class renoise.Document
 renoise.Document = {}
 
 ---### functions
 
 ---Create an empty DocumentNode or a DocumentNode that is modeled after the
----passed key value table. "model_name" will be used to identify the documents 
+---passed key value table. "model_name" will be used to identify the documents
 ---type when loading/saving. It also allows you to instantiate new document
 ---objects (see renoise.Document.instantiate).
 ---
@@ -119,9 +119,9 @@ renoise.Document = {}
 ---```
 ---@param model_name string
 ---@return fun(properties: { [string]: any }):renoise.Document.DocumentNode
-function renoise.Document.create(model_name) 
+function renoise.Document.create(model_name)
     local new_node = renoise.Document.DocumentNode();
-    return function (properties)
+    return function(properties)
         new_node:add_properties(properties)
         return new_node
     end
@@ -140,13 +140,13 @@ function renoise.Document.instantiate(model_name) end
 
 ---@alias DocumentMember renoise.Document.Observable|renoise.Document.ObservableList|renoise.Document.DocumentNode|renoise.Document.DocumentList
 
----A document node is a sub component in a document which contains other 
+---A document node is a sub component in a document which contains other
 ---documents or observables.
 ---@class renoise.Document.DocumentNode : table
 ---Property access
 ---@operator index(any):DocumentMember|nil
 ---Construct a new document node.
----@operator call():renoise.Document.DocumentNode
+---@overload fun():renoise.Document.DocumentNode
 renoise.Document.DocumentNode = {}
 
 ---### functions
@@ -183,7 +183,7 @@ function renoise.Document.DocumentNode:add_properties(properties) end
 
 ---Remove a previously added property. Property must exist.
 ---
----In order to remove a value by it's key, use 
+---In order to remove a value by it's key, use
 ---`my_document:remove_property(my_document["some_member"])`
 ---@param value DocumentMember
 function renoise.Document.DocumentNode:remove_property(value) end
@@ -208,11 +208,11 @@ function renoise.Document.DocumentNode:save_as(file_name) end
 ---@return boolean success, string? error
 function renoise.Document.DocumentNode:load_from(file_name) end
 
----Serialize the whole document tree to a XML string. 
+---Serialize the whole document tree to a XML string.
 ---@return string
 function renoise.Document.DocumentNode:to_string() end
 
----Parse document tree from the given string data. 
+---Parse document tree from the given string data.
 ---See renoise.Document.DocumentNode:load_from for details about how properties
 ---are parsed and errors are handled.
 ---@param string string
@@ -230,7 +230,7 @@ function renoise.Document.DocumentNode:from_string(string) end
 ---Query a list's size (item count).
 ---@operator len():integer
 ---Construct a new document list.
----@operator call():renoise.Document.DocumentList
+---@overload fun():renoise.Document.DocumentList
 renoise.Document.DocumentList = {}
 
 ---### functions
@@ -281,8 +281,8 @@ function renoise.Document.DocumentList:swap(pos1, pos2) end
 function renoise.Document.DocumentList:has_notifier(notifier) end
 
 ---Register a function or method as a notifier, which will be called as soon as
----the document lists layout changed. The passed notifier can either be a function 
----or a table with a function and some context (an "object") -> method. 
+---the document lists layout changed. The passed notifier can either be a function
+---or a table with a function and some context (an "object") -> method.
 ---@param notifier ListNotifierFunction
 ---@overload fun(self, notifer_method: ListNotifierMethod1)
 ---@overload fun(self, notifer_method: ListNotifierMethod2)
@@ -291,8 +291,8 @@ function renoise.Document.DocumentList:add_notifier(notifier) end
 ---Unregister a previously registered list notifier. When only passing an object,
 ---all notifier functions that match the given object will be removed.
 ---This will not fire errors when no methods for the given object are attached.
----Trying to unregister a function or method which wasn't registered, will resolve 
----into an error. 
+---Trying to unregister a function or method which wasn't registered, will resolve
+---into an error.
 ---@param notifier ListNotifierFunction|ListNotifierMemberContext
 ---@overload fun(self, notifer_method: ListNotifierMethod1)
 ---@overload fun(self, notifer_method: ListNotifierMethod2)
