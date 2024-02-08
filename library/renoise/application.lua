@@ -13,6 +13,7 @@
 --------------------------------------------------------------------------------
 ---## renoise.Application
 
+---The Renoise application.
 ---@class renoise.Application
 renoise.Application = {}
 

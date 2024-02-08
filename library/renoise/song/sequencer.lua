@@ -2,8 +2,7 @@
 ---Do not try to execute this file. It's just a type definition file.
 ---
 ---This reference lists all available Lua functions and classes that control
----Renoise's main document - the song - and the corresponding components such as
----Instruments, Tracks, Patterns, and so on.
+---Renoise's pattern sequencer document.
 ---
 ---Please read the `Introduction.md` in the Renoise scripting Documentation
 ---folder first to get an overview about the complete API, and scripting for
@@ -14,6 +13,11 @@
 ---## renoise.PatternSequencer
 
 ---Pattern sequencer component of the Renoise song.
+---@class renoise.PatternSequencer
+renoise.PatternSequencer = { }
+
+---### properties
+
 ---@class renoise.PatternSequencer
 ---
 ---When true, the sequence will be auto sorted.
@@ -37,8 +41,6 @@
 ---Attach notifiers that will be fired as soon as any slot muting property
 ---in any track/sequence slot changes.
 ---@field pattern_slot_mutes_observable renoise.Document.Observable
----
-renoise.PatternSequencer = { }
 
 ---### functions
 

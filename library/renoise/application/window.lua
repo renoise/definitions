@@ -12,6 +12,7 @@
 --------------------------------------------------------------------------------
 --- ## renoise.ApplicationWindow
 
+---Application window and general UI properties of the Renoise app.
 ---@class renoise.ApplicationWindow
 renoise.ApplicationWindow = {}
 
@@ -117,7 +118,6 @@ renoise.ApplicationWindow = {
 ---Mixer fader type setting.
 ---@field mixer_fader_type renoise.ApplicationWindow.MixerFader
 ---@field mixer_fader_type_observable renoise.Document.Observable
-
 
 ---### functions
 

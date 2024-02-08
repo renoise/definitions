@@ -12,6 +12,19 @@
 --------------------------------------------------------------------------------
 ---## renoise.Track
 
+---Track component of a Renoise song.
+---@class renoise.Track
+renoise.Track = {}
+
+---Audio device info
+---@class AudioDeviceInfo
+---@field path string The device's path used by `renoise.Track:insert_device_at`
+---@field name string The device's name
+---@field short_name string The device's name as displayed in shortened lists
+---@field favorite_name string The device's name as displayed in favorites
+---@field is_favorite boolean true if the device is a favorite
+---@field is_bridged boolean true if the device is a bridged plugin
+
 ---### constants
 
 ---@enum renoise.Track.TrackType
@@ -31,16 +44,6 @@ renoise.Track = {
 
 ---### properties
 
----Audio device info
----@class AudioDeviceInfo
----@field path string The device's path used by `renoise.Track:insert_device_at`
----@field name string The device's name
----@field short_name string The device's name as displayed in shortened lists
----@field favorite_name string The device's name as displayed in favorites
----@field is_favorite boolean true if the device is a favorite
----@field is_bridged boolean true if the device is a bridged plugin
-
----Track component of a Renoise song.
 ---@class renoise.Track
 ---
 ---Type, name, color.
@@ -110,9 +113,6 @@ renoise.Track = {
 ---@field available_device_infos AudioDeviceInfo[]
 ---@field devices renoise.AudioDevice[] **READ-ONLY** List of audio DSP FX. 
 ---@field devices_observable renoise.Document.ObservableList
----
-renoise.Track = {}
-
 
 ---### functions
 
@@ -176,7 +176,12 @@ function renoise.Track:swap_effect_columns_at(column_index1, column_index2) end
 --------------------------------------------------------------------------------
 ---## renoise.GroupTrack
 
----Track component of a Renoise song.
+---@class renoise.GroupTrack
+renoise.GroupTrack = {}
+
+---### properties
+
+---Group track component of a Renoise song.
 ---@class renoise.GroupTrack : renoise.Track
 ---
 ---**READ-ONLY** All member tracks of this group, including subgroups and 

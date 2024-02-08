@@ -2,8 +2,7 @@
 ---Do not try to execute this file. It's just a type definition file.
 ---
 ---This reference lists all available Lua functions and classes that control
----Renoise's main audio effect document in the the song.
----Instruments, Tracks, Patterns, and so on.
+---Renoise's audio effect documents and parameters in the the song.
 ---
 ---Please read the `Introduction.md` in the Renoise scripting Documentation
 ---folder first to get an overview about the complete API, and scripting for
@@ -12,9 +11,13 @@
 
 --------------------------------------------------------------------------------
 ---## renoise.AudioDevice
+
+---Audio DSP device in tracks or sample device chains.
+---@class renoise.AudioDevice
 renoise.AudioDevice = {}
 
----Represents an audio DSP device in tracks or sample device chains.
+---### properties
+
 ---@class renoise.AudioDevice
 ---
 ---Fixed name of the device.
@@ -71,9 +74,12 @@ function renoise.AudioDevice:preset(index) end
 ---@return renoise.DeviceParameter
 function renoise.AudioDevice:parameter(index) end
 
+
 --------------------------------------------------------------------------------
 ---## renoise.DeviceParameter
 
+---A single parameter within an audio DSP effect (renoise.AudioDevice)
+---@class renoise.DeviceParameter
 renoise.DeviceParameter = { }
 
 ---### constants
@@ -84,7 +90,8 @@ renoise.DeviceParameter = {
   POLARITY_BIPOLAR = 2
 }
 
----A single parameter within an audio DSP effect (renoise.AudioDevice)
+---### properties
+
 ---@class renoise.DeviceParameter
 ---
 ---Device parameters.
