@@ -74,6 +74,8 @@ function renoise.AudioDevice:parameter(index) end
 --------------------------------------------------------------------------------
 ---## renoise.DeviceParameter
 
+renoise.DeviceParameter = { }
+
 ---### constants
 
 ---@enum renoise.DeviceParameter.Polarity
@@ -122,8 +124,6 @@ renoise.DeviceParameter = {
 ---
 ---@field value_string string
 ---@field value_string_observable renoise.Document.Observable
----
-renoise.DeviceParameter = { }
 
 ---### functions
 

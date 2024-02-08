@@ -28,6 +28,25 @@ renoise.SongPos = {}
 --------------------------------------------------------------------------------
 ---## renoise.Song
 
+renoise.Song = {}
+
+---### constants
+
+renoise.Song.MAX_NUMBER_OF_INSTRUMENTS = 255
+
+---@enum renoise.Song.SubColumnType
+renoise.Song = {
+  SUB_COLUMN_NOTE = 1,
+  SUB_COLUMN_INSTRUMENT = 2,
+  SUB_COLUMN_VOLUME = 3,
+  SUB_COLUMN_PANNING = 4,
+  SUB_COLUMN_DELAY = 5,
+  SUB_COLUMN_SAMPLE_EFFECT_NUMBER = 6,
+  SUB_COLUMN_SAMPLE_EFFECT_AMOUNT = 7,
+  SUB_COLUMN_EFFECT_NUMBER = 1,
+  SUB_COLUMN_EFFECT_AMOUNT = 2
+}
+
 ---Selection range in the current pattern
 ---@class PatternSelection
 ---@field start_line number Start pattern line index
@@ -230,24 +249,9 @@ renoise.SongPos = {}
 ---@field selection_in_pattern PatternSelection|nil
 ---Same as `selection_in_pattern` but for the currently selected phrase (if any).
 ---@field selection_in_phrase PhraseSelection|nil
+---
 renoise.Song = {}
 
----### constants
-
-renoise.Song.MAX_NUMBER_OF_INSTRUMENTS = 255
-
----@enum renoise.Song.SubColumnType
-renoise.Song = {
-  SUB_COLUMN_NOTE = 1,
-  SUB_COLUMN_INSTRUMENT = 2,
-  SUB_COLUMN_VOLUME = 3,
-  SUB_COLUMN_PANNING = 4,
-  SUB_COLUMN_DELAY = 5,
-  SUB_COLUMN_SAMPLE_EFFECT_NUMBER = 6,
-  SUB_COLUMN_SAMPLE_EFFECT_AMOUNT = 7,
-  SUB_COLUMN_EFFECT_NUMBER = 1,
-  SUB_COLUMN_EFFECT_AMOUNT = 2
-}
 
 ---### functions
 

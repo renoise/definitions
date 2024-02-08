@@ -13,6 +13,28 @@
 --------------------------------------------------------------------------------
 ---## renoise.Transport
 
+---### constants
+
+---@enum renoise.Transport.PlayMode
+renoise.Transport = {
+  PLAYMODE_RESTART_PATTERN = 1,
+  PLAYMODE_CONTINUE_PATTERN = 2
+}
+
+---@enum renoise.Transport.RecordParameterMode
+renoise.Transport = {
+  RECORD_PARAMETER_MODE_PATTERN = 1,
+  RECORD_PARAMETER_MODE_AUTOMATION = 2,
+}
+
+---@enum renoise.Transport.TimingModel
+renoise.Transport = {
+  TIMING_MODEL_SPEED = 1,
+  TIMING_MODEL_LPB = 2
+}
+
+---### properties
+
 ---Transport component of the Renoise song.
 ---@class renoise.Transport
 ---
@@ -126,26 +148,6 @@
 ---@field keyboard_velocity_observable renoise.Document.Observable
 ---
 renoise.Transport = {}
-
----### constants
-
----@enum renoise.Transport.PlayMode
-renoise.Transport = {
-  PLAYMODE_RESTART_PATTERN = 1,
-  PLAYMODE_CONTINUE_PATTERN = 2
-}
-
----@enum renoise.Transport.RecordParameterMode
-renoise.Transport = {
-  RECORD_PARAMETER_MODE_PATTERN = 1,
-  RECORD_PARAMETER_MODE_AUTOMATION = 2,
-}
-
----@enum renoise.Transport.TimingModel
-renoise.Transport = {
-  TIMING_MODEL_SPEED = 1,
-  TIMING_MODEL_LPB = 2
-}
 
 ---### functions
 
