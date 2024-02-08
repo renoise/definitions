@@ -12,14 +12,32 @@ This is a work in progress. Below you can see which Renoise API sections have al
 - [x] `renoise.lua` *main renoise namespace*
 - [x] `renoise/application.lua` *renoise.Application*
 - [x] `renoise/application/window.lua` *renoise.ApplicationWindow*
-- [x] `renoise/document.lua` *renoise.Document*
+- [x] `renoise/document.lua` *renoise.Document.DocumentNode*
 - [x] `renoise/document/observable.lua` *renoise.Document.Observable*
-- [x] `renoise/scripting_tool.lua` *renoise.ScriptingTool*
+- [x] `renoise/tool.lua` *renoise.ScriptingTool*
 - [x] `renoise/midi.lua` *renoise.Midi*
 - [x] `renoise/socket.lua` *renoise.Socket*
-- [x] `renoise/osc.lua` *renoise.Osc*
-- [ ] `renoise/song.lua` *renoise.Song/Track/Instrument...*
-- [ ] `renoise/view_builder.lua` *renoise.View & Widgets*
+- [x] `renoise/osc.lua` *renoise.OsctingTool*
+- [x] `renoise/song.lua` *renoise.Song*
+- [x] `renoise/song/sequencer.lua` *renoise.PatternSequencer*
+- [x] `renoise/song/track.lua` *renoise.Track/GroupTrack*
+- [x] `renoise/song/transport.lua` *renoise.Transport*
+- [x] `renoise/song/device.lua` *renoise.AudioDevice and renoise.DeviceParameter*
+- [ ] `renoise/song/instrument.lua` *renoise.Instrument*
+- [ ] `renoise/song/instrument/phrase.lua` *renoise.InstrumentPhrase*
+- [ ] `renoise/song/instrument/plugin.lua` *renoise.InstrumentPluginProperties*
+- [ ] `renoise/song/instrument/sample.lua` *renoise.Sample/Mapping/Buffer*
+- [ ] `renoise/song/instrument/sample_modulation.lua` *renoise.SampleModulationSet/Device*
+- [ ] `renoise/song/instrument/sample_device_chain.lua` *renoise.SampleDeviceChain*
+- [ ] `renoise/song/instrument/macro.lua` *renoise.InstrumentMacro/Mapping*
+- [ ] `renoise/song/instrument/midi_input.lua` *renoise.InstrumentMidiInputProperties*
+- [ ] `renoise/song/instrument/midi_output.lua` *renoise.InstrumentMidiOutputProperties*
+- [ ] `renoise/song/pattern.lua` *renoise.Pattern*
+- [ ] `renoise/song/pattern/line.lua` *renoise.PatternLine/Column*
+- [ ] `renoise/song/pattern/track.lua` *renoise.PatternTrack*
+- [ ] `renoise/song/pattern/automation.lua` *renoise.PatternTrackAutomation*
+- [ ] `renoise/song/pattern_iterator.lua` *renoise.PatternIterator*
+- [ ] `renoise/view_builder.lua` *renoise.Views & Widgets*
 
 ## Usage
 
