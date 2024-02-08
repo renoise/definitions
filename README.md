@@ -10,9 +10,10 @@ This is a work in progress. Below you can see which Renoise API sections have al
 
 - [x] `standard.lua` *extensions of the standard Lua API in Renoise*
 - [x] `renoise.lua` *main renoise namespace*
-- [x] `renoise/application.lua` *renoise.Application and renoise.ApplicationWindow*
-- [x] `renoise/document.observable.lua` *renoise.Document.Observable*
+- [x] `renoise/application.lua` *renoise.Application*
+- [x] `renoise/application/window.lua` *renoise.ApplicationWindow*
 - [x] `renoise/document.lua` *renoise.Document*
+- [x] `renoise/document/observable.lua` *renoise.Document.Observable*
 - [x] `renoise/scripting_tool.lua` *renoise.ScriptingTool*
 - [x] `renoise/midi.lua` *renoise.Midi*
 - [x] `renoise/socket.lua` *renoise.Socket*
