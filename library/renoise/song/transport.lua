@@ -1,186 +1,189 @@
+---@meta
+---Do not try to execute this file. It's just a type definition file.
+---
+---This reference lists all available Lua functions and classes that control
+---Renoise's main document - the song - and the corresponding components such as
+---Instruments, Tracks, Patterns, and so on.
+---
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for
+---Renoise in general...
+---
+
 --------------------------------------------------------------------------------
--- renoise.Transport
---------------------------------------------------------------------------------
+---## renoise.Transport
 
--------- Constants
+---Transport component of the Renoise song.
+---@class renoise.Transport
+---
+---Playing
+---@field playing boolean
+---@field playing_observable renoise.Document.Observable
+---
+---*READ-ONLY* Old school speed or new LPB timing used?
+---With `TIMING_MODEL_SPEED`, tpl is used as speed factor. The lpb property 
+---is unused then. With `TIMING_MODEL_LPB`, tpl is used as event rate for effects
+---only and lpb defines relationship between pattern lines and beats.
+---@field timing_model renoise.Transport.TimingModel
+---
+---BPM, LPB, and TPL
+---@field bpm number Beats per Minute [32-999] 
+---@field bpm_observable renoise.Document.Observable
+---@field lpb number Lines per Beat [1-256] 
+---@field lpb_observable renoise.Document.Observable
+---@field tpl number Ticks per Line [1-16]
+---@field tpl_observable renoise.Document.Observable
+---
+---Playback position
+---@field playback_pos renoise.SongPos
+---@field playback_pos_beats number Song position in beats [0 - song_end_beats]
+---
+---Edit position
+---@field edit_pos renoise.SongPos
+---@field edit_pos_beats number Song position in beats [0 - song_end_beats]
+---
+---Song length
+---@field song_length renoise.SongPos **READ-ONLY**
+---@field song_length_beats number **READ-ONLY**
+---
+---Loop
+---@field loop_start renoise.SongPos **READ-ONLY**
+---@field loop_end renoise.SongPos **READ-ONLY**
+---@field loop_range renoise.SongPos[] {loop start, loop end}
+---@field loop_start_beats number **READ-ONLY** [0 - song_end_beats]
+---@field loop_end_beats number **READ-ONLY** [0 - song_end_beats]
+---@field loop_range_beats number[] {loop start beats, loop end beats}
+---
+---@field loop_sequence_start number **READ-ONLY** 0 or [1 - sequence length]
+---@field loop_sequence_end number **READ-ONLY** 0 or [1 - sequence length]
+---@field loop_sequence_range number[] {} or [sequence start, sequence end]
+---
+---@field loop_pattern boolean Pattern Loop On/Off
+---@field loop_pattern_observable renoise.Document.Observable
+---
+---@field loop_block_enabled boolean Block Loop On/Off
+---@field loop_block_start_pos renoise.SongPos Start of block loop
+---@field loop_block_range_coeff number [2 - 16]
+---
+---Edit modes
+---@field edit_mode boolean
+---@field edit_mode_observable renoise.Document.Observable
+---@field edit_step integer [0 - 64]
+---@field edit_step_observable renoise.Document.Observable
+---@field octave integer [0 - 8]
+---@field octave_observable renoise.Document.Observable
+---
+---Metronome
+---@field metronome_enabled boolean
+---@field metronome_enabled_observable renoise.Document.Observable
+---@field metronome_beats_per_bar integer [1 - 16]
+---@field metronome_beats_per_bar_observable renoise.Document.Observable
+---@field metronome_lines_per_beat integer [1-256 or 0 = songs current LPB]
+---@field metronome_lines_per_beat_observable renoise.Document.Observable
+---
+---Metronome precount
+---@field metronome_precount_enabled boolean
+---@field metronome_precount_enabled_observable renoise.Document.Observable
+---@field metronome_precount_bars integer [1 - 4]
+---@field metronome_precount_bars_observable renoise.Document.Observable
+---
+---Quantize
+---@field record_quantize_enabled boolean
+---@field record_quantize_enabled_observable renoise.Document.Observable
+---@field record_quantize_lines integer [1 - 32]
+---@field record_quantize_lines_observable renoise.Document.Observable
+---
+---Record parameter
+---@field record_parameter_mode renoise.Transport.RecordParameterMode
+---@field record_parameter_mode_observable renoise.Document.Observable
+---
+---Follow, wrapped pattern, single track modes
+---@field follow_player boolean
+---@field follow_player_observable renoise.Document.Observable
+---@field wrapped_pattern_edit boolean
+---@field wrapped_pattern_edit_observable renoise.Document.Observable
+---@field single_track_edit_mode boolean
+---@field single_track_edit_mode_observable renoise.Document.Observable
+---
+---Groove. (aka Shuffle)
+---@field groove_enabled boolean
+---@field groove_enabled_observable renoise.Document.Observable
+---@field groove_amounts number[] table with 4 numbers [0 - 1]
+---Attach notifiers that will be called as soon as any groove value changed.
+---@field groove_assignment_observable renoise.Document.Observable
+---
+---Global Track Headroom
+---To convert to dB: `dB = math.lin2db(renoise.Transport.track_headroom)`
+---To convert from dB: `renoise.Transport.track_headroom = math.db2lin(dB)`
+---@field track_headroom number [math.db2lin(-12) - math.db2lin(0)]
+---@field track_headroom_observable renoise.Document.Observable
+--- 
+---Computer Keyboard Velocity.
+---@field keyboard_velocity_enabled boolean
+---@field keyboard_velocity_enabled_observable renoise.Document.Observable
+---Will return the default value of 127 when keyboard_velocity_enabled == false.
+---@field keyboard_velocity integer [0 - 127]
+---@field keyboard_velocity_observable renoise.Document.Observable
+---
+renoise.Transport = {}
 
-renoise.Transport.PLAYMODE_RESTART_PATTERN
-renoise.Transport.PLAYMODE_CONTINUE_PATTERN
+---### constants
 
-renoise.Transport.RECORD_PARAMETER_MODE_PATTERN
-renoise.Transport.RECORD_PARAMETER_MODE_AUTOMATION
+---@enum renoise.Transport.PlayMode
+renoise.Transport = {
+  PLAYMODE_RESTART_PATTERN = 1,
+  PLAYMODE_CONTINUE_PATTERN = 2
+}
 
-renoise.Transport.TIMING_MODEL_SPEED
-renoise.Transport.TIMING_MODEL_LPB
+---@enum renoise.Transport.RecordParameterMode
+renoise.Transport = {
+  RECORD_PARAMETER_MODE_PATTERN = 1,
+  RECORD_PARAMETER_MODE_AUTOMATION = 2,
+}
 
+---@enum renoise.Transport.TimingModel
+renoise.Transport = {
+  TIMING_MODEL_SPEED = 1,
+  TIMING_MODEL_LPB = 2
+}
 
--------- Functions
+---### functions
 
--- Panic.
-renoise.song().transport:panic()
+---Panic.
+function renoise.Transport:panic() end
 
--- Mode: enum = PLAYMODE
-renoise.song().transport:start(mode)
--- start playing the currently edited pattern at the given line offset
-renoise.song().transport:start_at(line)
--- start playing a the given renoise.SongPos (sequence pos and line)
-renoise.song().transport:start_at(song_pos)
+---Start playing in song or pattern mode.
+---@param mode renoise.Transport.PlayMode
+function renoise.Transport:start(mode) end
+---Start playing the currently edited pattern at the given line offset
+---@param line integer
+function renoise.Transport:start_at(line) end
+---Start playing a the given renoise.SongPos (sequence pos and line)
+---@param song_pos renoise.SongPos
+function renoise.Transport:start_at(song_pos) end
 
--- stop playing. when already stopped this just stops all playing notes.
-renoise.song().transport:stop()
+---Stop playing. When already stopped this just stops all playing notes.
+function renoise.Transport:stop() end
 
--- Immediately start playing at the given sequence position.
-renoise.song().transport:trigger_sequence(sequence_pos)
--- Append the sequence to the scheduled sequence list. Scheduled playback
--- positions will apply as soon as the currently playing pattern play to end.
-renoise.song().transport:add_scheduled_sequence(sequence_pos)
--- Replace the scheduled sequence list with the given sequence.
-renoise.song().transport:set_scheduled_sequence(sequence_pos)
+---Immediately start playing at the given sequence position.
+---@param sequence_pos integer
+function renoise.Transport:trigger_sequence(sequence_pos) end
+---Append the sequence to the scheduled sequence list. Scheduled playback
+---positions will apply as soon as the currently playing pattern play to end.
+---@param sequence_pos integer
+function renoise.Transport:add_scheduled_sequence(sequence_pos) end
+---Replace the scheduled sequence list with the given sequence.
+---@param sequence_pos integer
+function renoise.Transport:set_scheduled_sequence(sequence_pos) end
 
--- Move the block loop one segment forwards, when possible.
-renoise.song().transport:loop_block_move_forwards()
--- Move the block loop one segment backwards, when possible.
-renoise.song().transport:loop_block_move_backwards()
+---Move the block loop one segment forwards, when possible.
+function renoise.Transport:loop_block_move_forwards() end
+---Move the block loop one segment backwards, when possible.
+function renoise.Transport:loop_block_move_backwards() end
 
--- Start a new sample recording when the sample dialog is visible,
--- otherwise stop and finish it.
-renoise.song().transport:start_stop_sample_recording()
--- Cancel a currently running sample recording when the sample dialog
--- is visible, otherwise do nothing.
-renoise.song().transport:cancel_sample_recording()
-
-
--------- Properties
-
--- Playing.
-renoise.song().transport.playing, _observable
-  -> [boolean]
-
--- Old school speed or new LPB timing used?
--- With TIMING_MODEL_SPEED, tpl is used as speed factor. The lpb property 
--- is unused then. With TIMING_MODEL_LPB, tpl is used as event rate for effects
--- only and lpb defines relationship between pattern lines and beats.
-renoise.song().transport.timing_model
-  -> [read-only, enum = TIMING_MODEL]
-
--- BPM, LPB, and TPL.
-renoise.song().transport.bpm, _observable
-  -> [number, 32-999]
-renoise.song().transport.lpb, _observable
-  -> [number, 1-256]
-renoise.song().transport.tpl, _observable
-  -> [number, 1-16]
- 
--- Playback position.
-renoise.song().transport.playback_pos
-  -> [renoise.SongPos object]
-renoise.song().transport.playback_pos_beats
-  -> [number, 0-song_end_beats]
-
--- Edit position.
-renoise.song().transport.edit_pos
-  -> [renoise.SongPos object]
-renoise.song().transport.edit_pos_beats
-  -> [number, 0-sequence_length]
-
--- Song length.
-renoise.song().transport.song_length
-  -> [read-only, SongPos]
-renoise.song().transport.song_length_beats
-  -> [read-only, number]
-
--- Loop.
-renoise.song().transport.loop_start
-  -> [read-only, SongPos]
-renoise.song().transport.loop_end
-  -> [read-only, SongPos]
-renoise.song().transport.loop_range[]
-  -> [array of two renoise.SongPos objects]
-
-renoise.song().transport.loop_start_beats
-  -> [read-only, number within 0-song_end_beats]
-renoise.song().transport.loop_end_beats
-  -> [read-only, number within 0-song_end_beats]
-renoise.song().transport.loop_range_beats[]
-  -> [array of two numbers, 0-song_end_beats]
-
-renoise.song().transport.loop_sequence_start
-  -> [read-only, 0 or 1-sequence_length]
-renoise.song().transport.loop_sequence_end
-  -> [read-only, 0 or 1-sequence_length]
-renoise.song().transport.loop_sequence_range[]
-  -> [array of two numbers, 0 or 1-sequence_length or empty to disable]
-
-renoise.song().transport.loop_pattern, _observable
-  -> [boolean]
-
-renoise.song().transport.loop_block_enabled
-  -> [boolean]
-renoise.song().transport.loop_block_start_pos
-  -> [read-only, renoise.SongPos object]
-renoise.song().transport.loop_block_range_coeff
-  -> [number, 2-16]
-
--- Edit modes.
-renoise.song().transport.edit_mode, _observable
-  -> [boolean]
-renoise.song().transport.edit_step, _observable
-  -> [number, 0-64]
-renoise.song().transport.octave, _observable
-  -> [number, 0-8]
-
--- Metronome.
-renoise.song().transport.metronome_enabled, _observable
-  -> [boolean]
-renoise.song().transport.metronome_beats_per_bar, _observable
-  -> [1-16]
-renoise.song().transport.metronome_lines_per_beat, _observable
-  -> [number, 1-256 or 0 = songs current LPB]
-
--- Metronome precount.
-renoise.song().transport.metronome_precount_enabled, _observable
-  -> [boolean]
-renoise.song().transport.metronome_precount_bars, _observable
-  -> [number, 1-4]
-
-
--- Quantize.
-renoise.song().transport.record_quantize_enabled, _observable
-  -> [boolean]
-renoise.song().transport.record_quantize_lines, _observable
-  -> [number, 1-32]
-
--- Record parameter.
-renoise.song().transport.record_parameter_mode, _observable
-  -> [enum = RECORD_PARAMETER_MODE]
-
--- Follow, wrapped pattern, single track modes.
-renoise.song().transport.follow_player, _observable
-  -> [boolean]
-renoise.song().transport.wrapped_pattern_edit, _observable
-  -> [boolean]
-renoise.song().transport.single_track_edit_mode, _observable
-  -> [boolean]
-
--- Groove. (aka Shuffle)
-renoise.song().transport.groove_enabled, _observable
-  -> [boolean]
-renoise.song().transport.groove_amounts[]
-  -> [array of numbers, 0.0-1.0]
--- Attach notifiers that will be called as soon as any
--- groove amount value changed.
-renoise.song().transport.groove_assignment_observable
-  -> [renoise.Document.Observable object]
-
--- Global Track Headroom.
--- To convert to dB:   dB = math.lin2db(renoise.song().transport.track_headroom)
--- To convert from dB: renoise.song().transport.track_headroom = math.db2lin(dB)
-renoise.song().transport.track_headroom, _observable
-  -> [number, math.db2lin(-12)-math.db2lin(0)]  
-  
--- Computer Keyboard Velocity.
--- Will return the default value of 127 when keyboard_velocity_enabled == false.
-renoise.song().transport.keyboard_velocity_enabled, _observable
-  -> [boolean] 
-renoise.song().transport.keyboard_velocity, _observable
-  -> [number, 0-127]  
+---Start a new sample recording when the sample dialog is visible,
+---otherwise stop and finish it.
+function renoise.Transport:start_stop_sample_recording() end
+---Cancel a currently running sample recording when the sample dialog
+---is visible, otherwise do nothing.
+function renoise.Transport:cancel_sample_recording() end
