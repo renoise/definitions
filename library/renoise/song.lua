@@ -15,8 +15,6 @@
 
 ---Helper class used in Transport and Song, representing a position in the song.
 ---@class renoise.SongPos
----@operator eq(renoise.SongPos): boolean
----@operator lt(renoise.SongPos): boolean
 ---Position in the pattern sequence.
 ---@field sequence number
 ---Position in the pattern at the given pattern sequence.
@@ -24,6 +22,11 @@
 ---@overload fun(): renoise.SongPos
 ---@overload fun(sequence: number, line: number): renoise.SongPos
 renoise.SongPos = {}
+
+---### operators
+
+---operator==(song_pos, song_pos): boolean
+---operator<(song_pos, song_pos): boolean
 
 --------------------------------------------------------------------------------
 ---## renoise.Song
