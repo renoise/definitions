@@ -16,8 +16,11 @@
 package.path = package.path .. ';Libraries/?.lua'
 
 ---An iterator like ipairs, but in reverse order.
----@param table table
----@return function iterator
+---@generic T: table, V
+---@param table T
+---@return fun(table: V[], i?: integer):integer, V
+---@return T
+---@return integer i
 ---### examples:
 ---```lua
 ---t = {"a", "b", "c"}
