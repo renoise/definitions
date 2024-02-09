@@ -34,7 +34,8 @@ renoise.PatternTrack = {}
 ---@field is_empty boolean
 ---@field is_empty_observable renoise.Document.Observable
 ---
----**READ-ONLY** Get all lines in range [1, number_of_lines_in_pattern]
+---**READ-ONLY** Get all lines in range [1, number_of_lines_in_pattern].
+---Use `renoise.Pattern:add/remove_line_notifier` for change notifications.
 ---@field lines renoise.PatternLine[]
 ---
 ---Automation.
@@ -50,7 +51,7 @@ function renoise.PatternTrack:clear() end
 ---@param other renoise.PatternTrack
 function renoise.PatternTrack:copy_from(other) end
 
----Access to a single line by index. Line must be [1-MAX_NUMBER_OF_LINES]). 
+---Access to a single line by index. Line must be [1-MAX_NUMBER_OF_LINES]).
 ---This is a !lot! more efficient than calling the property: lines[index] to
 ---randomly access lines.
 ---@param index integer

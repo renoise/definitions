@@ -1,9 +1,8 @@
-
 ---@meta
 ---Do not try to execute this file. It's just a type definition file.
 ---
 ---This reference lists all available Lua functions and classes that control
----Renoise's pattern track document.
+---Renoise's pattern track line document.
 ---
 ---Please read the `Introduction.md` in the Renoise scripting Documentation
 ---folder first to get an overview about the complete API, and scripting for
@@ -49,18 +48,18 @@ function renoise.PatternLine:clear() end
 ---@param other renoise.PatternLine
 function renoise.PatternLine:copy_from(other) end
 
----Access to a single note column by index. Use properties 'note_columns' 
+---Access to a single note column by index. Use properties 'note_columns'
 ---to iterate over all note columns and to query the note_column count.
----This is a !lot! more efficient than calling the property: 
+---This is a !lot! more efficient than calling the property:
 ---note_columns[index] to randomly access columns. When iterating over all
 ---columns, use pairs(note_columns).
 ---@param index integer
 ---@return renoise.NoteColumn
 function renoise.PatternLine:note_column(index) end
 
----Access to a single effect column by index. Use properties 'effect_columns' 
+---Access to a single effect column by index. Use properties 'effect_columns'
 ---to iterate over all effect columns and to query the effect_column count.
----This is a !lot! more efficient than calling the property: 
+---This is a !lot! more efficient than calling the property:
 ---effect_columns[index] to randomly access columns. When iterating over all
 ---columns, use pairs(effect_columns).
 ---@param index integer
@@ -100,7 +99,7 @@ renoise.NoteColumn = {}
 ---**READ-ONLY** True, when all note column properties are empty.
 ---@field is_empty boolean
 ---
----**READ-ONLY** True, when this column is selected in the pattern or phrase 
+---**READ-ONLY** True, when this column is selected in the pattern or phrase
 ---editors current pattern.
 ---@field is_selected boolean
 ---
@@ -110,7 +109,7 @@ renoise.NoteColumn = {}
 ---@field instrument_value integer 0-254, 255==Empty
 ---@field instrument_string string '00'-'FE' or '..'
 ---
----0-127 or 255==Empty when column value is <= 0x80 or is 0xFF, 
+---0-127 or 255==Empty when column value is <= 0x80 or is 0xFF,
 ---i.e. to specify a volume value.
 ---
 ---0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2,
@@ -118,7 +117,7 @@ renoise.NoteColumn = {}
 ---@field volume_value integer
 ---@field volume_string string '00'-'ZF' or '..'
 ---
----0-127, 255==Empty when column value is <= 0x80 or is 0xFF, 
+---0-127, 255==Empty when column value is <= 0x80 or is 0xFF,
 ---i.e. to specify a pan value.
 ---
 ---0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2,
@@ -130,7 +129,7 @@ renoise.NoteColumn = {}
 ---@field delay_string string '00'-'FF' or '..'
 ---
 ---0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2
----@field effect_number_value integer 
+---@field effect_number_value integer
 ---@field effect_number_string string '00' - 'ZZ'
 ---
 ---@field effect_amount_value integer 0-255

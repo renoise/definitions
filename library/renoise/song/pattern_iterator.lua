@@ -12,7 +12,7 @@
 --------------------------------------------------------------------------------
 ---## renoise.PatternIterator
 
----Lua pairs/ipairs alike iterator functions to walk through all lines or columns 
+---Lua pairs/ipairs alike iterator functions to walk through all lines or columns
 ---in the entire song, track or a single pattern.
 ---
 ---General remarks: Iterators can only be use in "for" loops like you would use

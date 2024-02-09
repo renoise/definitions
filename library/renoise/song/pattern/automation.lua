@@ -32,10 +32,14 @@ renoise.PatternTrackAutomation = {
 
 ---### properties
 
+---Single point within a pattern track automation envelope.
 ---@class EnvelopePoint
----@field time number An automation point's time in pattern lines [1 - NUM_LINES_IN_PATTERN].
----@field value number An automation point's value [0 - 1.0]
----@field scaling number An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
+---Automation point's time in pattern lines [1 - NUM_LINES_IN_PATTERN].
+---@field time number
+---Automation point value [0 - 1.0]
+---@field value number
+---Automation point scaling. Used in 'lines' playback mode only - 0.0 is linear.
+---@field scaling number
 
 ---@class renoise.PatternTrackAutomation
 ---
@@ -53,7 +57,7 @@ renoise.PatternTrackAutomation = {
 ---
 ---**READ-ONLY** Max length (time in lines) of the automation.
 ---Will always fit the patterns length.
----@field length integer 1-NUM_LINES_IN_PATTERN
+---@field length integer [1 - NUM_LINES_IN_PATTERN]
 ---
 ---Selection range as visible in the automation editor. always valid.
 ---returns the automation range no selection is present in the UI.
@@ -64,14 +68,15 @@ renoise.PatternTrackAutomation = {
 ---
 ---Get or set selection range. when setting an empty table, the existing
 ---selection, if any, will be cleared.
----@field selection_range number[] array of two numbers [] OR [1 - automation.length + 1]
+---array of two numbers [] OR [1 - automation.length + 1]
+---@field selection_range number[]
 ---@field selection_range_observable renoise.Document.Observable
 ---
 ---Get all points of the automation. When setting a new list of points,
 ---items may be unsorted by time, but there may not be multiple points
 ---for the same time. Returns a copy of the list, so changing
 ---`points[1].value` will not do anything. Instead, change them via
----`points = { something }` instead.
+---`points = { modified_points }`.
 ---@field points EnvelopePoint[]
 ---@field points_observable renoise.Document.ObservableList
 
@@ -89,6 +94,7 @@ function renoise.PatternTrackAutomation:clear() end
 function renoise.PatternTrackAutomation:clear_range(from_time, to_time) end
 
 ---Copy all points and playback settings from another track automation.
+---@param other renoise.PatternTrackAutomation
 function renoise.PatternTrackAutomation:copy_from(other) end
 
 ---Test if a point exists at the given time (in lines

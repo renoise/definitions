@@ -24,7 +24,7 @@ renoise.Pattern.MAX_NUMBER_OF_LINES = 512
 
 ---@class renoise.Pattern
 ---
----Quickly check if any track in a pattern has some non empty pattern lines. 
+---Quickly check if any track in a pattern has some non empty pattern lines.
 ---This does not look at track automation.
 ---@field is_empty boolean
 ---
@@ -37,7 +37,7 @@ renoise.Pattern.MAX_NUMBER_OF_LINES = 512
 ---@field number_of_lines integer
 ---@field number_of_lines_observable renoise.Document.Observable
 ---
----**READ-ONLY** Access to the pattern tracks. Each pattern has 
+---**READ-ONLY** Access to the pattern tracks. Each pattern has
 ---#renoise.song().tracks amount of tracks.
 ---@field tracks renoise.PatternTrack[]
 
@@ -110,7 +110,6 @@ function renoise.Pattern:add_line_edited_notifier(func, obj) end
 ---@param obj table|userdata
 ---@overload fun(self, func: PatternLineChangeCallback): boolean
 function renoise.Pattern:remove_line_edited_notifier(func, obj) end
-
 
 ---### operators
 
