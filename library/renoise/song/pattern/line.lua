@@ -1,205 +1,205 @@
 
---------------------------------------------------------------------------------
--- renoise.PatternLine
---------------------------------------------------------------------------------
-
--------- Constants
-
-renoise.PatternLine.EMPTY_NOTE
-renoise.PatternLine.NOTE_OFF
-
-renoise.PatternLine.EMPTY_INSTRUMENT
-renoise.PatternLine.EMPTY_VOLUME
-renoise.PatternLine.EMPTY_PANNING
-renoise.PatternLine.EMPTY_DELAY
-
-renoise.PatternLine.EMPTY_EFFECT_NUMBER
-renoise.PatternLine.EMPTY_EFFECT_AMOUNT
-
-
--------- Functions
-
--- Clear all note and effect columns.
-renoise.song().patterns[].tracks[].lines[]:clear()
-
--- Copy contents from other_line, trashing column content.
-renoise.song().patterns[].tracks[].lines[]:copy_from(
-  other renoise.PatternLine object)
-
--- Access to a single note column by index. Use properties 'note_columns' 
--- to iterate over all note columns and to query the note_column count.
--- This is a !lot! more efficient than calling the property: 
--- note_columns[index] to randomly access columns. When iterating over all
--- columns, use pairs(note_columns).
-renoise.song().patterns[].tracks[].lines[]:note_column(index)
-  -> [renoise.NoteColumn object]
-
--- Access to a single effect column by index. Use properties 'effect_columns' 
--- to iterate over all effect columns and to query the effect_column count.
--- This is a !lot! more efficient than calling the property: 
--- effect_columns[index] to randomly access columns. When iterating over all
--- columns, use pairs(effect_columns).
-renoise.song().patterns[].tracks[].lines[]:effect_column(index)
-  -> [renoise.EffectColumn object]
-
-
--------- Properties
-
--- Is empty.
-renoise.song().patterns[].tracks[].lines[].is_empty
-  -> [boolean]
-
--- Columns.
-renoise.song().patterns[].tracks[].lines[].note_columns[]
-  -> [read-only, array of renoise.NoteColumn objects]
-renoise.song().patterns[].tracks[].lines[].effect_columns[]
-  -> [read-only, array of renoise.EffectColumn objects]
-
-
--------- Operators
-
--- Compares all columns.
-==(PatternLine object, PatternLine object) 
-  -> [boolean]
-~=(PatternLine object, PatternLine object) 
-  -> [boolean]
-
--- Serialize a line.
-tostring(PatternLine object) 
-  -> [string]
-
+---@meta
+---Do not try to execute this file. It's just a type definition file.
+---
+---This reference lists all available Lua functions and classes that control
+---Renoise's pattern track document.
+---
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for
+---Renoise in general...
+---
 
 --------------------------------------------------------------------------------
--- renoise.NoteColumn
---------------------------------------------------------------------------------
+---## renoise.PatternLine
 
--- General remarks: instrument columns are available for lines in phrases
--- but are ignored. See renoise.InstrumentPhrase for detail.
+---@class renoise.PatternLine
+renoise.PatternLine = {}
 
+---### constants
 
--------- Functions
+renoise.PatternLine.EMPTY_NOTE = 121
+renoise.PatternLine.NOTE_OFF = 120
 
--- Clear the note column.
-renoise.song().patterns[].tracks[].lines[].note_columns[]:clear()
+renoise.PatternLine.EMPTY_INSTRUMENT = 255
+renoise.PatternLine.EMPTY_VOLUME = 255
+renoise.PatternLine.EMPTY_PANNING = 255
+renoise.PatternLine.EMPTY_DELAY = 0
 
--- Copy the column's content from another column.
-renoise.song().patterns[].tracks[].lines[].note_columns[]:copy_from(
-  other renoise.NoteColumn object)
+renoise.PatternLine.EMPTY_EFFECT_NUMBER = 0
+renoise.PatternLine.EMPTY_EFFECT_AMOUNT = 0
 
+---### properties
 
--------- Properties
+---@class renoise.PatternLine
+---
+---Is empty.
+---@field is_empty boolean **READ-ONLY**
+---
+---Columns.
+---@field note_columns renoise.NoteColumn[] **READ-ONLY**
+---@field effect_columns renoise.EffectColumn[] **READ-ONLY**
 
--- True, when all note column properties are empty.
-renoise.song().patterns[].tracks[].lines[].note_columns[].is_empty
-  -> [read-only, boolean]
+---### functions
 
--- True, when this column is selected in the pattern or phrase 
--- editors current pattern.
-renoise.song().patterns[].tracks[].lines[].note_columns[].is_selected
-  -> [read-only, boolean]
+---Clear all note and effect columns.
+function renoise.PatternLine:clear() end
 
--- Access note column properties either by values (numbers) or by strings.
--- The string representation uses exactly the same notation as you see
--- them in Renoise's pattern or phrase editor.
+---Copy contents from other_line, trashing column content.
+---@param other renoise.PatternLine
+function renoise.PatternLine:copy_from(other) end
 
-renoise.song().patterns[].tracks[].lines[].note_columns[].note_value
-  -> [number, 0-119, 120=Off, 121=Empty]
-renoise.song().patterns[].tracks[].lines[].note_columns[].note_string
-  -> [string, 'C-0'-'G-9', 'OFF' or '---']
+---Access to a single note column by index. Use properties 'note_columns' 
+---to iterate over all note columns and to query the note_column count.
+---This is a !lot! more efficient than calling the property: 
+---note_columns[index] to randomly access columns. When iterating over all
+---columns, use pairs(note_columns).
+---@param index integer
+---@return renoise.NoteColumn
+function renoise.PatternLine:note_column(index) end
 
-renoise.song().patterns[].tracks[].lines[].note_columns[].instrument_value
-  -> [number, 0-254, 255==Empty]
-renoise.song().patterns[].tracks[].lines[].note_columns[].instrument_string
-  -> [string, '00'-'FE' or '..']
+---Access to a single effect column by index. Use properties 'effect_columns' 
+---to iterate over all effect columns and to query the effect_column count.
+---This is a !lot! more efficient than calling the property: 
+---effect_columns[index] to randomly access columns. When iterating over all
+---columns, use pairs(effect_columns).
+---@param index integer
+---@return renoise.EffectColumn
+function renoise.PatternLine:effect_column(index) end
 
-renoise.song().patterns[].tracks[].lines[].note_columns[].volume_value
-  -> [number, 0-127, 255==Empty when column value is <= 0x80 or is 0xFF,
-              i.e. is used to specify volume]
-     [number, 0-65535 in the form 0x0000xxyy where
-              xx=effect char 1 and yy=effect char 2,
-              when column value is > 0x80, i.e. is used to specify an effect]
-renoise.song().patterns[].tracks[].lines[].note_columns[].volume_string
-  -> [string, '00'-'ZF' or '..']
+---### operators
 
-renoise.song().patterns[].tracks[].lines[].note_columns[].panning_value
-  -> [number, 0-127, 255==Empty when column value is <= 0x80 or is 0xFF,
-              i.e. is used to specify pan]
-     [number, 0-65535 in the form 0x0000xxyy where
-              xx=effect char 1 and yy=effect char 2,
-              when column value is > 0x80, i.e. is used to specify an effect]
-renoise.song().patterns[].tracks[].lines[].note_columns[].panning_string
-  -> [string, '00'-'ZF' or '..']
+---Compares all columns.
+---operator==(PatternLine object, PatternLine object): boolean
+---operator~=(PatternLine object, PatternLine object): boolean
 
-renoise.song().patterns[].tracks[].lines[].note_columns[].delay_value
-  -> [number, 0-255]
-renoise.song().patterns[].tracks[].lines[].note_columns[].delay_string
-  -> [string, '00'-'FF' or '..']
-
-renoise.song().patterns[].tracks[].lines[].note_columns[].effect_number_value
-  -> [int, 0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2]
-song().patterns[].tracks[].lines[].note_columns[].effect_number_string
-  -> [string, '00' - 'ZZ']
-
-renoise.song().patterns[].tracks[].lines[].note_columns[].effect_amount_value 
-  -> [int, 0-255]
-renoise.song().patterns[].tracks[].lines[].note_columns[].effect_amount_string
-  -> [string, '00' - 'FF']
-
-
--------- Operators
-
--- Compares the whole column.
-==(NoteColumn object, NoteColumn object) -> [boolean]
-~=(NoteColumn object, NoteColumn object) -> [boolean]
-
--- Serialize a column.
-tostring(NoteColumn object) -> [string]
+---Serialize a line.
+---@param pattern_line renoise.PatternLine
+---@return string
+function tostring(pattern_line) end
 
 
 --------------------------------------------------------------------------------
--- renoise.EffectColumn
+---renoise.NoteColumn
+
+---A single note column in a pattern line.
+---
+---General remarks: instrument columns are available for lines in phrases
+---but are ignored. See renoise.InstrumentPhrase for detail.
+---
+---Access note column properties either by values (numbers) or by strings.
+---The string representation uses exactly the same notation as you see
+---them in Renoise's pattern or phrase editor.
+---@class renoise.NoteColumn
+renoise.NoteColumn = {}
+
+---### properties
+
+---@class renoise.NoteColumn
+---
+---**READ-ONLY** True, when all note column properties are empty.
+---@field is_empty boolean
+---
+---**READ-ONLY** True, when this column is selected in the pattern or phrase 
+---editors current pattern.
+---@field is_selected boolean
+---
+---@field note_value integer 0-119, 120=Off, 121=Empty
+---@field note_string string 'C-0'-'G-9', 'OFF' or '---'
+---
+---@field instrument_value integer 0-254, 255==Empty
+---@field instrument_string string '00'-'FE' or '..'
+---
+---0-127 or 255==Empty when column value is <= 0x80 or is 0xFF, 
+---i.e. to specify a volume value.
+---
+---0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2,
+---when column value is > 0x80, i.e. to specify an effect.
+---@field volume_value integer
+---@field volume_string string '00'-'ZF' or '..'
+---
+---0-127, 255==Empty when column value is <= 0x80 or is 0xFF, 
+---i.e. to specify a pan value.
+---
+---0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2,
+---when column value is > 0x80, i.e. to specify an effect.
+---@field panning_value integer
+---@field panning_string string, '00'-'ZF' or '..'
+---
+---@field delay_value integer 0-255
+---@field delay_string string '00'-'FF' or '..'
+---
+---0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2
+---@field effect_number_value integer 
+---@field effect_number_string string '00' - 'ZZ'
+---
+---@field effect_amount_value integer 0-255
+---@field effect_amount_string string '00' - 'FF'
+
+---### functions
+
+---Clear the note column.
+function renoise.NoteColumn:clear() end
+
+---Copy the column's content from another column.
+---@param other renoise.NoteColumn
+function renoise.NoteColumn:copy_from(other) end
+
+---### operators
+
+---Compares the whole column.
+---operator==(note_column, note_column): boolean
+---operator~=(note_column, note_column): boolean
+
+---Serialize a column.
+---@param note_column renoise.NoteColumn
+function tostring(note_column) end
+
+
 --------------------------------------------------------------------------------
+---## renoise.EffectColumn
 
--------- Functions
+---A single effect column in a pattern line.
+---
+---Access effect column properties either by values (numbers) or by strings.
+---The string representation uses exactly the same notation as you see
+---them in Renoise's pattern or phrase editor.
+---@class renoise.EffectColumn
+renoise.EffectColumn = {}
 
--- Clear the effect column.
-renoise.song().patterns[].tracks[].lines[].effect_columns[]:clear()
+---### properties
 
--- Copy the column's content from another column.
-renoise.song().patterns[].tracks[].lines[].effect_columns[]:copy_from(
-  other renoise.EffectColumn object)
+---@class renoise.EffectColumn
+---
+---**READ-ONLY** True, when all effect column properties are empty.
+---@field is_empty boolean
+---
+---**READ-ONLY** True, when this column is selected in the pattern or phrase editor.
+---@field is_selected boolean
+---
+---0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2
+---@field number_value number
+---@field number_string string '00'-'ZZ'
+---
+---@field amount_value number 0-255
+---@field amount_string string '00'-'FF'
 
+---### functions
 
--------- Properties
+---Clear the effect column.
+function renoise.EffectColumn:clear() end
 
--- True, when all effect column properties are empty.
-renoise.song().patterns[].tracks[].lines[].effect_columns[].is_empty
-  -> [read-only, boolean]
+---Copy the column's content from another column.
+---@param other renoise.EffectColumn
+function renoise.EffectColumn:copy_from(other) end
 
--- True, when this column is selected in the pattern or phrase editor.
-renoise.song().patterns[].tracks[].lines[].effect_columns[].is_selected
-  -> [read-only, boolean]
+---### operators
 
--- Access effect column properties either by values (numbers) or by strings.
-renoise.song().patterns[].tracks[].lines[].effect_columns[].number_value
-  -> [number, 0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2]
+---Compares the whole column.
+---operator==(EffectColumn object, EffectColumn object): boolean
+---operator~=(EffectColumn object, EffectColumn object): boolean
 
-renoise.song().patterns[].tracks[].lines[].effect_columns[].number_string
-  -> [string, '00'-'ZZ']
-
-renoise.song().patterns[].tracks[].lines[].effect_columns[].amount_value
-  -> [number, 0-255]
-renoise.song().patterns[].tracks[].lines[].effect_columns[].amount_string
-  -> [string, '00'-'FF']
-
-
--------- Operators
-
--- Compares the whole column.
-==(EffectColumn object, EffectColumn object) 
-  -> [boolean]
-~=(EffectColumn object, EffectColumn object) 
-  -> [boolean]
-
--- Serialize a column.
-tostring(EffectColumn object) -> [string]
+---Serialize a column.
+---@param effect_column renoise.EffectColumn
+---@return string
+function tostring(effect_column) end
