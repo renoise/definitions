@@ -32,11 +32,11 @@ This is a work in progress. Below you can see which Renoise API sections have al
 - [ ] `renoise/song/instrument/macro.lua` *renoise.InstrumentMacro/Mapping*
 - [ ] `renoise/song/instrument/midi_input.lua` *renoise.InstrumentMidiInputProperties*
 - [ ] `renoise/song/instrument/midi_output.lua` *renoise.InstrumentMidiOutputProperties*
-- [ ] `renoise/song/pattern.lua` *renoise.Pattern*
-- [ ] `renoise/song/pattern/line.lua` *renoise.PatternLine/Column*
-- [ ] `renoise/song/pattern/track.lua` *renoise.PatternTrack*
-- [ ] `renoise/song/pattern/automation.lua` *renoise.PatternTrackAutomation*
-- [ ] `renoise/song/pattern_iterator.lua` *renoise.PatternIterator*
+- [x] `renoise/song/pattern.lua` *renoise.Pattern*
+- [x] `renoise/song/pattern/line.lua` *renoise.PatternLine/Column*
+- [x] `renoise/song/pattern/track.lua` *renoise.PatternTrack*
+- [x] `renoise/song/pattern/automation.lua` *renoise.PatternTrackAutomation*
+- [x] `renoise/song/pattern_iterator.lua` *renoise.PatternIterator*
 - [ ] `renoise/view_builder.lua` *renoise.Views & Widgets*
 
 ## Usage

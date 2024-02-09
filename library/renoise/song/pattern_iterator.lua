@@ -1,82 +1,145 @@
+---@meta
+---Do not try to execute this file. It's just a type definition file.
+---
+---This reference lists all available Lua functions to iterate through
+---pattern content.
+---
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for
+---Renoise in general...
+---
+
 --------------------------------------------------------------------------------
--- renoise.PatternIterator
---------------------------------------------------------------------------------
+---## renoise.PatternIterator
 
--- General remarks: Iterators can only be use in "for" loops like you would use
--- "pairs" in Lua, example:
+---Lua pairs/ipairs alike iterator functions to walk through all lines or columns
+---in the entire song, track or a single pattern.
+---
+---General remarks: Iterators can only be use in "for" loops like you would use
+---"pairs" in Lua.
+---
+---### example:
+---```lua
+---for pos,line in renoise.song().pattern_iterator:lines_in_song() do [...] end
+---```
+---The returned `pos` is a table with "pattern", "track", "line" fields, and an
+---additional "column" field for the note/effect columns.
+---
+---The `visible_only` flag controls if all content should be traversed, or only
+---the currently used patterns, columns, and so on. Patterns are traversed in the
+---order they are referenced in the pattern sequence, but each pattern is accessed
+---only once.
+---
+---@class renoise.PatternIterator
+renoise.PatternIterator = {}
 
---     for pos,line in pattern_iterator:lines_in_song do [...]
+---Line iterator position.
+---@class PatternLinePosition
+---@field pattern integer
+---@field track integer
+---@field line integer
 
--- The returned 'pos' is a table with "pattern", "track", "line" fields, and an
--- additional "column" field for the note/effect columns.
+---Note/Effect column iterator position.
+---@class PatternLinePosition
+---@class PatternColumnPosition : PatternLinePosition
+---@field column integer
 
--- The "visible_only" flag controls if all content should be traversed, or only
--- the currently used patterns, columns, and so on:
--- With "visible_patters_only" set, patterns are traversed in the order they
--- are referenced in the pattern sequence, but each pattern is accessed only
--- once. With "visible_columns_only" set, hidden columns are not traversed.
-
-
--------- Song
+---### song
 
 -- Iterate over all pattern lines in the song.
-renoise.song().pattern_iterator:lines_in_song(boolean visible_patterns_only)
-  -> [iterator with pos, line (renoise.PatternLine object)]
+---@param visible_only boolean? Default: true
+---@return fun(context: unknown):PatternLinePosition, renoise.PatternLine
+---@return renoise.PatternLine line
+---@return PatternLinePosition pos
+function renoise.PatternIterator:lines_in_song(visible_only) end
 
--- Iterate over all note/effect_ columns in the song.
-renoise.song().pattern_iterator:note_columns_in_song(boolean visible_only)
-  -> [iterator with pos, column (renoise.NoteColumn object)]
-renoise.song().pattern_iterator:effect_columns_in_song(boolean visible_only)
-  -> [iterator with pos, column (renoise.EffectColumn object)]
+-- Iterate over all note columns in the song.
+---@param visible_only boolean? Default: true
+---@return fun(context: unknown):PatternColumnPosition, renoise.NoteColumn
+---@return renoise.NoteColumn column
+---@return PatternColumnPosition pos
+function renoise.PatternIterator:note_columns_in_song(visible_only) end
 
+-- Iterate over all effect columns in the song.
+---@param visible_only boolean? Default: true
+---@return fun(context: unknown):PatternColumnPosition, renoise.EffectColumn
+---@return renoise.EffectColumn column
+---@return PatternColumnPosition pos
+function renoise.PatternIterator:effect_columns_in_song(visible_only) end
 
-------- Pattern
+---### pattern
 
 -- Iterate over all lines in the given pattern only.
-renoise.song().pattern_iterator:lines_in_pattern(pattern_index)
-  -> [iterator with pos, line (renoise.PatternLine object)]
+---@param pattern_index integer
+---@return fun(context: unknown):PatternLinePosition, renoise.PatternLine
+---@return renoise.PatternLine line
+---@return PatternLinePosition pos
+function renoise.PatternIterator:lines_in_pattern(pattern_index) end
 
--- Iterate over all note/effect columns in the specified pattern.
-renoise.song().pattern_iterator:note_columns_in_pattern(
-  pattern_index, boolean visible_only)
-  -> [iterator with pos, column (renoise.NoteColumn object)]
+-- Iterate over all note columns in the specified pattern.
+---@param pattern_index integer
+---@param visible_only boolean? Default: true
+---@return fun(context: unknown):PatternColumnPosition, renoise.NoteColumn
+---@return renoise.NoteColumn column
+---@return PatternColumnPosition pos
+function renoise.PatternIterator:note_columns_in_pattern(pattern_index, visible_only) end
 
-renoise.song().pattern_iterator:effect_columns_in_pattern(
-  pattern_index, boolean visible_only)
-  -> [iterator with pos, column (renoise.EffectColumn object)]
+-- Iterate over all note columns in the specified pattern.
+---@param pattern_index integer
+---@param visible_only boolean? Default: true
+---@return fun(context: unknown):PatternColumnPosition, renoise.EffectColumn
+---@return renoise.EffectColumn column
+---@return PatternColumnPosition pos
+function renoise.PatternIterator:effect_columns_in_pattern(pattern_index, visible_only) end
 
-
-------- Track
+---### track
 
 -- Iterate over all lines in the given track only.
-renoise.song().pattern_iterator:lines_in_track(
-  track_index, boolean visible_patterns_only)
-  -> [iterator with pos, column (renoise.PatternLine object)]
+---@param track_index integer
+---@param visible_only boolean? Default: true
+---@return fun(context: unknown):PatternLinePosition, renoise.PatternLine
+---@return renoise.PatternLine line
+---@return PatternLinePosition pos
+function renoise.PatternIterator:lines_in_track(track_index, visible_only) end
 
 -- Iterate over all note/effect columns in the specified track.
-renoise.song().pattern_iterator:note_columns_in_track(
-  track_index, boolean visible_only)
-  -> [iterator with pos, line (renoise.NoteColumn object)]
+---@param track_index integer
+---@param visible_only boolean? Default: true
+---@return fun(context: unknown):PatternColumnPosition, renoise.NoteColumn
+---@return renoise.NoteColumn column
+---@return PatternColumnPosition pos
+function renoise.PatternIterator:note_columns_in_track(track_index, visible_only) end
 
-renoise.song().pattern_iterator:effect_columns_in_track(
-  track_index, boolean visible_only)
-  -> [iterator with pos, column (renoise.EffectColumn object)]
-
+---@param track_index integer
+---@param visible_only boolean? Default: true
+---@return fun(context: unknown):PatternColumnPosition, renoise.EffectColumn
+---@return renoise.EffectColumn column
+---@return PatternColumnPosition pos
+function renoise.PatternIterator:effect_columns_in_track(track_index, visible_only) end
 
 ------- Track in Pattern
 
 -- Iterate over all lines in the given pattern, track only.
-renoise.song().pattern_iterator:lines_in_pattern_track(
-  pattern_index, track_index)
-  -> [iterator with pos, line (renoise.PatternLine object)]
+---@param pattern_index integer
+---@param track_index integer
+---@return fun(context: unknown):PatternLinePosition, renoise.PatternLine
+---@return renoise.PatternLine line
+---@return PatternLinePosition pos
+function renoise.PatternIterator:lines_in_pattern_track(pattern_index, track_index) end
 
 -- Iterate over all note/effect columns in the specified pattern track.
-renoise.song().pattern_iterator:note_columns_in_pattern_track(
-  pattern_index, track_index, boolean visible_only)
-  -> [iterator with pos, column (renoise.NoteColumn object)]
+---@param pattern_index integer
+---@param track_index integer
+---@param visible_only boolean? Default: true
+---@return fun(context: unknown):PatternColumnPosition, renoise.NoteColumn
+---@return renoise.NoteColumn column
+---@return PatternColumnPosition pos
+function renoise.PatternIterator:note_columns_in_pattern_track(pattern_index, track_index, visible_only) end
 
-renoise.song().pattern_iterator:effect_columns_in_pattern_track(
-  pattern_index, track_index, boolean visible_only)
-  -> [iterator with pos, column (renoise.EffectColumn object)]
-
-
+---@param pattern_index integer
+---@param track_index integer
+---@param visible_only boolean? Default: true
+---@return fun(context: unknown):PatternColumnPosition, renoise.EffectColumn
+---@return renoise.EffectColumn column
+---@return PatternColumnPosition pos
+function renoise.PatternIterator:effect_columns_in_pattern_track(pattern_index, track_index, visible_only) end
