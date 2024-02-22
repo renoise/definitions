@@ -49,9 +49,12 @@ Then clone or download a copy of this repository, and configure your workspace t
 ```json
 // .vscode/settings.json:
 {
-    "Lua.workspace.library": ["PATH/TO/RENOISE_DEFINITION_FOLDER"]
+    "Lua.workspace.library": ["PATH/TO/RENOISE_DEFINITION_FOLDER"],
+    "Lua.runtime.plugin": "PATH/TO/RENOISE_DEFINITION_FOLDER/plugin.lua"
 }
 ```
+
+*Note*: the "Lua.runtime.plugin" setting only is needed in order to automatically annotate the custom `class` keyword.
 
 ## Contribute
 
