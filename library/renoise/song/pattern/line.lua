@@ -1,11 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists all available Lua functions and classes that control
----Renoise's pattern track line document.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -76,7 +73,6 @@ function renoise.PatternLine:effect_column(index) end
 ---@param pattern_line renoise.PatternLine
 ---@return string
 function tostring(pattern_line) end
-
 
 --------------------------------------------------------------------------------
 ---renoise.NoteColumn
@@ -153,7 +149,6 @@ function renoise.NoteColumn:copy_from(other) end
 ---Serialize a column.
 ---@param note_column renoise.NoteColumn
 function tostring(note_column) end
-
 
 --------------------------------------------------------------------------------
 ---## renoise.EffectColumn

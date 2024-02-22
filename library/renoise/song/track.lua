@@ -1,11 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists all available Lua functions and classes that control
----Renoise's track component in the song.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -43,8 +40,8 @@ renoise.Track = {
 }
 
 ---A table of 3 bytes (ranging from 0 to 255)
----representing the red, green and blue channels of a color.  
----{0xFF, 0xFF, 0xFF} is white  
+---representing the red, green and blue channels of a color.
+---{0xFF, 0xFF, 0xFF} is white
 ---{165, 73, 35} is the red from the Renoise logo
 ---@alias RGBColor {[1] : integer, [2] : integer, [3] : integer}
 
@@ -117,7 +114,7 @@ renoise.Track = {
 ---@field available_devices string[] **READ-ONLY** FX devices this track can handle.
 ---**READ-ONLY** Array of tables containing information about the devices.
 ---@field available_device_infos AudioDeviceInfo[]
----@field devices renoise.AudioDevice[] **READ-ONLY** List of audio DSP FX. 
+---@field devices renoise.AudioDevice[] **READ-ONLY** List of audio DSP FX.
 ---@field devices_observable renoise.Document.ObservableList
 
 ---### functions
@@ -128,9 +125,11 @@ renoise.Track = {
 ---@param device_index integer
 ---@return renoise.AudioDevice
 function renoise.Track:insert_device_at(device_path, device_index) end
+
 ---Delete an existing device in a track. The mixer device at index 1 can not
 ---be deleted from any track.
 function renoise.Track:delete_device_at(device_index) end
+
 ---Swap the positions of two devices in the device chain. The mixer device at
 ---index 1 can not be swapped or moved.
 ---@param device_index1 integer
@@ -145,16 +144,20 @@ function renoise.TrackDevice(device_index) end
 
 ---Uses default mute state from the prefs. Not for the master track.
 function renoise.Track:mute() end
+
 function renoise.Track:unmute() end
+
 function renoise.Track:solo() end
 
 ---Note column mutes. Only valid within (1-track.max_note_columns)
 ---@param column_index integer
 ---@return boolean
 function renoise.Track:column_is_muted(column_index) end
+
 ---@param column_index integer
 ---@return renoise.Document.Observable
 function renoise.Track:column_is_muted_observable(column_index) end
+
 ---@param column_index integer
 ---@param muted boolean
 function renoise.Track:set_column_is_muted(column_index, muted) end
@@ -163,9 +166,11 @@ function renoise.Track:set_column_is_muted(column_index, muted) end
 ---@param column_index integer
 ---@return string
 function renoise.Track:column_name(column_index) end
+
 ---@param column_index integer
 ---@return renoise.Document.Observable
 function renoise.Track:column_name_observable(column_index) end
+
 ---@param column_index integer
 ---@param name string
 function renoise.Track:set_column_name(column_index, name) end
@@ -190,7 +195,7 @@ renoise.GroupTrack = {}
 ---Group track component of a Renoise song.
 ---@class renoise.GroupTrack : renoise.Track
 ---
----**READ-ONLY** All member tracks of this group, including subgroups and 
+---**READ-ONLY** All member tracks of this group, including subgroups and
 ---their tracks.
 ---@field members (renoise.Track|renoise.GroupTrack)[]
 ---

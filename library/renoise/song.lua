@@ -1,12 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists all available Lua functions and classes that control
----Renoise's main document - the song - and the corresponding components such as
----Instruments, Tracks, Patterns, and so on.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -261,12 +257,14 @@ renoise.Song = {
 ---Test if something in the song can be undone.
 ---@return boolean
 function renoise.Song:can_undo() end
+
 ---Undo the last performed action. Will do nothing if nothing can be undone.
 function renoise.Song:undo() end
 
 ---Test if something in the song can be redone.
 ---@return boolean
 function renoise.Song:can_redo() end
+
 ---Redo a previously undo action. Will do nothing if nothing can be redone.
 function renoise.Song:redo() end
 
@@ -309,6 +307,7 @@ function renoise.Song:track(index) end
 ---Set the selected track to prev relative to the current track. Takes
 ---care of skipping over hidden tracks and wrapping around at the edges.
 function renoise.Song:select_previous_track() end
+
 ---Set the selected track to next relative to the current track. Takes
 ---care of skipping over hidden tracks and wrapping around at the edges.
 function renoise.Song:select_next_track() end

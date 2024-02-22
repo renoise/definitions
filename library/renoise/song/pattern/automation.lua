@@ -1,11 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists all available Lua functions and classes that control
----Renoise's pattern track automation document.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -101,12 +98,14 @@ function renoise.PatternTrackAutomation:copy_from(other) end
 ---@param time number
 ---@return boolean
 function renoise.PatternTrackAutomation:has_point_at(time) end
+
 ---Insert a new point, or change an existing one, if a point in
 ---time already exists.
 ---@param time number
 ---@param value number
 ---@param scaling number?
 function renoise.PatternTrackAutomation:add_point_at(time, value, scaling) end
+
 ---Removes a point at the given time. Point must exist.
 ---@param time number
 function renoise.PatternTrackAutomation:remove_point_at(time) end

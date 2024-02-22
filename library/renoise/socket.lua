@@ -1,18 +1,13 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference describes the built-in socket support for Lua scripts in
----Renoise. Sockets can be used to send/receive data over process boundaries,
----or exchange data across computers in a network (Internet). The socket API
----in Renoise has server support (which can respond to multiple connected clients)
----and client support (send/receive data to/from a server).
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for 
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 ---For examples on how to use sockets, have across look at the code snippets in
 ---the Renoise Documentation "Snippets/Socket.lua"
+---
 
 --------------------------------------------------------------------------------
 ---## renoise.Socket
@@ -83,7 +78,7 @@ function renoise.Socket.create_client(server_address, server_port, protocol, tim
 ---SocketBase properties and functions are available for servers and clients.
 ---@class renoise.Socket.SocketBase
 ---
----**READ-ONLY** Returns true when the socket object is valid and connected. 
+---**READ-ONLY** Returns true when the socket object is valid and connected.
 ---Sockets can manually be closed (see socket:close()). Client sockets can also
 ---actively be closed/refused by the server. In this case the client:receive()
 ---calls will fail and return an error.
@@ -127,7 +122,7 @@ function renoise.Socket.SocketBase:close() end
 ---is connected to.
 ---@field peer_address string
 ---
----**READ-ONLY** Port of the socket's peer, the socket this client is 
+---**READ-ONLY** Port of the socket's peer, the socket this client is
 ---connected to.
 ---@field peer_port number
 renoise.Socket.SocketClient = {}

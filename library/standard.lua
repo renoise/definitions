@@ -1,13 +1,16 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This is a reference for standard global and standard Lua API functions and
----tools that were added/changed within Renoise.
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
+---Renoise in general...
 ---
+
+-------------------------------------------------------------------------------
+
 ---All standard Lua libraries are included in Renoise as well. You can find the
 ---full reference here: <http://www.lua.org/manual/5.1/manual.html#5>
 
--------------------------------------------------------------------------------
 ---## globals
 
 ---### added

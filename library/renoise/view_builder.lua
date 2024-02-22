@@ -1,17 +1,14 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists all "View" related functions in the API. View means
----classes and functions that are used to build custom GUIs; GUIs for your
----scripts in Renoise.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 ---For a small tutorial and more details about how to create and use views,
----have a look at the "com.renoise.ExampleToolGUI.xrnx" tool. This tool is
----included in the scripting dev started pack at <http://scripting.renoise.com>
+---have a look at the "com.renoise.ExampleToolGUI.xrnx" tool.
+---This tool is included in the scripting dev started pack at
+---https://github.com/renoise/xrnx/
 ---
 
 --------------------------------------------------------------------------------

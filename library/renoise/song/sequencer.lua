@@ -1,11 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists all available Lua functions and classes that control
----Renoise's pattern sequencer document.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -14,7 +11,7 @@
 
 ---Pattern sequencer component of the Renoise song.
 ---@class renoise.PatternSequencer
-renoise.PatternSequencer = { }
+renoise.PatternSequencer = {}
 
 ---### properties
 
@@ -48,10 +45,12 @@ renoise.PatternSequencer = { }
 ---@param sequence_index integer
 ---@param pattern_index integer
 function renoise.PatternSequencer:insert_sequence_at(sequence_index, pattern_index) end
+
 ---Insert an empty, unreferenced pattern at the given position.
 ---@param sequence_index integer
 ---@return integer new_pattern_index
 function renoise.PatternSequencer:insert_new_pattern_at(sequence_index) end
+
 ---Delete an existing position in the sequence. Renoise needs at least one
 ---sequence in the song for playback. Completely removing all sequence positions
 ---is not allowed.
@@ -69,6 +68,7 @@ function renoise.PatternSequencer:pattern(sequence_index) end
 ---@param from_sequence_index integer
 ---@param to_sequence_index integer
 function renoise.PatternSequencer:clone_range(from_sequence_index, to_sequence_index) end
+
 ---Make patterns in the given sequence pos range unique, if needed.
 ---@param from_sequence_index integer
 ---@param to_sequence_index integer
@@ -86,9 +86,11 @@ function renoise.PatternSequencer:sort() end
 ---@param sequence_index integer
 ---@return boolean
 function renoise.PatternSequencer:sequence_is_start_of_section(sequence_index) end
+
 ---@param sequence_index integer
 ---@param is_section boolean
 function renoise.PatternSequencer:set_sequence_is_start_of_section(sequence_index, is_section) end
+
 ---@param sequence_index integer
 ---@return renoise.Document.Observable
 function renoise.PatternSequencer:sequence_is_start_of_section_observable(sequence_index) end
@@ -98,9 +100,11 @@ function renoise.PatternSequencer:sequence_is_start_of_section_observable(sequen
 ---@param sequence_index integer
 ---@return string
 function renoise.PatternSequencer:sequence_section_name(sequence_index) end
+
 ---@param sequence_index integer
 ---@param name string
 function renoise.PatternSequencer:set_sequence_section_name(sequence_index, name) end
+
 ---@param sequence_index integer
 ---@return renoise.Document.Observable
 function renoise.PatternSequencer:sequence_section_name_observable(sequence_index) end
@@ -109,6 +113,7 @@ function renoise.PatternSequencer:sequence_section_name_observable(sequence_inde
 ---@param sequence_index integer
 ---@return boolean
 function renoise.PatternSequencer:sequence_is_part_of_section(sequence_index) end
+
 ---Returns true if the given sequence pos is the end of a section, else false
 ---@param sequence_index integer
 ---@return boolean
@@ -125,6 +130,7 @@ function renoise.PatternSequencer:sequence_sections_changed_observable() end
 ---@param sequence_index integer
 ---@return boolean
 function renoise.PatternSequencer:track_sequence_slot_is_muted(track_index, sequence_index) end
+
 ---@param track_index integer
 ---@param sequence_index integer
 function renoise.PatternSequencer:set_track_sequence_slot_is_muted(track_index, sequence_index, muted) end
@@ -134,6 +140,7 @@ function renoise.PatternSequencer:set_track_sequence_slot_is_muted(track_index, 
 ---@param sequence_index integer
 ---@return boolean
 function renoise.PatternSequencer:track_sequence_slot_is_selected(track_index, sequence_index) end
+
 ---@param track_index integer
 ---@param sequence_index integer
 function renoise.PatternSequencer:set_track_sequence_slot_is_selected(track_index, sequence_index, selected) end

@@ -1,12 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists all available Lua functions and classes that control
----Renoise's main document - the song - and the corresponding components such as
----Instruments, Tracks, Patterns, and so on.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -46,15 +42,15 @@ renoise.Transport = {
 ---@field playing_observable renoise.Document.Observable
 ---
 ---*READ-ONLY* Old school speed or new LPB timing used?
----With `TIMING_MODEL_SPEED`, tpl is used as speed factor. The lpb property 
+---With `TIMING_MODEL_SPEED`, tpl is used as speed factor. The lpb property
 ---is unused then. With `TIMING_MODEL_LPB`, tpl is used as event rate for effects
 ---only and lpb defines relationship between pattern lines and beats.
 ---@field timing_model renoise.Transport.TimingModel
 ---
 ---BPM, LPB, and TPL
----@field bpm number Beats per Minute [32-999] 
+---@field bpm number Beats per Minute [32-999]
 ---@field bpm_observable renoise.Document.Observable
----@field lpb number Lines per Beat [1-256] 
+---@field lpb number Lines per Beat [1-256]
 ---@field lpb_observable renoise.Document.Observable
 ---@field tpl number Ticks per Line [1-16]
 ---@field tpl_observable renoise.Document.Observable
@@ -142,7 +138,7 @@ renoise.Transport = {
 ---To convert from dB: `renoise.Transport.track_headroom = math.db2lin(dB)`
 ---@field track_headroom number [math.db2lin(-12) - math.db2lin(0)]
 ---@field track_headroom_observable renoise.Document.Observable
---- 
+---
 ---Computer Keyboard Velocity.
 ---@field keyboard_velocity_enabled boolean
 ---@field keyboard_velocity_enabled_observable renoise.Document.Observable
@@ -158,9 +154,11 @@ function renoise.Transport:panic() end
 ---Start playing in song or pattern mode.
 ---@param mode renoise.Transport.PlayMode
 function renoise.Transport:start(mode) end
+
 ---Start playing the currently edited pattern at the given line offset
 ---@param line integer
 function renoise.Transport:start_at(line) end
+
 ---Start playing a the given renoise.SongPos (sequence pos and line)
 ---@param song_pos renoise.SongPos
 function renoise.Transport:start_at(song_pos) end
@@ -171,22 +169,26 @@ function renoise.Transport:stop() end
 ---Immediately start playing at the given sequence position.
 ---@param sequence_pos integer
 function renoise.Transport:trigger_sequence(sequence_pos) end
+
 ---Append the sequence to the scheduled sequence list. Scheduled playback
 ---positions will apply as soon as the currently playing pattern play to end.
 ---@param sequence_pos integer
 function renoise.Transport:add_scheduled_sequence(sequence_pos) end
+
 ---Replace the scheduled sequence list with the given sequence.
 ---@param sequence_pos integer
 function renoise.Transport:set_scheduled_sequence(sequence_pos) end
 
 ---Move the block loop one segment forwards, when possible.
 function renoise.Transport:loop_block_move_forwards() end
+
 ---Move the block loop one segment backwards, when possible.
 function renoise.Transport:loop_block_move_backwards() end
 
 ---Start a new sample recording when the sample dialog is visible,
 ---otherwise stop and finish it.
 function renoise.Transport:start_stop_sample_recording() end
+
 ---Cancel a currently running sample recording when the sample dialog
 ---is visible, otherwise do nothing.
 function renoise.Transport:cancel_sample_recording() end

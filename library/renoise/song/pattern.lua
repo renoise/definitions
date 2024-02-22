@@ -1,11 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists all available Lua functions and classes that control
----Renoise's pattern document.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -86,10 +83,12 @@ function renoise.Pattern:track(index) end
 ---@return boolean
 ---@overload fun(self, func: PatternLineChangeCallback): boolean
 function renoise.Pattern:has_line_notifier(func, obj) end
+
 ---@param func PatternLineChangeCallbackWithContext
 ---@param obj table|userdata
 ---@overload fun(self, func: PatternLineChangeCallback): boolean
 function renoise.Pattern:add_line_notifier(func, obj) end
+
 ---@param func PatternLineChangeCallbackWithContext
 ---@param obj table|userdata
 ---@overload fun(self, func: PatternLineChangeCallback): boolean
@@ -102,10 +101,12 @@ function renoise.Pattern:remove_line_notifier(func, obj) end
 ---@overload fun(self, func: PatternLineChangeCallback): boolean
 ---@return boolean
 function renoise.Pattern:has_line_edited_notifier(func, obj) end
+
 ---@param func PatternLineChangeCallbackWithContext
 ---@param obj table|userdata
 ---@overload fun(self, func: PatternLineChangeCallback): boolean
 function renoise.Pattern:add_line_edited_notifier(func, obj) end
+
 ---@param func PatternLineChangeCallbackWithContext
 ---@param obj table|userdata
 ---@overload fun(self, func: PatternLineChangeCallback): boolean
