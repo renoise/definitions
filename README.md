@@ -10,9 +10,9 @@ LuaLS provides various features for Lua in code editors, such as autocompletion,
 
 ## Status
 
-*The definitions are usable as theyt are now, but still a work in progress.*
+*The API definitions is usable as is is now, but still a work in progress.*
 
-Please report bugs or improvements in the issues [here](https://github.com/renoise/definitions/issues) or create a merge request.
+Please report bugs or improvements as issues [here](https://github.com/renoise/definitions/issues) and/or create a merge request.
 
 ### Known issues
 
@@ -33,7 +33,7 @@ https://github.com/renoise/xrnx/tree/master/Xtra/HtmlGen
 
 ## Usage
 
-To use the definition in e.g. VSCode, first install the **sumneko.lua vscode extension** as described here:
+To use the definition in e.g. vscode, first install the **sumneko.lua vscode extension** as described here:
 https://luals.github.io/#vscode-install
 
 Then clone or download a copy of this repository, and configure your workspace to use the Renoise definition files:
