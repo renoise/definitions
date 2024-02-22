@@ -14,9 +14,6 @@
 ---included in the scripting dev started pack at <http://scripting.renoise.com>
 ---
 
---TODO annotate add/remove_notifier inputs properly
---TODO add separate view builder properties objects?
-
 --------------------------------------------------------------------------------
 ---## introduction
 
