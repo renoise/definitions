@@ -23,21 +23,21 @@ This is a work in progress. Below you can see which Renoise API sections have al
 - [x] `renoise/song/track.lua` *renoise.Track/GroupTrack*
 - [x] `renoise/song/transport.lua` *renoise.Transport*
 - [x] `renoise/song/device.lua` *renoise.AudioDevice and renoise.DeviceParameter*
-- [ ] `renoise/song/instrument.lua` *renoise.Instrument*
-- [ ] `renoise/song/instrument/phrase.lua` *renoise.InstrumentPhrase*
-- [ ] `renoise/song/instrument/plugin.lua` *renoise.InstrumentPluginProperties*
-- [ ] `renoise/song/instrument/sample.lua` *renoise.Sample/Mapping/Buffer*
-- [ ] `renoise/song/instrument/sample_modulation.lua` *renoise.SampleModulationSet/Device*
-- [ ] `renoise/song/instrument/sample_device_chain.lua` *renoise.SampleDeviceChain*
-- [ ] `renoise/song/instrument/macro.lua` *renoise.InstrumentMacro/Mapping*
-- [ ] `renoise/song/instrument/midi_input.lua` *renoise.InstrumentMidiInputProperties*
-- [ ] `renoise/song/instrument/midi_output.lua` *renoise.InstrumentMidiOutputProperties*
+- [x] `renoise/song/instrument.lua` *renoise.Instrument*
+- [x] `renoise/song/instrument/phrase.lua` *renoise.InstrumentPhrase*
+- [x] `renoise/song/instrument/plugin.lua` *renoise.InstrumentPluginProperties*
+- [x] `renoise/song/instrument/sample.lua` *renoise.Sample/Mapping/Buffer*
+- [x] `renoise/song/instrument/sample_modulation.lua` *renoise.SampleModulationSet/Device*
+- [x] `renoise/song/instrument/sample_device_chain.lua` *renoise.SampleDeviceChain*
+- [x] `renoise/song/instrument/macro.lua` *renoise.InstrumentMacro/Mapping*
+- [x] `renoise/song/instrument/midi_input.lua` *renoise.InstrumentMidiInputProperties*
+- [x] `renoise/song/instrument/midi_output.lua` *renoise.InstrumentMidiOutputProperties*
 - [x] `renoise/song/pattern.lua` *renoise.Pattern*
 - [x] `renoise/song/pattern/line.lua` *renoise.PatternLine/Column*
 - [x] `renoise/song/pattern/track.lua` *renoise.PatternTrack*
 - [x] `renoise/song/pattern/automation.lua` *renoise.PatternTrackAutomation*
 - [x] `renoise/song/pattern_iterator.lua` *renoise.PatternIterator*
-- [ ] `renoise/view_builder.lua` *renoise.Views & Widgets*
+- [x] `renoise/view_builder.lua` *renoise.Views & Widgets*
 
 ## Usage
 
