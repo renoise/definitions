@@ -92,5 +92,5 @@ function renoise.PatternTrack:delete_automation(parameter) end
 --------------------------------------------------------------------------------
 ---### renoise.PatternTrackLine
 
----DEPRECATED - alias for renoise.PatternLine
+---@deprecated - alias for renoise.PatternLine
 ---@alias renoise.PatternTrackLine renoise.PatternLine

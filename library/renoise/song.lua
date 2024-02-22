@@ -179,12 +179,12 @@ renoise.Song = {
 ---@field selected_track_device_observable renoise.Document.Observable
 ---@field selected_track_device_index number
 ---
----**READ-ONLY** DEPRECATED - alias for new 'selected_track_device' property
+---@deprecated **READ-ONLY** alias for new 'selected_track_device' property
 ---@field selected_device renoise.AudioDevice|nil
 ---@field selected_device_observable renoise.Document.Observable
 ---@field selected_device_index number
 ---
----**READ-ONLY** DEPRECATED - alias for new 'selected_automation_parameter' property
+---@deprecated **READ-ONLY** alias for new 'selected_automation_parameter' property
 ---@field selected_parameter renoise.DeviceParameter|nil
 ---@field selected_parameter_observable renoise.Document.Observable
 ---
