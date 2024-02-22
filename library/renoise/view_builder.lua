@@ -1270,6 +1270,9 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---Creates a column view with `margin = 1` and adds two text views to the column.
 ---@class renoise.ViewBuilder
 ---
+---Construct a new view builder object.
+---@overload fun():renoise.ViewBuilder
+---
 ---Table of views, which got registered via the "id" property
 ---View id is the table key, the table's value is the view's object.
 ---
