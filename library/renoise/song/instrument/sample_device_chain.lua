@@ -1,29 +1,38 @@
---------------------------------------------------------------------------------
----@class renoise.SampleDeviceChain
---------------------------------------------------------------------------------
+---@meta
+error("Do not try to execute this file. It's just a type definition file.")
 ---
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
+---Renoise in general...
+---
+
+--------------------------------------------------------------------------------
+---## renoise.SampleDeviceChain
+
+---@class renoise.SampleDeviceChain
+renoise.SampleDeviceChain = {}
+
 ---### properties
+
+---@class renoise.SampleDeviceChain
 ---
 ---Name of the audio effect chain.
 ---@field name string
 ---@field name_observable renoise.Document.Observable
 ---
----**READ-ONLY**
----Allowed, available devices for 'insert_device_at'.
+---**READ-ONLY** Allowed, available devices for 'insert_device_at'.
 ---@field available_devices string[]
 ---
----**READ-ONLY**
----Returns a list of tables containing more information about the devices. 
+---**READ-ONLY** Returns a list of tables containing more information about
+---the devices.
 ---@see renoise.Track.available_device_infos
 ---@field available_device_infos AudioDeviceInfo[]
 ---
----**READ-ONLY**
----Device access.
+---**READ-ONLY** Device access.
 ---@field devices renoise.AudioDevice[]
 ---@field devices_observable renoise.Document.Observable
 ---
----**READ-ONLY**
----Output routing.
+---**READ-ONLY** Output routing.
 ---@field available_output_routings string[]
 ---
 ---One of 'available_output_routings'
@@ -54,4 +63,4 @@ function renoise.SampleDeviceChain:swap_devices_at(index1, index2) end
 ---Access to a single device in the chain.
 ---@param index integer
 ---@return renoise.AudioDevice
-function renoise.SampleDeviceChain:device(index)  end
+function renoise.SampleDeviceChain:device(index) end

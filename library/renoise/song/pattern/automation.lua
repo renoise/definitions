@@ -1,11 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists all available Lua functions and classes that control
----Renoise's pattern track automation document.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -34,9 +31,9 @@ renoise.PatternTrackAutomation = {
 
 ---Single point within a pattern track automation envelope.
 ---@class EnvelopePoint
----Automation point's time in pattern lines [1 - NUM_LINES_IN_PATTERN].
+---Automation point's time in pattern lines in Range: (1 - NUM_LINES_IN_PATTERN).
 ---@field time number
----Automation point value [0 - 1.0]
+---Automation point value in Range: (0 - 1.0)
 ---@field value number
 ---Automation point scaling. Used in 'lines' playback mode only - 0.0 is linear.
 ---@field scaling number
@@ -57,18 +54,18 @@ renoise.PatternTrackAutomation = {
 ---
 ---**READ-ONLY** Max length (time in lines) of the automation.
 ---Will always fit the patterns length.
----@field length integer [1 - NUM_LINES_IN_PATTERN]
+---@field length integer Range: (1 - NUM_LINES_IN_PATTERN)
 ---
 ---Selection range as visible in the automation editor. always valid.
 ---returns the automation range no selection is present in the UI.
----@field selection_start integer [1 - automation.length + 1]
+---@field selection_start integer Rnage: (1 - automation.length + 1)
 ---@field selection_start_observable renoise.Document.Observable
----@field selection_end integer [1 - automation.length + 1]
+---@field selection_end integer Range: (1  -  automation.length + 1)
 ---@field selection_end_observable renoise.Document.Observable
 ---
 ---Get or set selection range. when setting an empty table, the existing
 ---selection, if any, will be cleared.
----array of two numbers [] OR [1 - automation.length + 1]
+---array of two numbers [] OR Range: (1  -  automation.length + 1)
 ---@field selection_range number[]
 ---@field selection_range_observable renoise.Document.Observable
 ---
@@ -101,12 +98,14 @@ function renoise.PatternTrackAutomation:copy_from(other) end
 ---@param time number
 ---@return boolean
 function renoise.PatternTrackAutomation:has_point_at(time) end
+
 ---Insert a new point, or change an existing one, if a point in
 ---time already exists.
 ---@param time number
 ---@param value number
 ---@param scaling number?
 function renoise.PatternTrackAutomation:add_point_at(time, value, scaling) end
+
 ---Removes a point at the given time. Point must exist.
 ---@param time number
 function renoise.PatternTrackAutomation:remove_point_at(time) end

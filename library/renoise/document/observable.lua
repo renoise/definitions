@@ -1,11 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists Lua functions to access observables, a notification system
----for value changes in the Renoise API.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for 
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -21,8 +18,8 @@
 ---API is an Observer, which listens to observable values in Documents.
 ---
 ---Attaching and removing notifiers can be done with the functions 'add_notifier',
----'remove_notifier' from the renoise.Document.Observable class. These support 
----multiple kinds of callbacks, plain functions and methods (functions with a context). 
+---'remove_notifier' from the renoise.Document.Observable class. These support
+---multiple kinds of callbacks, plain functions and methods (functions with a context).
 ---
 ---### example:
 ---```lua
@@ -60,11 +57,11 @@ renoise.Document.Observable = {}
 function renoise.Document.Observable:has_notifier(notifier) end
 
 ---Register a function or method as a notifier, which will be called as soon as
----the observable's value changed. The passed notifier can either be a function 
----or a table with a function and some context (an "object") -> method. 
+---the observable's value changed. The passed notifier can either be a function
+---or a table with a function and some context (an "object") -> method.
 ---### example:
 ---```lua
----renoise.song().transport.bpm_observable:add_notifier(function() 
+---renoise.song().transport.bpm_observable:add_notifier(function()
 ---  print("BPM changed")
 ---end)
 ---
@@ -73,7 +70,7 @@ function renoise.Document.Observable:has_notifier(notifier) end
 ---  my_context,
 ---  function(context)
 ---    context.bpm_changes = context.bpm_changes + 1;
----    print(("#BPM changes: %s"):format(context.bpm_changes)); 
+---    print(("#BPM changes: %s"):format(context.bpm_changes));
 ---  end
 ---})
 ---```
@@ -83,10 +80,10 @@ function renoise.Document.Observable:has_notifier(notifier) end
 function renoise.Document.Observable:add_notifier(notifier) end
 
 ---Unregister a previously registered notifier. When only passing an object,
----all notifier functions that match the given object will be removed. 
+---all notifier functions that match the given object will be removed.
 ---This will not fire errors when no methods for the given object are attached.
----Trying to unregister a function or method which wasn't registered, will resolve 
----into an error. 
+---Trying to unregister a function or method which wasn't registered, will resolve
+---into an error.
 ---@param notifier NotifierFunction|NotifierMemberContext
 ---@overload fun(self, notifer_method: NotifierMethod1)
 ---@overload fun(self, notifer_method: NotifierMethod2)
@@ -95,7 +92,7 @@ function renoise.Document.Observable:remove_notifier(notifier) end
 --------------------------------------------------------------------------------
 ---## renoise.Document.Serializable
 
----@class renoise.Document.Serializable 
+---@class renoise.Document.Serializable
 renoise.Document.Serializable = {}
 
 ---### functions
@@ -128,7 +125,7 @@ function renoise.Document.ObservableBang:bang() end
 
 ---@class renoise.Document.ObservableBoolean : renoise.Document.Observable, renoise.Document.Serializable
 ---Read/write access to the value of an observable.
----@field value boolean 
+---@field value boolean
 ---Construct a new observable boolean.
 ---@overload fun(boolean?):renoise.Document.ObservableBoolean
 renoise.Document.ObservableBoolean = {}
@@ -210,8 +207,8 @@ function renoise.Document.ObservableList:size() end
 function renoise.Document.ObservableList:has_notifier(notifier) end
 
 ---Register a function or method as a notifier, which will be called as soon as
----the observable lists layout changed. The passed notifier can either be a function 
----or a table with a function and some context (an "object") -> method. 
+---the observable lists layout changed. The passed notifier can either be a function
+---or a table with a function and some context (an "object") -> method.
 ---@param notifier ListNotifierFunction
 ---@overload fun(self, notifer_method: ListNotifierMethod1)
 ---@overload fun(self, notifer_method: ListNotifierMethod2)
@@ -220,8 +217,8 @@ function renoise.Document.ObservableList:add_notifier(notifier) end
 ---Unregister a previously registered list notifier. When only passing an object,
 ---all notifier functions that match the given object will be removed.
 ---This will not fire errors when no methods for the given object are attached.
----Trying to unregister a function or method which wasn't registered, will resolve 
----into an error. 
+---Trying to unregister a function or method which wasn't registered, will resolve
+---into an error.
 ---@param notifier ListNotifierFunction|ListNotifierMemberContext
 ---@overload fun(self, notifer_method: ListNotifierMethod1)
 ---@overload fun(self, notifer_method: ListNotifierMethod2)

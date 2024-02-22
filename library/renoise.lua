@@ -1,11 +1,9 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists the content of the main "renoise" namespace. All Renoise
----related functions and classes are nested in this namespace.
----
----Please read the Itroduction.md first to get an overview about the complete
----API, and scripting for Renoise in general...
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
+---Renoise in general...
 ---
 
 --------------------------------------------------------------------------------

@@ -1,25 +1,20 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference describes the built-in OSC (Open Sound Control) support for
----Lua scripts in Renoise. OSC can be used in combination with sockets to
----send/receive OSC tagged data over process boundaries, or to exchange data
----across computers in a network (Internet).
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
+---Renoise in general...
 ---
 ---Have a look at http://opensoundcontrol.org for general info about OSC.
 ---
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for 
----Renoise in general...
----
 ---For some small examples on how to use the OSC and Sockets API, have a
--- look at the code snippets in the Renoise Documentation "Snippets/Osc.lua".
+---look at the code snippets in the Renoise Documentation "Snippets/Osc.lua".
 ---
 
 --------------------------------------------------------------------------------
 ---## renoise.Osc
 
----OSC (Open Sound Control) support for Lua scripts in Renoise. 
+---OSC (Open Sound Control) support for Lua scripts in Renoise.
 renoise.Osc = {}
 
 ---De-packetizing raw (socket) data to OSC messages or bundles:
@@ -60,11 +55,11 @@ renoise.Osc.Message = {}
 ---```lua
 ---> { tag="X", value=SomeValue }
 ---```
----`tag` is a standard OSC type tag. `value` is the arguments value expressed 
----by a Lua type. The value must be convertible to the specified tag, which 
----means, you cannot for example specify an "i" (integer) as type and then pass 
----a string as the value. Use a number value instead. Not all tags require a 
----value, like the T,F boolean tags. Then a `value` field should not be 
+---`tag` is a standard OSC type tag. `value` is the arguments value expressed
+---by a Lua type. The value must be convertible to the specified tag, which
+---means, you cannot for example specify an "i" (integer) as type and then pass
+---a string as the value. Use a number value instead. Not all tags require a
+---value, like the T,F boolean tags. Then a `value` field should not be
 ---specified. For more info, see: http://opensoundcontrol.org/spec-1_0
 ---
 ---Valid tags are {OSC Type Tag, Type of corresponding value}

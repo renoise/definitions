@@ -1,21 +1,20 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists Lua functions and classes to manage Renoise XRNX 
----"scripting tool" packages. 
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for 
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
----Also have a look at the com.renoise.ExampleTool.xrnx for guided examples.
+---Also have a look at the "com.renoise.ExampleTool.xrnx" tool for guided examples.
+---This tool is included in the scripting dev started pack at
+---https://github.com/renoise/xrnx/
 ---
 
 --------------------------------------------------------------------------------
 ---## renoise.ScriptingTool
 
 ---The scripting tool interface allows your tool to interact with Renoise by
----injecting or creating menu entries and keybindings into Renoise; or by 
+---injecting or creating menu entries and keybindings into Renoise; or by
 ---attaching it to some common tool related notifiers.
 ---@class renoise.ScriptingTool
 ---
@@ -23,7 +22,7 @@
 ---@field bundle_path string
 ---
 ---Invoked when the tool finished loading/initializing and no errors happened.
----When the tool has preferences, they are loaded here as well when the 
+---When the tool has preferences, they are loaded here as well when the
 ---notification fires, but 'renoise.song()' may not yet be available.
 ---
 ---See also 'renoise.tool().app_new_document_observable'.
@@ -213,7 +212,7 @@ function renoise.ScriptingTool:remove_menu_entry(entry_name) end
 ---+ "DSPs Chain"
 ---+ "Instrument Box"
 ---+ "Mixer"
----+ "Pattern Editor" 
+---+ "Pattern Editor"
 ---+ "Pattern Matrix"
 ---+ "Pattern Sequencer"
 ---+ "Sample Editor"
@@ -227,7 +226,7 @@ function renoise.ScriptingTool:remove_menu_entry(entry_name) end
 ---@field invoke fun(repeated: boolean)
 
 ---Returns true when the given keybinging already exists, otherwise false.
----@param keybinding_name string Name of the binding e.g. "Global:My Tool:My Action" 
+---@param keybinding_name string Name of the binding e.g. "Global:My Tool:My Action"
 ---@return boolean
 function renoise.ScriptingTool:has_keybinding(keybinding_name) end
 
@@ -236,14 +235,14 @@ function renoise.ScriptingTool:has_keybinding(keybinding_name) end
 function renoise.ScriptingTool:add_keybinding(keybinding) end
 
 ---Remove a previously added key binding by specifying its name and path.
----@param keybinding_name string Name of the binding e.g. "Global:My Tool:My Action" 
+---@param keybinding_name string Name of the binding e.g. "Global:My Tool:My Action"
 function renoise.ScriptingTool:remove_keybinding(keybinding_name) end
 
 -------------------------------------------------------------------------------
 
 ---MIDI message as passed to the `invoke` callback in tool midi_mappings.
 ---@class renoise.ScriptingTool.MidiMessage
----[0 - 127] for abs values, [-63 - 63] for relative values
+---Range: (0S - 127) for abs values, Range: (-63 - 63) for relative values
 ---valid when `is_rel_value()` or `is_abs_value()` returns true, else undefined
 ---@field int_value integer|nil
 ---valid [true OR false] when `is_switch()` returns true, else undefined
@@ -294,7 +293,7 @@ function renoise.ScriptingTool.MidiMessage:is_abs_value() end
 ---@field invoke fun(message: renoise.ScriptingTool.MidiMessage)
 
 ---Returns true when the given mapping already exists, otherwise false.
----@param midi_mapping_name string Name of the mapping. 
+---@param midi_mapping_name string Name of the mapping.
 ---@return boolean
 function renoise.ScriptingTool:has_midi_mapping(midi_mapping_name) end
 
@@ -303,7 +302,7 @@ function renoise.ScriptingTool:has_midi_mapping(midi_mapping_name) end
 function renoise.ScriptingTool:add_midi_mapping(midi_mapping) end
 
 ---Remove a previously added midi mapping by specifying its name.
----@param midi_mapping_name string Name of the mapping. 
+---@param midi_mapping_name string Name of the mapping.
 function renoise.ScriptingTool:remove_midi_mapping(midi_mapping_name) end
 
 -------------------------------------------------------------------------------
@@ -323,7 +322,7 @@ function renoise.ScriptingTool:remove_midi_mapping(midi_mapping_name) end
 ---
 ---@class ToolFileImportHook
 ---In which disk browser category the file type shows up.
----One of 
+---One of
 ---@field category FileHookCategory
 ---A list of strings, file extensions, that will invoke your hook, like for
 ---example {"txt", "s_wave"}

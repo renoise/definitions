@@ -1,10 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists Lua functions to create custom observable documents.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -112,7 +110,7 @@ renoise.Document = {}
 ---model will fail) and to generally specify the "type".
 ---
 ---Additionally, once "create" is called, you can use the specified model name to
----create new instances. 
+---create new instances.
 ---
 ---### example:
 ---```lua

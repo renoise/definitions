@@ -1,11 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference describes the raw MIDI IO support for scripts in Renoise; the
----ability to send and receive MIDI data.
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for 
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 ---For some simple examples on how to use MIDI IO in Renoise, have a look at the
@@ -15,7 +12,7 @@
 --------------------------------------------------------------------------------
 ---## renoise.Midi
 
----Raw MIDI IO support for scripts in Renoise; the ability to send and receive 
+---Raw MIDI IO support for scripts in Renoise; the ability to send and receive
 ---MIDI data.
 renoise.Midi = {}
 

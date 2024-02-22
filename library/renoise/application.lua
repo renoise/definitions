@@ -1,12 +1,8 @@
 ---@meta
----Do not try to execute this file. It's just a type definition file.
+error("Do not try to execute this file. It's just a type definition file.")
 ---
----This reference lists all available Lua functions and classes that control
----the Renoise application. The Application is the Lua interface to Renoise's
----main GUI and window (Application and ApplicationWindow).
----
----Please read the `Introduction.md` in the Renoise scripting Documentation
----folder first to get an overview about the complete API, and scripting for
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
 
@@ -45,8 +41,8 @@ renoise.Application = {}
 ---**READ-ONLY** Access to the application's window.
 ---@field window renoise.ApplicationWindow
 ---
----Get or set globally used clipboard "slots" in the application.
----@field active_clipboard_index number [1-4]
+---Range: (1 - 4) Get or set globally used clipboard "slots" in the application.
+---@field active_clipboard_index number
 
 ---### functions
 
@@ -290,3 +286,25 @@ function renoise.Application:save_instrument_sample(filename) end
 ---@param filename string
 ---@return boolean success
 function renoise.Application:save_theme(filename) end
+
+--------------------------------------------------------------------------------
+---## renoise.Dialog
+
+---A custom dialog created via the scripting API. Dialogs can be created
+---via `renoise.app():show_custom_dialog`.
+---
+---See `create custom views` on top of the renoise.ViewBuilder docs on how to
+---create views for the dialog.
+---@class renoise.Dialog
+---
+--- **READ-ONLY** Check if a dialog is alive and visible.
+---@field visible boolean
+renoise.Dialog = {}
+
+---### functions
+
+-- Bring an already visible dialog to front and make it the key window.
+function renoise.Dialog:show() end
+
+-- Close a visible dialog.
+function renoise.Dialog:close() end
