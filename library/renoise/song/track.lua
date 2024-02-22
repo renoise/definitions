@@ -42,6 +42,12 @@ renoise.Track = {
   MUTE_STATE_MUTED = 3
 }
 
+---A table of 3 bytes (ranging from 0 to 255)
+---representing the red, green and blue channels of a color.  
+---{0xFF, 0xFF, 0xFF} is white  
+---{165, 73, 35} is the red from the Renoise logo
+---@alias RGBColor {[1] : integer, [2] : integer, [3] : integer}
+
 ---### properties
 
 ---@class renoise.Track
@@ -50,7 +56,7 @@ renoise.Track = {
 ---@field type renoise.Track.TrackType **READ-ONLY**
 ---@field name string Name, as visible in track headers
 ---@field name_observable renoise.Document.Observable
----@field color integer[] Array of 3 numbers (0 - 255), RGB
+---@field color RGBColor
 ---@field color_observable renoise.Document.Observable
 ---@field color_blend number Color blend in percent[0 - 100]
 ---@field color_blend_observable renoise.Document.Observable
@@ -75,7 +81,7 @@ renoise.Track = {
 ---@field collapsed_observable renoise.Document.Observable
 ---
 ---Returns most immediate group parent or nil if not in a group.
----@field group_parent renoise.GroupTrack|nil **READ-ONLY**
+---@field group_parent renoise.GroupTrack? **READ-ONLY**
 ---
 ---Output routing.
 ---@field available_output_routings string[] **READ-ONLY**

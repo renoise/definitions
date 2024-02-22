@@ -96,9 +96,9 @@ renoise.Views = {}
 ---sizes, like for example `vb:text { width = "80%"}`. The percentage values are
 ---relative to the view's parent size and will automatically update on size
 ---changes.
----@field width number
+---@field width number|string
 ---
----@field height number
+---@field height number|string
 ---
 ---Get/set a tooltip text that should be shown for this view.
 ---@field tooltip string Default: "" (no tip will be shown)
@@ -152,7 +152,7 @@ function renoise.Views.View:remove_child(child) end
 ---@field spacing number Default: 0 (no spacing)
 ---
 ---Setup a background style for the rack. Available styles are:
----@alias View.Rack.Background
+---@alias RackStyle
 ---| '"invisible"' # no background
 ---| '"plain"'     # undecorated, single coloured background
 ---| '"border"'    # same as plain, but with a bold nested border
@@ -160,7 +160,7 @@ function renoise.Views.View:remove_child(child) end
 ---| '"panel"'     # alternative "background" style, beveled
 ---| '"group"'     # background for "nested" groups within body
 ---
----@field style View.Background Default: "invisible"
+---@field style RackStyle Default: "invisible"
 ---
 ---When set to true, all child views in the rack are automatically resized to
 ---the max size of all child views (width in ViewBuilder.column, height in
@@ -190,7 +190,7 @@ function renoise.Views.View:remove_child(child) end
 ---vertically in columns).
 ---@field spacing number Default: 0 (no spacing)
 ---
----@alias View.Aligner.Alignment
+---@alias AlignerAlignment
 ---| '"left"'       # align from left to right (for horizontal_aligner only)
 ---| '"right"'      # align from right to left (for horizontal_aligner only)
 ---| '"top"'        # align from top to bottom (for vertical_aligner only)
@@ -200,7 +200,7 @@ function renoise.Views.View:remove_child(child) end
 ---| '"distribute"' # equally distributes views over the aligners width/height
 ---
 ---Default: "left" (for horizontal_aligner) "top" (for vertical_aligner)
----@field mode string 
+---@field mode AlignerAlignment 
 
 
 -----------------------------------------------------------------------------
@@ -221,31 +221,31 @@ function renoise.Views.View:remove_child(child) end
 ---@field text string Default: ""
 ---
 ---Get/set the style that the text should be displayed with.
----@alias View.Font
+---@alias FontStyle
 ---| '"normal"'
 ---| '"big"'
 ---| '"bold"'
 ---| '"italic"'
 ---| '"mono"'
 ---
----@field font View.Font Default: "normal"
+---@field font FontStyle Default: "normal"
 ---
 ---Get/set the color style the text should be displayed with.
----@alias View.Text.Style
+---@alias TextStyle
 ---| '"normal"'
 ---| '"strong"'
 ---| '"disabled"'
 ---
----@field style View.Text.Style Default: "normal"
+---@field style TextStyle Default: "normal"
 ---
 ---Setup the text's alignment. Applies only when the view's size is larger than
 ---the needed size to draw the text
----@alias View.Text.Alignment
+---@alias TextAlignment
 ---| '"left"'
 ---| '"right"'
 ---| '"center"'
 ---
----@field align View.Text.Alignment Default: "left"
+---@field align TextAlignment Default: "left"
 
 
 --------------------------------------------------------------------------------
@@ -278,15 +278,15 @@ function renoise.Views.View:remove_child(child) end
 ---line with newline characters like "text" does.
 ---@field paragraphs string Default: ""
 ---
----@field font View.Font
+---@field font FontStyle
 ---
 ---Setup the text view's background:
----@alias View.Background
+---@alias TextBackgroundStyle
 ---| '"body"'    # simple text color with no background  
 ---| '"strong"'  # stronger text color with no background  
 ---| '"border"'  # text on a bordered background
 ---
----@field style View.Background Default: "body"
+---@field style TextBackgroundStyle Default: "body"
 
 ---### functions
 
@@ -330,12 +330,7 @@ function renoise.Views.MultiLineText:clear() end
 ---@field text string Default: ""
 ---
 ---Setup the text field's text alignment, when not editing.
----@alias View.TextField.Alignment
----| '"left"'
----| '"right"'
----| '"center"'
----
----@field align View.TextField.Alignment Default: "left"
+---@field align TextAlignment Default: "left"
 ---
 ---True when the text field is focused. setting the edit_mode programatically
 ---will focus the text field or remove the focus (focus the dialog) accordingly.
@@ -396,9 +391,9 @@ function renoise.Views.TextField:remove_notifier(notifier) end
 ---characters.
 ---@field paragraphs string Default: ""
 ---
----@field font View.Font  Default: "normal"
+---@field font FontStyle  Default: "normal"
 ---
----@field style View.Background  Default: "border"
+---@field style TextBackgroundStyle  Default: "border"
 ---
 ---Valid in the construction table only: Set up a notifier for text changes.
 ---@see renoise.Views.MutlilineTextField.add_notifier
@@ -532,10 +527,10 @@ function renoise.Views.Bitmap:remove_notifier(notifier) end
 ---@field bitmap string
 ---
 ---Table of RGB values like {0xff,0xff,0xff} -> white. When set, the
----unpressed button's background will be drawn in the specified color.
----A text color is automatically selected to make sure its always visible.
+---unpressed button's background will be drawn in the specified color.  
+---A text color is automatically selected to make sure its always visible.  
 ---Set color {0,0,0} to enable the theme colors for the button again.
----@field color integer[] <RED, GREEN, BLUE> range (0-255)
+---@field color RGBColor Range: (0-255)
 ---
 ---Valid in the construction table only: set up a click notifier.
 ---@field pressed function
@@ -820,9 +815,9 @@ function renoise.Views.ValueBox:remove_notifier(notifier) end
 ---Get/set the current value.
 ---@field value number
 ---
----@field font View.Font Default: "normal"
+---@field font FontStyle Default: "normal"
 ---
----@field align View.Text.Alignment Default: "left"
+---@field align TextAlignment Default: "left"
 ---
 ---Valid in the construction table only: Setup a custom rule on how the
 ---number should be displayed. When defined, 'tostring' must be a function
@@ -880,7 +875,7 @@ function renoise.Views.Value:remove_notifier(notifier) end
 ---@field value number
 ---
 ---Setup the text alignment.
----@field align View.Text.Alignment Default: "left"
+---@field align TextAlignment Default: "left"
 ---
 ---Valid in the construction table only: setup custom rules on how the number
 ---should be displayed. Both, 'tostring' and  'tonumber' must be set, or none
@@ -1230,6 +1225,9 @@ renoise.ViewBuilder.DEFAULT_DIALOG_SPACING = 8
 renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 
 ---### functions
+
+---@return renoise.ViewBuilder
+function renoise.ViewBuilder() end
 
 --TODO separate properties objects for all?
 

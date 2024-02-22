@@ -26,8 +26,7 @@ renoise.PatternTrack = {}
 ---@field alias_pattern_index number index or 0 when no alias is present
 ---@field alias_pattern_index_observable renoise.Document.Observable
 ----
----Color.
----@field color table number[] table with 3 numbers (0-0xFF, RGB) or nil when no slot color is set
+---@field color RGBColor? slot color of the pattern in the matrix, nil when no slot color is set
 ---@field color_observable renoise.Document.Observable
 ---
 ---Returns true when all the track lines are empty. Does not look at automation.
