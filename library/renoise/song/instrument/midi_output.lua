@@ -1,8 +1,29 @@
---------------------------------------------------------------------------------
----@class renoise.InstrumentMidiOutputProperties
---------------------------------------------------------------------------------
+---@meta
+---Do not try to execute this file. It's just a type definition file.
 ---
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for
+---Renoise in general...
+---
+
+--------------------------------------------------------------------------------
+---## renoise.InstrumentMidiOutputProperties
+
+---@class renoise.InstrumentMidiOutputProperties
+renoise.InstrumentMidiOutputProperties = {}
+
+---### constants
+
+---@enum renoise.InstrumentMidiOutputProperties.Type
+renoise.InstrumentMidiOutputProperties = {
+  TYPE_EXTERNAL = 1,
+  TYPE_LINE_IN_RET = 2,
+  TYPE_INTERNAL = 3, -- REWIRE
+}
+
 ---### properties
+
+---@class renoise.InstrumentMidiOutputProperties
 ---
 -- Note: ReWire device always start with "ReWire: " in the device_name and
 -- will always ignore the instrument_type and channel properties. MIDI
@@ -35,13 +56,3 @@
 ---
 ---@field duration number Range: (1-8000) 8000 = INF
 ---@field duration_observable renoise.Document.Observable
----
-
----### constants
-
----@enum renoise.InstrumentMidiOutputProperties.Type
-renoise.InstrumentMidiOutputProperties = {
-  TYPE_EXTERNAL = 1,
-  TYPE_LINE_IN_RET = 2,
-  TYPE_INTERNAL = 3, -- REWIRE
-}

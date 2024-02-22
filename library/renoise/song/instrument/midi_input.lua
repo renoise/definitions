@@ -1,12 +1,24 @@
---------------------------------------------------------------------------------
----@class renoise.InstrumentMidiInputProperties
---------------------------------------------------------------------------------
+---@meta
+---Do not try to execute this file. It's just a type definition file.
 ---
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for
+---Renoise in general...
+---
+
+--------------------------------------------------------------------------------
+---## renoise.InstrumentMidiInputProperties
+
+---@class renoise.InstrumentMidiInputProperties
+renoise.InstrumentMidiInputProperties = {}
+
 ---### properties
+
+---@class renoise.InstrumentMidiInputProperties
 ---
 ---When setting new devices, device names must be one of
 ---renoise.Midi.available_input_devices.
----Devices are automatically opened when needed. To close a device, set its 
+---Devices are automatically opened when needed. To close a device, set its
 ---name to "", e.g. an empty string.
 ---@field device_name string
 ---@field device_name_observable renoise.Document.Observable

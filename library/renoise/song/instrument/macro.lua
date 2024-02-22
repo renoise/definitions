@@ -1,8 +1,20 @@
---------------------------------------------------------------------------------
----@class renoise.InstrumentMacro
---------------------------------------------------------------------------------
+---@meta
+---Do not try to execute this file. It's just a type definition file.
 ---
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for
+---Renoise in general...
+---
+
+--------------------------------------------------------------------------------
+---## renoise.InstrumentMacro
+
+---@class renoise.InstrumentMacro
+renoise.InstrumentMacro = {}
+
 ---### properties
+
+---@class renoise.InstrumentMacro
 ---
 ---Macro name as visible in the GUI when mappings are presents.
 ---@field name string
@@ -29,13 +41,29 @@
 function renoise.InstrumentMacro:mapping(index) end
 
 --------------------------------------------------------------------------------
+---## renoise.InstrumentMacroMapping
+
 ---@class renoise.InstrumentMacroMapping
---------------------------------------------------------------------------------
----
+renoise.InstrumentMacroMapping = {}
+
+---### constants
+
+---@enum renoise.InstrumentMacroMapping.Scaling
+renoise.InstrumentMacroMapping = {
+  SCALING_LOG_FAST = 1,
+  SCALING_LOG_SLOW = 2,
+  SCALING_LINEAR = 3,
+  SCALING_EXP_SLOW = 4,
+  SCALING_EXP_FAST = 5,
+}
+
 ---### properties
+
+---@class renoise.InstrumentMacroMapping
 ---
----**READ-ONLY**
----Linked parameter. Can be a sample FX- or modulation parameter. Never nil.
+---
+---**READ-ONLY** Linked parameter.
+---Can be a sample FX- or modulation parameter. Never nil.
 ---@field parameter renoise.DeviceParameter
 ---
 ---Min/max range in which the macro applies its value to the target parameter.
@@ -49,14 +77,3 @@ function renoise.InstrumentMacro:mapping(index) end
 ---Scaling which gets applied within the min/max range to set the dest value.
 ---@field parameter_scaling renoise.InstrumentMacroMapping.Scaling
 ---@field parameter_scaling_observable renoise.Document.Observable
-
----### constants
-
----@enum renoise.InstrumentMacroMapping.Scaling
-renoise.InstrumentMacroMapping = {
-  SCALING_LOG_FAST = 1,
-  SCALING_LOG_SLOW = 2,
-  SCALING_LINEAR = 3,
-  SCALING_EXP_SLOW = 4,
-  SCALING_EXP_FAST = 5,
-}

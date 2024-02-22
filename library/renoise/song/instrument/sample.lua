@@ -1,92 +1,19 @@
---------------------------------------------------------------------------------
----@class renoise.Sample
---------------------------------------------------------------------------------
---- 
----### properties
+---@meta
+---Do not try to execute this file. It's just a type definition file.
 ---
----True, when the sample slot is an alias to a sliced master sample. Such sample 
----slots are read-only and automatically managed with the master samples slice 
----list.
----**READ-ONLY**
----@field is_slice_alias boolean
----Read/write access to the slice marker list of a sample. When new markers are 
----set or existing ones unset, existing 0S effects or notes to existing slices 
----will NOT be remapped (unlike its done with the insert/remove/move_slice_marker
----functions). See function insert_slice_marker for info about marker limitations 
----and preconditions.
----@field slice_markers integer[]
----@field slice_markers_observable renoise.Document.Observable 
----Name.
----@field name string
----@field name_observable renoise.Document.Observable
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
+---Renoise in general...
 ---
----Panning, volume.
----@field panning number Range: (0.0-1.0)
----@field panning_observable renoise.Document.Observable
----@field volume number Range: (0.0-4.0)
----@field volume_observable renoise.Document.Observable
----
----Tuning.
----@field transpose integer Range: (-120-120)
----@field transpose_observable renoise.Document.Observable
----@field fine_tune integer Range: (-127-127)
----@field fine_tune_observable renoise.Document.Observable
----
----Beat sync.
----@field beat_sync_enabled boolean
----@field beat_sync_enabled_observable renoise.Document.Observable
----@field beat_sync_lines integer Range: (1-512)
----@field beat_sync_lines_observable renoise.Document.Observable
----@field beat_sync_mode renoise.Sample.BeatSyncMode
----@field beat_sync_mode_observable renoise.Document.Observable
----
----Interpolation, new note action, oneshot, mute_group, autoseek, autofade.
----@field interpolation_mode renoise.Sample.InterpolationMode
----@field interpolation_mode_observable renoise.Document.Observable
----@field oversample_enabled  boolean
----@field oversample_enabled_observable renoise.Document.Observable 
----
----@field new_note_action renoise.Sample.NewNoteActionMode
----@field new_note_action_observable renoise.Document.Observable
----@field oneshot  boolean
----@field oneshot_observable renoise.Document.Observable 
----@field mute_group  integer Range: (0-15) where 0 means no group
----@field mute_group_observable renoise.Document.Observable 
----@field autoseek boolean
----@field autoseek_observable renoise.Document.Observable
----@field autofade boolean
----@field autofade_observable renoise.Document.Observable
----
----Loops.
----@field loop_mode renoise.Sample.LoopMode
----@field loop_mode_observable renoise.Document.Observable
----@field loop_release boolean
----@field loop_release_observable renoise.Document.Observable
----@field loop_start integer Range: (1-num_sample_frames)
----@field loop_start_observable renoise.Document.Observable
----@field loop_end integer Range: (1-num_sample_frames)
----@field loop_end_observable renoise.Document.Observable
----
----The linked modulation set. 0 when disable, else a valid index for the
----renoise.Instrument.sample_modulation_sets table
----@field modulation_set_index integer
----@field modulation_set_index_observable renoise.Document.Observable 
----
----The linked instrument device chain. 0 when disable, else a valid index for the
----renoise.Instrument.sample_device_chain table
----@field device_chain_index integer
----@field device_chain_index_observable renoise.Document.Observable 
----
----**READ-ONLY**
----@field sample_buffer renoise.SampleBuffer
----@field sample_buffer_observable renoise.Document.Observable
----
----Keyboard Note/velocity mapping
----**READ-ONLY**
----@field sample_mapping renoise.SampleMapping
 
+--------------------------------------------------------------------------------
+---## renoise.Sample
+
+---@class renoise.Sample
+renoise.Sample = {}
 
 ---### constants
+
 ---@enum renoise.Sample.InterpolationMode
 renoise.Sample = {
   INTERPOLATE_NONE = 1,
@@ -117,6 +44,89 @@ renoise.Sample = {
   NEW_NOTE_ACTION_SUSTAIN = 3,
 }
 
+---### properties
+
+---@class renoise.Sample
+---
+---**READ-ONLY** True, when the sample slot is an alias to a sliced master sample.
+---Such sample slots are read-only and automatically managed with the master samples
+---slice list.
+---@field is_slice_alias boolean
+---Read/write access to the slice marker list of a sample. When new markers are
+---set or existing ones unset, existing 0S effects or notes to existing slices
+---will NOT be remapped (unlike its done with the insert/remove/move_slice_marker
+---functions). See function insert_slice_marker for info about marker limitations
+---and preconditions.
+---@field slice_markers integer[]
+---@field slice_markers_observable renoise.Document.Observable
+---Name.
+---@field name string
+---@field name_observable renoise.Document.Observable
+---
+---Panning, volume.
+---@field panning number Range: (0.0-1.0)
+---@field panning_observable renoise.Document.Observable
+---@field volume number Range: (0.0-4.0)
+---@field volume_observable renoise.Document.Observable
+---
+---Tuning.
+---@field transpose integer Range: (-120-120)
+---@field transpose_observable renoise.Document.Observable
+---@field fine_tune integer Range: (-127-127)
+---@field fine_tune_observable renoise.Document.Observable
+---
+---Beat sync.
+---@field beat_sync_enabled boolean
+---@field beat_sync_enabled_observable renoise.Document.Observable
+---@field beat_sync_lines integer Range: (1-512)
+---@field beat_sync_lines_observable renoise.Document.Observable
+---@field beat_sync_mode renoise.Sample.BeatSyncMode
+---@field beat_sync_mode_observable renoise.Document.Observable
+---
+---Interpolation, new note action, oneshot, mute_group, autoseek, autofade.
+---@field interpolation_mode renoise.Sample.InterpolationMode
+---@field interpolation_mode_observable renoise.Document.Observable
+---@field oversample_enabled  boolean
+---@field oversample_enabled_observable renoise.Document.Observable
+---
+---@field new_note_action renoise.Sample.NewNoteActionMode
+---@field new_note_action_observable renoise.Document.Observable
+---@field oneshot  boolean
+---@field oneshot_observable renoise.Document.Observable
+---@field mute_group  integer Range: (0-15) where 0 means no group
+---@field mute_group_observable renoise.Document.Observable
+---@field autoseek boolean
+---@field autoseek_observable renoise.Document.Observable
+---@field autofade boolean
+---@field autofade_observable renoise.Document.Observable
+---
+---Loops.
+---@field loop_mode renoise.Sample.LoopMode
+---@field loop_mode_observable renoise.Document.Observable
+---@field loop_release boolean
+---@field loop_release_observable renoise.Document.Observable
+---@field loop_start integer Range: (1-num_sample_frames)
+---@field loop_start_observable renoise.Document.Observable
+---@field loop_end integer Range: (1-num_sample_frames)
+---@field loop_end_observable renoise.Document.Observable
+---
+---The linked modulation set. 0 when disable, else a valid index for the
+---renoise.Instrument.sample_modulation_sets table
+---@field modulation_set_index integer
+---@field modulation_set_index_observable renoise.Document.Observable
+---
+---The linked instrument device chain. 0 when disable, else a valid index for the
+---renoise.Instrument.sample_device_chain table
+---@field device_chain_index integer
+---@field device_chain_index_observable renoise.Document.Observable
+---
+---**READ-ONLY**
+---@field sample_buffer renoise.SampleBuffer
+---@field sample_buffer_observable renoise.Document.Observable
+---
+---**READ-ONLY** Keyboard Note/velocity mapping
+---@field sample_mapping renoise.SampleMapping
+
 ---### functions
 
 ---Reset, clear all sample settings and sample data.
@@ -128,21 +138,23 @@ function renoise.Sample:copy_from(sample) end
 
 ---Insert a new slice marker at the given sample position. Only samples in
 ---the first sample slot may use slices. Creating slices will automatically
----create sample aliases in the following slots: read-only sample slots that 
----play the sample slice and are mapped to notes. Sliced sample lists can not 
----be modified manually then. To update such aliases, modify the slice marker 
----list instead. 
+---create sample aliases in the following slots: read-only sample slots that
+---play the sample slice and are mapped to notes. Sliced sample lists can not
+---be modified manually then. To update such aliases, modify the slice marker
+---list instead.
 ---Existing 0S effects or notes will be updated to ensure that the old slices
 ---are played back just as before.
 ---@param marker_sample_pos integer
 function renoise.Sample:insert_slice_marker(marker_sample_pos) end
+
 ---Delete an existing slice marker. marker_sample_pos must point to an existing
----marker. See also property 'samples[].slice_markers'. Existing 0S effects or 
----notes will be updated to ensure that the old slices are played back just as 
+---marker. See also property 'samples[].slice_markers'. Existing 0S effects or
+---notes will be updated to ensure that the old slices are played back just as
 ---before.
 ---@param marker_sample_pos integer
 function renoise.Sample:delete_slice_marker(marker_sample_pos) end
----Change the sample position of an existing slice marker. see also property 
+
+---Change the sample position of an existing slice marker. see also property
 ---'samples[].slice_markers'.
 ---When moving a marker behind or before an existing other marker, existing 0S
 ---effects or notes will automatically be updated to ensure that the old slices
@@ -151,20 +163,22 @@ function renoise.Sample:delete_slice_marker(marker_sample_pos) end
 ---@param new_marker_pos integer
 function renoise.Sample:move_slice_marker(old_marker_pos, new_marker_pos) end
 
-
 --------------------------------------------------------------------------------
+---## renoise.SampleMapping
+
+---@class renoise.SampleMapping
+renoise.SampleMapping = {}
+
+---### properties
+
 ---General remarks: Sample mappings of sliced samples are read-only: can not be
 ---modified. See `sample_mappings[].read_only`
 ---@class renoise.SampleMapping
---------------------------------------------------------------------------------
 ---
----### properties
+---**READ-ONLY** True for sliced instruments. No sample mapping properties are
+---allowed to be modified, but can be read.
+---@field read_only boolean
 ---
----True for sliced instruments. No sample mapping properties are allowed to 
----be modified, but can be read.
----**READ-ONLY**
----@field read_only boolean 
----  
 ---Linked sample.
 ---@field sample renoise.Sample
 ---
@@ -174,57 +188,63 @@ function renoise.Sample:move_slice_marker(old_marker_pos, new_marker_pos) end
 ---
 ---Mappings velocity->volume and key->pitch options.
 ---@field map_velocity_to_volume boolean
----@field map_velocity_to_volume_observable renoise.Document.Observable 
+---@field map_velocity_to_volume_observable renoise.Document.Observable
 ---@field map_key_to_pitch boolean
----@field map_key_to_pitch_observable renoise.Document.Observable 
+---@field map_key_to_pitch_observable renoise.Document.Observable
 ---
 ---Mappings base-note. Final pitch of the played sample is:
 ---  played_note - mapping.base_note + sample.transpose + sample.finetune
 ---@field base_note integer  (0-119, c-4=48)]
----@field base_note_observable renoise.Document.Observable 
+---@field base_note_observable renoise.Document.Observable
 ---
 ---Note range the mapping is triggered for.
 ---table of two integers
 ---@field note_range integer[] Range: (0-119) where C-4 is 48
----@field note_range_observable renoise.Document.Observable 
+---@field note_range_observable renoise.Document.Observable
 ---
 ---Velocity range the mapping is triggered for.
 ---@field velocity_range integer[] Range: (0-127)
----@field velocity_range_observable renoise.Document.Observable 
+---@field velocity_range_observable renoise.Document.Observable
 
 --------------------------------------------------------------------------------
+---## renoise.SampleBuffer
+
+---@class renoise.SampleBuffer
+renoise.SampleBuffer = {}
+
+---### constants
+
+---@enum renoise.SampleBuffer.Channel
+renoise.SampleBuffer = {
+  CHANNEL_LEFT = 1,
+  CHANNEL_RIGHT = 2,
+  CHANNEL_LEFT_AND_RIGHT = 3,
+}
+
+---### properties
+
 ---NOTE: All properties are invalid when no sample data is present,
 ---'has_sample_data' returns false:
 ---@class renoise.SampleBuffer
---------------------------------------------------------------------------------
 ---
----### properties
----
----Check this before accessing properties
----**READ-ONLY**
+---**READ-ONLY** Check this before accessing properties
 ---@field has_sample_data boolean
 ---
+---**READ-ONLY** True, when the sample buffer can only be read, but not be
+---modified. true for sample aliases of sliced samples. To modify such sample
+---buffers, modify the sliced master sample buffer instead.
+---@field read_only boolean
+---**READ-ONLY** The current sample rate in Hz, like 44100.
+---@field sample_rate integer
 ---
----**READ-ONLY**
----True, when the sample buffer can only be read, but not be modified. true for
----sample aliases of sliced samples. To modify such sample buffers, modify the 
----sliced master sample buffer instead.
----@field read_only boolean 
----**READ-ONLY**
----The current sample rate in Hz, like 44100.
----@field sample_rate integer 
+---**READ-ONLY** The current bit depth, like 32, 16, 8.
+---@field bit_depth integer
 ---
----**READ-ONLY**
----The current bit depth, like 32, 16, 8.
----@field bit_depth integer 
+---**READ-ONLY** The integer of sample channels (1 or 2)
+---@field number_of_channels integer
 ---
----**READ-ONLY**
----The integer of sample channels (1 or 2)
----@field number_of_channels integer 
----
----**READ-ONLY**
----The sample frame count (integer of samples per channel)
----@field number_of_frames integer 
+---**READ-ONLY** The sample frame count (integer of samples per channel)
+---@field number_of_frames integer
 ---
 ---The first sample displayed in the sample editor view. Set together with
 ---DisplayLength to control zooming.
@@ -258,15 +278,6 @@ function renoise.Sample:move_slice_marker(old_marker_pos, new_marker_pos) end
 ---@field selected_channel renoise.SampleBuffer.Channel
 ---@field selected_channel_observable renoise.Document.Observable
 
----### constants
-
----@enum renoise.SampleBuffer.Channel
-renoise.SampleBuffer = {
-  CHANNEL_LEFT = 1,
-  CHANNEL_RIGHT = 2,
-  CHANNEL_LEFT_AND_RIGHT = 3,
-}
-
 ---### functions
 
 ---Create new sample data with the given rate, bit-depth, channel and frame
@@ -290,8 +301,8 @@ function renoise.SampleBuffer:delete_sample_data() end
 function renoise.SampleBuffer:sample_data(channel_index, frame_index) end
 
 ---Write access to samples in a sample data buffer. New samples values must be
----within [-1, 1] and will be clipped automatically. Sample buffers may be 
----read-only (see property 'read_only'). Attempts to write on such buffers 
+---within [-1, 1] and will be clipped automatically. Sample buffers may be
+---read-only (see property 'read_only'). Attempts to write on such buffers
 ---will result into errors.
 ---IMPORTANT: before modifying buffers, call 'prepare_sample_data_changes'.
 ---When you are done, call 'finalize_sample_data_changes' to generate undo/redo
@@ -321,10 +332,10 @@ function renoise.SampleBuffer:finalize_sample_data_changes() end
 function renoise.SampleBuffer:load_from(filename) end
 
 ---@alias SampleBuffer.ExportType
----| '"wav"'
----| '"flac"'
+---| "wav"
+---| "flac"
 ---Export sample data to a file. Possible errors are shown to the user,
----otherwise success is returned. 
+---otherwise success is returned.
 ---@param filename string
 ---@param format SampleBuffer.ExportType
 ---@return boolean success

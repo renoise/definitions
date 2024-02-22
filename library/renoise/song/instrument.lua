@@ -1,124 +1,21 @@
---------------------------------------------------------------------------------
----@class renoise.Instrument
+---@meta
+---Do not try to execute this file. It's just a type definition file.
 ---
----### properties
+---Please read the `Introduction.md` in the Renoise scripting Documentation
+---folder first to get an overview about the complete API, and scripting for
+---Renoise in general...
 ---
----Currently active tab in the instrument GUI (samples, plugin or MIDI).
----@see renoise.
----@field active_tab renoise.Instrument.Tab
----@field active_tab_observable renoise.Document.Observable
---
----Instrument's name.
----@field name string
----@field name_observable renoise.Document.Observable
---
----Instrument's comment list. See renoise.song().comments for more info on
----how to get notified on changes and how to change it.
----@field comments string[]
----@field comments_observable renoise.Document.Observable
---
----Notifier which is called as soon as any paragraph in the comments change.
----@field comments_assignment_observable renoise.Document.Observable
---
----Set this to true to show the comments dialog after loading a song
----@field show_comments_after_loading  boolean
----@field show_comments_after_loading_observable renoise.Document.Observable
----
----Macro parameter pane visibility in the GUI.
----@field macros_visible boolean
----@field macros_visible_observable renoise.Document.Observable
----
----**READ-ONLY**
----Macro parameters.
----array with size Instrument.NUMBER_OF_MACROS
----@field macros renoise.InstrumentMacro[]
----
----Access the MIDI pitch-bend macro
----@field pitchbend_macro renoise.InstrumentMacro
----
----Access the MIDI modulation-wheel macro
----@field modulation_wheel_macro renoise.InstrumentMacro
----
----Access the MIDI channel pressure macro
----@field channel_pressure_macro renoise.InstrumentMacro
----
----Global linear volume of the instrument. Applied to all samples, MIDI and
----plugins in the instrument.
----@field volume number Range: (0-math.db2lin(6))
----@field volume_observable renoise.Document.Observable
----
----Global relative pitch in semi tones. Applied to all samples, MIDI and 
----plugins in the instrument.
----@field transpose number Range: (-120-120)
----@field transpose_observable renoise.Document.Observable
----
----Global trigger options (quantization and scaling options).
----@field trigger_options renoise.InstrumentTriggerOptions
----
----Sample mapping's overlap trigger mode.
----@field sample_mapping_overlap_mode renoise.Instrument.OverlapMode
----@field sample_mapping_overlap_mode_observable renoise.Document.Observable
----
----Phrase editor pane visibility in the GUI.
----@field phrase_editor_visible boolean
----@field phrase_editor_visible_observable renoise.Document.Observable
----
----Phrase playback.
----@field phrase_playback_mode renoise.Instrument.PhrasePlaybackMode
----@field phrase_playback_mode_observable renoise.Document.Observable
----
----Phrase playback program: 0 = Off, 1-126 = specific phrase, 127 = keymap.
----@field phrase_program number
----@field phrase_program_observablerenoise.Document.Observable
----
----**READ-ONLY**
----Phrases.
----@field phrases renoise.InstrumentPhrase[]
----@field phrases_observable renoise.Document.Observable
----
----**READ-ONLY**
----Phrase mappings.
----@field phrase_mappings renoise.InstrumentPhraseMapping[]
----@field phrase_mappings_observable renoise.Document.Observable
----
----**READ-ONLY**
----Samples slots.
----@field samples renoise.Sample[]
----@field samples_observable renoise.Document.Observable
----
----**READ-ONLY**
----Sample mappings (key/velocity to sample slot mappings).
----sample_mappings[LAYER_NOTE_ON/OFF][]. Sample mappings also can 
----be accessed via ---@field samples[].sample_mapping
----@field sample_mappings renoise.SampleMapping[]
----@field sample_mappings_observable renoise.Document.Observable
----
----**READ-ONLY**
----Sample modulation sets.
----@field sample_modulation_sets renoise.SampleModulationSet[]
----@field sample_modulation_sets_observable renoise.Document.Observable
----
----**READ-ONLY**
----Sample device chains.
----@field sample_device_chains renoise.SampleDeviceChain[]
----
----**READ-ONLY**
----MIDI input properties.
----@field midi_input_properties renoise.InstrumentMidiInputProperties
----
----**READ-ONLY**
----MIDI output properties.
----@field midi_output_properties renoise.InstrumentMidiOutputProperties
----
----**READ-ONLY**
----Plugin properties.
----@field plugin_properties renoise.InstrumentPluginProperties
 
+--------------------------------------------------------------------------------
+---## renoise.Instrument
 
 ---@class renoise.Instrument
 renoise.Instrument = {}
 
 ---### constants
+
+renoise.Instrument.NUMBER_OF_MACROS = 8
+renoise.Instrument.MAX_NUMBER_OF_PHRASES = 126
 
 ---@enum renoise.Instrument.Tab
 renoise.Instrument = {
@@ -148,9 +45,110 @@ renoise.Instrument = {
   OVERLAP_MODE_RANDOM = 2,
 }
 
-renoise.Instrument.NUMBER_OF_MACROS = 8
+---### properties
 
-renoise.Instrument.MAX_NUMBER_OF_PHRASES = 126
+---@class renoise.Instrument
+---
+---Currently active tab in the instrument GUI (samples, plugin or MIDI).
+---@see renoise.
+---@field active_tab renoise.Instrument.Tab
+---@field active_tab_observable renoise.Document.Observable
+--
+---Instrument's name.
+---@field name string
+---@field name_observable renoise.Document.Observable
+--
+---Instrument's comment list. See renoise.song().comments for more info on
+---how to get notified on changes and how to change it.
+---@field comments string[]
+---@field comments_observable renoise.Document.Observable
+--
+---Notifier which is called as soon as any paragraph in the comments change.
+---@field comments_assignment_observable renoise.Document.Observable
+--
+---Set this to true to show the comments dialog after loading a song
+---@field show_comments_after_loading  boolean
+---@field show_comments_after_loading_observable renoise.Document.Observable
+---
+---Macro parameter pane visibility in the GUI.
+---@field macros_visible boolean
+---@field macros_visible_observable renoise.Document.Observable
+---
+---**READ-ONLY** Macro parameters. Array with size Instrument.NUMBER_OF_MACROS.
+---@field macros renoise.InstrumentMacro[]
+---
+---Access the MIDI pitch-bend macro
+---@field pitchbend_macro renoise.InstrumentMacro
+---
+---Access the MIDI modulation-wheel macro
+---@field modulation_wheel_macro renoise.InstrumentMacro
+---
+---Access the MIDI channel pressure macro
+---@field channel_pressure_macro renoise.InstrumentMacro
+---
+---Global linear volume of the instrument. Applied to all samples, MIDI and
+---plugins in the instrument.
+---@field volume number Range: (0-math.db2lin(6))
+---@field volume_observable renoise.Document.Observable
+---
+---Range: (-120-120). Global relative pitch in semi tones.
+---Applied to all samples, MIDI and plugins in the instrument.
+---@field transpose number
+---@field transpose_observable renoise.Document.Observable
+---
+---Global trigger options (quantization and scaling options).
+---@field trigger_options renoise.InstrumentTriggerOptions
+---
+---Sample mapping's overlap trigger mode.
+---@field sample_mapping_overlap_mode renoise.Instrument.OverlapMode
+---@field sample_mapping_overlap_mode_observable renoise.Document.Observable
+---
+---Phrase editor pane visibility in the GUI.
+---@field phrase_editor_visible boolean
+---@field phrase_editor_visible_observable renoise.Document.Observable
+---
+---Phrase playback.
+---@field phrase_playback_mode renoise.Instrument.PhrasePlaybackMode
+---@field phrase_playback_mode_observable renoise.Document.Observable
+---
+---Phrase playback program: 0 = Off, 1-126 = specific phrase, 127 = keymap.
+---@field phrase_program number
+---@field phrase_program_observable renoise.Document.Observable
+---
+---**READ-ONLY** Phrases.
+---@field phrases renoise.InstrumentPhrase[]
+---@field phrases_observable renoise.Document.Observable
+---
+---**READ-ONLY** Phrase mappings.
+---@field phrase_mappings renoise.InstrumentPhraseMapping[]
+---@field phrase_mappings_observable renoise.Document.Observable
+---
+---**READ-ONLY** Samples slots.
+---@field samples renoise.Sample[]
+---@field samples_observable renoise.Document.Observable
+---
+---**READ-ONLY**
+---Sample mappings (key/velocity to sample slot mappings).
+---sample_mappings[LAYER_NOTE_ON/OFF][]. Sample mappings also can
+---be accessed via ---@field samples[].sample_mapping
+---@field sample_mappings renoise.SampleMapping[]
+---@field sample_mappings_observable renoise.Document.Observable
+---
+---**READ-ONLY** Sample modulation sets.
+---@field sample_modulation_sets renoise.SampleModulationSet[]
+---@field sample_modulation_sets_observable renoise.Document.Observable
+---
+---**READ-ONLY** Sample device chains.
+---@field sample_device_chains renoise.SampleDeviceChain[]
+---
+---**READ-ONLY** MIDI input properties.
+---@field midi_input_properties renoise.InstrumentMidiInputProperties
+---
+---**READ-ONLY** MIDI output properties.
+---@field midi_output_properties renoise.InstrumentMidiOutputProperties
+---
+---**READ-ONLY** Plugin properties.
+---@field plugin_properties renoise.InstrumentPluginProperties
 
 ---### functions
 
@@ -182,21 +180,21 @@ function renoise.Instrument:delete_phrase_at(index) end
 ---@return renoise.InstrumentPhrase
 function renoise.Instrument:phrase(index) end
 
----Returns true if a new phrase mapping can be inserted at the given 
----phrase mapping index (see See renoise.song().instruments[].phrase_mappings). 
+---Returns true if a new phrase mapping can be inserted at the given
+---phrase mapping index (see See renoise.song().instruments[].phrase_mappings).
 ---Passed phrase must exist and must not have a mapping yet.
 ---Phrase note mappings may not overlap and are sorted by note, so there
 ---can be max 119 phrases per instrument when each phrase is mapped to
----a single key only. To make up room for new phrases, access phrases by 
+---a single key only. To make up room for new phrases, access phrases by
 ---index, adjust their note_range, then call 'insert_phrase_mapping_at' again.
 ---@param index integer
 ---@return boolean
 function renoise.Instrument:can_insert_phrase_mapping_at(index) end
 
 ---Insert a new phrase mapping behind the given phrase mapping index.
----The new phrase mapping will by default use the entire free (note) range 
----between the previous and next phrase (if any). To adjust the note range 
----of the new phrase change its 'new_phrase_mapping.note_range' property. 
+---The new phrase mapping will by default use the entire free (note) range
+---between the previous and next phrase (if any). To adjust the note range
+---of the new phrase change its 'new_phrase_mapping.note_range' property.
 ---@param index integer
 ---@param phrase renoise.InstrumentPhrase
 ---@return renoise.InstrumentPhraseMapping new_mapping
@@ -213,8 +211,8 @@ function renoise.Instrument:delete_phrase_mapping_at(index) end
 function renoise.Instrument:phrase_mapping(index) end
 
 ---Insert a new empty sample. returns the new renoise.Sample object.
----Every newly inserted sample has a default mapping, which covers the 
----entire key and velocity range, or it gets added as drum kit mapping 
+---Every newly inserted sample has a default mapping, which covers the
+---entire key and velocity range, or it gets added as drum kit mapping
 ---when the instrument used a drum-kit mapping before the sample got added.
 ---@param index integer
 ---@return renoise.Sample new_sample
@@ -254,7 +252,7 @@ function renoise.Instrument:delete_sample_modulation_set_at(index) end
 ---Swap positions of two modulation sets.
 function renoise.Instrument:swap_sample_modulation_sets_at(index1, index2) end
 
----Access to a single sample modulation set by index. Use property 
+---Access to a single sample modulation set by index. Use property
 ---'sample_modulation_sets' to iterate over all sets and to query the set count.
 ---@param index integer
 ---@return renoise.SampleModulationSet
@@ -274,20 +272,33 @@ function renoise.Instrument:delete_sample_device_chain_at(index) end
 ---@param index2 integer
 function renoise.Instrument:swap_sample_device_chains_at(index1, index2) end
 
----Access to a single device chain by index. Use property 'sample_device_chains' 
+---Access to a single device chain by index. Use property 'sample_device_chains'
 ---to iterate over all chains and to query the chain count.
 ---@param index integer
 ---@return renoise.SampleDeviceChain
 function renoise.Instrument:sample_device_chain(index) end
 
 --------------------------------------------------------------------------------
+---## renoise.InstrumentTriggerOptions
+
 ---@class renoise.InstrumentTriggerOptions
---------------------------------------------------------------------------------
----
+renoise.InstrumentTriggerOptions = {}
+
+---### constants
+
+---@enum renoise.InstrumentTriggerOptions.QuantizeMode
+renoise.InstrumentTriggerOptions = {
+  QUANTIZE_NONE = 1,
+  QUANTIZE_LINE = 2,
+  QUANTIZE_BEAT = 3,
+  QUANTIZE_BAR = 4,
+}
+
 ---### properties
+
+---@class renoise.InstrumentTriggerOptions
 ---
----**READ-ONLY**
----List of all available scale modes.
+---**READ-ONLY** List of all available scale modes.
 ---@field available_scale_modes string[]
 ---
 ---Scale to use when transposing. One of 'available_scales'.
@@ -309,18 +320,3 @@ function renoise.Instrument:sample_device_chain(index) end
 ---Glide amount when monophonic. 0 == off, 255 = instant
 ---@field monophonic_glide number
 ---@field monophonic_glide_observable renoise.Document.Observable
-
-
----@class renoise.InstrumentTriggerOptions
-renoise.InstrumentTriggerOptions = {}
-
----### constants
-
----@enum renoise.InstrumentTriggerOptions.QuantizeMode
-
-renoise.InstrumentTriggerOptions = {
-  QUANTIZE_NONE = 1,
-  QUANTIZE_LINE = 2,
-  QUANTIZE_BEAT = 3,
-  QUANTIZE_BAR = 4,
-}
