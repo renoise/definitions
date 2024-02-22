@@ -88,7 +88,7 @@ renoise.Document = {}
 ---objects (see renoise.Document.instantiate).
 ---
 ---### example:
----```
+---```lua
 ---my_document = renoise.Document.create("MyDoc") {
 ---  age = 1,
 ---  name = "bla", -- implicitly specify a property type
@@ -112,7 +112,9 @@ renoise.Document = {}
 ---model will fail) and to generally specify the "type".
 ---
 ---Additionally, once "create" is called, you can use the specified model name to
----create new instances. For example:
+---create new instances. 
+---
+---### example:
 ---```lua
 ----- create a new instance of "MyDoc"
 ---my_other_document = renoise.Document.instantiate("MyDoc")
@@ -127,10 +129,8 @@ function renoise.Document.create(model_name)
     end
 end
 
----Create a new instance of the given document model. Given "model_name" must
----have been registered with renoise.Document.create before.
----
----See renoise.Document.create for an example.
+---Create a new instance of the given document model. Given `model_name` must
+---have been registered with `renoise.Document.create` before.
 ---@param model_name string
 ---@return renoise.Document.DocumentNode
 function renoise.Document.instantiate(model_name) end
@@ -142,7 +142,7 @@ function renoise.Document.instantiate(model_name) end
 
 ---A document node is a sub component in a document which contains other
 ---documents or observables.
----@class renoise.Document.DocumentNode : table
+---@class renoise.Document.DocumentNode
 ---Property access
 ---@operator index(any):DocumentMember|nil
 ---Construct a new document node.
@@ -150,6 +150,10 @@ function renoise.Document.instantiate(model_name) end
 renoise.Document.DocumentNode = {}
 
 ---### functions
+
+---Base constructor, only necessary to be called in your custom class constructor,
+---when inheriting from renoise.Document.DocumentNode.
+function renoise.Document.DocumentNode:__init() end
 
 ---Check if the given property exists.
 ---@param property_name string
@@ -167,15 +171,15 @@ function renoise.Document.DocumentNode:property(property_name) end
 ---If you want to replace a property, remove it first, then add it again.
 ---@return renoise.Document.DocumentNode
 ---@param name string
----@param node renoise.Document.DocumentNode
----@overload fun(self, name: string, node_list: renoise.Document.DocumentList): renoise.Document.DocumentList
+---@param value renoise.Document.DocumentNode
+---@overload fun(self, name: string, value: renoise.Document.DocumentList): renoise.Document.DocumentList
 ---@overload fun(self, name: string, value: boolean): renoise.Document.ObservableBoolean
 ---@overload fun(self, name: string, value: number): renoise.Document.ObservableNumber
 ---@overload fun(self, name: string, value: string): renoise.Document.ObservableString
 ---@overload fun(self, name: string, value: boolean[]): renoise.Document.ObservableBoolean
 ---@overload fun(self, name: string, value: number[]): renoise.Document.ObservableNumberList
 ---@overload fun(self, name: string, value: string[]): renoise.Document.ObservableStringList
-function renoise.Document.DocumentNode:add_property(name, node) end
+function renoise.Document.DocumentNode:add_property(name, value) end
 
 ---Add a batch of properties in one go, similar to renoise.Document.create.
 ---@param properties { [string]: any }

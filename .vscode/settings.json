@@ -1,0 +1,4 @@
+{
+    "Lua.misc.parameters": ["--develop=true"],
+    "Lua.runtime.plugin": "plugin.lua"
+}
