@@ -1,488 +1,506 @@
 --------------------------------------------------------------------------------
--- renoise.SampleModulationSet
+---@class renoise.SampleModulationSet
 --------------------------------------------------------------------------------
+---
+---### properties
+---
+---Name of the modulation set.
+---@field name string
+---@field name_observable renoise.Document.Observable
+---  
+---Input value for the volume domain
+---@field volume_input renoise.DeviceParameter
+---
+---Input value for the panning domain
+---@field panning_input renoise.DeviceParameter
+---
+---Input value for the pitch domain
+---@field pitch_input renoise.DeviceParameter
+---
+---Input value for the cutoff domain
+---@field cutoff_input renoise.DeviceParameter
+---
+---Input value for the resonance domain
+---@field resonance_input renoise.DeviceParameter
+---
+---Input value for the drive domain
+---@field drive_input renoise.DeviceParameter
+---
+---Pitch range in semitones
+---@field pitch_range  integer Range: (1 - 96)
+---@field pitch_range_observable renoise.Document.Observable 
+---
+---**READ-ONLY**
+---All available devices, to be used in 'insert_device_at'.
+---@field available_devices string[]
+---
+---**READ-ONLY**
+---Device list access.
+---@field devices renoise.SampleModulationDevice[]
+---@field devices_observable renoise.Document.Observable
+---
+---**READ-ONLY**
+---Filter version. 
+---@see renoise.SampleModulationSet.upgrade_filter_version
+---@field filter_version integer 1,2 or 3 which is the latest version
+---@field filter_version_observable renoise.Document.Observable
+---
+---Filter type.
+---**READ-ONLY**
+---@field available_filter_types string[]
+---
+---@see renoise.SampleModulationSet.available_filter_types
+---@field filter_type string a valid filter type
+---@field filter_type_observable renoise.Document.Observable
+---
 
--------- Functions
+---### functions
 
--- Reset all chain back to default initial state. Removing all devices too.
-renoise.song().instruments[].sample_modulation_sets[]:init()
+---Reset all chain back to default initial state. Removing all devices too.
+function renoise.SampleModulationSet:init() end
 
--- Copy all devices from another SampleModulationSet object.
-renoise.song().instruments[].sample_modulation_sets[]:copy_from(
-  other renoise.SampleModulationSet object)
+---Copy all devices from another SampleModulationSet object.
+---@param other_set renoise.SampleModulationSet
+function renoise.SampleModulationSet:copy_from(other_set) end
 
--- Insert a new device at the given position. "device_path" must be one of
--- renoise.song().instruments[].sample_modulation_sets[].available_devices.
-renoise.song().instruments[].sample_modulation_sets[]:insert_device_at(device_path, index) 
-  -> [returns new renoise.SampleModulationDevice object]
--- Delete a device at the given index.
-renoise.song().instruments[].sample_modulation_sets[]:delete_device_at(index)
--- Access a single device by index.  
-renoise.song().instruments[].sample_modulation_sets[]:device(index) 
- -> [renoise.SampleModulationDevice object]
+---Insert a new device at the given position. "device_path" must be one of
+---renoise.song().instruments[].sample_modulation_sets[].available_devices.
+---@param device_path string
+---@param index integer
+---@return renoise.SampleModulationDevice new_sample_modulation_device
+function renoise.SampleModulationSet:insert_device_at(device_path, index)  end
 
- -- upgrade filter type to the latest version. Tries to find a somewhat matching
- -- filter in the new version, but things quite likely won't sound the same.
-renoise.song().instruments[].sample_modulation_sets[]:upgrade_filter_version()
-  
+---Delete a device at the given index.
+---@param index integer
+function renoise.SampleModulationSet:delete_device_at(index) end
 
--------- Properties
+---Access a single device by index.  
+---@param index integer
+---@return renoise.SampleModulationDevice
+function renoise.SampleModulationSet:device(index)  end
 
--- Name of the modulation set.
-renoise.song().instruments[].sample_modulation_sets[].name, _observable
-  -> [string]
-  
--- Input value for the volume domain
-renoise.song().instruments[].sample_modulation_sets[].volume_input
-  -> [renoise.DeviceParameter object]
-
--- Input value for the panning domain
-renoise.song().instruments[].sample_modulation_sets[].panning_input
-  -> [renoise.DeviceParameter object]
-
--- Input value for the pitch domain
-renoise.song().instruments[].sample_modulation_sets[].pitch_input
-  -> [renoise.DeviceParameter object]
-
--- Input value for the cutoff domain
-renoise.song().instruments[].sample_modulation_sets[].cutoff_input
-  -> [renoise.DeviceParameter object]
-
--- Input value for the resonance domain
-renoise.song().instruments[].sample_modulation_sets[].resonance_input
-  -> [renoise.DeviceParameter object]
-
--- Input value for the drive domain
-renoise.song().instruments[].sample_modulation_sets[].drive_input
-  -> [renoise.DeviceParameter object]
-
--- Pitch range in semitones
-renoise.song().instruments[].sample_modulation_sets[].pitch_range, _observable 
-  -> [number, 1 - 96]
-
-
--- All available devices, to be used in 'insert_device_at'.
-renoise.song().instruments[].sample_modulation_sets[].available_devices[] 
-  -> [read-only, array of strings]
-
--- Device list access.
-renoise.song().instruments[].sample_modulation_sets[].devices[], observable 
-  -> [read-only, array of renoise.SampleModulationDevice objects]
-
--- Filter version. See also function 'upgrade_filter_version'
-renoise.song().instruments[].sample_modulation_sets[].filter_version, observable
-  -> [read-only, number - 1,2 or 3 which is the latest version]
-
--- Filter type.
-renoise.song().instruments[].sample_modulation_sets[].available_filter_types
-  -> [read-only, list of strings]
-renoise.song().instruments[].sample_modulation_sets[].filter_type, _observable
-  -> [string, one of 'available_filter_types']
-
---------------------------------------------------------------------------------
--- renoise.SampleModulationDevice
---------------------------------------------------------------------------------
-
---------- Constants
-
-renoise.SampleModulationDevice.TARGET_VOLUME
-renoise.SampleModulationDevice.TARGET_PANNING
-renoise.SampleModulationDevice.TARGET_PITCH
-renoise.SampleModulationDevice.TARGET_CUTOFF
-renoise.SampleModulationDevice.TARGET_RESONANCE
-renoise.SampleModulationDevice.TARGET_DRIVE
-
-renoise.SampleModulationDevice.OPERATOR_ADD
-renoise.SampleModulationDevice.OPERATOR_SUB
-renoise.SampleModulationDevice.OPERATOR_MUL
-renoise.SampleModulationDevice.OPERATOR_DIV
-
-  
---------- functions
-
--- Reset the device to its default state.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:init()
-
--- Copy a device's state from another device. 'other_device' must be of the
--- same type.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:copy_from(
-  other renoise.SampleModulationDevice object)
-
--- Access to a single parameter by index. Use properties 'parameters' to iterate 
--- over all parameters and to query the parameter count.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:parameter(index)
-  -> [renoise.DeviceParameter object]
-
---------- properties
-
--- Fixed name of the device.
-renoise.song().instruments[].sample_modulation_sets[].devices[].name
-  -> [read-only, string]
-renoise.song().instruments[].sample_modulation_sets[].devices[].short_name
-  -> [read-only, string]
-
--- Configurable device display name.
-renoise.song().instruments[].sample_modulation_sets[].devices[].display_name, observable 
-  -> [string]
-
--- DEPRECATED: use 'is_active' instead
-renoise.song().instruments[].sample_modulation_sets[].devices[].enabled, _observable
-  -> [boolean]
--- Enable/bypass the device.
-renoise.song().instruments[].sample_modulation_sets[].devices[].is_active, _observable
-  -> [boolean, not active = bypassed]
-
--- Maximize state in modulation chain.
-renoise.song().instruments[].sample_modulation_sets[].devices[].is_maximized, _observable
-  -> [boolean]
-
--- Where the modulation gets applied (Volume, Pan, Pitch, Cutoff, Resonance).
-renoise.song().instruments[].sample_modulation_sets[].devices[].target 
-  -> [read-only, enum = TARGET]
-
--- Modulation operator: how the device applies.
-renoise.song().instruments[].sample_modulation_sets[].devices[].operator, _observable
-  -> [enum = OPERATOR]
-
--- Modulation polarity: when bipolar, the device applies it's values in a -1 to 1 range,
--- when unipolar in a 0 to 1 range.
-renoise.song().instruments[].sample_modulation_sets[].devices[].bipolar, observable
-  -> [boolean]
-
--- When true, the device has one of more time parameters, which can be switched to operate
--- in synced or unsynced mode (see tempo_synced)
-renoise.song().instruments[].sample_modulation_sets[].devices[].tempo_sync_switching_allowed
-  -> [read-only, boolean]
--- When true and the device supports sync switching (see 'tempo_sync_switching_allowed'),
--- the device operates in wall-clock (ms) instead of beat times.
-renoise.song().instruments[].sample_modulation_sets[].devices[].tempo_synced, observable
-  -> [boolean]
-  
--- Generic access to all parameters of this device.
-renoise.song().instruments[].sample_modulation_sets[].devices[].is_active_parameter
-  -> [read-only, renoise.DeviceParameter object]
-
-renoise.song().instruments[].sample_modulation_sets[].devices[].parameters[]
-  -> [read-only, array of renoise.DeviceParameter objects]
-
+ ---upgrade filter type to the latest version. Tries to find a somewhat matching
+ ---filter in the new version, but things quite likely won't sound the same.
+function renoise.SampleModulationSet:upgrade_filter_version() end
 
 --------------------------------------------------------------------------------
--- renoise.SampleOperandModulationDevice (inherits from renoise.SampleModulationDevice)
+---@class renoise.SampleModulationDevice
 --------------------------------------------------------------------------------
+---
+---### properties
+---
+---Fixed name of the device.
+---**READ-ONLY**
+---@field name string
+---
+---**READ-ONLY**
+---@field short_name string
+---
+---Configurable device display name.
+---@field display_name  string
+---@field display_name_observable renoise.Document.Observable 
+---
+---@deprecated use 'is_active' instead
+---@see renoise.SampleModulationSet.is_active
+---@field enabled boolean
+---@field enabled_observable renoise.Document.Observable
+---
+---Enable/bypass the device.
+---@field is_active boolean not active = bypassed
+---@field is_active_observable renoise.Document.Observable
+---
+---Maximize state in modulation chain.
+---@field is_maximized boolean
+---@field is_maximized_observable renoise.Document.Observable
+---
+---Where the modulation gets applied (Volume, Pan, Pitch, Cutoff, Resonance).
+---**READ-ONLY**
+---@field target renoise.SampleModulationDevice.TargetType
+---
+---Modulation operator: how the device applies.
+---@field operator renoise.SampleModulationDevice.OperatorType
+---@field operator_observable renoise.Document.Observable
+---
+---Modulation polarity: 
+---when bipolar, the device applies it's values in a -1 to 1 range,
+---when unipolar in a 0 to 1 range.
+---@field bipolar boolean
+---@field bipolar_observable renoise.Document.Observable
+---
+---**READ-ONLY**
+---When true, the device has one of more time parameters, which can be switched to operate
+---in synced or unsynced mode (see tempo_synced)
+---@field tempo_sync_switching_allowed boolean
+---
+---When true and the device supports sync switching (see 'tempo_sync_switching_allowed'),
+---the device operates in wall-clock (ms) instead of beat times.
+---@field tempo_synced boolean
+---@field tempo_synced_observable renoise.Document.Observable
+---  
+---**READ-ONLY**
+---Generic access to all parameters of this device.
+---@field is_active_parameter renoise.DeviceParameter
+---
+---**READ-ONLY**
+---@field parameters renoise.DeviceParameter[]
 
--------- Properties
+---### constants
 
--- Operand value.
-renoise.song().instruments[].sample_modulation_sets[].devices[].value 
-  -> [renoise.DeviceParameter object, -1-1]
+---@enum renoise.SampleModulationDevice.TargetType
+renoise.SampleModulationDevice = {
+  TARGET_VOLUME = 1,
+  TARGET_PANNING = 2,
+  TARGET_PITCH = 3,
+  TARGET_CUTOFF = 4,
+  TARGET_RESONANCE = 5,
+  TARGET_DRIVE = 6,
+}
 
+---@enum renoise.SampleModulationDevice.OperatorType
+renoise.SampleModulationDevice = {
+  OPERATOR_ADD = 1,
+  OPERATOR_SUB = 2,
+  OPERATOR_MUL = 3,
+  OPERATOR_DIV = 4,
+}
+
+---### functions
+
+---Reset the device to its default state.
+function renoise.SampleModulationDevice:init() end
+
+---Copy a device's state from another device. 'other_device' must be of the
+---same type.
+---@param other_device renoise.SampleModulationDevice
+function renoise.SampleModulationDevice:copy_from(other_device) end
+
+---Access to a single parameter by index. Use properties 'parameters' to iterate 
+---over all parameters and to query the parameter count.
+---@param index integer
+---@return renoise.DeviceParameter
+function renoise.SampleModulationDevice:parameter(index) end
 
 --------------------------------------------------------------------------------
--- renoise.SampleFaderModulationDevice (inherits from renoise.SampleModulationDevice)
+---@class renoise.SampleOperandModulationDevice : renoise.SampleModulationDevice
 --------------------------------------------------------------------------------
-
---------- Constants
-
-renoise.SampleFaderModulationDevice.SCALING_LOG_FAST
-renoise.SampleFaderModulationDevice.SCALING_LOG_SLOW
-renoise.SampleFaderModulationDevice.SCALING_LINEAR
-renoise.SampleFaderModulationDevice.SCALING_EXP_SLOW
-renoise.SampleFaderModulationDevice.SCALING_EXP_FAST
-
-
--------- Properties
-
--- Scaling mode.
-renoise.song().instruments[].sample_modulation_sets[].devices[].scaling, _observable 
-  -> [enum = SCALING]
-
--- Start & Target value.
-renoise.song().instruments[].sample_modulation_sets[].devices[].from
-  -> [renoise.DeviceParameter object, 0-1]
-renoise.song().instruments[].sample_modulation_sets[].devices[].to
-  -> [renoise.DeviceParameter object, 0-1]
-
--- Duration.
-renoise.song().instruments[].sample_modulation_sets[].devices[].duration
-  -> [renoise.DeviceParameter object, 0-1]
-
--- Delay.
-renoise.song().instruments[].sample_modulation_sets[].devices[].delay
-  -> [renoise.DeviceParameter object, 0-1]
-
+---
+---### properties
+---
+---Operand value.
+---@field value  renoise.DeviceParameter
 
 --------------------------------------------------------------------------------
--- renoise.SampleAhdrsModulationDevice (inherits from renoise.SampleModulationDevice)
+---@class renoise.SampleFaderModulationDevice : renoise.SampleModulationDevice
 --------------------------------------------------------------------------------
-
--------- Properties
-
--- Attack duration.
-renoise.song().instruments[].sample_modulation_sets[].devices[].attack
-  -> [renoise.DeviceParameter object, 0-1]
-  
--- Hold duration.
-renoise.song().instruments[].sample_modulation_sets[].devices[].hold
-  -> [renoise.DeviceParameter object, 0-1]
-
--- Duration.
-renoise.song().instruments[].sample_modulation_sets[].devices[].duration
-  -> [renoise.DeviceParameter object, 0-1]
-
--- Sustain amount.
-renoise.song().instruments[].sample_modulation_sets[].devices[].sustain
-  -> [renoise.DeviceParameter object, 0-1]
-
--- Release duration.
-renoise.song().instruments[].sample_modulation_sets[].devices[].release
-  -> [renoise.DeviceParameter object, 0-1]
-
+---
+---### properties
+---
+---Scaling mode.
+---@field scaling renoise.SampleFaderModulationDevice.ScalingType
+---@field scaling_observable renoise.Document.Observable 
+---
+---Start value.
+---@field from renoise.DeviceParameter
+---Target value.
+---@field to renoise.DeviceParameter
+---Duration.
+---@field duration renoise.DeviceParameter
+---Delay.
+---@field delay renoise.DeviceParameter
+---
+---### constants
+---
+---@enum renoise.SampleFaderModulationDevice.ScalingType
+renoise.SampleFaderModulationDevice = {
+  SCALING_LOG_FAST = 1,
+  SCALING_LOG_SLOW = 2,
+  SCALING_LINEAR = 3,
+  SCALING_EXP_SLOW = 4,
+  SCALING_EXP_FAST = 5,
+}
 
 --------------------------------------------------------------------------------
--- renoise.SampleKeyTrackingModulationDevice (inherits from renoise.SampleModulationDevice)
+---@class renoise.SampleAhdrsModulationDevice : renoise.SampleModulationDevice
 --------------------------------------------------------------------------------
-
--------- Properties
-
--- Min/Max key value.
-renoise.song().instruments[].sample_modulation_sets[].devices[].min
-  -> [renoise.DeviceParameter object, 0-119]
-renoise.song().instruments[].sample_modulation_sets[].devices[].max
-  -> [renoise.DeviceParameter object, 0-119]
+---
+---### properties
+---
+---Attack duration.
+---@field attack renoise.DeviceParameter with range (0-1)
+---Hold duration.
+---@field hold renoise.DeviceParameter with range (0-1)
+---Duration.
+---@field duration renoise.DeviceParameter with range (0-1)
+---Sustain amount.
+---@field sustain renoise.DeviceParameter with range (0-1)
+---Release duration.
+---@field release renoise.DeviceParameter with range (0-1)
 
 
 --------------------------------------------------------------------------------
--- renoise.SampleVelocityTrackingModulationDevice (inherits from renoise.SampleModulationDevice)
+---@class renoise.SampleKeyTrackingModulationDevice : renoise.SampleModulationDevice
 --------------------------------------------------------------------------------
-
---------- Constants
-
-renoise.SampleVelocityTrackingModulationDevice.MODE_CLAMP
-renoise.SampleVelocityTrackingModulationDevice.MODE_SCALE
-
-
--------- Properties
-
--- Mode.
-renoise.song().instruments[].sample_modulation_sets[].devices[].mode, _observable 
-  -> [enum = MODE]
-
--- Min/Max velocity.
-renoise.song().instruments[].sample_modulation_sets[].devices[].min
-  -> [renoise.DeviceParameter object, 0-127]
-renoise.song().instruments[].sample_modulation_sets[].devices[].max
-  -> [renoise.DeviceParameter object, 0-127]
+---
+---### properties
+---
+---Min/Max key value.
+---@field min renoise.DeviceParameter with range (0-119)
+---@field max renoise.DeviceParameter with range (0-119)
 
 
 --------------------------------------------------------------------------------
--- renoise.SampleEnvelopeModulationDevice (inherits from renoise.SampleModulationDevice)
+---@class renoise.SampleVelocityTrackingModulationDevice : renoise.SampleModulationDevice
 --------------------------------------------------------------------------------
+---
+---### properties
+---
+---Mode.
+---@field mode renoise.SampleVelocityTrackingModulationDevice.Mode
+---@field mode_observable renoise.Document.Observable 
+---
+---
+---Min/Max velocity.
+---@field min renoise.DeviceParameter with range (0-127)
+---@field max renoise.DeviceParameter with range (0-127)
 
---------- Constants
+---### constants
 
-renoise.SampleEnvelopeModulationDevice.PLAYMODE_POINTS
-renoise.SampleEnvelopeModulationDevice.PLAYMODE_LINES
-renoise.SampleEnvelopeModulationDevice.PLAYMODE_CURVES
-
-renoise.SampleEnvelopeModulationDevice.LOOP_MODE_OFF
-renoise.SampleEnvelopeModulationDevice.LOOP_MODE_FORWARD
-renoise.SampleEnvelopeModulationDevice.LOOP_MODE_REVERSE
-renoise.SampleEnvelopeModulationDevice.LOOP_MODE_PING_PONG
-
-renoise.SampleEnvelopeModulationDevice.MIN_NUMBER_OF_POINTS
-renoise.SampleEnvelopeModulationDevice.MAX_NUMBER_OF_POINTS
-
-
--------- Functions
-
--- Reset the envelope back to its default initial state.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:init()
-
--- Copy all properties from another SampleEnvelopeModulation object.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:copy_from(
-  other renoise.SampleEnvelopeModulationDevice object)
-
--- Remove all points from the envelope.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:clear_points()
--- Remove points in the given [from, to) time range from the envelope.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:clear_points_in_range(
---  from_time, to_time)
-
--- Copy all points from another SampleEnvelopeModulation object.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:copy_points_from(
-  other SampleEnvelopeModulationDevice object)
-
--- Test if a point exists at the given time.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:has_point_at(time)
-  -> [boolean]
--- Add a new point value (or replace any existing value) at time. 
-renoise.song().instruments[].sample_modulation_sets[].devices[]:add_point_at(
-  time, value [, scaling])
--- Removes a point at the given time. Point must exist.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:remove_point_at(time)
-
-
--------- Properties
-
--- External editor visibility.
-renoise.song().instruments[].sample_modulation_sets[].devices[].external_editor_visible
- -> [boolean, set to true to show he editor, false to close it]
-
--- Play mode (interpolation mode).
-renoise.song().instruments[].sample_modulation_sets[].devices[].play_mode, _observable
-  -> [enum = PLAYMODE]
-
--- Envelope length.
-renoise.song().instruments[].sample_modulation_sets[].devices[].length, _observable
-  -> [number, 6-1000]
-
--- Loop.
-renoise.song().instruments[].sample_modulation_sets[].devices[].loop_mode, _observable
-  -> [enum = LOOP_MODE]
-renoise.song().instruments[].sample_modulation_sets[].devices[].loop_start, _observable
-  -> [number, 1-envelope.length]
-renoise.song().instruments[].sample_modulation_sets[].devices[].loop_end, _observable
-  -> [number, 1-envelope.length]
-
--- Sustain.
-renoise.song().instruments[].sample_modulation_sets[].devices[].sustain_enabled, _observable
-  -> [boolean]
-renoise.song().instruments[].sample_modulation_sets[].devices[].sustain_position, _observable
-  -> [number, 1-envelope.length]
-
--- Fade amount. (Only applies to volume envelopes)
-renoise.song().instruments[].sample_modulation_sets[].devices[].fade_amount, _observable
-  -> [number, 0-4095]
-
--- Get all points of the envelope. When setting a new list of points,
--- items may be unsorted by time, but there may not be multiple points
--- for the same time. Returns a copy of the list, so changing
--- `points[1].value` will not do anything. Instead, change them via
--- `points = { something }` instead.
-renoise.song().instruments[].sample_modulation_sets[].devices[].points[], _observable
-  -> [array of {time, value} tables]
-
--- An envelope point's time.
-renoise.song().instruments[].sample_modulation_sets[].devices[].points[].time
-  -> [number, 1 - envelope.length]
--- An envelope point's value.
-renoise.song().instruments[].sample_modulation_sets[].devices[].points[].value
-  -> [number, 0.0 - 1.0]
--- An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
-renoise.song().instruments[].sample_modulation_sets[].devices[].points[].scaling
-  -> [number, -1.0 - 1.0]
-
+---@enum renoise.SampleVelocityTrackingModulationDevice.Mode
+renoise.SampleVelocityTrackingModulationDevice = {
+  MODE_CLAMP = 1,
+  MODE_SCALE = 2,
+}
 
 --------------------------------------------------------------------------------
--- renoise.SampleStepperModulationDevice  (inherits from renoise.SampleModulationDevice)
+---@class renoise.SampleEnvelopeModulationDevice : renoise.SampleModulationDevice
 --------------------------------------------------------------------------------
+---
+---### properties
+---
+---External editor visibility.
+--- set to true to show the editor, false to close it
+---@field external_editor_visible boolean 
+---
+---Play mode (interpolation mode).
+---@field play_mode renoise.SampleEnvelopeModulationDevice.PlayMode
+---@field play_mode_observable renoise.Document.Observable
+---
+---Envelope length.
+---@field length integer Range: (6-1000)
+---@field length_observable renoise.Document.Observable
+---
+---Loop.
+---@field loop_mode renoise.SampleEnvelopeModulationDevice.LoopMode
+---@field loop_mode_observable renoise.Document.Observable
+---
+---@field loop_start integer Range: (1-envelope.length)
+---@field loop_start_observable renoise.Document.Observable
+---
+---@field loop_end integer Range: (1-envelope.length)
+---@field loop_end_observable renoise.Document.Observable
+---
+---Sustain.
+---@field sustain_enabled boolean
+---@field sustain_enabled_observable renoise.Document.Observable
+---
+---@field sustain_position integer Range: (1-envelope.length)
+---@field sustain_position_observable renoise.Document.Observable
+---
+---Fade amount. (Only applies to volume envelopes)
+---@field fade_amount integer Range: (0-4095)
+---@field fade_amount_observable renoise.Document.Observable
+---
+---Get all points of the envelope. When setting a new list of points,
+---items may be unsorted by time, but there may not be multiple points
+---for the same time. Returns a copy of the list, so changing
+---`points[1].value` will not do anything. Instead, change them via
+---`points = { something }` instead.
+---@field points SampleEnvelopeModulationDevice.Point[]
+---@field points_observable renoise.Document.Observable
+---
+---@class SampleEnvelopeModulationDevice.Point
+---An envelope point's time.
+---@field time number Range: (1 - envelope.length)
+---An envelope point's value.
+---@field value number Range: (0.0-1.0)
+---An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
+---@field scaling number Range: (-1.0-1.0)
 
---------- Constants
 
-renoise.SampleStepperModulationDevice.PLAYMODE_POINTS
-renoise.SampleStepperModulationDevice.PLAYMODE_LINES
-renoise.SampleStepperModulationDevice.PLAYMODE_CURVES
+---### constants
 
-renoise.SampleStepperModulationDevice.MIN_NUMBER_OF_POINTS
-renoise.SampleStepperModulationDevice.MAX_NUMBER_OF_POINTS
+---@enum renoise.SampleEnvelopeModulationDevice.PlayMode
+renoise.SampleEnvelopeModulationDevice = {
+  PLAYMODE_POINTS = 1,
+  PLAYMODE_LINES = 2,
+  PLAYMODE_CURVES = 3,
+}
 
+---@enum renoise.SampleEnvelopeModulationDevice.LoopMode
+renoise.SampleEnvelopeModulationDevice = {
+  LOOP_MODE_OFF = 1,
+  LOOP_MODE_FORWARD = 2,
+  LOOP_MODE_REVERSE = 3,
+  LOOP_MODE_PING_PONG = 4,
+}
 
--------- Functions
-
--- Reset the envelope back to its default initial state.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:init()
-
--- Copy all properties from another SampleStepperModulation object.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:copy_from(
-  other renoise.SampleStepperModulationDevice object)
-
--- Remove all points from the envelope.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:clear_points()
--- Remove points in the given [from, to) time range from the envelope.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:clear_points_in_range(
---  from_time, to_time)
-
--- Copy all points from another SampleStepperModulation object.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:copy_points_from(
-  other SampleStepperModulationDevice object)
-
--- Test if a point exists at the given time.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:has_point_at(time)
-  -> [boolean]
--- Add a new point value (or replace any existing value) at time. 
-renoise.song().instruments[].sample_modulation_sets[].devices[]:add_point_at(
-  time, value [, scaling])
--- Removes a point at the given time. Point must exist.
-renoise.song().instruments[].sample_modulation_sets[].devices[]:remove_point_at(time)
+renoise.SampleEnvelopeModulationDevice.MIN_NUMBER_OF_POINTS = 6
+renoise.SampleEnvelopeModulationDevice.MAX_NUMBER_OF_POINTS = 6144
 
 
--------- Properties
+---### functions
 
--- External editor visibility.
-renoise.song().instruments[].sample_modulation_sets[].devices[].external_editor_visible
- -> [boolean, set to true to show he editor, false to close it]
-  
--- Play mode (interpolation mode).
-renoise.song().instruments[].sample_modulation_sets[].devices[].play_mode, _observable
-  -> [enum = PLAYMODE]
+---Reset the envelope back to its default initial state.
+function renoise.SampleEnvelopeModulationDevice:init() end
 
--- Step size. -1 is the same as choosing RANDOM
-renoise.song().instruments[].sample_modulation_sets[].devices[].play_step, _observable
-  -> [number, -1-16]
+---Copy all properties from another SampleEnvelopeModulation object.
+---@param other_device renoise.SampleEnvelopeModulationDevice
+function renoise.SampleEnvelopeModulationDevice:copy_from(other_device) end
 
--- Envelope length.
-renoise.song().instruments[].sample_modulation_sets[].devices[].length, _observable
-  -> [number, 1-256]
+---Remove all points from the envelope.
+function renoise.SampleEnvelopeModulationDevice:clear_points() end
 
--- Get all points of the envelope. When setting a new list of points,
--- items may be unsorted by time, but there may not be multiple points
--- for the same time. Returns a copy of the list, so changing
--- `points[1].value` will not do anything. Instead, change them via
--- `points = { something }`.
-renoise.song().instruments[].sample_modulation_sets[].devices[].points[], _observable
-  -> [array of {time, value} tables]
+---Remove points in the given [from, to) time range from the envelope.
+---@param from_time number
+---@param to_time number
+function renoise.SampleEnvelopeModulationDevice:clear_points_in_range(from_time, to_time) end
 
--- An envelope point's time.
-renoise.song().instruments[].sample_modulation_sets[].devices[].points[].time
-  -> [number, 1 - envelope.length]
--- An envelope point's value.
-renoise.song().instruments[].sample_modulation_sets[].devices[].points[].value
-  -> [number, 0.0 - 1.0]
--- An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
-renoise.song().instruments[].sample_modulation_sets[].devices[].points[].scaling
-  -> [number, -1.0 - 1.0]
+---Copy all points from another SampleEnvelopeModulation object.
+---@param other_device renoise.SampleEnvelopeModulationDevice
+function renoise.SampleEnvelopeModulationDevice:copy_points_from(other_device) end
+
+---Test if a point exists at the given time.
+---@param time integer
+---@return boolean
+function renoise.SampleEnvelopeModulationDevice:has_point_at(time) end
+
+---@param time integer Range: (1-envelope.length)
+---@param value number Range: (0.0-1.0)
+---@param scaling number? Range: (-1.0-1.0)
+---Add a new point value (or replace any existing value) at time. 
+function renoise.SampleEnvelopeModulationDevice:add_point_at(time, value, scaling) end
+
+---Removes a point at the given time. Point must exist.
+---@param time integer
+function renoise.SampleEnvelopeModulationDevice:remove_point_at(time) end
 
 
 --------------------------------------------------------------------------------
--- renoise.SampleLfoModulationDevice (inherits from renoise.SampleModulationDevice)
+---@class renoise.SampleStepperModulationDevice :  renoise.SampleModulationDevice
 --------------------------------------------------------------------------------
+---
+---### properties
+---
+---External editor visibility.
+---set to true to show he editor, false to close it
+---@field external_editor_visible boolean 
+---
+---Play mode (interpolation mode).
+---@field play_mode renoise.SampleStepperModulationDevice.PlayMode
+---@field play_mode_observable renoise.Document.Observable
+---
+---Step size. -1 is the same as choosing RANDOM
+---@field play_step integer Range: (-1-16)
+---@field play_step_observable renoise.Document.Observable
+---
+---Envelope length.
+---@field length integer Range: (1-256)
+---@field length_observable renoise.Document.Observable
+---
+---Get all points of the envelope. When setting a new list of points,
+---items may be unsorted by time, but there may not be multiple points
+---for the same time. Returns a copy of the list, so changing
+---`points[1].value` will not do anything. Instead, change them via
+---`points = { something }`.
+---@field points SampleStepperModulationDevice.Point[]
+---@field points_observable renoise.Document.Observable
+---
+---@class SampleStepperModulationDevice.Point
+---An envelope point's time.
+---@field time number Range: (1 - envelope.length)
+---An envelope point's value.
+---@field value number Range: (0.0-1.0)
+---An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
+---@field scaling number Range: (-1.0-1.0)
 
--------- Constants
 
-renoise.SampleLfoModulationDevice.MODE_SIN
-renoise.SampleLfoModulationDevice.MODE_SAW
-renoise.SampleLfoModulationDevice.MODE_PULSE
-renoise.SampleLfoModulationDevice.MODE_RANDOM
+---### constants
+
+---@enum renoise.SampleStepperModulationDevice.PlayMode
+renoise.SampleStepperModulationDevice = {
+  PLAYMODE_POINTS = 1,
+  PLAYMODE_LINES = 2,
+  PLAYMODE_CURVES = 3,
+}
+
+renoise.SampleStepperModulationDevice.MIN_NUMBER_OF_POINTS = 1
+renoise.SampleStepperModulationDevice.MAX_NUMBER_OF_POINTS = 256
+
+---### functions
+
+---Reset the envelope back to its default initial state.
+function renoise.SampleStepperModulationDevice:init() end
+
+---Copy all properties from another SampleStepperModulation object.
+---@param other_device renoise.SampleStepperModulationDevice
+function renoise.SampleStepperModulationDevice:copy_from(other_device) end
+
+---Remove all points from the envelope.
+function renoise.SampleStepperModulationDevice:clear_points() end
+
+---Remove points in the given [from, to) time range from the envelope.
+---@param from_time integer
+---@param to_time integer
+function renoise.SampleStepperModulationDevice:clear_points_in_range(from_time, to_time) end
+
+---Copy all points from another SampleStepperModulation object.
+---@param other_device renoise.SampleStepperModulationDevice
+function renoise.SampleStepperModulationDevice:copy_points_from(other_device) end
+
+---Test if a point exists at the given time.
+---@param time integer
+---@return boolean
+function renoise.SampleStepperModulationDevice:has_point_at(time) end
+
+---Add a new point value (or replace any existing value) at time. 
+---@param time integer
+---@param value number
+---@param scaling number?
+function renoise.SampleStepperModulationDevice:add_point_at(time, value, scaling) end
+
+---Removes a point at the given time. Point must exist.
+---@param time integer
+function renoise.SampleStepperModulationDevice:remove_point_at(time) end
 
 
--------- Properties
 
--- LFO mode.
-renoise.song().instruments[].sample_modulation_sets[].devices[].mode
-  -> [enum = MODE]
+--------------------------------------------------------------------------------
+---@class renoise.SampleLfoModulationDevice : renoise.SampleModulationDevice
+--------------------------------------------------------------------------------
+---
+---### properties
+---
+---LFO mode.
+---@field mode renoise.SampleLfoModulationDevice.Mode
+---
+---Phase.
+---@field phase renoise.DeviceParameter with range (0-360)
+--
+---Frequency.
+---@field frequency renoise.DeviceParameter with range (0-1)
+---
+---Amount.
+---@field amount renoise.DeviceParameter with range (0-1)
+---
+---Delay.
+---@field delay renoise.DeviceParameter
 
--- Phase.
-renoise.song().instruments[].sample_modulation_sets[].devices[].phase
-  -> [renoise.DeviceParameter object, 0-360]
+---------Constants
 
--- Frequency.
-renoise.song().instruments[].sample_modulation_sets[].devices[].frequency
-  -> [renoise.DeviceParameter object, 0-1]
-
--- Amount.
-renoise.song().instruments[].sample_modulation_sets[].devices[].amount
-  -> [renoise.DeviceParameter object, 0-1]
-
--- Delay.
-renoise.song().instruments[].sample_modulation_sets[].devices[].delay
--> [renoise.DeviceParameter object, 0-1]
+---@enum renoise.SampleLfoModulationDevice.Mode
+renoise.SampleLfoModulationDevice = {
+  MODE_SIN = 1,
+  MODE_SAW = 2,
+  MODE_PULSE = 3,
+  MODE_RANDOM = 4,
+}

@@ -135,7 +135,7 @@ function renoise.Track:swap_devices_at(device_index1, device_index2) end
 ---over all devices and to query the device count.
 ---@param device_index integer
 ---@return renoise.AudioDevice
-function renoise.Trackevice(device_index) end
+function renoise.TrackDevice(device_index) end
 
 ---Uses default mute state from the prefs. Not for the master track.
 function renoise.Track:mute() end
