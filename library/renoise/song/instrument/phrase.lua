@@ -135,31 +135,29 @@ function renoise.InstrumentPhrase:line(index) end
 ---@return renoise.PatternLine[]
 function renoise.InstrumentPhrase:lines_in_range(index_from, index_to) end
 
---TODO annotate notifier function inputs
-
 ---Check/add/remove notifier functions or methods, which are called by 
 ---Renoise as soon as any of the phrases's lines have changed.
 ---@see renoise.Pattern.has_line_notifier for more details.
----@param func function
+---@param func PatternLineChangeCallback
 ---@return boolean
 function renoise.InstrumentPhrase:has_line_notifier(func) end
 
----@param func function
+---@param func PatternLineChangeCallback
 function renoise.InstrumentPhrase:add_line_notifier(func) end
 
----@param func function
+---@param func PatternLineChangeCallback
 function renoise.InstrumentPhrase:remove_line_notifier(func) end
 
 ---Same as line_notifier above, but the notifier only fires when the user
 ---added, changed or deleted a line with the computer keyboard.
----@param func function
+---@param func PatternLineChangeCallback
 ---@return boolean
 function renoise.InstrumentPhrase:has_line_edited_notifier(func) end
 
----@param func function
+---@param func PatternLineChangeCallback
 function renoise.InstrumentPhrase:add_line_edited_notifier(func) end
 
----@param func function
+---@param func PatternLineChangeCallback
 function renoise.InstrumentPhrase:remove_line_edited_notifier(func) end
 
 ---Note column mute states. 

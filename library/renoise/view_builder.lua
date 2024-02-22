@@ -1,3 +1,5 @@
+--TODO annotate add/remove_notifier inputs properly
+
 --[[============================================================================
 Renoise ViewBuilder API Reference
 ============================================================================]]--
@@ -533,7 +535,7 @@ function renoise.Views.Bitmap:remove_notifier(notifier) end
 ---unpressed button's background will be drawn in the specified color.
 ---A text color is automatically selected to make sure its always visible.
 ---Set color {0,0,0} to enable the theme colors for the button again.
----@field color number[] <R, G, B> range (0-255)
+---@field color integer[] <RED, GREEN, BLUE> range (0-255)
 ---
 ---Valid in the construction table only: set up a click notifier.
 ---@field pressed function
@@ -1113,7 +1115,7 @@ function renoise.Views.RotaryEncoder:remove_notifier(notifier) end
 ---When snapback is enabled, the pad will revert its values to the specified
 ---snapback values as soon as the mouse button is released in the pad. When
 ---disabled, releasing the mouse button will not change the value.
----@field snapback XYPadValues
+---@field snapback XYPadValues?
 ---
 ---Valid in the construction table only: Set up a value notifier function.
 ---@field notifier fun( input : XYPadValues)
