@@ -163,10 +163,10 @@ renoise.ScriptingTool = {}
 ---A function that should return true or false. When returning false, the action
 ---will not be invoked and will be "greyed out" in menus. This function is always
 ---called before "invoke", and every time prior to a menu becoming visible.
----@field active fun():boolean?
+---@field active (fun():boolean)?
 ---A function that should return true or false. When returning true, the entry
 ---will be marked as "this is a selected option"
----@field selected fun():boolean?
+---@field selected (fun():boolean)?
 
 ---Returns true if the given entry already exists, otherwise false.
 ---@param entry_name string The menu entry name e.g. "Main Menu:Tools:My Tool".
