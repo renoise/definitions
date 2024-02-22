@@ -55,7 +55,7 @@ renoise.Track = {
 ---@field name_observable renoise.Document.Observable
 ---@field color RGBColor
 ---@field color_observable renoise.Document.Observable
----@field color_blend number Color blend in percent[0 - 100]
+---@field color_blend number Range: (0 - 100) Color blend in percent
 ---@field color_blend_observable renoise.Document.Observable
 ---
 ---Mute and solo states. Not available for the master track.
@@ -86,7 +86,7 @@ renoise.Track = {
 ---@field output_routing_observable renoise.Document.Observable
 ---
 ---Delay.
----@field output_delay number ms in [-100.0 - 100.0]
+---@field output_delay number Rnage: (-100.0-100.0) in ms 
 ---@field output_delay_observable renoise.Document.Observable
 ---
 ---Pattern editor columns.

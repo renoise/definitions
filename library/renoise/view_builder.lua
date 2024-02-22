@@ -569,7 +569,7 @@ renoise.Views.Button = {}
 ---unpressed button's background will be drawn in the specified color.
 ---A text color is automatically selected to make sure its always visible.
 ---Set color {0,0,0} to enable the theme colors for the button again.
----@field color RGBColor Range: (0-255)
+---@field color RGBColor Range: (0 - 255)
 ---
 ---Valid in the construction table only: set up a click notifier.
 ---@field pressed function

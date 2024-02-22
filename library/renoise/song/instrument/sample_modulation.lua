@@ -340,28 +340,28 @@ renoise.SampleEnvelopeModulationDevice = {
 ---@field play_mode_observable renoise.Document.Observable
 ---
 ---Envelope length.
----@field length integer Range: (6-1000)
+---@field length integer Range: (6 - 1000)
 ---@field length_observable renoise.Document.Observable
 ---
 ---Loop.
 ---@field loop_mode renoise.SampleEnvelopeModulationDevice.LoopMode
 ---@field loop_mode_observable renoise.Document.Observable
 ---
----@field loop_start integer Range: (1-envelope.length)
+---@field loop_start integer Range: (1 - envelope.length)
 ---@field loop_start_observable renoise.Document.Observable
 ---
----@field loop_end integer Range: (1-envelope.length)
+---@field loop_end integer Range: (1 - envelope.length)
 ---@field loop_end_observable renoise.Document.Observable
 ---
 ---Sustain.
 ---@field sustain_enabled boolean
 ---@field sustain_enabled_observable renoise.Document.Observable
 ---
----@field sustain_position integer Range: (1-envelope.length)
+---@field sustain_position integer Range: (1 - envelope.length)
 ---@field sustain_position_observable renoise.Document.Observable
 ---
 ---Fade amount. (Only applies to volume envelopes)
----@field fade_amount integer Range: (0-4095)
+---@field fade_amount integer Range: (0 - 4095)
 ---@field fade_amount_observable renoise.Document.Observable
 ---
 ---Get all points of the envelope. When setting a new list of points,
@@ -376,9 +376,9 @@ renoise.SampleEnvelopeModulationDevice = {
 ---An envelope point's time.
 ---@field time number Range: (1 - envelope.length)
 ---An envelope point's value.
----@field value number Range: (0.0-1.0)
+---@field value number Range: (0.0 - 1.0)
 ---An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
----@field scaling number Range: (-1.0-1.0)
+---@field scaling number Range: (-1.0 - 1.0)
 
 ---### functions
 
@@ -406,9 +406,9 @@ function renoise.SampleEnvelopeModulationDevice:copy_points_from(other_device) e
 ---@return boolean
 function renoise.SampleEnvelopeModulationDevice:has_point_at(time) end
 
----@param time integer Range: (1-envelope.length)
----@param value number Range: (0.0-1.0)
----@param scaling number? Range: (-1.0-1.0)
+---@param time integer Range: (1 - envelope.length)
+---@param value number Range: (0.0 - 1.0)
+---@param scaling number? Range: (-1.0 - 1.0)
 ---Add a new point value (or replace any existing value) at time.
 function renoise.SampleEnvelopeModulationDevice:add_point_at(time, value, scaling) end
 
@@ -447,11 +447,11 @@ renoise.SampleStepperModulationDevice = {
 ---@field play_mode_observable renoise.Document.Observable
 ---
 ---Step size. -1 is the same as choosing RANDOM
----@field play_step integer Range: (-1-16)
+---@field play_step integer Range: (-1 - 16)
 ---@field play_step_observable renoise.Document.Observable
 ---
 ---Envelope length.
----@field length integer Range: (1-256)
+---@field length integer Range: (1 - 256)
 ---@field length_observable renoise.Document.Observable
 ---
 ---Get all points of the envelope. When setting a new list of points,
@@ -466,9 +466,9 @@ renoise.SampleStepperModulationDevice = {
 ---An envelope point's time.
 ---@field time number Range: (1 - envelope.length)
 ---An envelope point's value.
----@field value number Range: (0.0-1.0)
+---@field value number Range: (0.0 - 1.0)
 ---An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
----@field scaling number Range: (-1.0-1.0)
+---@field scaling number Range: (-1.0 - 1.0)
 
 ---### functions
 

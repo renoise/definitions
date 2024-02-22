@@ -22,7 +22,7 @@ renoise.PatternSequencer = {}
 ---@field keep_sequence_sorted_observable renoise.Document.Observable
 ---
 ---Access to the selected slots in the sequencer. When no selection is present
----`{0, 0}` is returned, else a range between [1 - #sequencer.pattern_sequence]
+---`{0, 0}` is returned, else Range: (1 - #sequencer.pattern_sequence)
 ---@field selection_range integer[]
 ---@field selection_range_observable renoise.Document.Observable
 ---

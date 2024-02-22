@@ -88,10 +88,10 @@ renoise.Instrument = {
 ---
 ---Global linear volume of the instrument. Applied to all samples, MIDI and
 ---plugins in the instrument.
----@field volume number Range: (0-math.db2lin(6))
+---@field volume number Range: (0 - math.db2lin(6))
 ---@field volume_observable renoise.Document.Observable
 ---
----Range: (-120-120). Global relative pitch in semi tones.
+---Range: (-120 - 120). Global relative pitch in semi tones.
 ---Applied to all samples, MIDI and plugins in the instrument.
 ---@field transpose number
 ---@field transpose_observable renoise.Document.Observable
@@ -159,9 +159,10 @@ function renoise.Instrument:clear() end
 ---@param instrument renoise.Instrument
 function renoise.Instrument:copy_from(instrument) end
 
----Access a single macro by index [1-NUMBER_OF_MACROS].
----See also property 'macros'.
----@param index integer Range: (1-renoise.Instrument.NUMBER_OF_MACROS)
+---Range: (1 - renoise.Instrument.NUMBER_OF_MACROS) 
+---Access a single macro by index.
+---See also property `macros`.
+---@param index integer 
 ---@return renoise.InstrumentMacro instrument_macro
 function renoise.Instrument:macro(index) end
 

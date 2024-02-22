@@ -54,7 +54,7 @@ renoise.InstrumentPhrase = {
 ---@field is_empty boolean
 ---@field is_empty_observable renoise.Document.Observable
 ---
----Default: 16, Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_LINES)
+---Default: 16, Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_LINES)
 ---Number of lines the phrase currently has.
 ---@field number_of_lines integer
 ---@field number_of_lines_observable renoise.Document.Observable
@@ -62,12 +62,12 @@ renoise.InstrumentPhrase = {
 ---**READ-ONLY** Get all lines in a range [1, number_of_lines_in_pattern]
 ---@field lines renoise.PatternLine[]
 ---
----Range: (MIN_NUMBER_OF_NOTE_COLUMNS-MAX_NUMBER_OF_NOTE_COLUMNS)
+---Range: (MIN_NUMBER_OF_NOTE_COLUMNS - MAX_NUMBER_OF_NOTE_COLUMNS)
 ---How many note columns are visible in the phrase.
 ---@field visible_note_columns integer
 ---@field visible_note_columns_observable  renoise.Document.Observable
 ---
----Range: (MIN_NUMBER_OF_EFFECT_COLUMNS-MAX_NUMBER_OF_EFFECT_COLUMNS)
+---Range: (MIN_NUMBER_OF_EFFECT_COLUMNS - MAX_NUMBER_OF_EFFECT_COLUMNS)
 ---How many effect columns are visible in the phrase.
 ---@field visible_effect_columns integer
 ---@field visible_effect_columns_observable renoise.Document.Observable
@@ -76,7 +76,7 @@ renoise.InstrumentPhrase = {
 ---@field key_tracking renoise.InstrumentPhrase.KeyTrackingMode
 ---@field key_tracking_observable  renoise.Document.Observable
 ---
----Range: (0-119) where C-4 is 48
+---Range: (0 - 119) where C-4 is 48
 ---Phrase's base-note. Only relevant when key_tracking is set to transpose.
 ---@field base_note integer
 ---@field base_note_observable  renoise.Document.Observable
@@ -85,12 +85,12 @@ renoise.InstrumentPhrase = {
 ---@field looping boolean
 ---@field looping_observable  renoise.Document.Observable
 ---
----Range: (1-number_of_lines)
+---Range: (1 - number_of_lines)
 ---Loop start. Playback will start from the beginning before entering loop
 ---@field loop_start integer
 ---@field loop_start_observable  renoise.Document.Observable
 ---
----Range: (loop_start-number_of_lines)
+---Range: (loop_start - number_of_lines)
 ---Loop end. Needs to be > loop_start and <= number_of_lines
 ---@field loop_end integer
 ---@field loop_end_observable  renoise.Document.Observable
@@ -99,13 +99,13 @@ renoise.InstrumentPhrase = {
 ---@field autoseek boolean
 ---@field autoseek_observable renoise.Document.Observable
 ---
----Range: (1-256)
+---Range: (1 - 256)
 ---Phrase local lines per beat setting. New phrases get initialized with
 ---the song's current LPB setting. TPL can not be configured in phrases.
 ---@field lpb integer
 ---@field lpb_observable renoise.Document.Observable
 ---
----Range: (0-1)
+---Range: (0 - 1)
 ---Shuffle groove amount for a phrase.
 ---0.0 = no shuffle (off), 1.0 = full shuffle
 ---@field shuffle number
@@ -136,8 +136,8 @@ function renoise.InstrumentPhrase:clear() end
 ---@param phrase renoise.InstrumentPhrase
 function renoise.InstrumentPhrase:copy_from(phrase) end
 
----Range:(1-renoise.InstrumentPhrase.MAX_NUMBER_OF_LINES)
----Access to a single line by index. Line must be [1-MAX_NUMBER_OF_LINES]).
+---Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_LINES)
+---Access to a single line by index. Line must be in Range: (1 - MAX_NUMBER_OF_LINES).
 ---This is a !lot! more efficient than calling the property: lines[index] to
 ---randomly access lines.
 ---@param index integer
@@ -145,8 +145,8 @@ function renoise.InstrumentPhrase:copy_from(phrase) end
 function renoise.InstrumentPhrase:line(index) end
 
 ---Get a specific line range
----@param index_from integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_LINES)
----@param index_to integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_LINES)
+---@param index_from integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_LINES)
+---@param index_to integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_LINES)
 ---@return renoise.PatternLine[]
 function renoise.InstrumentPhrase:lines_in_range(index_from, index_to) end
 
@@ -196,39 +196,39 @@ function renoise.InstrumentPhrase:add_line_edited_notifier(func, obj) end
 function renoise.InstrumentPhrase:remove_line_edited_notifier(func, obj) end
 
 ---Note column mute states.
----@param column integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
+---@param column integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
 ---@return boolean
 function renoise.InstrumentPhrase:column_is_muted(column) end
 
----@param column integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
+---@param column integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
 ---@return renoise.Document.Observable
 function renoise.InstrumentPhrase:column_is_muted_observable(column) end
 
----@param column integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
+---@param column integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
 ---@param muted boolean
 function renoise.InstrumentPhrase:set_column_is_muted(column, muted) end
 
 ---Note column names.
----@param column integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
+---@param column integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
 ---@return string
 function renoise.InstrumentPhrase:column_name(column) end
 
----@param column integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
+---@param column integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
 ---@return renoise.Document.Observable
 function renoise.InstrumentPhrase:column_name_observable(column) end
 
----@param column integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
+---@param column integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
 ---@param name string
 function renoise.InstrumentPhrase:set_column_name(column, name) end
 
 ---Swap the positions of two note columns within a phrase.
----@param index1 integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
----@param index2 integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
+---@param index1 integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
+---@param index2 integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
 function renoise.InstrumentPhrase:swap_note_columns_at(index1, index2) end
 
 ---Swap the positions of two effect columns within a phrase.
----@param index1 integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
----@param index2 integer Range: (1-renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
+---@param index1 integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
+---@param index2 integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
 function renoise.InstrumentPhrase:swap_effect_columns_at(index1, index2) end
 
 --### operators
@@ -267,13 +267,13 @@ renoise.InstrumentPhraseMapping = {
 ---@field key_tracking_observable  renoise.Document.Observable
 ---
 ---Phrase's base-note. Only relevant when key_tracking is set to transpose.
----@field base_note integer Range:(0-119) where C-4 is 48
+---@field base_note integer Range: (0 - 119) where C-4 is 48
 ---@field base_note_observable  renoise.Document.Observable
 ---
 ---Note range the mapping is triggered at. Phrases may not overlap, so
 ---note_range start can only be set behind previous's (if any) end and
 ---note_range end can only be set before next mapping's (if any) start.
----@field note_range integer[] Range: (0-119) where C-4 is 48
+---@field note_range integer[] Range: (0 - 119) where C-4 is 48
 ---@field note_range_observable  renoise.Document.Observable
 ---
 ---Loop mode. The phrase plays as one-shot when disabled.

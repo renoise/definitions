@@ -242,7 +242,7 @@ function renoise.ScriptingTool:remove_keybinding(keybinding_name) end
 
 ---MIDI message as passed to the `invoke` callback in tool midi_mappings.
 ---@class renoise.ScriptingTool.MidiMessage
----[0 - 127] for abs values, [-63 - 63] for relative values
+---Range: (0S - 127) for abs values, Range: (-63 - 63) for relative values
 ---valid when `is_rel_value()` or `is_abs_value()` returns true, else undefined
 ---@field int_value integer|nil
 ---valid [true OR false] when `is_switch()` returns true, else undefined

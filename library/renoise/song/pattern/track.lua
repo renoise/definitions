@@ -47,14 +47,14 @@ function renoise.PatternTrack:clear() end
 ---@param other renoise.PatternTrack
 function renoise.PatternTrack:copy_from(other) end
 
----Access to a single line by index. Line must be [1-MAX_NUMBER_OF_LINES]).
+---Access to a single line by index. Line must be in Range: (1 - MAX_NUMBER_OF_LINES).
 ---This is a !lot! more efficient than calling the property: lines[index] to
 ---randomly access lines.
 ---@param index integer
 ---@return renoise.PatternLine
 function renoise.PatternTrack:line(index) end
 
----Get a specific line range (index must be [1-Pattern.MAX_NUMBER_OF_LINES])
+---Get a specific line range. Index must be Range: (1 - Pattern.MAX_NUMBER_OF_LINES)
 ---@param index_from integer
 ---@param index_to integer
 ---@return renoise.PatternLine[]

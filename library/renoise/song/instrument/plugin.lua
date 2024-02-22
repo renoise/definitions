@@ -65,13 +65,13 @@ renoise.InstrumentPluginProperties = {}
 ---@field midi_output_routing_index_observable renoise.Document.Observable
 ---
 ---Valid for loaded and unloaded plugins.
----@field channel integer Range: (1-16)
+---@field channel integer Range: (1 - 16)
 ---@field channel_observable renoise.Document.Observable
----@field transpose integer Range: (-120-120)
+---@field transpose integer Range: (-120 - 120)
 ---@field transpose_observable renoise.Document.Observable
 ---
 ---Valid for loaded and unloaded plugins.
----@field volume number Range: (0.0-4.0) linear gain
+---@field volume number Range: (0.0 - 4.0) linear gain
 ---@field volume_observable renoise.Document.Observable
 ---
 ---Valid for loaded and unloaded plugins.

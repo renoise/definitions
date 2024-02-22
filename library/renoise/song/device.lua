@@ -122,7 +122,7 @@ renoise.DeviceParameter = {
 ---@field show_in_mixer_observable renoise.Document.Observable
 ---
 ---Values.
----@field value number value in [value_min - value_max]
+---@field value number value in Range: (value_min - value_max)
 ---@field value_observable renoise.Document.Observable
 ---
 ---@field value_string string

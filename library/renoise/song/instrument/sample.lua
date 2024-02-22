@@ -64,21 +64,21 @@ renoise.Sample = {
 ---@field name_observable renoise.Document.Observable
 ---
 ---Panning, volume.
----@field panning number Range: (0.0-1.0)
+---@field panning number Range: (0.0 - 1.0)
 ---@field panning_observable renoise.Document.Observable
----@field volume number Range: (0.0-4.0)
+---@field volume number Range: (0.0 - 4.0)
 ---@field volume_observable renoise.Document.Observable
 ---
 ---Tuning.
----@field transpose integer Range: (-120-120)
+---@field transpose integer Range: (-120 - 120)
 ---@field transpose_observable renoise.Document.Observable
----@field fine_tune integer Range: (-127-127)
+---@field fine_tune integer Range: (-127 - 127)
 ---@field fine_tune_observable renoise.Document.Observable
 ---
 ---Beat sync.
 ---@field beat_sync_enabled boolean
 ---@field beat_sync_enabled_observable renoise.Document.Observable
----@field beat_sync_lines integer Range: (1-512)
+---@field beat_sync_lines integer Range: (1 - 512)
 ---@field beat_sync_lines_observable renoise.Document.Observable
 ---@field beat_sync_mode renoise.Sample.BeatSyncMode
 ---@field beat_sync_mode_observable renoise.Document.Observable
@@ -93,7 +93,7 @@ renoise.Sample = {
 ---@field new_note_action_observable renoise.Document.Observable
 ---@field oneshot  boolean
 ---@field oneshot_observable renoise.Document.Observable
----@field mute_group  integer Range: (0-15) where 0 means no group
+---@field mute_group  integer Range: (0 - 15) where 0 means no group
 ---@field mute_group_observable renoise.Document.Observable
 ---@field autoseek boolean
 ---@field autoseek_observable renoise.Document.Observable
@@ -105,9 +105,9 @@ renoise.Sample = {
 ---@field loop_mode_observable renoise.Document.Observable
 ---@field loop_release boolean
 ---@field loop_release_observable renoise.Document.Observable
----@field loop_start integer Range: (1-num_sample_frames)
+---@field loop_start integer Range: (1 - num_sample_frames)
 ---@field loop_start_observable renoise.Document.Observable
----@field loop_end integer Range: (1-num_sample_frames)
+---@field loop_end integer Range: (1 - num_sample_frames)
 ---@field loop_end_observable renoise.Document.Observable
 ---
 ---The linked modulation set. 0 when disable, else a valid index for the
@@ -199,11 +199,11 @@ renoise.SampleMapping = {}
 ---
 ---Note range the mapping is triggered for.
 ---table of two integers
----@field note_range integer[] Range: (0-119) where C-4 is 48
+---@field note_range integer[] Range: (0 - 119) where C-4 is 48
 ---@field note_range_observable renoise.Document.Observable
 ---
 ---Velocity range the mapping is triggered for.
----@field velocity_range integer[] Range: (0-127)
+---@field velocity_range integer[] Range: (0 - 127)
 ---@field velocity_range_observable renoise.Document.Observable
 
 --------------------------------------------------------------------------------
@@ -248,16 +248,16 @@ renoise.SampleBuffer = {
 ---
 ---The first sample displayed in the sample editor view. Set together with
 ---DisplayLength to control zooming.
----@field display_start integer Range: (1-number_of_frames)
+---@field display_start integer Range: (1 - number_of_frames)
 ---@field display_start_observable renoise.Document.Observable
 ---
 ---The number of samples displayed in the sample editor view. Set together with
 ---DisplayStart to control zooming.
----@field display_length integer Range: (1-number_of_frames)
+---@field display_length integer Range: (1 - number_of_frames)
 ---@field display_length_observable renoise.Document.Observable
 ---
 ---Array of two integers, the start and end points of the sample editor display.
----@field display_range integer[] Range: (1-number_of_frames)
+---@field display_range integer[] Range: (1 - number_of_frames)
 ---@field display_range_observable renoise.Document.Observable
 ---
 ---The vertical zoom level where 1.0 is fully zoomed out.
@@ -266,12 +266,12 @@ renoise.SampleBuffer = {
 ---
 ---Selection range as visible in the sample editor. always valid. returns the entire
 ---buffer when no selection is present in the UI.
----@field selection_start integer Range: (1-number_of_frames)
+---@field selection_start integer Range: (1 - number_of_frames)
 ---@field selection_start_observable renoise.Document.Observable
----@field selection_end integer Range: (1-number_of_frames)
+---@field selection_end integer Range: (1 - number_of_frames)
 ---@field selection_end_observable renoise.Document.Observable
 ---Array of two integers
----@field selection_range integer[] Range: (1-number_of_frames)
+---@field selection_range integer[] Range: (1 - number_of_frames)
 ---@field selection_range_observable renoise.Document.Observable
 ---
 ---The selected channel.
@@ -297,7 +297,7 @@ function renoise.SampleBuffer:delete_sample_data() end
 ---Read access to samples in a sample data buffer.
 ---@param channel_index integer
 ---@param frame_index integer
----@return number[] values Range: (-1-1)
+---@return number[] values Range: (-1 - 1)
 function renoise.SampleBuffer:sample_data(channel_index, frame_index) end
 
 ---Write access to samples in a sample data buffer. New samples values must be

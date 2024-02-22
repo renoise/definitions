@@ -21,11 +21,11 @@ renoise.InstrumentMacro = {}
 ---@field name_observable renoise.Document.Observable
 ---
 ---Macro value
----@field value number Range: (0-1)
+---@field value number Range: (0 - 1)
 ---@field value_observable renoise.Document.Observable
 ---
 ---Macro value string
----@field value_string string Range: (0-100)
+---@field value_string string Range: (0 - 100)
 ---@field value_string_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** Macro mappings, target parameters
@@ -68,10 +68,10 @@ renoise.InstrumentMacroMapping = {
 ---
 ---Min/max range in which the macro applies its value to the target parameter.
 ---Max can be < than Min. Mapping is then flipped.
----@field parameter_min number Range: (0-1)
+---@field parameter_min number Range: (0 - 1)
 ---@field parameter_min_observable renoise.Document.Observable
 ---
----@field parameter_max number Range: (0-1)
+---@field parameter_max number Range: (0 - 1)
 ---@field parameter_max_observable renoise.Document.Observable
 ---
 ---Scaling which gets applied within the min/max range to set the dest value.

@@ -105,8 +105,8 @@ renoise.Song = {
 ---**READ-ONLY** See renoise.Song:render(). Returns true while rendering is
 ---in progress.
 ---@field rendering boolean
----**READ-ONLY** See renoise.Song:render(). Returns the current render progress
----amount [0.0-1.0]
+---**READ-ONLY** Range: (0.0 - 1.0) See renoise.Song:render(). 
+---Returns the current render progress amount 
 ---@field rendering_progress number
 ---
 ---**READ-ONLY** See renoise.Transport for more info.
