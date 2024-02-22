@@ -101,6 +101,7 @@ function class(name)
     end
   })
   -- return a closure which optionally sets a base class
+  ---@param base table|unknown
   return function(base)
     for k, v in pairs(base) do
       class_table[k] = v
