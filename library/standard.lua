@@ -182,7 +182,7 @@ function table.is_empty(t) end
 ---Count the number of items of a table, also works for non index
 ---based tables (using pairs).
 ---@param t table
----@returns number
+---@returns integer
 ---### examples:
 ---```lua
 ---t = {["a"]=1, ["b"]=1}; print(table.count(t)) --> 2
