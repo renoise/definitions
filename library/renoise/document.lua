@@ -238,7 +238,7 @@ renoise.Document.DocumentList = {}
 ---### functions
 
 ---Returns the number of entries of the list.
----@return number
+---@return integer
 function renoise.Document.ObservableList:size() end
 
 ---List item access by index. returns nil for non existing items.
@@ -249,7 +249,7 @@ function renoise.Document.DocumentList:property(index) end
 ---Find a value in the list by comparing the list values with the passed
 ---value. The first successful match is returned. When no match is found, nil
 ---is returned.
----@param start_pos number
+---@param start_pos integer
 ---@param value renoise.Document.DocumentNode
 ---@return integer|nil
 ---@overload fun(self, value: renoise.Document.DocumentNode):integer|nil

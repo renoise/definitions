@@ -20,7 +20,7 @@ renoise.PatternTrack = {}
 ---@field is_alias boolean **READ-ONLY**
 ---
 ---Pattern index the pattern track is aliased or 0 when its not aliased.
----@field alias_pattern_index number index or 0 when no alias is present
+---@field alias_pattern_index integer index or 0 when no alias is present
 ---@field alias_pattern_index_observable renoise.Document.Observable
 ----
 ---@field color RGBColor? slot color of the pattern in the matrix, nil when no slot color is set

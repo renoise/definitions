@@ -42,7 +42,7 @@ renoise.Application = {}
 ---@field window renoise.ApplicationWindow
 ---
 ---Range: (1 - 4) Get or set globally used clipboard "slots" in the application.
----@field active_clipboard_index number
+---@field active_clipboard_index 1|2|3|4
 
 ---### functions
 

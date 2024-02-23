@@ -374,7 +374,7 @@ renoise.SampleEnvelopeModulationDevice = {
 ---
 ---@class SampleEnvelopeModulationDevice.Point
 ---An envelope point's time.
----@field time number Range: (1 - envelope.length)
+---@field time integer Range: (1 - envelope.length)
 ---An envelope point's value.
 ---@field value number Range: (0.0 - 1.0)
 ---An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
@@ -393,8 +393,8 @@ function renoise.SampleEnvelopeModulationDevice:copy_from(other_device) end
 function renoise.SampleEnvelopeModulationDevice:clear_points() end
 
 ---Remove points in the given [from, to) time range from the envelope.
----@param from_time number
----@param to_time number
+---@param from_time integer
+---@param to_time integer
 function renoise.SampleEnvelopeModulationDevice:clear_points_in_range(from_time, to_time) end
 
 ---Copy all points from another SampleEnvelopeModulation object.
@@ -464,7 +464,7 @@ renoise.SampleStepperModulationDevice = {
 ---
 ---@class SampleStepperModulationDevice.Point
 ---An envelope point's time.
----@field time number Range: (1 - envelope.length)
+---@field time integer Range: (1 - envelope.length)
 ---An envelope point's value.
 ---@field value number Range: (0.0 - 1.0)
 ---An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).

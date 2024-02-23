@@ -34,7 +34,7 @@ renoise.AudioDevice = {}
 ---@field is_maximized_observable renoise.Document.Observable
 ---
 ---Preset handling.
----@field active_preset number 0 when none is active or available
+---@field active_preset integer 0 when none is active or available
 ---@field active_preset_observable renoise.Document.Observable
 ---@field active_preset_data string raw serialized data in XML format of the active preset
 ---@field presets string[] **READ-ONLY** preset names

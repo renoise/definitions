@@ -93,7 +93,7 @@ renoise.Instrument = {
 ---
 ---Range: (-120 - 120). Global relative pitch in semi tones.
 ---Applied to all samples, MIDI and plugins in the instrument.
----@field transpose number
+---@field transpose integer
 ---@field transpose_observable renoise.Document.Observable
 ---
 ---Global trigger options (quantization and scaling options).
@@ -112,7 +112,7 @@ renoise.Instrument = {
 ---@field phrase_playback_mode_observable renoise.Document.Observable
 ---
 ---Phrase playback program: 0 = Off, 1-126 = specific phrase, 127 = keymap.
----@field phrase_program number
+---@field phrase_program integer
 ---@field phrase_program_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** Phrases.
@@ -307,7 +307,7 @@ renoise.InstrumentTriggerOptions = {
 ---@field scale_mode_observable renoise.Document.Observable
 ---
 ---Scale-key to use when transposing (1=C, 2=C#, 3=D, ...)
----@field scale_key number
+---@field scale_key integer
 ---@field scale_key_observable renoise.Document.Observable
 ---
 ---Trigger quantization mode.
@@ -319,5 +319,5 @@ renoise.InstrumentTriggerOptions = {
 ---@field monophonic_observable renoise.Document.Observable
 ---
 ---Glide amount when monophonic. 0 == off, 255 = instant
----@field monophonic_glide number
+---@field monophonic_glide integer
 ---@field monophonic_glide_observable renoise.Document.Observable
