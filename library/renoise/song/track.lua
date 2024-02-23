@@ -55,7 +55,7 @@ renoise.Track = {
 ---@field name_observable renoise.Document.Observable
 ---@field color RGBColor
 ---@field color_observable renoise.Document.Observable
----@field color_blend number Range: (0 - 100) Color blend in percent
+---@field color_blend integer Range: (0 - 100) Color blend in percent
 ---@field color_blend_observable renoise.Document.Observable
 ---
 ---Mute and solo states. Not available for the master track.
