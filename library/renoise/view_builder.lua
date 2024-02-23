@@ -183,6 +183,13 @@ renoise.Views.Rack = {}
 ---as a child view size changes or new children are added.
 ---@field uniform boolean Default: false
 
+---### functions
+
+---Used to manually fit contents. No longer needed. Does nothing.
+---@deprecated
+function renoise.Views.Rack:resize() end
+
+
 --------------------------------------------------------------------------------
 ---## renoise.Views.Aligner
 
@@ -305,7 +312,7 @@ renoise.Views.MultiLineText = {}
 ---
 ---Get/set an array (table) of text lines, instead of specifying a single text
 ---line with newline characters like "text" does.
----@field paragraphs string Default: ""
+---@field paragraphs string[] Default: []
 ---
 ---@field font FontStyle
 ---
@@ -427,7 +434,7 @@ renoise.Views.MultiLineTextField = {}
 ---
 ---Get/set a list/table of text lines instead of specifying the newlines as
 ---characters.
----@field paragraphs string Default: ""
+---@field paragraphs string[] Default: []
 ---
 ---@field font FontStyle  Default: "normal"
 ---
