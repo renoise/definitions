@@ -38,16 +38,33 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@class renoise.Document.Observable
 renoise.Document.Observable = {}
 
---------------------------------------------------------------------------------
----## renoise.Document.Observable
-
----### functions
-
 ---@alias NotifierFunction fun()
 ---@alias NotifierMemberContext table|userdata
 ---@alias NotifierMemberFunction fun(self: NotifierMemberContext)
 ---@alias NotifierMethod1 {[1]:NotifierMemberContext, [2]:NotifierMemberFunction}
 ---@alias NotifierMethod2 {[1]:NotifierMemberFunction, [2]:NotifierMemberContext}
+
+---@alias BooleanValueNotifierFunction fun(value: boolean)
+---@alias BooleanValueNotifierMemberFunction fun(self: NotifierMemberContext, value: boolean)
+---@alias BooleanValueNotifierMethod1 {[1]:NotifierMemberContext, [2]:BooleanValueNotifierMemberFunction}
+---@alias BooleanValueNotifierMethod2 {[1]:BooleanValueNotifierMemberFunction, [2]:NotifierMemberContext}
+
+---@alias IntegerValueNotifierFunction fun(value: integer)
+---@alias IntegerValueNotifierMemberFunction fun(self: NotifierMemberContext, value: integer)
+---@alias IntegerValueNotifierMethod1 {[1]:NotifierMemberContext, [2]:IntegerValueNotifierMemberFunction}
+---@alias IntegerValueNotifierMethod2 {[1]:IntegerValueNotifierMemberFunction, [2]:NotifierMemberContext}
+
+---@alias NumberValueNotifierFunction fun(value: number)
+---@alias NumberValueNotifierMemberFunction fun(self: NotifierMemberContext, value: number)
+---@alias NumberValueNotifierMethod1 {[1]:NotifierMemberContext, [2]:NumberValueNotifierMemberFunction}
+---@alias NumberValueNotifierMethod2 {[1]:NumberValueNotifierMemberFunction, [2]:NotifierMemberContext}
+
+---@alias StringValueNotifierFunction fun(value: string)
+---@alias StringValueNotifierMemberFunction fun(self: NotifierMemberContext, value: string)
+---@alias StringValueNotifierMethod1 {[1]:NotifierMemberContext, [2]:StringValueNotifierMemberFunction}
+---@alias StringValueNotifierMethod2 {[1]:StringValueNotifierMemberFunction, [2]:NotifierMemberContext}
+
+---### functions
 
 ---Checks if the given function, method was already registered as notifier.
 ---@return boolean
