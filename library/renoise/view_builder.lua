@@ -216,7 +216,7 @@ renoise.Views.Aligner = {}
 ---vertically in columns).
 ---@field spacing integer Default: 0 (no spacing)
 ---
----@alias AlignerAlignment
+---@alias AlignerMode
 ---| "left"       # align from left to right (for horizontal_aligner only)
 ---| "right"      # align from right to left (for horizontal_aligner only)
 ---| "top"        # align from top to bottom (for vertical_aligner only)
@@ -226,7 +226,7 @@ renoise.Views.Aligner = {}
 ---| "distribute" # equally distributes views over the aligners width/height
 ---
 ---Default: "left" (for horizontal_aligner) "top" (for vertical_aligner)
----@field mode AlignerAlignment
+---@field mode AlignerMode
 
 
 -----------------------------------------------------------------------------
@@ -513,14 +513,14 @@ renoise.Views.Bitmap = {}
 ---@class renoise.Views.Bitmap : renoise.Views.Control
 ---
 ---Setup how the bitmap should be drawn, recolored. Available modes are:
----@alias View.Bitmap.Mode
+---@alias BitmapMode
 ---| "plain"        # bitmap is drawn as is, no recoloring is done
 ---| "transparent"  # same as plain, but black pixels will be fully transparent
 ---| "button_color" # recolor the bitmap, using the theme's button color
 ---| "body_color"   # same as 'button_back' but with body text/back color
 ---| "main_color"   # same as 'button_back' but with main text/back colors
 ---
----@field mode string Default: "plain"
+---@field mode BitmapMode Default: "plain"
 ---
 ---Bitmap name and path. You should use a relative path that uses  Renoise's
 ---default resource folder as base (like "Icons/ArrowRight.bmp"). Or specify a
@@ -818,6 +818,9 @@ function renoise.Views.Chooser:add_notifier(notifier) end
 ---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.Chooser:remove_notifier(notifier) end
 
+
+---@alias ShowNumberAsString fun(value : number) : string?
+---@alias ParseStringAsNumber fun(value : string) : number?
 --------------------------------------------------------------------------------
 ---## renoise.Views.ValueBox
 
@@ -863,9 +866,9 @@ renoise.Views.ValueBox = {}
 ---
 ---Note: when any of the callbacks fail with an error, both will be disabled
 ---to avoid a flood of error messages.
----@field tostring fun(value : number) : string?
+---@field tostring ShowNumberAsString
 ---
----@field tonumber fun(value : string) : number?
+---@field tonumber ParseStringAsNumber
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
 ---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
@@ -925,7 +928,7 @@ renoise.Views.Value = {}
 ---
 ---Note: When the callback fails with an error, it will be disabled to avoid
 ---a flood of error messages.
----@field tostring fun(input : number) : string?
+---@field tostring ShowNumberAsString
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
 ---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
@@ -996,9 +999,9 @@ renoise.Views.ValueField = {}
 ---
 ---Note: when any of the callbacks fail with an error, both will be disabled
 ---to avoid a flood of error messages.
----@field tostring fun(input : number) : string?
+---@field tostring ShowNumberAsString
 ---
----@field tonumber fun(input : string) : number?
+---@field tonumber ParseStringAsNumber
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
 ---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
