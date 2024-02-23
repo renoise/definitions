@@ -1398,7 +1398,7 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 --- base for TextField, MultiLineTextField
 ---@class StringValueProperties : ViewProperties
 ---@field bind renoise.Document.ObservableString?
----@field notifier function?
+---@field notifier StringValueNotifierFunction?
 ---@field active boolean?
 ---@field value string?
 ---@field text string?
