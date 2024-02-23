@@ -1260,7 +1260,8 @@ renoise.Views.XYPad = {}
 ---Just like in the other XYPad properties, a table with the fields X and Y
 ---is expected here and not a single value. So you have to bind two
 ---ObservableNumber object to the pad.
----@field bind { x: renoise.Document.ObservableNumber, y: renoise.Document.ObservableNumber }?
+---@alias XYPadObservables { x: renoise.Document.ObservableNumber, y: renoise.Document.ObservableNumber }
+---@field bind XYPadObservables?
 
 ---@alias XYValueNotifierFunction fun(value: XYPadValues)
 ---@alias XYValueNotifierMemberFunction fun(self: NotifierMemberContext, value: XYPadValues)
@@ -1366,72 +1367,53 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field visibe boolean?
 ---@field tooltip string?
 
--- base for Rack, Aligner
----@class ContainerProperties : ViewProperties
----@field margin (integer|string)?
----@field spacing (integer|string)?
-
----used for Rack
----@class RackProperties : ContainerProperties
----@field style RackStyle?
----@field uniform boolean?
-
---- used for Aligner
----@class AlignerProperties : RackProperties
----@field mode AlignerMode?
-
-
---- used for Text
----@class TextProperties : ViewProperties
----@field text string?
----@field style TextStyle?
----@field font FontStyle?
----@field align TextAlignment?
-
---- used for MultiLineText
----@class MultiLineTextProperties : ViewProperties
----@field text string?
----@field paragraphs string[]?
----@field style TextBackgroundStyle?
-
-
---- base for TextField, MultiLineTextField
----@class StringValueProperties : ViewProperties
----@field bind renoise.Document.ObservableString?
----@field notifier StringValueNotifierFunction?
----@field active boolean?
----@field value string?
----@field text string?
----@field edit_mode boolean?
-
---- used for TextField
----@class TextFieldProperties : StringValueProperties
----@field align TextAlignment?
-
---- used for MultiLineTextField
----@class MultiLineTextFieldProperties : StringValueProperties
----@field paragraphs string[]?
----@field style TextBackgroundStyle?
----@field font FontStyle?
-
-
---- base for all controllable views
---- Button, Bitmap, Switch, Popup, Chooser,
---- Valuefield, ValueBox, Slider, MiniSlider, RotaryEncoder, XYPad
 ---@class ControlProperties : ViewProperties
 ---@field active boolean?
 ---@field midi_mapping string?
 
+---@class RackViewProperties : ViewProperties
+---@field margin integer?
+---@field spacing integer?
+---@field style RackStyle?
+---@field uniform boolean?
 
---- used for Switch, Popup, Chooser
----@class IntegerValueProperties : ControlProperties
----@field bind renoise.Document.ObservableNumber?
----@field notifier IntegerValueNotifierFunction?
----@field items string[]?
----@field value integer?
+---@class AlignmentRackViewProperties : ViewProperties
+---@field margin integer?
+---@field spacing integer?
+---@field mode AlignerMode?
 
+---@class TextViewProperties : ViewProperties
+---@field text string?
+---@field font FontStyle?
+---@field style TextStyle?
+---@field align TextAlignment?
 
---- used for Button
+---@class MultilineTextViewProperties : ViewProperties
+---@field text string?
+---@field paragraphs string[]?
+---@field font FontStyle?
+---@field style TextBackgroundStyle?
+
+---@class TextFieldProperties : ViewProperties
+---@field bind renoise.Document.ObservableString?
+---@field active boolean?
+---@field value string?
+---@field notifier StringValueNotifierFunction?
+---@field text string?
+---@field align TextAlignment?
+---@field edit_mode boolean?
+
+---@class MultilineTextFieldProperties : ViewProperties
+---@field bind renoise.Document.ObservableString?
+---@field active boolean?
+---@field value string?
+---@field notifier StringValueNotifierFunction?
+---@field text string?
+---@field paragraphs string?
+---@field font FontStyle?
+---@field style TextBackgroundStyle?
+---@field edit_mode boolean?
+
 ---@class ButtonProperties : ControlProperties
 ---@field text string?
 ---@field bitmap string?
@@ -1440,60 +1422,94 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field pressed NotifierFunction?
 ---@field released NotifierFunction?
 
-
---- used for Bitmap
----@class BitmapProperties : ControlProperties
+---@class BitmapViewProperties : ControlProperties
 ---@field mode BitmapMode?
 ---@field bitmap string?
 ---@field notifier NotifierFunction?
 
-
---- used for CheckBox
 ---@class CheckBoxProperties : ControlProperties
 ---@field bind renoise.Document.ObservableBoolean?
----@field notifier BooleanValueNotifierFunction?
 ---@field value boolean?
+---@field notifier BooleanValueNotifierFunction?
 
-
---- base for ValueBox, ValueField
----@class TypedValueProperties : NumberValueProperties
----@field tostring ShowNumberAsString?
----@field tonumber ParseStringAsNumber?
-
---- used for ValueBox
----@class ValueBoxProperties : TypedValueProperties
----@field steps number?
-
---- used for ValueField
----@class ValueFieldProperties : TypedValueProperties
----@field align TextAlignment?
-
-
---- base for Valuefield, ValueBox, Slider, MiniSlider, RotaryEncoder
----@class NumberValueProperties : ControlProperties
+---@class ButtonSwitchProperties : ControlProperties
 ---@field bind renoise.Document.ObservableNumber?
+---@field value integer?
+---@field notifier IntegerValueNotifierFunction?
+---@field items string[]?
+
+---@class PopUpMenuProperties : ControlProperties
+---@field bind renoise.Document.ObservableNumber?
+---@field value integer?
+---@field notifier IntegerValueNotifierFunction?
+---@field items string[]?
+
+---@class ChooserProperties : ControlProperties
+---@field bind renoise.Document.ObservableNumber?
+---@field value integer?
+---@field notifier IntegerValueNotifierFunction?
+---@field items string[]?
+
+---@class ValueViewProperties : ViewProperties
+---@field bind renoise.Document.ObservableNumber?
+---@field value number?
+---@field notifier NumberValueNotifierFunction?
+---@field align TextAlignment?
+---@field font FontStyle?
+---@field tostring ShowNumberAsString?
+
+---@class ValueBoxProperties : ControlProperties
+---@field bind renoise.Document.ObservableNumber?
+---@field value number?
 ---@field notifier NumberValueNotifierFunction?
 ---@field min number?
 ---@field max number?
----@field value number?
+---@field steps number?
+---@field tostring ShowNumberAsString?
+---@field tonumber ParseStringAsNumber?
 
---- used for MiniSlider, RotaryEncoder, base for Slider
----@class DraggedValueProperties : NumberValueProperties
+---@class ValueFieldProperties : ControlProperties
+---@field bind renoise.Document.ObservableNumber?
+---@field value number?
+---@field notifier NumberValueNotifierFunction?
+---@field min number?
+---@field max number?
+---@field align TextAlignment?
+---@field tostring ShowNumberAsString?
+---@field tonumber ParseStringAsNumber?
+
+---@class SliderProperties : ControlProperties
+---@field bind renoise.Document.ObservableNumber?
+---@field value number?
+---@field notifier NumberValueNotifierFunction?
+---@field min number?
+---@field max number?
+---@field steps number?
 ---@field default number?
 
---- used for Slider
----@class SliderProperties : DraggedValueProperties
----@field steps number?
+---@class MiniSliderProperties : ControlProperties
+---@field bind renoise.Document.ObservableNumber?
+---@field value number?
+---@field notifier NumberValueNotifierFunction?
+---@field min number?
+---@field max number?
+---@field default number?
 
+---@class RotaryEncoderProperties : ControlProperties
+---@field bind renoise.Document.ObservableNumber?
+---@field value number?
+---@field notifier NumberValueNotifierFunction?
+---@field min number?
+---@field max number?
+---@field default number?
 
---- used for XYPad
 ---@class XYPadProperties : ControlProperties
----@field bind { x: renoise.Document.ObservableNumber, y: renoise.Document.ObservableNumber }?
----@field notifier XYValueNotifierFunction?
+---@field bind XYPadObservables?
+---@field value XYPadValues?
 ---@field snapback XYPadValues?
+---@field notifier XYValueNotifierFunction?
 ---@field min XYPadValues?
 ---@field max XYPadValues?
-
 
 ---### functions
 
@@ -1502,22 +1518,22 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 function renoise.ViewBuilder() end
 
 --TODO note possible child views
----@param properties RackProperties?
+---@param properties RackViewProperties?
 ---@return renoise.Views.Rack rack
 function renoise.ViewBuilder:column(properties) end
 
 --TODO note possible child views
----@param properties RackProperties?
+---@param properties RackViewProperties?
 ---@return renoise.Views.Rack rack
 function renoise.ViewBuilder:row(properties) end
 
 --TODO note possible child views
----@param properties AlignerProperties?
+---@param properties AlignmentRackViewProperties?
 ---@return renoise.Views.Aligner aligner
 function renoise.ViewBuilder:horizontal_aligner(properties) end
 
 --TODO note possible child views
----@param properties AlignerProperties?
+---@param properties AlignmentRackViewProperties?
 ---@return renoise.Views.Aligner aligner
 function renoise.ViewBuilder:vertical_aligner(properties) end
 
@@ -1526,11 +1542,11 @@ function renoise.ViewBuilder:vertical_aligner(properties) end
 ---@return renoise.Views.View view
 function renoise.ViewBuilder:space(properties) end
 
----@param properties TextProperties?
+---@param properties TextViewProperties?
 ---@return renoise.Views.Text text
 function renoise.ViewBuilder:text(properties) end
 
----@param properties MultiLineTextProperties?
+---@param properties MultilineTextViewProperties?
 ---@return renoise.Views.MultiLineText multilinetext
 function renoise.ViewBuilder:multiline_text(properties) end
 
@@ -1538,11 +1554,11 @@ function renoise.ViewBuilder:multiline_text(properties) end
 ---@return renoise.Views.TextField textfield
 function renoise.ViewBuilder:textfield(properties) end
 
----@param properties MultiLineTextFieldProperties?
+---@param properties MultilineTextFieldProperties?
 ---@return renoise.Views.MultiLineTextField multilinetextfield
 function renoise.ViewBuilder:multiline_textfield(properties) end
 
----@param properties BitmapProperties?
+---@param properties BitmapViewProperties?
 ---@return renoise.Views.Bitmap bitmap
 function renoise.ViewBuilder:bitmap(properties) end
 
@@ -1554,15 +1570,15 @@ function renoise.ViewBuilder:button(properties) end
 ---@return renoise.Views.CheckBox checkbox
 function renoise.ViewBuilder:checkbox(properties) end
 
----@param properties IntegerValueProperties?
+---@param properties ButtonSwitchProperties?
 ---@return renoise.Views.Switch switch
 function renoise.ViewBuilder:switch(properties) end
 
----@param properties IntegerValueProperties?
+---@param properties PopUpMenuProperties?
 ---@return renoise.Views.Popup popup
 function renoise.ViewBuilder:popup(properties) end
 
----@param properties IntegerValueProperties?
+---@param properties ChooserProperties?
 ---@return renoise.Views.Chooser chooser
 function renoise.ViewBuilder:chooser(properties) end
 
@@ -1570,7 +1586,7 @@ function renoise.ViewBuilder:chooser(properties) end
 ---@return renoise.Views.ValueBox valuebox
 function renoise.ViewBuilder:valuebox(properties) end
 
----@param properties NumberValueProperties?
+---@param properties ValueViewProperties?
 ---@return renoise.Views.Value value
 function renoise.ViewBuilder:value(properties) end
 
@@ -1582,11 +1598,11 @@ function renoise.ViewBuilder:valuefield(properties) end
 ---@return renoise.Views.Slider slider
 function renoise.ViewBuilder:slider(properties) end
 
----@param properties DraggedValueProperties?
+---@param properties MiniSliderProperties?
 ---@return renoise.Views.MiniSlider minislider
 function renoise.ViewBuilder:minislider(properties) end
 
----@param properties DraggedValueProperties?
+---@param properties RotaryEncoderProperties?
 ---@return renoise.Views.RotaryEncoder rotaryencoder
 function renoise.ViewBuilder:rotary(properties) end
 
