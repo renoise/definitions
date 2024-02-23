@@ -391,14 +391,14 @@ renoise.Views.TextField = {}
 
 ---Add value change (text change) notifier
 ---@param notifier StringValueNotifierFunction
----@overload fun(self, notifer: StringValueNotifierMethod1)
----@overload fun(self, notifer: StringValueNotifierMethod2)
+---@overload fun(self, notifier: StringValueNotifierMethod1)
+---@overload fun(self, notifier: StringValueNotifierMethod2)
 function renoise.Views.TextField:add_notifier(notifier) end
 
 ---Remove value change (text change) notifier
 ---@param notifier StringValueNotifierFunction
----@overload fun(self, notifer: StringValueNotifierMethod1)
----@overload fun(self, notifer: StringValueNotifierMethod2)
+---@overload fun(self, notifier: StringValueNotifierMethod1)
+---@overload fun(self, notifier: StringValueNotifierMethod2)
 function renoise.Views.TextField:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -461,14 +461,14 @@ renoise.Views.MultiLineTextField = {}
 
 ---Add value change (text change) notifier
 ---@param notifier StringValueNotifierFunction
----@overload fun(self, notifer: StringValueNotifierMethod1)
----@overload fun(self, notifer: StringValueNotifierMethod2)
+---@overload fun(self, notifier: StringValueNotifierMethod1)
+---@overload fun(self, notifier: StringValueNotifierMethod2)
 function renoise.Views.MultiLineTextField:add_notifier(notifier) end
 
 ---Remove value change (text change) notifier
 ---@param notifier StringValueNotifierFunction
----@overload fun(self, notifer: StringValueNotifierMethod1)
----@overload fun(self, notifer: StringValueNotifierMethod2)
+---@overload fun(self, notifier: StringValueNotifierMethod1)
+---@overload fun(self, notifier: StringValueNotifierMethod2)
 function renoise.Views.MultiLineTextField:remove_notifier(notifier) end
 
 ---When a scroll bar is visible, scroll the text to show the last line.
@@ -539,14 +539,14 @@ renoise.Views.Bitmap = {}
 
 ---Add mouse click notifier
 ---@param notifier NotifierFunction
----@overload fun(self, notifer: NotifierMethod1)
----@overload fun(self, notifer: NotifierMethod2)
+---@overload fun(self, notifier: NotifierMethod1)
+---@overload fun(self, notifier: NotifierMethod2)
 function renoise.Views.Bitmap:add_notifier(notifier) end
 
 ---Remove mouse click notifier
 ---@param notifier NotifierFunction
----@overload fun(self, notifer: NotifierMethod1)
----@overload fun(self, notifer: NotifierMethod2)
+---@overload fun(self, notifier: NotifierMethod1)
+---@overload fun(self, notifier: NotifierMethod2)
 function renoise.Views.Bitmap:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -605,23 +605,23 @@ renoise.Views.Button = {}
 ---else. When a "release" notifier is set, it is only called when the mouse
 ---button is pressed !and! released over your button.
 ---@param notifier NotifierFunction
----@overload fun(self, notifer: NotifierMethod1)
----@overload fun(self, notifer: NotifierMethod2)
+---@overload fun(self, notifier: NotifierMethod1)
+---@overload fun(self, notifier: NotifierMethod2)
 function renoise.Views.Button:add_pressed_notifier(notifier) end
 
 ---@param notifier NotifierFunction
----@overload fun(self, notifer: NotifierMethod1)
----@overload fun(self, notifer: NotifierMethod2)
+---@overload fun(self, notifier: NotifierMethod1)
+---@overload fun(self, notifier: NotifierMethod2)
 function renoise.Views.Button:add_released_notifier(notifier) end
 
 ---@param notifier NotifierFunction
----@overload fun(self, notifer: NotifierMethod1)
----@overload fun(self, notifer: NotifierMethod2)
+---@overload fun(self, notifier: NotifierMethod1)
+---@overload fun(self, notifier: NotifierMethod2)
 function renoise.Views.Button:remove_pressed_notifier(notifier) end
 
 ---@param notifier NotifierFunction
----@overload fun(self, notifer: NotifierMethod1)
----@overload fun(self, notifer: NotifierMethod2)
+---@overload fun(self, notifier: NotifierMethod1)
+---@overload fun(self, notifier: NotifierMethod2)
 function renoise.Views.Button:remove_released_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -660,14 +660,14 @@ renoise.Views.CheckBox = {}
 
 ---Add value change notifier
 ---@param notifier IntegerValueNotifierFunction
----@overload fun(self, notifer: IntegerValueNotifierMethod1)
----@overload fun(self, notifer: IntegerValueNotifierMethod2)
+---@overload fun(self, notifier: IntegerValueNotifierMethod1)
+---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.CheckBox:add_notifier(notifier) end
 
 ---Remove value change notifier
 ---@param notifier IntegerValueNotifierFunction
----@overload fun(self, notifer: IntegerValueNotifierMethod1)
----@overload fun(self, notifer: IntegerValueNotifierMethod2)
+---@overload fun(self, notifier: IntegerValueNotifierMethod1)
+---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.CheckBox:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -709,14 +709,14 @@ renoise.Views.Switch = {}
 
 ---Add index change notifier
 ---@param notifier IntegerValueNotifierFunction
----@overload fun(self, notifer: IntegerValueNotifierMethod1)
----@overload fun(self, notifer: IntegerValueNotifierMethod2)
+---@overload fun(self, notifier: IntegerValueNotifierMethod1)
+---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.Switch:add_notifier(notifier) end
 
 ---Remove index change notifier
 ---@param notifier IntegerValueNotifierFunction
----@overload fun(self, notifer: IntegerValueNotifierMethod1)
----@overload fun(self, notifer: IntegerValueNotifierMethod2)
+---@overload fun(self, notifier: IntegerValueNotifierMethod1)
+---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.Switch:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -759,14 +759,14 @@ renoise.Views.Popup = {}
 
 ---Add index change notifier
 ---@param notifier IntegerValueNotifierFunction
----@overload fun(self, notifer: IntegerValueNotifierMethod1)
----@overload fun(self, notifer: IntegerValueNotifierMethod2)
+---@overload fun(self, notifier: IntegerValueNotifierMethod1)
+---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.Popup:add_notifier(notifier) end
 
 ---Remove index change notifier
 ---@param notifier IntegerValueNotifierFunction
----@overload fun(self, notifer: IntegerValueNotifierMethod1)
----@overload fun(self, notifer: IntegerValueNotifierMethod2)
+---@overload fun(self, notifier: IntegerValueNotifierMethod1)
+---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.Popup:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -808,14 +808,14 @@ renoise.Views.Chooser = {}
 
 ---Add index change notifier
 ---@param notifier IntegerValueNotifierFunction
----@overload fun(self, notifer: IntegerValueNotifierMethod1)
----@overload fun(self, notifer: IntegerValueNotifierMethod2)
+---@overload fun(self, notifier: IntegerValueNotifierMethod1)
+---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.Chooser:add_notifier(notifier) end
 
 ---Remove index change notifier
 ---@param notifier IntegerValueNotifierFunction
----@overload fun(self, notifer: IntegerValueNotifierMethod1)
----@overload fun(self, notifer: IntegerValueNotifierMethod2)
+---@overload fun(self, notifier: IntegerValueNotifierMethod1)
+---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.Chooser:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -882,14 +882,14 @@ renoise.Views.ValueBox = {}
 
 ---Add value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.ValueBox:add_notifier(notifier) end
 
 ---Remove value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.ValueBox:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -942,14 +942,14 @@ renoise.Views.Value = {}
 
 ---Add value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.Value:add_notifier(notifier) end
 
 ---Remove value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.Value:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -1015,14 +1015,14 @@ renoise.Views.ValueField = {}
 
 ---Add value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.ValueField:add_notifier(notifier) end
 
 ---Remove value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.ValueField:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -1076,14 +1076,14 @@ renoise.Views.Slider = {}
 
 ---Add value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.Slider:add_notifier(notifier) end
 
 ---Remove value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.Slider:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -1130,14 +1130,14 @@ renoise.Views.MiniSlider = {}
 
 ---Add value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.MiniSlider:add_notifier(notifier) end
 
 ---Remove value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.MiniSlider:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -1189,14 +1189,14 @@ renoise.Views.RotaryEncoder = {}
 
 ---Add value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.RotaryEncoder:add_notifier(notifier) end
 
 ---Remove value change notifier
 ---@param notifier NumberValueNotifierFunction
----@overload fun(self, notifer: NumberValueNotifierMethod1)
----@overload fun(self, notifer: NumberValueNotifierMethod2)
+---@overload fun(self, notifier: NumberValueNotifierMethod1)
+---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.RotaryEncoder:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -1268,14 +1268,14 @@ renoise.Views.XYPad = {}
 
 ---Add value change notifier
 ---@param notifier XYValueNotifierFunction
----@overload fun(self, notifer: XYValueNotifierMethod1)
----@overload fun(self, notifer: XYValueNotifierMethod2)
+---@overload fun(self, notifier: XYValueNotifierMethod1)
+---@overload fun(self, notifier: XYValueNotifierMethod2)
 function renoise.Views.XYPad:add_notifier(notifier) end
 
 ---Remove value change notifier
 ---@param notifier XYValueNotifierFunction
----@overload fun(self, notifer: XYValueNotifierMethod1)
----@overload fun(self, notifer: XYValueNotifierMethod2)
+---@overload fun(self, notifier: XYValueNotifierMethod1)
+---@overload fun(self, notifier: XYValueNotifierMethod2)
 function renoise.Views.XYPad:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
