@@ -50,9 +50,9 @@ renoise.Transport = {
 ---BPM, LPB, and TPL
 ---@field bpm number Range: (32 - 999) Beats per Minute
 ---@field bpm_observable renoise.Document.Observable
----@field lpb number Range: (1 - 256) Lines per Beat
+---@field lpb integer Range: (1 - 256) Lines per Beat
 ---@field lpb_observable renoise.Document.Observable
----@field tpl number  Range: (1 - 16) Ticks per Line
+---@field tpl integer  Range: (1 - 16) Ticks per Line
 ---@field tpl_observable renoise.Document.Observable
 ---
 ---Playback position
@@ -75,16 +75,16 @@ renoise.Transport = {
 ---@field loop_end_beats number **READ-ONLY** Range: (0 - song_end_beats)
 ---@field loop_range_beats number[] {loop start beats, loop end beats}
 ---
----@field loop_sequence_start number **READ-ONLY** 0 or Range: (1  -  sequence length)
----@field loop_sequence_end number **READ-ONLY** 0 or Range: (1  -  sequence length)
----@field loop_sequence_range number[] {} or Range(sequence start, sequence end)
+---@field loop_sequence_start integer **READ-ONLY** 0 or Range: (1  -  sequence length)
+---@field loop_sequence_end integer **READ-ONLY** 0 or Range: (1  -  sequence length)
+---@field loop_sequence_range integer[] {} or Range(sequence start, sequence end)
 ---
 ---@field loop_pattern boolean Pattern Loop On/Off
 ---@field loop_pattern_observable renoise.Document.Observable
 ---
 ---@field loop_block_enabled boolean Block Loop On/Off
 ---@field loop_block_start_pos renoise.SongPos Start of block loop
----@field loop_block_range_coeff number Range: (2 - 16)
+---@field loop_block_range_coeff integer Range: (2 - 16)
 ---
 ---Edit modes
 ---@field edit_mode boolean

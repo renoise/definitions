@@ -32,7 +32,7 @@ renoise.PatternTrackAutomation = {
 ---Single point within a pattern track automation envelope.
 ---@class EnvelopePoint
 ---Automation point's time in pattern lines in Range: (1 - NUM_LINES_IN_PATTERN).
----@field time number
+---@field time integer
 ---Automation point value in Range: (0 - 1.0)
 ---@field value number
 ---Automation point scaling. Used in 'lines' playback mode only - 0.0 is linear.
@@ -66,7 +66,7 @@ renoise.PatternTrackAutomation = {
 ---Get or set selection range. when setting an empty table, the existing
 ---selection, if any, will be cleared.
 ---array of two numbers [] OR Range: (1  -  automation.length + 1)
----@field selection_range number[]
+---@field selection_range integer[]
 ---@field selection_range_observable renoise.Document.Observable
 ---
 ---Get all points of the automation. When setting a new list of points,
@@ -86,28 +86,28 @@ function renoise.PatternTrackAutomation:clear() end
 
 ---Remove all existing points in the given [from, to) time range from the
 ---automation.
----@param from_time number
----@param to_time number
+---@param from_time integer
+---@param to_time integer
 function renoise.PatternTrackAutomation:clear_range(from_time, to_time) end
 
 ---Copy all points and playback settings from another track automation.
 ---@param other renoise.PatternTrackAutomation
 function renoise.PatternTrackAutomation:copy_from(other) end
 
----Test if a point exists at the given time (in lines
----@param time number
+---Test if a point exists at the given time
+---@param time integer lines
 ---@return boolean
 function renoise.PatternTrackAutomation:has_point_at(time) end
 
 ---Insert a new point, or change an existing one, if a point in
 ---time already exists.
----@param time number
+---@param time integer
 ---@param value number
 ---@param scaling number?
 function renoise.PatternTrackAutomation:add_point_at(time, value, scaling) end
 
 ---Removes a point at the given time. Point must exist.
----@param time number
+---@param time integer
 function renoise.PatternTrackAutomation:remove_point_at(time) end
 
 ---### operators

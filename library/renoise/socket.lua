@@ -89,7 +89,7 @@ function renoise.Socket.create_client(server_address, server_port, protocol, tim
 ---@field local_address string
 ---
 ---**READ-ONLY** The socket's local port number, as specified when instantiated.
----@field local_port number
+---@field local_port integer
 renoise.Socket.SocketBase = {}
 
 ---### functions
@@ -124,7 +124,7 @@ function renoise.Socket.SocketBase:close() end
 ---
 ---**READ-ONLY** Port of the socket's peer, the socket this client is
 ---connected to.
----@field peer_port number
+---@field peer_port integer
 renoise.Socket.SocketClient = {}
 
 ---### functions

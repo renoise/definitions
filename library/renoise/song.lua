@@ -12,11 +12,11 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---Helper class used in Transport and Song, representing a position in the song.
 ---@class renoise.SongPos
 ---Position in the pattern sequence.
----@field sequence number
+---@field sequence integer
 ---Position in the pattern at the given pattern sequence.
----@field line number
+---@field line integer
 ---@overload fun(): renoise.SongPos
----@overload fun(sequence: number, line: number): renoise.SongPos
+---@overload fun(sequence: integer, line: integer): renoise.SongPos
 renoise.SongPos = {}
 
 ---### operators
@@ -32,19 +32,19 @@ renoise.Song = {}
 
 ---Selection range in the current pattern
 ---@class PatternSelection
----@field start_line number Start pattern line index
----@field start_track number Start track index
----@field start_column number Start column index within start_track
----@field end_line number End pattern line index
----@field end_track number End track index
----@field end_column number End column index within end_track
+---@field start_line integer Start pattern line index
+---@field start_track integer Start track index
+---@field start_column integer Start column index within start_track
+---@field end_line integer End pattern line index
+---@field end_track integer End track index
+---@field end_column integer End column index within end_track
 
 ---Selection range in the current phrase
 ---@class PhraseSelection
----@field start_line number Start pattern line index
----@field start_column number Start column index within start_track
----@field end_line number End pattern line index
----@field end_column number End column index within end_track
+---@field start_line integer Start pattern line index
+---@field start_column integer Start column index within start_track
+---@field end_line integer End pattern line index
+---@field end_column integer End column index within end_track
 
 ---### constants
 
@@ -119,9 +119,9 @@ renoise.Song = {
 ---@field pattern_iterator renoise.PatternIterator
 ---
 ---**READ-ONLY** number of normal playback tracks (non-master or sends) in song.
----@field sequencer_track_count number
+---@field sequencer_track_count integer
 ----**READ-ONLY** number of send tracks in song.
----@field send_track_count number
+---@field send_track_count integer
 ---
 ---**READ-ONLY** Instrument, Pattern, and Track arrays
 ---@field instruments renoise.Instrument[]
@@ -134,51 +134,51 @@ renoise.Song = {
 ---**READ-ONLY** Selected in the instrument box. Never nil.
 ---@field selected_instrument renoise.Instrument|nil
 ---@field selected_instrument_observable renoise.Document.Observable
----@field selected_instrument_index number
+---@field selected_instrument_index integer
 ---@field selected_instrument_index_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** Currently selected phrase the instrument's phrase map piano
 ---view. Can be nil.
 ---@field selected_phrase renoise.InstrumentPhrase|nil
 ---@field selected_phrase_observable renoise.Document.Observable
----@field selected_phrase_index number
+---@field selected_phrase_index integer
 ---
 ---**READ-ONLY** Selected in the instrument's sample list. Only nil when no
 ---samples are present in the selected instrument.
 ---@field selected_sample renoise.Sample|nil
 ---@field selected_sample_observable renoise.Document.Observable
----@field selected_sample_index number
+---@field selected_sample_index integer
 ---
 ---**READ-ONLY** Selected in the instrument's modulation view. Can be nil.
 ---@field selected_sample_modulation_set renoise.SampleModulationSet|nil
 ---@field selected_sample_modulation_set_observable renoise.Document.Observable
----@field selected_sample_modulation_set_index number
+---@field selected_sample_modulation_set_index integer
 ---
 ---**READ-ONLY** Selected in the instrument's effects view. Can be nil.
 ---@field selected_sample_device_chain renoise.SampleDeviceChain|nil
 ---@field selected_sample_device_chain_observable renoise.Document.Observable
----@field selected_sample_device_chain_index number
+---@field selected_sample_device_chain_index integer
 ---
 ---**READ-ONLY** Selected in the sample effect mixer. Can be nil.
 ---@field selected_sample_device renoise.AudioDevice|nil
 ---@field selected_sample_device_observable renoise.Document.Observable
----@field selected_sample_device_index number
+---@field selected_sample_device_index integer
 ---
 ---**READ-ONLY** Selected in the pattern editor or mixer. Never nil.
 ---@field selected_track renoise.Track
 ---@field selected_track_observable renoise.Document.Observable
----@field selected_track_index number
+---@field selected_track_index integer
 ---@field selected_track_index_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** Selected in the track DSP chain editor. Can be nil.
 ---@field selected_track_device renoise.AudioDevice|nil
 ---@field selected_track_device_observable renoise.Document.Observable
----@field selected_track_device_index number
+---@field selected_track_device_index integer
 ---
 ---@deprecated **READ-ONLY** alias for new 'selected_track_device' property
 ---@field selected_device renoise.AudioDevice|nil
 ---@field selected_device_observable renoise.Document.Observable
----@field selected_device_index number
+---@field selected_device_index integer
 ---
 ---@deprecated **READ-ONLY** alias for new 'selected_automation_parameter' property
 ---@field selected_parameter renoise.DeviceParameter|nil
@@ -197,7 +197,7 @@ renoise.Song = {
 ---@field selected_pattern renoise.Pattern
 ---@field selected_pattern_observable renoise.Document.Observable
 ---**READ-ONLY** The currently edited pattern index.
----@field selected_pattern_index number
+---@field selected_pattern_index integer
 ---@field selected_pattern_index_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** The currently edited pattern track object. Never nil.
@@ -206,22 +206,22 @@ renoise.Song = {
 ---@field selected_pattern_track_observable renoise.Document.Observable
 ---
 ---The currently edited sequence position.
----@field selected_sequence_index number
+---@field selected_sequence_index integer
 ---@field selected_sequence_index_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** The currently edited line in the edited pattern.
 ---@field selected_line renoise.PatternLine
----@field selected_line_index number
+---@field selected_line_index integer
 ---
 ---**READ-ONLY** The currently edited column in the selected line in the edited
 ---sequence/pattern. Nil when an effect column is selected.
 ---@field selected_note_column renoise.NoteColumn|nil
----@field selected_note_column_index number
+---@field selected_note_column_index integer
 ---
 ---**READ-ONLY** The currently edited column in the selected line in the edited
 ---sequence/pattern. Nil when a note column is selected.
 ---@field selected_effect_column renoise.EffectColumn|nil
----@field selected_effect_column_index number
+---@field selected_effect_column_index integer
 ---
 ---**READ-ONLY** The currently edited sub column type within the selected
 ---note/effect column.

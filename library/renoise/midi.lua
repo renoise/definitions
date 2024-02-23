@@ -57,7 +57,7 @@ function renoise.Midi.devices_changed_observable() end
 
 ---### creation
 
----@alias MidiMessage number[]
+---@alias MidiMessage integer[]
 ---@alias MidiMessageFunction fun(message: MidiMessage)
 ---@alias MidiMessageMemberContext table|userdata
 ---@alias MidiMessageMemberFunction fun(self: MidiMessageMemberContext, message: MidiMessage)
@@ -139,5 +139,5 @@ renoise.Midi.MidiOutputDevice = {}
 ---to be an array of numbers. It must not be empty and can only contain
 ---numbers >= 0 and <= 0xFF (bytes). Sysex messages must be sent in one block,
 ---and must start with 0xF0, and end with 0xF7.
----@param message number[]
+---@param message integer[]
 function renoise.Midi.MidiOutputDevice:send(message) end

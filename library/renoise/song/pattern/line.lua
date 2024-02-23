@@ -172,11 +172,11 @@ renoise.EffectColumn = {}
 ---@field is_selected boolean
 ---
 ---0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2
----@field number_value number
----@field number_string string '00'-'ZZ'
+---@field number_value integer
+---@field number_string string Range: ('00' - 'ZZ')
 ---
----@field amount_value number 0-255
----@field amount_string string '00'-'FF'
+---@field amount_value integer Range: (0 - 255)
+---@field amount_string string Range: ('00' - 'FF')
 
 ---### functions
 
