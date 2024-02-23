@@ -358,8 +358,8 @@ function renoise.ScriptingTool:remove_file_import_hook(category, extensions_tabl
 ---Returns true when the given function or method was registered as a timer.
 ---@return boolean
 ---@param timer TimerFunction
----@overload fun(self, timer_method: TimerMethod1)
----@overload fun(self, timer_method: TimerMethod2)
+---@overload fun(self, timer: TimerMethod1)
+---@overload fun(self, timer: TimerMethod2)
 function renoise.ScriptingTool:has_timer(timer) end
 
 ---Register a timer function or table with a function and context (a method)
@@ -373,14 +373,14 @@ function renoise.ScriptingTool:has_timer(timer) end
 ---the rounding error will be around +/- 5 ms.
 ---@param timer TimerFunction
 ---@param interval_in_ms number
----@overload fun(self, timer_method: TimerMethod1, interval_in_ms: number)
----@overload fun(self, timer_method: TimerMethod2, interval_in_ms: number)
+---@overload fun(self, timer: TimerMethod1, interval_in_ms: number)
+---@overload fun(self, timer: TimerMethod2, interval_in_ms: number)
 function renoise.ScriptingTool:add_timer(timer, interval_in_ms) end
 
 --Remove a previously registered timer.
 ---@param timer TimerFunction
----@overload fun(self, timer_method: TimerMethod1)
----@overload fun(self, timer_method: TimerMethod2)
+---@overload fun(self, timer: TimerMethod1)
+---@overload fun(self, timer: TimerMethod2)
 function renoise.ScriptingTool:remove_timer(timer) end
 
 --------------------------------------------------------------------------------

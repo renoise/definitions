@@ -278,16 +278,16 @@ function renoise.Document.DocumentList:swap(pos1, pos2) end
 ---Checks if the given function, method was already registered as notifier.
 ---@param notifier ListNotifierFunction
 ---@returns boolean
----@overload fun(self, notifer: ListNotifierMethod1)
----@overload fun(self, notifer: ListNotifierMethod2)
+---@overload fun(self, notifier: ListNotifierMethod1)
+---@overload fun(self, notifier: ListNotifierMethod2)
 function renoise.Document.DocumentList:has_notifier(notifier) end
 
 ---Register a function or method as a notifier, which will be called as soon as
 ---the document lists layout changed. The passed notifier can either be a function
 ---or a table with a function and some context (an "object") -> method.
 ---@param notifier ListNotifierFunction
----@overload fun(self, notifer: ListNotifierMethod1)
----@overload fun(self, notifer: ListNotifierMethod2)
+---@overload fun(self, notifier: ListNotifierMethod1)
+---@overload fun(self, notifier: ListNotifierMethod2)
 function renoise.Document.DocumentList:add_notifier(notifier) end
 
 ---Unregister a previously registered list notifier. When only passing an object,
@@ -296,6 +296,6 @@ function renoise.Document.DocumentList:add_notifier(notifier) end
 ---Trying to unregister a function or method which wasn't registered, will resolve
 ---into an error.
 ---@param notifier ListNotifierFunction|ListNotifierMemberContext
----@overload fun(self, notifer: ListNotifierMethod1)
----@overload fun(self, notifer: ListNotifierMethod2)
+---@overload fun(self, notifier: ListNotifierMethod1)
+---@overload fun(self, notifier: ListNotifierMethod2)
 function renoise.Document.DocumentList:remove_notifier(notifier) end
