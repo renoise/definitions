@@ -313,18 +313,18 @@ function io.exists(filename) end
 
 ---return value for io.stat
 ---@class Stat
----@field dev number device number of filesystem
----@field ino number inode number
----@field mode number unix styled file permissions
+---@field dev integer device number of filesystem
+---@field ino integer inode number
+---@field mode integer unix styled file permissions
 ---@field type "file"|"directory"|"link"|"socket"|"named pipe"|"char device"|"block device"
----@field nlink number number of (hard) links to the file
----@field uid number numeric user ID of file's owner
----@field gid number numeric group ID of file's owner
----@field rdev number the device identifier (special files only)
----@field size number total size of file, in bytes
----@field atime number last access time in seconds since the epoch
----@field mtime number last modify time in seconds since the epoch
----@field ctime number inode change time (NOT creation time!) in seconds
+---@field nlink integer number of (hard) links to the file
+---@field uid integer numeric user ID of file's owner
+---@field gid integer numeric group ID of file's owner
+---@field rdev integer the device identifier (special files only)
+---@field size integer total size of file, in bytes
+---@field atime integer last access time in seconds since the epoch
+---@field mtime integer last modify time in seconds since the epoch
+---@field ctime integer inode change time (NOT creation time!) in seconds
 
 ---Returns a table with status info about the file, folder or link at the given
 ---path and name, else nil the error and the error code is returned.

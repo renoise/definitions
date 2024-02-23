@@ -100,9 +100,9 @@ renoise.Views.View = {}
 ---sizes, like for example `vb:text { width = "80%"}`. The percentage values are
 ---relative to the view's parent size and will automatically update on size
 ---changes.
----@field width number|string
+---@field width integer|string
 ---
----@field height number|string
+---@field height integer|string
 ---
 ---Get/set a tooltip text that should be shown for this view.
 ---@field tooltip string Default: "" (no tip will be shown)
@@ -159,11 +159,11 @@ renoise.Views.Rack = {}
 ---@class renoise.Views.Rack : renoise.Views.View
 ---
 ---Set the "borders" of the rack (left, right, top and bottom inclusively)
----@field margin number Default: 0 (no borders)
+---@field margin integer Default: 0 (no borders)
 ---
 ---Setup the amount stacked child views are separated by (horizontally in
 ---rows, vertically in columns).
----@field spacing number Default: 0 (no spacing)
+---@field spacing integer Default: 0 (no spacing)
 ---
 ---Setup a background style for the rack. Available styles are:
 ---@alias RackStyle
@@ -203,11 +203,11 @@ renoise.Views.Aligner = {}
 ---@class renoise.Views.Aligner : renoise.Views.View
 ---
 ---Setup "borders" for the aligner (left, right, top and bottom inclusively)
----@field margin number Default: 0 (no borders)
+---@field margin integer Default: 0 (no borders)
 ---
 ---Setup the amount child views are separated by (horizontally in rows,
 ---vertically in columns).
----@field spacing number Default: 0 (no spacing)
+---@field spacing integer Default: 0 (no spacing)
 ---
 ---@alias AlignerAlignment
 ---| "left"       # align from left to right (for horizontal_aligner only)

@@ -153,9 +153,9 @@ renoise.Document.ObservableString = {}
 --------------------------------------------------------------------------------
 ---## renoise.Document.ObservableList
 
----@alias ListElementAdded {type: "insert", index:number}
----@alias ListElementRemoved {type: "removed", index:number}
----@alias ListElementsSwapped {type: "swapped", index1:number, index2:number}
+---@alias ListElementAdded {type: "insert", index:integer}
+---@alias ListElementRemoved {type: "removed", index:integer}
+---@alias ListElementsSwapped {type: "swapped", index1:integer, index2:integer}
 ---@alias ListElementChange ListElementAdded|ListElementRemoved|ListElementsSwapped
 
 ---@alias ListNotifierFunction fun(change: ListElementChange)
@@ -196,7 +196,7 @@ renoise.Document.ObservableList = {}
 ---### functions
 
 ---Returns the number of entries of the list.
----@return number
+---@return integer
 function renoise.Document.ObservableList:size() end
 
 ---Checks if the given function, method was already registered as notifier.
@@ -243,7 +243,7 @@ function renoise.Document.ObservableBooleanList:property(index) end
 ---Find a value in the list by comparing the list values with the passed
 ---value. The first successful match is returned. When no match is found, nil
 ---is returned.
----@param start_pos number
+---@param start_pos integer
 ---@param value boolean
 ---@return integer|nil
 ---@overload fun(self, value: boolean):integer|nil
@@ -288,7 +288,7 @@ function renoise.Document.ObservableNumberList:property(index) end
 ---Find a value in the list by comparing the list values with the passed
 ---value. The first successful match is returned. When no match is found, nil
 ---is returned.
----@param start_pos number
+---@param start_pos integer
 ---@param value number
 ---@return integer|nil
 ---@overload fun(self, value: number):integer|nil
@@ -332,7 +332,7 @@ function renoise.Document.ObservableStringList:property(index) end
 ---Find a value in the list by comparing the list values with the passed
 ---value. The first successful match is returned. When no match is found, nil
 ---is returned.
----@param start_pos number
+---@param start_pos integer
 ---@param value number
 ---@return integer|nil
 ---@overload fun(self, value: number):integer|nil

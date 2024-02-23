@@ -39,20 +39,20 @@ renoise.InstrumentMidiOutputProperties = {
 ---@field device_name string
 ---@field device_name_observable renoise.Document.Observable
 ---
----@field channel number Range: (1 - 16)
+---@field channel integer Range: (1 - 16)
 ---@field channel_observable renoise.Document.Observable
 ---
----@field transpose number Range: (-120 - 120)
+---@field transpose integer Range: (-120 - 120)
 ---@field transpose_observable renoise.Document.Observable
 ---
----@field program number Range: (1 - 128) 0 = OFF
+---@field program integer Range: (1 - 128) 0 = OFF
 ---@field program_observable renoise.Document.Observable
 ---
----@field bank number Range: (1 - 65536) 0 = OFF
+---@field bank integer Range: (1 - 65536) 0 = OFF
 ---@field bank_observable renoise.Document.Observable
 ---
----@field delay number Range: (0 - 100)
+---@field delay integer Range: (0 - 100)
 ---@field delay_observable renoise.Document.Observable
 ---
----@field duration number Range: (1 - 8000) 8000 = INF
+---@field duration integer Range: (1 - 8000) 8000 = INF
 ---@field duration_observable renoise.Document.Observable
