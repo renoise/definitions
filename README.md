@@ -26,8 +26,6 @@ They are currently mentioned as @operator index, but won't be picked up by the l
 The old conversion script won't work anymore, but maybe can be used as a template, for inspirations: 
 https://github.com/renoise/xrnx/tree/master/Xtra/HtmlGen
 
-* ViewBuilder: add/remove_notifier function parameters are not yet annotated properly
-
 * ViewBuilder: functions to create views are not yet annotated properly 
 
 
