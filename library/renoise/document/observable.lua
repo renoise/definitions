@@ -38,22 +38,39 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@class renoise.Document.Observable
 renoise.Document.Observable = {}
 
---------------------------------------------------------------------------------
----## renoise.Document.Observable
-
----### functions
-
 ---@alias NotifierFunction fun()
 ---@alias NotifierMemberContext table|userdata
 ---@alias NotifierMemberFunction fun(self: NotifierMemberContext)
 ---@alias NotifierMethod1 {[1]:NotifierMemberContext, [2]:NotifierMemberFunction}
 ---@alias NotifierMethod2 {[1]:NotifierMemberFunction, [2]:NotifierMemberContext}
 
+---@alias BooleanValueNotifierFunction fun(value: boolean)
+---@alias BooleanValueNotifierMemberFunction fun(self: NotifierMemberContext, value: boolean)
+---@alias BooleanValueNotifierMethod1 {[1]:NotifierMemberContext, [2]:BooleanValueNotifierMemberFunction}
+---@alias BooleanValueNotifierMethod2 {[1]:BooleanValueNotifierMemberFunction, [2]:NotifierMemberContext}
+
+---@alias IntegerValueNotifierFunction fun(value: integer)
+---@alias IntegerValueNotifierMemberFunction fun(self: NotifierMemberContext, value: integer)
+---@alias IntegerValueNotifierMethod1 {[1]:NotifierMemberContext, [2]:IntegerValueNotifierMemberFunction}
+---@alias IntegerValueNotifierMethod2 {[1]:IntegerValueNotifierMemberFunction, [2]:NotifierMemberContext}
+
+---@alias NumberValueNotifierFunction fun(value: number)
+---@alias NumberValueNotifierMemberFunction fun(self: NotifierMemberContext, value: number)
+---@alias NumberValueNotifierMethod1 {[1]:NotifierMemberContext, [2]:NumberValueNotifierMemberFunction}
+---@alias NumberValueNotifierMethod2 {[1]:NumberValueNotifierMemberFunction, [2]:NotifierMemberContext}
+
+---@alias StringValueNotifierFunction fun(value: string)
+---@alias StringValueNotifierMemberFunction fun(self: NotifierMemberContext, value: string)
+---@alias StringValueNotifierMethod1 {[1]:NotifierMemberContext, [2]:StringValueNotifierMemberFunction}
+---@alias StringValueNotifierMethod2 {[1]:StringValueNotifierMemberFunction, [2]:NotifierMemberContext}
+
+---### functions
+
 ---Checks if the given function, method was already registered as notifier.
 ---@return boolean
 ---@param notifier NotifierFunction
----@overload fun(self, notifer_method: NotifierMethod1)
----@overload fun(self, notifer_method: NotifierMethod2)
+---@overload fun(self, notifer: NotifierMethod1)
+---@overload fun(self, notifer: NotifierMethod2)
 function renoise.Document.Observable:has_notifier(notifier) end
 
 ---Register a function or method as a notifier, which will be called as soon as
@@ -75,8 +92,8 @@ function renoise.Document.Observable:has_notifier(notifier) end
 ---})
 ---```
 ---@param notifier NotifierFunction
----@overload fun(self, notifer_method: NotifierMethod1)
----@overload fun(self, notifer_method: NotifierMethod2)
+---@overload fun(self, notifer: NotifierMethod1)
+---@overload fun(self, notifer: NotifierMethod2)
 function renoise.Document.Observable:add_notifier(notifier) end
 
 ---Unregister a previously registered notifier. When only passing an object,
@@ -85,8 +102,8 @@ function renoise.Document.Observable:add_notifier(notifier) end
 ---Trying to unregister a function or method which wasn't registered, will resolve
 ---into an error.
 ---@param notifier NotifierFunction|NotifierMemberContext
----@overload fun(self, notifer_method: NotifierMethod1)
----@overload fun(self, notifer_method: NotifierMethod2)
+---@overload fun(self, notifer: NotifierMethod1)
+---@overload fun(self, notifer: NotifierMethod2)
 function renoise.Document.Observable:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -202,16 +219,16 @@ function renoise.Document.ObservableList:size() end
 ---Checks if the given function, method was already registered as notifier.
 ---@param notifier ListNotifierFunction
 ---@returns boolean
----@overload fun(self, notifer_method: ListNotifierMethod1)
----@overload fun(self, notifer_method: ListNotifierMethod2)
+---@overload fun(self, notifer: ListNotifierMethod1)
+---@overload fun(self, notifer: ListNotifierMethod2)
 function renoise.Document.ObservableList:has_notifier(notifier) end
 
 ---Register a function or method as a notifier, which will be called as soon as
 ---the observable lists layout changed. The passed notifier can either be a function
 ---or a table with a function and some context (an "object") -> method.
 ---@param notifier ListNotifierFunction
----@overload fun(self, notifer_method: ListNotifierMethod1)
----@overload fun(self, notifer_method: ListNotifierMethod2)
+---@overload fun(self, notifer: ListNotifierMethod1)
+---@overload fun(self, notifer: ListNotifierMethod2)
 function renoise.Document.ObservableList:add_notifier(notifier) end
 
 ---Unregister a previously registered list notifier. When only passing an object,
@@ -220,8 +237,8 @@ function renoise.Document.ObservableList:add_notifier(notifier) end
 ---Trying to unregister a function or method which wasn't registered, will resolve
 ---into an error.
 ---@param notifier ListNotifierFunction|ListNotifierMemberContext
----@overload fun(self, notifer_method: ListNotifierMethod1)
----@overload fun(self, notifer_method: ListNotifierMethod2)
+---@overload fun(self, notifer: ListNotifierMethod1)
+---@overload fun(self, notifer: ListNotifierMethod2)
 function renoise.Document.ObservableList:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------

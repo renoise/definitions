@@ -183,6 +183,13 @@ renoise.Views.Rack = {}
 ---as a child view size changes or new children are added.
 ---@field uniform boolean Default: false
 
+---### functions
+
+---Used to manually fit contents. No longer needed. Does nothing.
+---@deprecated
+function renoise.Views.Rack:resize() end
+
+
 --------------------------------------------------------------------------------
 ---## renoise.Views.Aligner
 
@@ -305,7 +312,7 @@ renoise.Views.MultiLineText = {}
 ---
 ---Get/set an array (table) of text lines, instead of specifying a single text
 ---line with newline characters like "text" does.
----@field paragraphs string Default: ""
+---@field paragraphs string[] Default: []
 ---
 ---@field font FontStyle
 ---
@@ -367,10 +374,10 @@ renoise.Views.TextField = {}
 ---will focus the text field or remove the focus (focus the dialog) accordingly.
 ---@field edit_mode boolean Default: false
 ---
----Valid in the construction table only: Set up a notifier for text changes.
+---**WRITE-ONLY** Valid in the construction table only: Set up a notifier for text changes.
 ---@see renoise.Views.TextField.add_notifier
 ---@see renoise.Views.TextField.remove_notifier
----@field notifier function
+---@field notifier StringValueNotifierFunction|StringValueNotifierMethod1|StringValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableString object. Will change the Observable
@@ -383,11 +390,15 @@ renoise.Views.TextField = {}
 ---### functions
 
 ---Add value change (text change) notifier
----@param notifier fun(text : string)
+---@param notifier StringValueNotifierFunction
+---@overload fun(self, notifer: StringValueNotifierMethod1)
+---@overload fun(self, notifer: StringValueNotifierMethod2)
 function renoise.Views.TextField:add_notifier(notifier) end
 
 ---Remove value change (text change) notifier
----@param notifier fun(text : string)
+---@param notifier StringValueNotifierFunction
+---@overload fun(self, notifer: StringValueNotifierMethod1)
+---@overload fun(self, notifer: StringValueNotifierMethod2)
 function renoise.Views.TextField:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -423,16 +434,16 @@ renoise.Views.MultiLineTextField = {}
 ---
 ---Get/set a list/table of text lines instead of specifying the newlines as
 ---characters.
----@field paragraphs string Default: ""
+---@field paragraphs string[] Default: []
 ---
 ---@field font FontStyle  Default: "normal"
 ---
 ---@field style TextBackgroundStyle  Default: "border"
 ---
----Valid in the construction table only: Set up a notifier for text changes.
+---**WRITE-ONLY** Valid in the construction table only: Set up a notifier for text changes.
 ---@see renoise.Views.MutlilineTextField.add_notifier
 ---@see renoise.Views.MutlilineTextField.remove_notifier
----@field notifier function
+---@field notifier StringValueNotifierFunction|StringValueNotifierMethod1|StringValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableStringList object. Will change the Observable
@@ -449,11 +460,15 @@ renoise.Views.MultiLineTextField = {}
 ---### functions
 
 ---Add value change (text change) notifier
----@param notifier fun(text : string)
+---@param notifier StringValueNotifierFunction
+---@overload fun(self, notifer: StringValueNotifierMethod1)
+---@overload fun(self, notifer: StringValueNotifierMethod2)
 function renoise.Views.MultiLineTextField:add_notifier(notifier) end
 
 ---Remove value change (text change) notifier
----@param notifier fun(text : string)
+---@param notifier StringValueNotifierFunction
+---@overload fun(self, notifer: StringValueNotifierMethod1)
+---@overload fun(self, notifer: StringValueNotifierMethod2)
 function renoise.Views.MultiLineTextField:remove_notifier(notifier) end
 
 ---When a scroll bar is visible, scroll the text to show the last line.
@@ -516,19 +531,22 @@ renoise.Views.Bitmap = {}
 ---Supported bitmap file formats are *.bmp, *.png or *.tif (no transparency).
 ---@field bitmap string
 ---
----Valid in the construction table only: Set up a click notifier. See
----add_notifier/remove_notifier above.
----@field notifier function
+---**WRITE-ONLY** Valid in the construction table only: Set up a click notifier.
+---@field notifier NotifierFunction|NotifierMethod1|NotifierMethod2
 ---
 
 ---### functions
 
 ---Add mouse click notifier
----@param notifier function
+---@param notifier NotifierFunction
+---@overload fun(self, notifer: NotifierMethod1)
+---@overload fun(self, notifer: NotifierMethod2)
 function renoise.Views.Bitmap:add_notifier(notifier) end
 
 ---Remove mouse click notifier
----@param notifier function
+---@param notifier NotifierFunction
+---@overload fun(self, notifer: NotifierMethod1)
+---@overload fun(self, notifer: NotifierMethod2)
 function renoise.Views.Bitmap:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -571,13 +589,13 @@ renoise.Views.Button = {}
 ---Set color {0,0,0} to enable the theme colors for the button again.
 ---@field color RGBColor Range: (0 - 255)
 ---
----Valid in the construction table only: set up a click notifier.
----@field pressed function
----Valid in the construction table only: set up a click release notifier.
----@field released function
+---**WRITE-ONLY** Valid in the construction table only: set up a click notifier.
+---@field pressed NotifierFunction|NotifierMethod1|NotifierMethod2
+---**WRITE-ONLY** Valid in the construction table only: set up a click release notifier.
+---@field released NotifierFunction|NotifierMethod1|NotifierMethod2
 ---
----synonymous for 'released'.
----@field notifier function
+---**WRITE-ONLY** synonymous for 'released'.
+---@field notifier NotifierFunction|NotifierMethod1|NotifierMethod2
 
 ---### functions
 
@@ -586,16 +604,24 @@ renoise.Views.Button = {}
 ---called as soon as the mouse is released, either over your button or anywhere
 ---else. When a "release" notifier is set, it is only called when the mouse
 ---button is pressed !and! released over your button.
----@param notifier function
+---@param notifier NotifierFunction
+---@overload fun(self, notifer: NotifierMethod1)
+---@overload fun(self, notifer: NotifierMethod2)
 function renoise.Views.Button:add_pressed_notifier(notifier) end
 
----@param notifier function
+---@param notifier NotifierFunction
+---@overload fun(self, notifer: NotifierMethod1)
+---@overload fun(self, notifer: NotifierMethod2)
 function renoise.Views.Button:add_released_notifier(notifier) end
 
----@param notifier function
+---@param notifier NotifierFunction
+---@overload fun(self, notifer: NotifierMethod1)
+---@overload fun(self, notifer: NotifierMethod2)
 function renoise.Views.Button:remove_pressed_notifier(notifier) end
 
----@param notifier function
+---@param notifier NotifierFunction
+---@overload fun(self, notifer: NotifierMethod1)
+---@overload fun(self, notifer: NotifierMethod2)
 function renoise.Views.Button:remove_released_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -619,8 +645,8 @@ renoise.Views.CheckBox = {}
 ---The current state of the checkbox, expressed as boolean.
 ---@field value boolean Default: false
 ---
----Valid in the construction table only: Set up a value notifier.
----@field notifier fun(value : boolean)
+---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
+---@field notifier BooleanValueNotifierFunction|BooleanValueNotifierMethod1|BooleanValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableBoolean object. Will change the Observable
@@ -633,11 +659,15 @@ renoise.Views.CheckBox = {}
 ---### functions
 
 ---Add value change notifier
----@param notifier fun(enabled : boolean)
+---@param notifier IntegerValueNotifierFunction
+---@overload fun(self, notifer: IntegerValueNotifierMethod1)
+---@overload fun(self, notifer: IntegerValueNotifierMethod2)
 function renoise.Views.CheckBox:add_notifier(notifier) end
 
 ---Remove value change notifier
----@param notifier fun(enabled : boolean)
+---@param notifier IntegerValueNotifierFunction
+---@overload fun(self, notifer: IntegerValueNotifierMethod1)
+---@overload fun(self, notifer: IntegerValueNotifierMethod2)
 function renoise.Views.CheckBox:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -664,8 +694,8 @@ renoise.Views.Switch = {}
 ---Get/set the currently pressed button index.
 ---@field value integer
 ---
----Valid in the construction table only: Set up a value notifier.
----@field notifier fun(index : integer)
+---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
+---@field notifier IntegerValueNotifierFunction|IntegerValueNotifierMethod1|IntegerValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableNumber object. Will change the Observable
@@ -678,11 +708,15 @@ renoise.Views.Switch = {}
 ---### functions
 
 ---Add index change notifier
----@param notifier fun(index: integer)
+---@param notifier IntegerValueNotifierFunction
+---@overload fun(self, notifer: IntegerValueNotifierMethod1)
+---@overload fun(self, notifer: IntegerValueNotifierMethod2)
 function renoise.Views.Switch:add_notifier(notifier) end
 
 ---Remove index change notifier
----@param notifier fun(index: integer)
+---@param notifier IntegerValueNotifierFunction
+---@overload fun(self, notifer: IntegerValueNotifierMethod1)
+---@overload fun(self, notifer: IntegerValueNotifierMethod2)
 function renoise.Views.Switch:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -710,8 +744,8 @@ renoise.Views.Popup = {}
 ---Get/set the currently selected item index.
 ---@field value integer
 ---
----Valid in the construction table only: Set up a value notifier.
----@field notifier fun(index: integer)
+---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
+---@field notifier IntegerValueNotifierFunction|IntegerValueNotifierMethod1|IntegerValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableNumber object. Will change the Observable
@@ -724,11 +758,15 @@ renoise.Views.Popup = {}
 ---### functions
 
 ---Add index change notifier
----@param notifier fun(index : integer)
+---@param notifier IntegerValueNotifierFunction
+---@overload fun(self, notifer: IntegerValueNotifierMethod1)
+---@overload fun(self, notifer: IntegerValueNotifierMethod2)
 function renoise.Views.Popup:add_notifier(notifier) end
 
 ---Remove index change notifier
----@param notifier fun(index : integer)
+---@param notifier IntegerValueNotifierFunction
+---@overload fun(self, notifer: IntegerValueNotifierMethod1)
+---@overload fun(self, notifer: IntegerValueNotifierMethod2)
 function renoise.Views.Popup:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -755,8 +793,8 @@ renoise.Views.Chooser = {}
 ---Get/set the currently selected items index.
 ---@field value integer
 ---
----Valid in the construction table only: Set up a value notifier.
----@field notifier fun(index : integer)
+---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
+---@field notifier IntegerValueNotifierFunction|IntegerValueNotifierMethod1|IntegerValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableNumber object. Will change the Observable
@@ -769,11 +807,15 @@ renoise.Views.Chooser = {}
 ---### functions
 
 ---Add index change notifier
----@param notifier fun(index : integer)
+---@param notifier IntegerValueNotifierFunction
+---@overload fun(self, notifer: IntegerValueNotifierMethod1)
+---@overload fun(self, notifer: IntegerValueNotifierMethod2)
 function renoise.Views.Chooser:add_notifier(notifier) end
 
 ---Remove index change notifier
----@param notifier fun(index : integer)
+---@param notifier IntegerValueNotifierFunction
+---@overload fun(self, notifer: IntegerValueNotifierMethod1)
+---@overload fun(self, notifer: IntegerValueNotifierMethod2)
 function renoise.Views.Chooser:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -825,8 +867,8 @@ renoise.Views.ValueBox = {}
 ---
 ---@field tonumber fun(value : string) : number?
 ---
----Valid in the construction table only: Set up a value notifier.
----@field notifier fun(value : number)
+---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
+---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableNumber object. Will change the Observable
@@ -839,11 +881,15 @@ renoise.Views.ValueBox = {}
 ---### functions
 
 ---Add value change notifier
----@param notifier fun(value : number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.ValueBox:add_notifier(notifier) end
 
 ---Remove value change notifier
----@param notifier fun(value : number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.ValueBox:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -881,10 +927,10 @@ renoise.Views.Value = {}
 ---a flood of error messages.
 ---@field tostring fun(input : number) : string?
 ---
----Valid in the construction table only: Set up a value notifier.
----@field notifier fun(input : number)
+---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
+---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
 ---
----Valid in the construction table only: Bind the views value to a
+---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableNumber object. Will change the Observable
 ---value as soon as the views value changes, and change the view's value as
 ---soon as the Observable's value changes - automatically keeps both values
@@ -895,11 +941,15 @@ renoise.Views.Value = {}
 ---### functions
 
 ---Add value change notifier
----@param notifier fun(value : number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.Value:add_notifier(notifier) end
 
 ---Remove value change notifier
----@param notifier fun(value : number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.Value:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -950,8 +1000,8 @@ renoise.Views.ValueField = {}
 ---
 ---@field tonumber fun(input : string) : number?
 ---
----Valid in the construction table only: Set up a value notifier function.
----@field notifier fun(input : number)
+---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
+---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableNumber object. Will change the Observable
@@ -964,11 +1014,15 @@ renoise.Views.ValueField = {}
 ---### functions
 
 ---Add value change notifier
----@param notifier fun(value : number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.ValueField:add_notifier(notifier) end
 
 ---Remove value change notifier
----@param notifier fun(value : number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.ValueField:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -1007,8 +1061,8 @@ renoise.Views.Slider = {}
 ---Get/set the current value.
 ---@field value number
 ---
----Valid in the construction table only: Set up a value notifier function.
----@field notifier fun(input : number)
+---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
+---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableNumber object. Will change the Observable
@@ -1021,11 +1075,15 @@ renoise.Views.Slider = {}
 ---### functions
 
 ---Add value change notifier
----@param notifier fun(value : number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.Slider:add_notifier(notifier) end
 
 ---Remove value change notifier
----@param notifier fun(value : number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.Slider:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -1057,8 +1115,8 @@ renoise.Views.MiniSlider = {}
 ---Get/set the current value.
 ---@field value number
 ---
----Valid in the construction table only: Set up a value notifier.
----@field notifier fun(input : number)
+---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
+---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableNumber object. Will change the Observable
@@ -1071,11 +1129,15 @@ renoise.Views.MiniSlider = {}
 ---### functions
 
 ---Add value change notifier
----@param notifier fun(value: number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.MiniSlider:add_notifier(notifier) end
 
 ---Remove value change notifier
----@param notifier fun(value: number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.MiniSlider:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -1112,8 +1174,8 @@ renoise.Views.RotaryEncoder = {}
 ---Get/set the current value.
 ---@field value number
 ---
----Valid in the construction table only: Set up a value notifier function.
----@field notifier fun(input : number)
+---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
+---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a
 ---renoise.Document.ObservableNumber object. Will change the Observable
@@ -1126,11 +1188,15 @@ renoise.Views.RotaryEncoder = {}
 ---### functions
 
 ---Add value change notifier
----@param notifier fun(value : number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.RotaryEncoder:add_notifier(notifier) end
 
 ---Remove value change notifier
----@param notifier fun(value : number)
+---@param notifier NumberValueNotifierFunction
+---@overload fun(self, notifer: NumberValueNotifierMethod1)
+---@overload fun(self, notifer: NumberValueNotifierMethod2)
 function renoise.Views.RotaryEncoder:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
@@ -1177,10 +1243,10 @@ renoise.Views.XYPad = {}
 ---When snapback is enabled, the pad will revert its values to the specified
 ---snapback values as soon as the mouse button is released in the pad. When
 ---disabled, releasing the mouse button will not change the value.
----@field snapback XYPadValues?
+---@field snapback XYPadValues|nil
 ---
----Valid in the construction table only: Set up a value notifier function.
----@field notifier fun( input : XYPadValues)
+---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier function.
+---@field notifier XYValueNotifierFunction|XYValueNotifierMethod1|XYValueNotifierMethod2
 ---
 ---Valid in the construction table only: Bind the view's value to a pair of
 ---renoise.Document.ObservableNumber objects. Will change the Observable
@@ -1191,16 +1257,25 @@ renoise.Views.XYPad = {}
 ---Just like in the other XYPad properties, a table with the fields X and Y
 ---is expected here and not a single value. So you have to bind two
 ---ObservableNumber object to the pad.
----@field bind { x : renoise.Document.ObservableNumber, y : renoise.Document.ObservableNumber }?
+---@field bind { x: renoise.Document.ObservableNumber, y: renoise.Document.ObservableNumber }?
+
+---@alias XYValueNotifierFunction fun(value: XYPadValues)
+---@alias XYValueNotifierMemberFunction fun(self: NotifierMemberContext, value: XYPadValues)
+---@alias XYValueNotifierMethod1 {[1]:NotifierMemberContext, [2]:XYValueNotifierMemberFunction}
+---@alias XYValueNotifierMethod2 {[1]:XYValueNotifierMemberFunction, [2]:NotifierMemberContext}
 
 ---### functions
 
 ---Add value change notifier
----@param notifier fun(values : XYPadValues)
+---@param notifier XYValueNotifierFunction
+---@overload fun(self, notifer: XYValueNotifierMethod1)
+---@overload fun(self, notifer: XYValueNotifierMethod2)
 function renoise.Views.XYPad:add_notifier(notifier) end
 
 ---Remove value change notifier
----@param notifier fun(values : XYPadValues)
+---@param notifier XYValueNotifierFunction
+---@overload fun(self, notifer: XYValueNotifierMethod1)
+---@overload fun(self, notifer: XYValueNotifierMethod2)
 function renoise.Views.XYPad:remove_notifier(notifier) end
 
 --------------------------------------------------------------------------------
