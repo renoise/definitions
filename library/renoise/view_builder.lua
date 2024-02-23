@@ -1356,118 +1356,240 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---```
 ---@field views table<string, renoise.Views.View>
 
+---### Construction table types
+
+--- base for all View construction properties
+---@class ViewProperties
+---@field id string?
+---@field width (integer|string)?
+---@field height (integer|string)?
+---@field visibe boolean?
+---@field tooltip string?
+
+-- base for Rack, Aligner
+---@class ContainerProperties : ViewProperties
+---@field margin (integer|string)?
+---@field spacing (integer|string)?
+
+---used for Rack
+---@class RackProperties : ContainerProperties
+---@field style RackStyle?
+---@field uniform boolean?
+
+--- used for Aligner
+---@class AlignerProperties : RackProperties
+---@field mode AlignerMode?
+
+
+--- used for Text
+---@class TextProperties : ViewProperties
+---@field text string?
+---@field style TextStyle?
+---@field font FontStyle?
+---@field align TextAlignment?
+
+--- used for MultiLineText
+---@class MultiLineTextProperties : ViewProperties
+---@field text string?
+---@field paragraphs string[]?
+---@field style TextBackgroundStyle?
+
+
+--- base for TextField, MultiLineTextField
+---@class StringValueProperties : ViewProperties
+---@field bind renoise.Document.ObservableString?
+---@field notifier function?
+---@field active boolean?
+---@field value string?
+---@field text string?
+---@field edit_mode boolean?
+
+--- used for TextField
+---@class TextFieldProperties : StringValueProperties
+---@field align TextAlignment?
+
+--- used for MultiLineTextField
+---@class MultiLineTextFieldProperties : StringValueProperties
+---@field paragraphs string[]?
+---@field style TextBackgroundStyle?
+---@field font FontStyle?
+
+
+--- base for all controllable views
+--- Button, Bitmap, Switch, Popup, Chooser,
+--- Valuefield, ValueBox, Slider, MiniSlider, RotaryEncoder, XYPad
+---@class ControlProperties : ViewProperties
+---@field active boolean?
+---@field midi_mapping string?
+
+
+--- used for Switch, Popup, Chooser
+---@class IntegerValueProperties : ControlProperties
+---@field bind renoise.Document.ObservableNumber?
+---@field notifier IntegerValueNotifierFunction?
+---@field items string[]?
+---@field value integer?
+
+
+--- used for Button
+---@class ButtonProperties : ControlProperties
+---@field text string?
+---@field bitmap string?
+---@field color RGBColor?
+---@field notifier NotifierFunction?
+---@field pressed NotifierFunction?
+---@field released NotifierFunction?
+
+
+--- used for Bitmap
+---@class BitmapProperties : ControlProperties
+---@field mode BitmapMode?
+---@field bitmap string?
+---@field notifier NotifierFunction?
+
+
+--- used for CheckBox
+---@class CheckBoxProperties : ControlProperties
+---@field bind renoise.Document.ObservableBoolean?
+---@field notifier BooleanValueNotifierFunction?
+---@field value boolean?
+
+
+--- base for ValueBox, ValueField
+---@class TypedValueProperties : NumberValueProperties
+---@field tostring ShowNumberAsString?
+---@field tonumber ParseStringAsNumber?
+
+--- used for ValueBox
+---@class ValueBoxProperties : TypedValueProperties
+---@field steps number?
+
+--- used for ValueField
+---@class ValueFieldProperties : TypedValueProperties
+---@field align TextAlignment?
+
+
+--- base for Valuefield, ValueBox, Slider, MiniSlider, RotaryEncoder
+---@class NumberValueProperties : ControlProperties
+---@field bind renoise.Document.ObservableNumber?
+---@field notifier NumberValueNotifierFunction?
+---@field min number?
+---@field max number?
+---@field value number?
+
+--- used for MiniSlider, RotaryEncoder, base for Slider
+---@class DraggedValueProperties : NumberValueProperties
+---@field default number?
+
+--- used for Slider
+---@class SliderProperties : DraggedValueProperties
+---@field steps number?
+
+
+--- used for XYPad
+---@class XYPadProperties : ControlProperties
+---@field bind { x: renoise.Document.ObservableNumber, y: renoise.Document.ObservableNumber }?
+---@field notifier XYValueNotifierFunction?
+---@field snapback XYPadValues?
+---@field min XYPadValues?
+---@field max XYPadValues?
+
+
 ---### functions
 
 ---Construct a new viewbuilder instance.
 ---@return renoise.ViewBuilder
 function renoise.ViewBuilder() end
 
----{ Rack Properties and/or child views }
----@param properties renoise.Views.Rack?
+--TODO note possible child views
+---@param properties RackProperties?
 ---@return renoise.Views.Rack rack
 function renoise.ViewBuilder:column(properties) end
 
----{ Rack Properties and/or child views }
----@param properties renoise.Views.Rack?
+--TODO note possible child views
+---@param properties RackProperties?
 ---@return renoise.Views.Rack rack
 function renoise.ViewBuilder:row(properties) end
 
----{ Aligner Properties and/or child views }
----@param properties renoise.Views.Aligner?
+--TODO note possible child views
+---@param properties AlignerProperties?
 ---@return renoise.Views.Aligner aligner
 function renoise.ViewBuilder:horizontal_aligner(properties) end
 
----{ Aligner Properties and/or child views }
----@param properties renoise.Views.Aligner?
+--TODO note possible child views
+---@param properties AlignerProperties?
 ---@return renoise.Views.Aligner aligner
 function renoise.ViewBuilder:vertical_aligner(properties) end
 
----{ View Properties and/or child views }
----@param properties renoise.Views.View?
+--TODO note possible child views
+---@param properties ViewProperties?
 ---@return renoise.Views.View view
 function renoise.ViewBuilder:space(properties) end
 
----{ Text Properties }
----@param properties renoise.Views.Text?
+---@param properties TextProperties?
 ---@return renoise.Views.Text text
 function renoise.ViewBuilder:text(properties) end
 
----{ MultiLineText Properties }
----@param properties renoise.Views.MultiLineText?
+---@param properties MultiLineTextProperties?
 ---@return renoise.Views.MultiLineText multilinetext
 function renoise.ViewBuilder:multiline_text(properties) end
 
----{ TextField Properties }
----@param properties renoise.Views.TextField?
+---@param properties TextFieldProperties?
 ---@return renoise.Views.TextField textfield
 function renoise.ViewBuilder:textfield(properties) end
 
----{ MultiLineText Properties }
----@param properties renoise.Views.MultiLineTextField?
+---@param properties MultiLineTextFieldProperties?
 ---@return renoise.Views.MultiLineTextField multilinetextfield
 function renoise.ViewBuilder:multiline_textfield(properties) end
 
----{ Bitmap Properties }
----@param properties renoise.Views.Bitmap?
+---@param properties BitmapProperties?
 ---@return renoise.Views.Bitmap bitmap
 function renoise.ViewBuilder:bitmap(properties) end
 
----{ Button Properties }
----@param properties renoise.Views.Button?
+---@param properties ButtonProperties?
 ---@return renoise.Views.Button button
 function renoise.ViewBuilder:button(properties) end
 
----{ Rack Properties }
----@param properties renoise.Views.CheckBox?
+---@param properties CheckBoxProperties?
 ---@return renoise.Views.CheckBox checkbox
 function renoise.ViewBuilder:checkbox(properties) end
 
----{ Switch Properties }
----@param properties renoise.Views.Switch?
+---@param properties IntegerValueProperties?
 ---@return renoise.Views.Switch switch
 function renoise.ViewBuilder:switch(properties) end
 
----{ Popup Properties }
----@param properties renoise.Views.Popup?
+---@param properties IntegerValueProperties?
 ---@return renoise.Views.Popup popup
 function renoise.ViewBuilder:popup(properties) end
 
----{ Chooser Properties }
----@param properties renoise.Views.Chooser?
+---@param properties IntegerValueProperties?
 ---@return renoise.Views.Chooser chooser
 function renoise.ViewBuilder:chooser(properties) end
 
----{ ValueBox Properties }
----@param properties renoise.Views.ValueBox?
+---@param properties ValueBoxProperties?
 ---@return renoise.Views.ValueBox valuebox
 function renoise.ViewBuilder:valuebox(properties) end
 
----{ Value Properties }
----@param properties renoise.Views.Value?
+---@param properties NumberValueProperties?
 ---@return renoise.Views.Value value
 function renoise.ViewBuilder:value(properties) end
 
----{ ValueField Properties }
----@param properties renoise.Views.ValueField?
+---@param properties ValueFieldProperties?
 ---@return renoise.Views.ValueField valuefield
 function renoise.ViewBuilder:valuefield(properties) end
 
----{ Slider Properties }
----@param properties renoise.Views.Slider?
+---@param properties SliderProperties?
 ---@return renoise.Views.Slider slider
 function renoise.ViewBuilder:slider(properties) end
 
----{ MiniSlider Properties }
----@param properties renoise.Views.MiniSlider?
+---@param properties DraggedValueProperties?
 ---@return renoise.Views.MiniSlider minislider
 function renoise.ViewBuilder:minislider(properties) end
 
----{ RotaryEncoder Properties }
----@param properties renoise.Views.RotaryEncoder?
+---@param properties DraggedValueProperties?
 ---@return renoise.Views.RotaryEncoder rotaryencoder
 function renoise.ViewBuilder:rotary(properties) end
 
----{ XYPad Properties }
----@param properties renoise.Views.XYPad?
+---@param properties XYPadProperties?
 ---@return renoise.Views.XYPad xypad
 function renoise.ViewBuilder:xypad(properties) end
