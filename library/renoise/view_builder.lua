@@ -683,6 +683,10 @@ function renoise.Views.CheckBox:remove_notifier(notifier) end
 --------------------------------------------------------------------------------
 ---## renoise.Views.Switch
 
+---A list of buttons labels to show in order
+---must have more than one item
+---@alias ItemLabels string[]
+
 ---The currently selected item's index
 ---@alias SelectedItem integer
 
@@ -701,9 +705,7 @@ renoise.Views.Switch = {}
 ---```
 ---@class renoise.Views.Switch : renoise.Views.Control
 ---
----Get/set the currently shown button labels.
----@field items string[] size must be >= 2
----
+---@field items ItemLabels
 ---@field value SelectedItem
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
@@ -734,6 +736,10 @@ function renoise.Views.Switch:remove_notifier(notifier) end
 --------------------------------------------------------------------------------
 ---## renoise.Views.Popup
 
+---A list of buttons labels to show in order
+---The list can be empty, then "None" is displayed and the value won't change.
+---@alias PopupItemLabels string[]
+
 ---@class renoise.Views.Popup
 renoise.Views.Popup = {}
 
@@ -749,10 +755,7 @@ renoise.Views.Popup = {}
 ---```
 ---@class renoise.Views.Popup : renoise.Views.Control
 ---
----Get/set the currently shown items. Item list can be empty, then "None" is
----displayed and the value won't change.
----@field items string[]
----
+---@field items PopupItemLabels
 ---@field value SelectedItem
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
@@ -798,9 +801,7 @@ renoise.Views.Chooser = {}
 ---```
 ---@class renoise.Views.Chooser : renoise.Views.Control
 ---
----Get/set the currently shown items. Item list size must be >= 2.
----@field items string[]
----
+---@field items ItemLabels
 ---@field value SelectedItem
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
@@ -842,6 +843,12 @@ function renoise.Views.Chooser:remove_notifier(notifier) end
 ---a flood of error messages.
 ---@alias ParseStringAsNumber fun(value : string) : number?
 
+---@alias MinValue number
+---@alias MaxValue number
+---@alias DefaultValue number
+---@alias NumberValue number
+---@alias StepAmounts {[1] : number, [2] : number}
+
 --------------------------------------------------------------------------------
 ---## renoise.Views.ValueBox
 
@@ -860,22 +867,11 @@ renoise.Views.ValueBox = {}
 ---```
 ---@class renoise.Views.ValueBox : renoise.Views.Control
 ---
----Get/set the min value that is expected, allowed.
----@field min number Default: 0
----
----Get/set the max value that is expected, allowed.
----@field max number Default: 100
----
----Get/set inc/dec step amounts when clicking the <> buttons.
----First value is the small step (applied on left clicks), second value is the
----big step (applied on right clicks)
----@field steps number[] <small step, big step>
----
----Get/set the current value
----@field value number
----
+---@field min MinValue
+---@field max MaxValue Default: 100
+---@field steps StepAmounts
+---@field value NumberValue
 ---@field tostring ShowNumberAsString
----
 ---@field tonumber ParseStringAsNumber
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
@@ -922,13 +918,9 @@ renoise.Views.Value = {}
 ---```
 ---@class renoise.Views.Value : renoise.Views.View
 ---
----Get/set the current value.
----@field value number
----
+---@field value NumberValue
 ---@field font FontStyle Default: "normal"
----
 ---@field align TextAlignment Default: "left"
----
 ---@field tostring ShowNumberAsString
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
@@ -975,20 +967,11 @@ renoise.Views.ValueField = {}
 ---```
 ---@class renoise.Views.ValueField : renoise.Views.Control
 ---
----Get/set the min value that is expected, allowed.
----@field min number Default: 0.0
----
----Get/set the max value that is expected, allowed.
----@field max number Default: 1.0
----
----Get/set the current value.
----@field value number
----
----Setup the text alignment.
+---@field min MinValue
+---@field max MaxValue Default: 1.0
+---@field value NumberValue
 ---@field align TextAlignment Default: "left"
----.
 ---@field tostring ShowNumberAsString
----
 ---@field tonumber ParseStringAsNumber
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
@@ -1035,22 +1018,11 @@ renoise.Views.Slider = {}
 ---```
 ---@class renoise.Views.Slider : renoise.Views.Control
 ---
----Get/set the min value that is expected, allowed.
----@field min number Default: 0.0
----
----Get/set the max value that is expected, allowed.
----@field max number Default: 1.0
----
----Get/set inc/dec step amounts when clicking the <> buttons.
----First value is the small step (applied on left clicks), second value is the
----big step (applied on right clicks)
----@field steps number[] <small step, big step>
----
----Get/set the default value (applied on double-click).
----@field default number
----
----Get/set the current value.
----@field value number
+---@field min MinValue
+---@field max MaxValue Default: 1.0
+---@field steps StepAmounts
+---@field default DefaultValue
+---@field value NumberValue
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
 ---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
@@ -1094,17 +1066,10 @@ renoise.Views.MiniSlider = {}
 ---```
 ---@class renoise.Views.MiniSlider : renoise.Views.Control
 ---
----Get/set the min value that is expected, allowed.
----@field min number Default: 0.0
----
----Get/set the max value that is expected, allowed.
----@field max number Default: 1.0
----
----Get/set the default value (applied on double-click).
----@field default number
----
----Get/set the current value.
----@field value number
+---@field min MinValue
+---@field max MaxValue Default: 1.0
+---@field default DefaultValue
+---@field value NumberValue
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
 ---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
@@ -1153,17 +1118,10 @@ renoise.Views.RotaryEncoder = {}
 ---```
 ---@class renoise.Views.RotaryEncoder : renoise.Views.Control
 ---
----Get/set the min value that is expected, allowed.
----@field min number Default: 0.0
----
----Get/set the max value that is expected, allowed.
----@field max number Default: 1.0.
----
----Get/set the default value (applied on double-click).
----@field default number
----
----Get/set the current value.
----@field value number
+---@field min MinValue
+---@field max MaxValue Default: 1.0.
+---@field default DefaultValue
+---@field value NumberValue
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
 ---@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
@@ -1193,6 +1151,24 @@ function renoise.Views.RotaryEncoder:remove_notifier(notifier) end
 --------------------------------------------------------------------------------
 ---## renoise.Views.XYPad
 
+---A table of the XYPad's current values on each axis
+---@alias XYPadValues { x : NumberValue, y : NumberValue }
+
+---A table of allowed minimum values for each axis
+---Default: {x: 0.0, y: 0.0}
+---@alias XYPadMinValues { x : MinValue, y : MinValue }
+
+---A table of allowed maximum values for each axis
+---Default: {x: 0.0, y: 0.0}
+---@alias XYPadMaxValues { x : MaxValue, y : MaxValue }
+
+---A table of snapback values for each axis
+---When snapback is enabled, the pad will revert its values to the specified
+---snapback values as soon as the mouse button is released in the pad. 
+---When disabled, releasing the mouse button will not change the value.
+---You can disable snapback at runtime by setting it to nil or an empty table.
+---@alias XYPadSnapbackValues { x : number, y : number }
+
 ---@class renoise.Views.XYPad
 renoise.Views.XYPad = {}
 
@@ -1215,26 +1191,10 @@ renoise.Views.XYPad = {}
 ---```
 ---@class renoise.Views.XYPad : renoise.Views.Control
 ---
----@class XYPadValues
----@field x number
----@field y number
----
----Get/set a table of allowed min values.
----@field min XYPadValues Default: {x: 0.0, y: 0.0}
----
----Get/set a table of allowed maxvalues.
----@field max XYPadValues Default: {x: 1.0, y: 1.0}
----
----Get/set the pad's current value in a table.
+---@field min XYPadMinValues
+---@field max XYPadMaxValues
 ---@field value XYPadValues
----
----When snapback is enabled an XY table is returned, else nil. To enable
----snapback, pass an XY table with desired values. Pass nil or an empty table
----to disable snapback.
----When snapback is enabled, the pad will revert its values to the specified
----snapback values as soon as the mouse button is released in the pad. When
----disabled, releasing the mouse button will not change the value.
----@field snapback XYPadValues|nil
+---@field snapback XYPadSnapbackValues?
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier function.
 ---@field notifier XYValueNotifierFunction|XYValueNotifierMethod1|XYValueNotifierMethod2
@@ -1424,23 +1384,23 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field bind renoise.Document.ObservableNumber?
 ---@field value SelectedItem?
 ---@field notifier IntegerValueNotifierFunction?
----@field items string[]?
+---@field items ItemLabels?
 
 ---@class PopUpMenuProperties : ControlProperties
 ---@field bind renoise.Document.ObservableNumber?
 ---@field value SelectedItem?
 ---@field notifier IntegerValueNotifierFunction?
----@field items string[]?
+---@field items PopupItemLabels?
 
 ---@class ChooserProperties : ControlProperties
 ---@field bind renoise.Document.ObservableNumber?
 ---@field value SelectedItem?
 ---@field notifier IntegerValueNotifierFunction?
----@field items string[]?
+---@field items ItemLabels?
 
 ---@class ValueViewProperties : ViewProperties
 ---@field bind renoise.Document.ObservableNumber?
----@field value number?
+---@field value NumberValue?
 ---@field notifier NumberValueNotifierFunction?
 ---@field align TextAlignment?
 ---@field font FontStyle?
@@ -1448,56 +1408,56 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 
 ---@class ValueBoxProperties : ControlProperties
 ---@field bind renoise.Document.ObservableNumber?
----@field value number?
+---@field value NumberValue?
 ---@field notifier NumberValueNotifierFunction?
----@field min number?
----@field max number?
----@field steps number?
+---@field min MinValue?
+---@field max MaxValue?
+---@field steps StepAmounts?
 ---@field tostring ShowNumberAsString?
 ---@field tonumber ParseStringAsNumber?
 
 ---@class ValueFieldProperties : ControlProperties
 ---@field bind renoise.Document.ObservableNumber?
----@field value number?
+---@field value NumberValue?
 ---@field notifier NumberValueNotifierFunction?
----@field min number?
----@field max number?
+---@field min MinValue?
+---@field max MaxValue?
 ---@field align TextAlignment?
 ---@field tostring ShowNumberAsString?
 ---@field tonumber ParseStringAsNumber?
 
 ---@class SliderProperties : ControlProperties
 ---@field bind renoise.Document.ObservableNumber?
----@field value number?
+---@field value NumberValue?
 ---@field notifier NumberValueNotifierFunction?
----@field min number?
----@field max number?
----@field steps number?
----@field default number?
+---@field min MinValue?
+---@field max MaxValue?
+---@field steps StepAmounts?
+---@field default DefaultValue?
 
 ---@class MiniSliderProperties : ControlProperties
 ---@field bind renoise.Document.ObservableNumber?
----@field value number?
+---@field value NumberValue?
 ---@field notifier NumberValueNotifierFunction?
----@field min number?
----@field max number?
----@field default number?
+---@field min MinValue?
+---@field max MaxValue?
+---@field default DefaultValue?
 
 ---@class RotaryEncoderProperties : ControlProperties
 ---@field bind renoise.Document.ObservableNumber?
----@field value number?
+---@field value NumberValue?
 ---@field notifier NumberValueNotifierFunction?
----@field min number?
----@field max number?
----@field default number?
+---@field min MinValue?
+---@field max MaxValue?
+---@field default DefaultValue?
 
 ---@class XYPadProperties : ControlProperties
 ---@field bind XYPadObservables?
 ---@field value XYPadValues?
----@field snapback XYPadValues?
+---@field snapback XYPadSnapbackValues?
 ---@field notifier XYValueNotifierFunction?
----@field min XYPadValues?
----@field max XYPadValues?
+---@field min XYPadMinValues?
+---@field max XYPadMaxValues?
 
 ---### functions
 
