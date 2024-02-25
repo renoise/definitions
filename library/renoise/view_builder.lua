@@ -74,17 +74,28 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.Views
 
+---@class renoise.Views
+renoise.Views = {}
+
+
+--------------------------------------------------------------------------------
+---## renoise.Views.View
+
 ---The dimensions of a view has to be larger than 0.
 ---For nested views you can also specify relative size
 ---for example `vb:text { width = "80%"}`. The percentage values are
 ---relative to the view's parent size and will automatically update on size changes.
 ---@alias ViewDimension integer|string
 
----@class renoise.Views
-renoise.Views = {}
+---A tooltip text that should be shown for this view on mouse hover.
+---Default: "" (no tip will be shown)
+---@alias Tooltip string
 
---------------------------------------------------------------------------------
----## renoise.Views.View
+---Set visible to false to hide a view (make it invisible without removing
+---it). Please note that view.visible will also return false when any of its
+---parents are invisible (when its implicitly invisible).
+---Default: true
+---@alias Visibility boolean
 
 ---@class renoise.Views.View
 renoise.Views.View = {}
@@ -95,23 +106,10 @@ renoise.Views.View = {}
 ---applied to any of the following specialized views.
 ---@class renoise.Views.View
 ---
----Set visible to false to hide a view (make it invisible without removing
----it). Please note that view.visible will also return false when any of its
----parents are invisible (when its implicitly invisible).
----@field visible boolean Default: true
----
----Get/set a view's size. All views must have a size > 0.
----By default > 0: How much exactly depends on the specialized view type.
----Note: in nested view_builder notations you can also specify relative
----sizes, like for example `vb:text { width = "80%"}`. The percentage values are
----relative to the view's parent size and will automatically update on size
----changes.
+---@field visible Visibility
 ---@field width ViewDimension
----
 ---@field height ViewDimension
----
----Get/set a tooltip text that should be shown for this view.
----@field tooltip string Default: "" (no tip will be shown)
+---@field tooltip Tooltip
 
 ---### functions
 
@@ -122,8 +120,23 @@ function renoise.Views.View:add_child(child) end
 ---@param child renoise.Views.View
 function renoise.Views.View:remove_child(child) end
 
+
 --------------------------------------------------------------------------------
 ---## renoise.Views.Control
+
+---Instead of making a control invisible, you can also make it inactive.
+---Deactivated controls will still be shown, and will still show their
+---currently assigned values, but will not allow changes. Most controls will
+---display as "grayed out" to visualize the deactivated state.
+---@alias ControlActive boolean
+
+---When set, the control will be highlighted when Renoise's MIDI mapping dialog
+---is open. When clicked, it selects the specified string as a MIDI mapping
+---target action. This target acton can either be one of the globally available
+---mappings in Renoise, or those that were created by the tool itself.
+---Target strings are not verified. When they point to nothing, the mapped MIDI
+---message will do nothing and no error is fired.
+---@alias MidiMappingString string
 
 ---@class renoise.Views.Control
 renoise.Views.Control = {}
@@ -134,19 +147,9 @@ renoise.Views.Control = {}
 ---some "state" from the UI.
 ---@class renoise.Views.Control : renoise.Views.View
 ---
----Instead of making a control invisible, you can also make it inactive.
----Deactivated controls will still be shown, and will still show their
----currently assigned values, but will not allow changes. Most controls will
----display as "grayed out" to visualize the deactivated state.
----@field active boolean
----
----When set, the control will be highlighted when Renoise's MIDI mapping dialog
----is open. When clicked, it selects the specified string as a MIDI mapping
----target action. This target acton can either be one of the globally available
----mappings in Renoise, or those that were created by the tool itself.
----Target strings are not verified. When they point to nothing, the mapped MIDI
----message will do nothing and no error is fired.
----@field midi_mapping string
+---@field active ControlActive
+---@field midi_mapping MidiMappingString
+
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.Rack
@@ -157,6 +160,23 @@ renoise.Views.Control = {}
 ---Set the amount stacked child views are separated by (horizontally in
 ---rows, vertically in columns).
 ---@alias RackSpacing integer
+
+---When set to true, all child views in the rack are automatically resized to
+---the max size of all child views (width in ViewBuilder.column, height in
+---ViewBuilder.row). This can be useful to automatically align all sub
+---columns/panels to the same size. Resizing is done automatically, as soon
+---as a child view size changes or new children are added.
+---Default: false
+---@alias RackUniformity boolean
+
+---Setup a background style for the rack. Available styles are:
+---@alias RackStyle
+---| "invisible" # no background
+---| "plain"     # undecorated, single coloured background
+---| "border"    # same as plain, but with a bold nested border
+---| "body"      # main "background" style, as used in dialog backgrounds
+---| "panel"     # alternative "background" style, beveled
+---| "group"     # background for "nested" groups within body
 
 ---@class renoise.Views.Rack
 renoise.Views.Rack = {}
@@ -172,26 +192,9 @@ renoise.Views.Rack = {}
 ---@class renoise.Views.Rack : renoise.Views.View
 ---
 ---@field margin RackMargin Default: 0 (no borders)
----
 ---@field spacing RackSpacing Default: 0 (no spacing)
----
----Setup a background style for the rack. Available styles are:
----@alias RackStyle
----| "invisible" # no background
----| "plain"     # undecorated, single coloured background
----| "border"    # same as plain, but with a bold nested border
----| "body"      # main "background" style, as used in dialog backgrounds
----| "panel"     # alternative "background" style, beveled
----| "group"     # background for "nested" groups within body
----
 ---@field style RackStyle Default: "invisible"
----
----When set to true, all child views in the rack are automatically resized to
----the max size of all child views (width in ViewBuilder.column, height in
----ViewBuilder.row). This can be useful to automatically align all sub
----columns/panels to the same size. Resizing is done automatically, as soon
----as a child view size changes or new children are added.
----@field uniform boolean Default: false
+---@field uniform RackUniformity
 
 ---### functions
 
@@ -202,6 +205,16 @@ function renoise.Views.Rack:resize() end
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.Aligner
+
+---Default: "left" (for horizontal_aligner) "top" (for vertical_aligner)
+---@alias AlignerMode
+---| "left"       # align from left to right (for horizontal_aligner only)
+---| "right"      # align from right to left (for horizontal_aligner only)
+---| "top"        # align from top to bottom (for vertical_aligner only)
+---| "bottom"     # align from bottom to top (for vertical_aligner only)
+---| "center"     # center all views
+---| "justify"    # keep outer views at the borders, distribute the rest
+---| "distribute" # equally distributes views over the aligners width/height
 
 ---@class renoise.Views.Aligner
 renoise.Views.Aligner = {}
@@ -219,28 +232,39 @@ renoise.Views.Aligner = {}
 ---
 ---@class renoise.Views.Aligner : renoise.Views.View
 ---
----Setup "borders" for the aligner (left, right, top and bottom inclusively)
 ---@field margin RackMargin Default: 0 (no borders)
----
----Setup the amount child views are separated by (horizontally in rows,
----vertically in columns).
 ---@field spacing RackSpacing Default: 0 (no spacing)
----
----@alias AlignerMode
----| "left"       # align from left to right (for horizontal_aligner only)
----| "right"      # align from right to left (for horizontal_aligner only)
----| "top"        # align from top to bottom (for vertical_aligner only)
----| "bottom"     # align from bottom to top (for vertical_aligner only)
----| "center"     # center all views
----| "justify"    # keep outer views at the borders, distribute the rest
----| "distribute" # equally distributes views over the aligners width/height
----
----Default: "left" (for horizontal_aligner) "top" (for vertical_aligner)
 ---@field mode AlignerMode
 
 
 -----------------------------------------------------------------------------
 ---## renoise.Views.Text
+
+---The style that the text should be displayed with.
+---@alias FontStyle
+---| "normal" # (Default)
+---| "big"    # big text
+---| "bold"   # bold font
+---| "italic" # italic font
+---| "mono"   # monospace font
+
+---Get/set the color style the text should be displayed with.
+---@alias TextStyle
+---| "normal"   # (Default)
+---| "strong"   # highlighted color
+---| "disabled" # greyed out color
+
+---Setup the text's alignment. Applies only when the view's size is larger than
+---the needed size to draw the text
+---@alias TextAlignment
+---| "left"   # (Default)
+---| "right"  # aligned to the right
+---| "center" # center text
+
+---The text that should be displayed. Setting a new text will resize
+---the view in order to make the text fully visible (expanding only).
+---Default: ""
+---@alias SingleLineString string
 
 ---@class renoise.Views.Text
 renoise.Views.Text = {}
@@ -258,40 +282,30 @@ renoise.Views.Text = {}
 ---@see renoise.Views.TextField for texts that can be edited by the user.
 ---@class renoise.Views.Text : renoise.Views.View
 ---
----Get/set the text that should be displayed. Setting a new text will resize
----the view in order to make the text fully visible (expanding only).
----@field text string Default: ""
----
----Get/set the style that the text should be displayed with.
----@alias FontStyle
----| "normal"
----| "big"
----| "bold"
----| "italic"
----| "mono"
----
----@field font FontStyle Default: "normal"
----
----Get/set the color style the text should be displayed with.
----@alias TextStyle
----| "normal"
----| "strong"
----| "disabled"
----
----@field style TextStyle Default: "normal"
----
----Setup the text's alignment. Applies only when the view's size is larger than
----the needed size to draw the text
----@alias TextAlignment
----| "left"
----| "right"
----| "center"
----
----@field align TextAlignment Default: "left"
+---@field text SingleLineString
+---@field font FontStyle
+---@field style TextStyle
+---@field align TextAlignment
 
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.MultiLineText
+
+---The text that should be displayed.
+---Newlines (Windows, Mac or Unix styled) in the text can be used to create
+---paragraphs.
+---@alias MultilineString string
+
+---A table of text lines to be used instead of specifying a single text
+---line with newline characters like "text"
+---Default: []
+---@alias Paragraphs string[]
+
+---Setup the text view's background:
+---@alias TextBackgroundStyle
+---| "body"    # simple text color with no background
+---| "strong"  # stronger text color with no background
+---| "border"  # text on a bordered background
 
 ---@class renoise.Views.MultiLineText
 renoise.Views.MultiLineText = {}
@@ -315,23 +329,9 @@ renoise.Views.MultiLineText = {}
 ---```
 ---@class renoise.Views.MultiLineText : renoise.Views.View
 ---
----Get/set the text that should be displayed on a single line. Newlines
----(Windows, Mac or Unix styled newlines) in the text can be used to create
----paragraphs.
----@field text string Default: ""
----
----Get/set an array (table) of text lines, instead of specifying a single text
----line with newline characters like "text" does.
----@field paragraphs string[] Default: []
----
+---@field text MultilineString
+---@field paragraphs Paragraphs
 ---@field font FontStyle
----
----Setup the text view's background:
----@alias TextBackgroundStyle
----| "body"    # simple text color with no background
----| "strong"  # stronger text color with no background
----| "border"  # text on a bordered background
----
 ---@field style TextBackgroundStyle Default: "body"
 
 ---### functions
@@ -350,8 +350,30 @@ function renoise.Views.MultiLineText:add_line(text) end
 ---Clear the whole text, same as multiline_text.text="".
 function renoise.Views.MultiLineText:clear() end
 
+
 --------------------------------------------------------------------------------
 ---## renoise.Views.TextField
+
+---When false, text is displayed but can not be entered/modified by the user.
+---Default: true
+---@alias TextActive boolean
+
+---The currently shown text. The text will not be updated when editing,
+---rather only after editing is complete (return is pressed, or focus is lost).
+---Default: ""
+---@alias TextValue string
+
+---Exactly the same as "value"; provided for consistency.
+---Default: ""
+---@alias TextValueAlias string
+
+---True when the text field is focused. setting it at run-time programatically
+---will focus the text field or remove the focus (focus the dialog) accordingly.
+---Default: false
+---@alias EditMode boolean 
+
+---Set up a notifier for text changes
+---@alias StringChangeNotifier StringValueNotifierFunction|StringValueNotifierMethod1|StringValueNotifierMethod2
 
 ---@class renoise.Views.TextField
 renoise.Views.TextField = {}
@@ -367,35 +389,11 @@ renoise.Views.TextField = {}
 ---```
 ---@class renoise.Views.TextField : renoise.Views.View
 ---
----When false, text is displayed but can not be entered/modified by the user.
----@field active boolean Default: true
----
----The currently shown value / text. The text will not be updated when editing,
----rather only after editing is complete (return is pressed, or focus is lost).
----@field value string Default: ""
----
----Exactly the same as "value"; provided for consistency.
----@field text string Default: ""
----
----Setup the text field's text alignment, when not editing.
----@field align TextAlignment Default: "left"
----
----True when the text field is focused. setting the edit_mode programatically
----will focus the text field or remove the focus (focus the dialog) accordingly.
----@field edit_mode boolean Default: false
----
----**WRITE-ONLY** Valid in the construction table only: Set up a notifier for text changes.
----@see renoise.Views.TextField.add_notifier
----@see renoise.Views.TextField.remove_notifier
----@field notifier StringValueNotifierFunction|StringValueNotifierMethod1|StringValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableString object. Will change the Observable
----value as soon as the views value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----@field bind renoise.Document.ObservableString?
+---@field active TextActive
+---@field value TextValue
+---@field text TextValueAlias
+---@field align TextAlignment Only used when not editing.
+---@field edit_mode EditMode
 
 ---### functions
 
@@ -410,6 +408,7 @@ function renoise.Views.TextField:add_notifier(notifier) end
 ---@overload fun(self, notifier: StringValueNotifierMethod1)
 ---@overload fun(self, notifier: StringValueNotifierMethod2)
 function renoise.Views.TextField:remove_notifier(notifier) end
+
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.MultiLineTextField
@@ -432,40 +431,13 @@ renoise.Views.MultiLineTextField = {}
 ---```
 ---@class renoise.Views.MultiLineTextField : renoise.Views.View
 ---
----When false, text is displayed but can not be entered/modified by the user.
----@field active boolean Default: true
----
----The current text as a single line, uses newline characters to specify
----paragraphs.
----@field value string Default: ""
----
----Exactly the same as "value"; provided for consistency.
----@field text string  Default: ""
----
----Get/set a list/table of text lines instead of specifying the newlines as
----characters.
----@field paragraphs string[] Default: []
----
----@field font FontStyle  Default: "normal"
----
+---@field active TextActive
+---@field value MultilineString
+---@field text TextValueAlias
+---@field paragraphs Paragraphs
+---@field font FontStyle
 ---@field style TextBackgroundStyle  Default: "border"
----
----**WRITE-ONLY** Valid in the construction table only: Set up a notifier for text changes.
----@see renoise.Views.MutlilineTextField.add_notifier
----@see renoise.Views.MutlilineTextField.remove_notifier
----@field notifier StringValueNotifierFunction|StringValueNotifierMethod1|StringValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableStringList object. Will change the Observable
----value as soon as the view's value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the View or the Observable object.
----@field bind renoise.Document.ObservableStringList?
----
----True when the text field is focused. setting the edit_mode programatically
----will focus the text field or remove the focus (focus the dialog) accordingly.
----@field edit_mode boolean Default: false
+---@field edit_mode EditMode
 
 ---### functions
 
@@ -495,8 +467,29 @@ function renoise.Views.MultiLineTextField:add_line(text) end
 ---Clear the whole text.
 function renoise.Views.MultiLineTextField:clear() end
 
+
 --------------------------------------------------------------------------------
 ---## renoise.Views.Bitmap
+
+---Setup how the bitmap should be drawn, recolored. Available modes are:
+---@alias BitmapMode
+---| "plain"        # bitmap is drawn as is, no recoloring is done
+---| "transparent"  # same as plain, but black pixels will be fully transparent
+---| "button_color" # recolor the bitmap, using the theme's button color
+---| "body_color"   # same as 'button_back' but with body text/back color
+---| "main_color"   # same as 'button_back' but with main text/back colors
+
+---Bitmap name and path. You should use a relative path that uses  Renoise's
+---default resource folder as base (like "Icons/ArrowRight.bmp"). Or specify a
+---file relative from your XRNX tool bundle:
+---Lets say your tool is called "com.foo.MyTool.xrnx" and you pass
+---"MyBitmap.bmp" as the name. Then the bitmap is loaded from
+---"PATH_TO/com.foo.MyTool.xrnx/MyBitmap.bmp".
+---Supported bitmap file formats are *.bmp, *.png or *.tif (no transparency).
+---@alias BitmapPath string
+
+---A click notifier
+---@alias Notifier NotifierFunction|NotifierMethod1|NotifierMethod2
 
 ---@class renoise.Views.Bitmap
 renoise.Views.Bitmap = {}
@@ -522,28 +515,8 @@ renoise.Views.Bitmap = {}
 ---```
 ---@class renoise.Views.Bitmap : renoise.Views.Control
 ---
----Setup how the bitmap should be drawn, recolored. Available modes are:
----@alias BitmapMode
----| "plain"        # bitmap is drawn as is, no recoloring is done
----| "transparent"  # same as plain, but black pixels will be fully transparent
----| "button_color" # recolor the bitmap, using the theme's button color
----| "body_color"   # same as 'button_back' but with body text/back color
----| "main_color"   # same as 'button_back' but with main text/back colors
----
 ---@field mode BitmapMode Default: "plain"
----
----Bitmap name and path. You should use a relative path that uses  Renoise's
----default resource folder as base (like "Icons/ArrowRight.bmp"). Or specify a
----file relative from your XRNX tool bundle:
----Lets say your tool is called "com.foo.MyTool.xrnx" and you pass
----"MyBitmap.bmp" as the name. Then the bitmap is loaded from
----"PATH_TO/com.foo.MyTool.xrnx/MyBitmap.bmp".
----Supported bitmap file formats are *.bmp, *.png or *.tif (no transparency).
----@field bitmap string
----
----**WRITE-ONLY** Valid in the construction table only: Set up a click notifier.
----@field notifier NotifierFunction|NotifierMethod1|NotifierMethod2
----
+---@field bitmap BitmapPath
 
 ---### functions
 
@@ -559,8 +532,32 @@ function renoise.Views.Bitmap:add_notifier(notifier) end
 ---@overload fun(self, notifier: NotifierMethod2)
 function renoise.Views.Bitmap:remove_notifier(notifier) end
 
+
 --------------------------------------------------------------------------------
 ---## renoise.Views.Button
+
+---The text label of the button
+---Default: ""
+---@alias ButtonLabel string
+
+---When set, existing text is cleared. You should use a relative path
+---that either assumes Renoises default resource folder as base (like
+---"Icons/ArrowRight.bmp"). Or specify a file relative from your XRNX tool
+---bundle:
+---Lets say your tool is called "com.foo.MyTool.xrnx" and you pass
+---"MyBitmap.bmp" as name. Then the bitmap is loaded from
+---"PATH_TO/com.foo.MyTool.xrnx/MyBitmap.bmp".
+---The only supported bitmap format is ".bmp" (Windows bitmap) right now.
+---Colors will be overridden by the theme colors, using black as transparent
+---color, white is the full theme color. All colors in between are mapped
+---according to their gray value.
+---@alias ButtonBitmapPath string
+
+---Table of RGB values like {0xff,0xff,0xff} -> white. When set, the
+---unpressed button's background will be drawn in the specified color.
+---A text color is automatically selected to make sure its always visible.
+---Set color {0,0,0} to enable the theme colors for the button again.
+---@alias ButtonColor RGBColor
 
 ---@class renoise.Views.Button : renoise.Views.Control
 renoise.Views.Button = {}
@@ -577,35 +574,9 @@ renoise.Views.Button = {}
 ---```
 ---@class renoise.Views.Button : renoise.Views.Control
 ---
----The text label of the button
----@field text string Default: ""
----
----When set, existing text is cleared. You should use a relative path
----that either assumes Renoises default resource folder as base (like
----"Icons/ArrowRight.bmp"). Or specify a file relative from your XRNX tool
----bundle:
----Lets say your tool is called "com.foo.MyTool.xrnx" and you pass
----"MyBitmap.bmp" as name. Then the bitmap is loaded from
----"PATH_TO/com.foo.MyTool.xrnx/MyBitmap.bmp".
----The only supported bitmap format is ".bmp" (Windows bitmap) right now.
----Colors will be overridden by the theme colors, using black as transparent
----color, white is the full theme color. All colors in between are mapped
----according to their gray value.
----@field bitmap string
----
----Table of RGB values like {0xff,0xff,0xff} -> white. When set, the
----unpressed button's background will be drawn in the specified color.
----A text color is automatically selected to make sure its always visible.
----Set color {0,0,0} to enable the theme colors for the button again.
----@field color RGBColor Range: (0 - 255)
----
----**WRITE-ONLY** Valid in the construction table only: set up a click notifier.
----@field pressed NotifierFunction|NotifierMethod1|NotifierMethod2
----**WRITE-ONLY** Valid in the construction table only: set up a click release notifier.
----@field released NotifierFunction|NotifierMethod1|NotifierMethod2
----
----**WRITE-ONLY** synonymous for 'released'.
----@field notifier NotifierFunction|NotifierMethod1|NotifierMethod2
+---@field text ButtonLabel
+---@field bitmap ButtonBitmapPath
+---@field color ButtonColor
 
 ---### functions
 
@@ -634,8 +605,16 @@ function renoise.Views.Button:remove_pressed_notifier(notifier) end
 ---@overload fun(self, notifier: NotifierMethod2)
 function renoise.Views.Button:remove_released_notifier(notifier) end
 
+
 --------------------------------------------------------------------------------
 ---## renoise.Views.CheckBox
+
+---The current state of the checkbox, expressed as boolean.
+---Default: false
+---@alias CheckBoxBoolean boolean
+
+---A notifier for when the checkbox is toggled
+---@alias BooleanNotifier BooleanValueNotifierFunction|BooleanValueNotifierMethod1|BooleanValueNotifierMethod2
 
 ---@class renoise.Views.CheckBox
 renoise.Views.CheckBox = {}
@@ -652,33 +631,22 @@ renoise.Views.CheckBox = {}
 ---```
 ---@class renoise.Views.CheckBox : renoise.Views.Control
 ---
----The current state of the checkbox, expressed as boolean.
----@field value boolean Default: false
----
----**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
----@field notifier BooleanValueNotifierFunction|BooleanValueNotifierMethod1|BooleanValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableBoolean object. Will change the Observable
----value as soon as the views value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----@field bind renoise.Document.ObservableBoolean?
+---@field value CheckBoxBoolean
 
 ---### functions
 
 ---Add value change notifier
----@param notifier IntegerValueNotifierFunction
----@overload fun(self, notifier: IntegerValueNotifierMethod1)
----@overload fun(self, notifier: IntegerValueNotifierMethod2)
+---@param notifier BooleanValueNotifierFunction
+---@overload fun(self, notifier: BooleanValueNotifierMethod1)
+---@overload fun(self, notifier: BooleanValueNotifierMethod2)
 function renoise.Views.CheckBox:add_notifier(notifier) end
 
 ---Remove value change notifier
----@param notifier IntegerValueNotifierFunction
----@overload fun(self, notifier: IntegerValueNotifierMethod1)
----@overload fun(self, notifier: IntegerValueNotifierMethod2)
+---@param notifier BooleanValueNotifierFunction
+---@overload fun(self, notifier: BooleanValueNotifierMethod1)
+---@overload fun(self, notifier: BooleanValueNotifierMethod2)
 function renoise.Views.CheckBox:remove_notifier(notifier) end
+
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.Switch
@@ -689,6 +657,9 @@ function renoise.Views.CheckBox:remove_notifier(notifier) end
 
 ---The currently selected item's index
 ---@alias SelectedItem integer
+
+---Set up a notifier that will be called whenever a new item is picked
+---@alias IntegerNotifier IntegerValueNotifierFunction|IntegerValueNotifierMethod1|IntegerValueNotifierMethod2
 
 ---@class renoise.Views.Switch : renoise.Views.Control
 renoise.Views.Switch = {}
@@ -707,17 +678,6 @@ renoise.Views.Switch = {}
 ---
 ---@field items ItemLabels
 ---@field value SelectedItem
----
----**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
----@field notifier IntegerValueNotifierFunction|IntegerValueNotifierMethod1|IntegerValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableNumber object. Will change the Observable
----value as soon as the views value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----@field bind renoise.Document.ObservableNumber?
 
 ---### functions
 
@@ -732,6 +692,7 @@ function renoise.Views.Switch:add_notifier(notifier) end
 ---@overload fun(self, notifier: IntegerValueNotifierMethod1)
 ---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.Switch:remove_notifier(notifier) end
+
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.Popup
@@ -757,17 +718,6 @@ renoise.Views.Popup = {}
 ---
 ---@field items PopupItemLabels
 ---@field value SelectedItem
----
----**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
----@field notifier IntegerValueNotifierFunction|IntegerValueNotifierMethod1|IntegerValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableNumber object. Will change the Observable
----value as soon as the views value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----@field bind renoise.Document.ObservableNumber?
 
 ---### functions
 
@@ -782,6 +732,7 @@ function renoise.Views.Popup:add_notifier(notifier) end
 ---@overload fun(self, notifier: IntegerValueNotifierMethod1)
 ---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.Popup:remove_notifier(notifier) end
+
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.Chooser
@@ -803,17 +754,6 @@ renoise.Views.Chooser = {}
 ---
 ---@field items ItemLabels
 ---@field value SelectedItem
----
----**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
----@field notifier IntegerValueNotifierFunction|IntegerValueNotifierMethod1|IntegerValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableNumber object. Will change the Observable
----value as soon as the views value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----@field bind renoise.Document.ObservableNumber?
 
 ---### functions
 
@@ -829,6 +769,25 @@ function renoise.Views.Chooser:add_notifier(notifier) end
 ---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.Chooser:remove_notifier(notifier) end
 
+
+
+--------------------------------------------------------------------------------
+---## renoise.Views.ValueBox
+
+---The minimum value that can be set using the view
+---@alias MinValue number
+---The maximum value that can be set using the view
+---@alias MaxValue number
+---The default value that will be re-applied on double-click
+---@alias DefaultValue number
+---The current value of the view
+---@alias NumberValue number
+---A table containing two numbers representing the step amounts for incrementing
+---and decrementing by clicking the <> buttons.
+---The first value is the small step (applied on left clicks)
+---second value is the big step (applied on right clicks)
+---@alias StepAmounts {[1] : number, [2] : number}
+
 ---Set a custom rule on how a number value should be displayed.
 ---Useful for showing units like decibel or note values etc.
 ---If none are set, a default string/number conversion is done, which
@@ -843,14 +802,8 @@ function renoise.Views.Chooser:remove_notifier(notifier) end
 ---a flood of error messages.
 ---@alias ParseStringAsNumber fun(value : string) : number?
 
----@alias MinValue number
----@alias MaxValue number
----@alias DefaultValue number
----@alias NumberValue number
----@alias StepAmounts {[1] : number, [2] : number}
-
---------------------------------------------------------------------------------
----## renoise.Views.ValueBox
+---Set up a value notifier that will be called whenever the value changes
+---@alias NumberValueNotifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
 
 ---@class renoise.Views.ValueBox
 renoise.Views.ValueBox = {}
@@ -873,17 +826,6 @@ renoise.Views.ValueBox = {}
 ---@field value NumberValue
 ---@field tostring ShowNumberAsString
 ---@field tonumber ParseStringAsNumber
----
----**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
----@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableNumber object. Will change the Observable
----value as soon as the views value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----@field bind renoise.Document.ObservableNumber?
 
 ---### functions
 
@@ -898,6 +840,7 @@ function renoise.Views.ValueBox:add_notifier(notifier) end
 ---@overload fun(self, notifier: NumberValueNotifierMethod1)
 ---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.ValueBox:remove_notifier(notifier) end
+
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.Value
@@ -922,17 +865,6 @@ renoise.Views.Value = {}
 ---@field font FontStyle Default: "normal"
 ---@field align TextAlignment Default: "left"
 ---@field tostring ShowNumberAsString
----
----**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
----@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableNumber object. Will change the Observable
----value as soon as the views value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----@field bind renoise.Document.ObservableNumber?
 
 ---### functions
 
@@ -947,6 +879,7 @@ function renoise.Views.Value:add_notifier(notifier) end
 ---@overload fun(self, notifier: NumberValueNotifierMethod1)
 ---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.Value:remove_notifier(notifier) end
+
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.ValueField
@@ -973,17 +906,6 @@ renoise.Views.ValueField = {}
 ---@field align TextAlignment Default: "left"
 ---@field tostring ShowNumberAsString
 ---@field tonumber ParseStringAsNumber
----
----**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
----@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableNumber object. Will change the Observable
----value as soon as the views value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----@field bind renoise.Document.ObservableNumber?
 
 ---### functions
 
@@ -998,6 +920,7 @@ function renoise.Views.ValueField:add_notifier(notifier) end
 ---@overload fun(self, notifier: NumberValueNotifierMethod1)
 ---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.ValueField:remove_notifier(notifier) end
+
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.Slider
@@ -1023,17 +946,6 @@ renoise.Views.Slider = {}
 ---@field steps StepAmounts
 ---@field default DefaultValue
 ---@field value NumberValue
----
----**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
----@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableNumber object. Will change the Observable
----value as soon as the views value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----@field bind renoise.Document.ObservableNumber?
 
 ---### functions
 
@@ -1048,6 +960,7 @@ function renoise.Views.Slider:add_notifier(notifier) end
 ---@overload fun(self, notifier: NumberValueNotifierMethod1)
 ---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.Slider:remove_notifier(notifier) end
+
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.MiniSlider
@@ -1070,17 +983,6 @@ renoise.Views.MiniSlider = {}
 ---@field max MaxValue Default: 1.0
 ---@field default DefaultValue
 ---@field value NumberValue
----
----**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
----@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableNumber object. Will change the Observable
----value as soon as the views value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----@field bind renoise.Document.ObservableNumber?
 
 ---### functions
 
@@ -1095,6 +997,7 @@ function renoise.Views.MiniSlider:add_notifier(notifier) end
 ---@overload fun(self, notifier: NumberValueNotifierMethod1)
 ---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.MiniSlider:remove_notifier(notifier) end
+
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.RotaryEncoder
@@ -1122,17 +1025,6 @@ renoise.Views.RotaryEncoder = {}
 ---@field max MaxValue Default: 1.0.
 ---@field default DefaultValue
 ---@field value NumberValue
----
----**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
----@field notifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a
----renoise.Document.ObservableNumber object. Will change the Observable
----value as soon as the view's value changes, and change the view's value as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----@field bind renoise.Document.ObservableNumber?
 
 ---### functions
 
@@ -1147,6 +1039,7 @@ function renoise.Views.RotaryEncoder:add_notifier(notifier) end
 ---@overload fun(self, notifier: NumberValueNotifierMethod1)
 ---@overload fun(self, notifier: NumberValueNotifierMethod2)
 function renoise.Views.RotaryEncoder:remove_notifier(notifier) end
+
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.XYPad
@@ -1168,6 +1061,24 @@ function renoise.Views.RotaryEncoder:remove_notifier(notifier) end
 ---When disabled, releasing the mouse button will not change the value.
 ---You can disable snapback at runtime by setting it to nil or an empty table.
 ---@alias XYPadSnapbackValues { x : number, y : number }
+
+---@alias XYValueNotifierFunction fun(value: XYPadValues)
+---@alias XYValueNotifierMemberFunction fun(self: NotifierMemberContext, value: XYPadValues)
+---@alias XYValueNotifierMethod1 {[1]:NotifierMemberContext, [2]:XYValueNotifierMemberFunction}
+---@alias XYValueNotifierMethod2 {[1]:XYValueNotifierMemberFunction, [2]:NotifierMemberContext}
+
+---Set up a value notifier function that will be used whenever the pad's values change
+---@alias XYValueNotifier XYValueNotifierFunction|XYValueNotifierMethod1|XYValueNotifierMethod2
+---
+---Bind the view's value to a pair of renoise.Document.ObservableNumber objects. 
+---Automatically keep both values in sync.
+---Will change the Observables' values as soon as the view's value changes, 
+---and change the view's values as soon as the Observable's value changes.
+---Notifiers can be added to either the view or the Observable object.
+---Just like in the other XYPad properties, a table with the fields X and Y
+---is expected here and not a single value. So you have to bind two
+---ObservableNumber object to the pad.
+---@alias XYPadObservables { x: renoise.Document.ObservableNumber, y: renoise.Document.ObservableNumber }
 
 ---@class renoise.Views.XYPad
 renoise.Views.XYPad = {}
@@ -1195,26 +1106,6 @@ renoise.Views.XYPad = {}
 ---@field max XYPadMaxValues
 ---@field value XYPadValues
 ---@field snapback XYPadSnapbackValues?
----
----**WRITE-ONLY** Valid in the construction table only: Set up a value notifier function.
----@field notifier XYValueNotifierFunction|XYValueNotifierMethod1|XYValueNotifierMethod2
----
----Valid in the construction table only: Bind the view's value to a pair of
----renoise.Document.ObservableNumber objects. Will change the Observable
----values as soon as the views value changes, and change the view's values as
----soon as the Observable's value changes - automatically keeps both values
----in sync.
----Notifiers can be added to either the view or the Observable object.
----Just like in the other XYPad properties, a table with the fields X and Y
----is expected here and not a single value. So you have to bind two
----ObservableNumber object to the pad.
----@alias XYPadObservables { x: renoise.Document.ObservableNumber, y: renoise.Document.ObservableNumber }
----@field bind XYPadObservables?
-
----@alias XYValueNotifierFunction fun(value: XYPadValues)
----@alias XYValueNotifierMemberFunction fun(self: NotifierMemberContext, value: XYPadValues)
----@alias XYValueNotifierMethod1 {[1]:NotifierMemberContext, [2]:XYValueNotifierMemberFunction}
----@alias XYValueNotifierMethod2 {[1]:XYValueNotifierMemberFunction, [2]:NotifierMemberContext}
 
 ---### functions
 
@@ -1229,6 +1120,7 @@ function renoise.Views.XYPad:add_notifier(notifier) end
 ---@overload fun(self, notifier: XYValueNotifierMethod1)
 ---@overload fun(self, notifier: XYValueNotifierMethod2)
 function renoise.Views.XYPad:remove_notifier(notifier) end
+
 
 --------------------------------------------------------------------------------
 ---## renoise.ViewBuilder
@@ -1305,6 +1197,35 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---```
 ---@field views table<string, renoise.Views.View>
 
+
+---Bind the view's value to a renoise.Document.ObservableBoolean object.
+---Automatically keep them in sync.
+---The view will change the Observable value as soon as its value changes
+---and change the view's value as soon as the Observable's value changes.
+---Notifiers can be added to either the view or the Observable object.
+---@alias BooleanObservable renoise.Document.ObservableBoolean
+
+---Bind the view's value to a renoise.Document.ObservableString object.
+---Automatically keep them in sync.
+---The view will change the Observable value as soon as its value changes
+---and change the view's value as soon as the Observable's value changes.
+---Notifiers can be added to either the view or the Observable object.
+---@alias StringObservable renoise.Document.ObservableString
+
+---Bind the view's value to a renoise.Document.ObservableStringList object.
+---Automatically keep them in sync.
+---The view will change the Observable value as soon as its value changes
+---and change the view's value as soon as the Observable's value changes.
+---Notifiers can be added to either the view or the Observable object.
+---@alias StringListObservable renoise.Document.ObservableStringList
+
+---Bind the view's value to a renoise.Document.ObservableNumber object.
+---Automatically keep them in sync.
+---The view will change the Observable value as soon as its value changes
+---and change the view's value as soon as the Observable's value changes.
+---Notifiers can be added to either the view or the Observable object.
+---@alias NumberObservable renoise.Document.ObservableNumber
+
 ---### Construction table types
 
 --- base for all View construction properties
@@ -1312,18 +1233,18 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field id string?
 ---@field width ViewDimension?
 ---@field height ViewDimension?
----@field visibe boolean?
----@field tooltip string?
+---@field visible Visibility?
+---@field tooltip Tooltip?
 
 ---@class ControlProperties : ViewProperties
----@field active boolean?
----@field midi_mapping string?
+---@field active ControlActive?
+---@field midi_mapping MidiMappingString?
 
 ---@class RackViewProperties : ViewProperties
 ---@field margin RackMargin?
 ---@field spacing RackSpacing?
 ---@field style RackStyle?
----@field uniform boolean?
+---@field uniform RackUniformity?
 
 ---@class AlignmentRackViewProperties : ViewProperties
 ---@field margin RackMargin?
@@ -1331,85 +1252,85 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field mode AlignerMode?
 
 ---@class TextViewProperties : ViewProperties
----@field text string?
+---@field text SingleLineString?
 ---@field font FontStyle?
 ---@field style TextStyle?
 ---@field align TextAlignment?
 
 ---@class MultilineTextViewProperties : ViewProperties
----@field text string?
----@field paragraphs string[]?
+---@field text MultilineString?
+---@field paragraphs Paragraphs?
 ---@field font FontStyle?
 ---@field style TextBackgroundStyle?
 
 ---@class TextFieldProperties : ViewProperties
----@field bind renoise.Document.ObservableString?
----@field active boolean?
----@field value string?
----@field notifier StringValueNotifierFunction?
----@field text string?
+---@field bind StringObservable?
+---@field active TextActive?
+---@field value TextValue?
+---@field notifier StringChangeNotifier?
+---@field text TextValueAlias?
 ---@field align TextAlignment?
----@field edit_mode boolean?
+---@field edit_mode EditMode?
 
 ---@class MultilineTextFieldProperties : ViewProperties
----@field bind renoise.Document.ObservableString?
----@field active boolean?
----@field value string?
----@field notifier StringValueNotifierFunction?
----@field text string?
----@field paragraphs string?
+---@field bind StringListObservable?
+---@field active TextActive?
+---@field value MultilineString?
+---@field notifier StringChangeNotifier?
+---@field text TextValueAlias?
+---@field paragraphs Paragraphs?
 ---@field font FontStyle?
 ---@field style TextBackgroundStyle?
----@field edit_mode boolean?
+---@field edit_mode EditMode?
 
 ---@class ButtonProperties : ControlProperties
----@field text string?
----@field bitmap string?
+---@field text ButtonLabel?
+---@field bitmap ButtonBitmapPath?
 ---@field color RGBColor?
----@field notifier NotifierFunction?
----@field pressed NotifierFunction?
----@field released NotifierFunction?
+---@field notifier Notifier?
+---@field pressed Notifier?
+---@field released Notifier?
 
 ---@class BitmapViewProperties : ControlProperties
 ---@field mode BitmapMode?
----@field bitmap string?
----@field notifier NotifierFunction?
+---@field bitmap BitmapPath?
+---@field notifier Notifier?
 
 ---@class CheckBoxProperties : ControlProperties
----@field bind renoise.Document.ObservableBoolean?
----@field value boolean?
----@field notifier BooleanValueNotifierFunction?
+---@field bind BooleanObservable?
+---@field value CheckBoxBoolean?
+---@field notifier BooleanNotifier?
 
 ---@class ButtonSwitchProperties : ControlProperties
----@field bind renoise.Document.ObservableNumber?
+---@field bind NumberObservable?
 ---@field value SelectedItem?
----@field notifier IntegerValueNotifierFunction?
+---@field notifier IntegerNotifier?
 ---@field items ItemLabels?
 
 ---@class PopUpMenuProperties : ControlProperties
----@field bind renoise.Document.ObservableNumber?
+---@field bind NumberObservable?
 ---@field value SelectedItem?
----@field notifier IntegerValueNotifierFunction?
+---@field notifier IntegerNotifier?
 ---@field items PopupItemLabels?
 
 ---@class ChooserProperties : ControlProperties
----@field bind renoise.Document.ObservableNumber?
+---@field bind NumberObservable?
 ---@field value SelectedItem?
----@field notifier IntegerValueNotifierFunction?
+---@field notifier IntegerNotifier?
 ---@field items ItemLabels?
 
 ---@class ValueViewProperties : ViewProperties
----@field bind renoise.Document.ObservableNumber?
+---@field bind NumberObservable?
 ---@field value NumberValue?
----@field notifier NumberValueNotifierFunction?
+---@field notifier NumberValueNotifier?
 ---@field align TextAlignment?
 ---@field font FontStyle?
 ---@field tostring ShowNumberAsString?
 
 ---@class ValueBoxProperties : ControlProperties
----@field bind renoise.Document.ObservableNumber?
+---@field bind NumberObservable?
 ---@field value NumberValue?
----@field notifier NumberValueNotifierFunction?
+---@field notifier NumberValueNotifier?
 ---@field min MinValue?
 ---@field max MaxValue?
 ---@field steps StepAmounts?
@@ -1417,9 +1338,9 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field tonumber ParseStringAsNumber?
 
 ---@class ValueFieldProperties : ControlProperties
----@field bind renoise.Document.ObservableNumber?
+---@field bind NumberObservable?
 ---@field value NumberValue?
----@field notifier NumberValueNotifierFunction?
+---@field notifier NumberValueNotifier?
 ---@field min MinValue?
 ---@field max MaxValue?
 ---@field align TextAlignment?
@@ -1427,26 +1348,26 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field tonumber ParseStringAsNumber?
 
 ---@class SliderProperties : ControlProperties
----@field bind renoise.Document.ObservableNumber?
+---@field bind NumberObservable?
 ---@field value NumberValue?
----@field notifier NumberValueNotifierFunction?
+---@field notifier NumberValueNotifier?
 ---@field min MinValue?
 ---@field max MaxValue?
 ---@field steps StepAmounts?
 ---@field default DefaultValue?
 
 ---@class MiniSliderProperties : ControlProperties
----@field bind renoise.Document.ObservableNumber?
+---@field bind NumberObservable?
 ---@field value NumberValue?
----@field notifier NumberValueNotifierFunction?
+---@field notifier NumberValueNotifier?
 ---@field min MinValue?
 ---@field max MaxValue?
 ---@field default DefaultValue?
 
 ---@class RotaryEncoderProperties : ControlProperties
----@field bind renoise.Document.ObservableNumber?
+---@field bind NumberObservable?
 ---@field value NumberValue?
----@field notifier NumberValueNotifierFunction?
+---@field notifier NumberValueNotifier?
 ---@field min MinValue?
 ---@field max MaxValue?
 ---@field default DefaultValue?
@@ -1455,7 +1376,7 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field bind XYPadObservables?
 ---@field value XYPadValues?
 ---@field snapback XYPadSnapbackValues?
----@field notifier XYValueNotifierFunction?
+---@field notifier XYValueNotifier?
 ---@field min XYPadMinValues?
 ---@field max XYPadMaxValues?
 
