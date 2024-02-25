@@ -87,6 +87,7 @@ function renoise.Application:show_custom_prompt(title, content_view, button_labe
 
 --TODO cover all possible cases? for Mac?
 ---@alias ModifierStates
+---| "" # no modifier was pressed
 ---| "shift"
 ---| "shift + alt"
 ---| "shift + control"
