@@ -74,6 +74,12 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.Views
 
+---The dimensions of a view has to be larger than 0.
+---For nested views you can also specify relative size
+---for example `vb:text { width = "80%"}`. The percentage values are
+---relative to the view's parent size and will automatically update on size changes.
+---@alias ViewDimension integer|string
+
 ---@class renoise.Views
 renoise.Views = {}
 
@@ -100,9 +106,9 @@ renoise.Views.View = {}
 ---sizes, like for example `vb:text { width = "80%"}`. The percentage values are
 ---relative to the view's parent size and will automatically update on size
 ---changes.
----@field width integer|string
+---@field width ViewDimension
 ---
----@field height integer|string
+---@field height ViewDimension
 ---
 ---Get/set a tooltip text that should be shown for this view.
 ---@field tooltip string Default: "" (no tip will be shown)
@@ -1362,8 +1368,8 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 --- base for all View construction properties
 ---@class ViewProperties
 ---@field id string?
----@field width (integer|string)?
----@field height (integer|string)?
+---@field width ViewDimension?
+---@field height ViewDimension?
 ---@field visibe boolean?
 ---@field tooltip string?
 
