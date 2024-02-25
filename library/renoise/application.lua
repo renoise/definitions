@@ -85,12 +85,42 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---@return string label
 function renoise.Application:show_custom_prompt(title, content_view, button_labels, key_handler, key_handler_options) end
 
----Shows a non modal dialog (a floating tool window) with custom content.
+--TODO cover all possible cases? for Mac?
+---@alias ModifierStates
+---| "shift"
+---| "shift + alt"
+---| "shift + control"
+---| "shift + alt + control"
+---| "alt"
+---| "alt + control"
+---| "control"
+---| "option"
+---| "shift + option"
+---| "shift + option + control"
+
+---@class KeyEvent
+---@field name string name of the key, like 'esc' or 'a'
+---@field modifiers ModifierStates the held down modifiers as a string
+---@field character string? possible character representation of the key
+---@field note integer? virtual keyboard piano key value (starting from 0)
+---@field state ("released"|"pressed")? only present if `send_key_release` was set to true
+---@field repeated boolean? only present if `send_key_repeat` was set to true
+
+---When returning the passed key from the key-handler function, the
+---key will be passed back to Renoise's key event chain, in order to allow
+---processing global Renoise key-bindings from your dialog. This will not work
+---for modal dialogs. This also only applies to global shortcuts in Renoise,
+---because your dialog will steal the focus from all other Renoise views such as
+---the Pattern Editor, etc.
+---@alias KeyHandlerFunction fun(dialog : renoise.Dialog, key_event : KeyEvent) : KeyEvent?
+
+---Shows a non modal dialog (a floating tool window) with custom content.  
+---When no key_handler is provided, the Escape key is used to close the dialog.
 ---
----See Renoise.ViewBuilder.API for more info about custom views.
+---@see renoise.ViewBuilder for more info about custom views.
 ---@param title string Dialog title.
 ---@param content_view renoise.Views.View dialog content view.
----@param key_handler fun(key)? Optional notifier function for keyboard events in the dialog.
+---@param key_handler KeyHandlerFunction? Optional notifier function for keyboard events in the dialog.
 ---@param key_handler_options KeyHandlerOptions? Optional table with the fields: ```{ "send_key_repeat": true/false, "send_key_release": true/false }```
 ---@return renoise.Dialog
 function renoise.Application:show_custom_dialog(title, content_view, key_handler, key_handler_options) end
