@@ -88,13 +88,13 @@ renoise.Views = {}
 ---@alias ViewDimension integer|string
 
 ---A tooltip text that should be shown for this view on mouse hover.
----Default: "" (no tip will be shown)
+---* Default: "" (no tip will be shown)
 ---@alias Tooltip string
 
 ---Set visible to false to hide a view (make it invisible without removing
 ---it). Please note that view.visible will also return false when any of its
 ---parents are invisible (when its implicitly invisible).
----Default: true
+---* Default: true
 ---@alias Visibility boolean
 
 ---@class renoise.Views.View
@@ -155,10 +155,12 @@ renoise.Views.Control = {}
 ---## renoise.Views.Rack
 
 ---Set the "borders" of a rack (left, right, top and bottom inclusively)
+---*  Default: 0 (no borders)
 ---@alias RackMargin integer
 
 ---Set the amount stacked child views are separated by (horizontally in
 ---rows, vertically in columns).
+---*  Default: 0 (no spacing)
 ---@alias RackSpacing integer
 
 ---When set to true, all child views in the rack are automatically resized to
@@ -166,12 +168,12 @@ renoise.Views.Control = {}
 ---ViewBuilder.row). This can be useful to automatically align all sub
 ---columns/panels to the same size. Resizing is done automatically, as soon
 ---as a child view size changes or new children are added.
----Default: false
+---* Default: false
 ---@alias RackUniformity boolean
 
 ---Setup a background style for the rack. Available styles are:
 ---@alias RackStyle
----| "invisible" # no background
+---| "invisible" # no background (Default)
 ---| "plain"     # undecorated, single coloured background
 ---| "border"    # same as plain, but with a bold nested border
 ---| "body"      # main "background" style, as used in dialog backgrounds
@@ -191,9 +193,9 @@ renoise.Views.Rack = {}
 ---
 ---@class renoise.Views.Rack : renoise.Views.View
 ---
----@field margin RackMargin Default: 0 (no borders)
----@field spacing RackSpacing Default: 0 (no spacing)
----@field style RackStyle Default: "invisible"
+---@field margin RackMargin
+---@field spacing RackSpacing
+---@field style RackStyle
 ---@field uniform RackUniformity
 
 ---### functions
@@ -206,7 +208,7 @@ function renoise.Views.Rack:resize() end
 --------------------------------------------------------------------------------
 ---## renoise.Views.Aligner
 
----Default: "left" (for horizontal_aligner) "top" (for vertical_aligner)
+---* Default: "left" (for horizontal_aligner) "top" (for vertical_aligner)
 ---@alias AlignerMode
 ---| "left"       # align from left to right (for horizontal_aligner only)
 ---| "right"      # align from right to left (for horizontal_aligner only)
@@ -232,8 +234,8 @@ renoise.Views.Aligner = {}
 ---
 ---@class renoise.Views.Aligner : renoise.Views.View
 ---
----@field margin RackMargin Default: 0 (no borders)
----@field spacing RackSpacing Default: 0 (no spacing)
+---@field margin RackMargin
+---@field spacing RackSpacing
 ---@field mode AlignerMode
 
 
@@ -263,7 +265,7 @@ renoise.Views.Aligner = {}
 
 ---The text that should be displayed. Setting a new text will resize
 ---the view in order to make the text fully visible (expanding only).
----Default: ""
+---* Default: ""
 ---@alias SingleLineString string
 
 ---@class renoise.Views.Text
@@ -298,7 +300,7 @@ renoise.Views.Text = {}
 
 ---A table of text lines to be used instead of specifying a single text
 ---line with newline characters like "text"
----Default: []
+---* Default: []
 ---@alias Paragraphs string[]
 
 ---Setup the text view's background:
@@ -355,21 +357,21 @@ function renoise.Views.MultiLineText:clear() end
 ---## renoise.Views.TextField
 
 ---When false, text is displayed but can not be entered/modified by the user.
----Default: true
+---* Default: true
 ---@alias TextActive boolean
 
 ---The currently shown text. The text will not be updated when editing,
 ---rather only after editing is complete (return is pressed, or focus is lost).
----Default: ""
+---* Default: ""
 ---@alias TextValue string
 
 ---Exactly the same as "value"; provided for consistency.
----Default: ""
+---* Default: ""
 ---@alias TextValueAlias string
 
 ---True when the text field is focused. setting it at run-time programatically
 ---will focus the text field or remove the focus (focus the dialog) accordingly.
----Default: false
+---* Default: false
 ---@alias EditMode boolean 
 
 ---Set up a notifier for text changes
@@ -473,7 +475,7 @@ function renoise.Views.MultiLineTextField:clear() end
 
 ---Setup how the bitmap should be drawn, recolored. Available modes are:
 ---@alias BitmapMode
----| "plain"        # bitmap is drawn as is, no recoloring is done
+---| "plain"        # bitmap is drawn as is, no recoloring is done (Default)
 ---| "transparent"  # same as plain, but black pixels will be fully transparent
 ---| "button_color" # recolor the bitmap, using the theme's button color
 ---| "body_color"   # same as 'button_back' but with body text/back color
@@ -515,7 +517,7 @@ renoise.Views.Bitmap = {}
 ---```
 ---@class renoise.Views.Bitmap : renoise.Views.Control
 ---
----@field mode BitmapMode Default: "plain"
+---@field mode BitmapMode
 ---@field bitmap BitmapPath
 
 ---### functions
@@ -537,7 +539,7 @@ function renoise.Views.Bitmap:remove_notifier(notifier) end
 ---## renoise.Views.Button
 
 ---The text label of the button
----Default: ""
+---* Default: ""
 ---@alias ButtonLabel string
 
 ---When set, existing text is cleared. You should use a relative path
@@ -553,8 +555,7 @@ function renoise.Views.Bitmap:remove_notifier(notifier) end
 ---according to their gray value.
 ---@alias ButtonBitmapPath string
 
----Table of RGB values like {0xff,0xff,0xff} -> white. When set, the
----unpressed button's background will be drawn in the specified color.
+---When set, the unpressed button's background will be drawn in the specified color.
 ---A text color is automatically selected to make sure its always visible.
 ---Set color {0,0,0} to enable the theme colors for the button again.
 ---@alias ButtonColor RGBColor
@@ -610,7 +611,7 @@ function renoise.Views.Button:remove_released_notifier(notifier) end
 ---## renoise.Views.CheckBox
 
 ---The current state of the checkbox, expressed as boolean.
----Default: false
+---* Default: false
 ---@alias CheckBoxBoolean boolean
 
 ---A notifier for when the checkbox is toggled
@@ -775,13 +776,23 @@ function renoise.Views.Chooser:remove_notifier(notifier) end
 ---## renoise.Views.ValueBox
 
 ---The minimum value that can be set using the view
+---* Default: 0
 ---@alias MinValue number
+
 ---The maximum value that can be set using the view
+---* Default: 1.0
 ---@alias MaxValue number
+
+---The maximum value that can be set using the view
+---* Default: 100
+---@alias ValueBoxMaxValue number
+
 ---The default value that will be re-applied on double-click
 ---@alias DefaultValue number
+
 ---The current value of the view
 ---@alias NumberValue number
+
 ---A table containing two numbers representing the step amounts for incrementing
 ---and decrementing by clicking the <> buttons.
 ---The first value is the small step (applied on left clicks)
@@ -821,7 +832,7 @@ renoise.Views.ValueBox = {}
 ---@class renoise.Views.ValueBox : renoise.Views.Control
 ---
 ---@field min MinValue
----@field max MaxValue Default: 100
+---@field max ValueBoxMaxValue
 ---@field steps StepAmounts
 ---@field value NumberValue
 ---@field tostring ShowNumberAsString
@@ -862,8 +873,8 @@ renoise.Views.Value = {}
 ---@class renoise.Views.Value : renoise.Views.View
 ---
 ---@field value NumberValue
----@field font FontStyle Default: "normal"
----@field align TextAlignment Default: "left"
+---@field font FontStyle
+---@field align TextAlignment
 ---@field tostring ShowNumberAsString
 
 ---### functions
@@ -901,9 +912,9 @@ renoise.Views.ValueField = {}
 ---@class renoise.Views.ValueField : renoise.Views.Control
 ---
 ---@field min MinValue
----@field max MaxValue Default: 1.0
+---@field max MaxValue
 ---@field value NumberValue
----@field align TextAlignment Default: "left"
+---@field align TextAlignment
 ---@field tostring ShowNumberAsString
 ---@field tonumber ParseStringAsNumber
 
@@ -942,7 +953,7 @@ renoise.Views.Slider = {}
 ---@class renoise.Views.Slider : renoise.Views.Control
 ---
 ---@field min MinValue
----@field max MaxValue Default: 1.0
+---@field max MaxValue
 ---@field steps StepAmounts
 ---@field default DefaultValue
 ---@field value NumberValue
@@ -980,7 +991,7 @@ renoise.Views.MiniSlider = {}
 ---@class renoise.Views.MiniSlider : renoise.Views.Control
 ---
 ---@field min MinValue
----@field max MaxValue Default: 1.0
+---@field max MaxValue
 ---@field default DefaultValue
 ---@field value NumberValue
 
@@ -1022,7 +1033,7 @@ renoise.Views.RotaryEncoder = {}
 ---@class renoise.Views.RotaryEncoder : renoise.Views.Control
 ---
 ---@field min MinValue
----@field max MaxValue Default: 1.0.
+---@field max MaxValue
 ---@field default DefaultValue
 ---@field value NumberValue
 
@@ -1048,11 +1059,11 @@ function renoise.Views.RotaryEncoder:remove_notifier(notifier) end
 ---@alias XYPadValues { x : NumberValue, y : NumberValue }
 
 ---A table of allowed minimum values for each axis
----Default: {x: 0.0, y: 0.0}
+---* Default: {x: 0.0, y: 0.0}
 ---@alias XYPadMinValues { x : MinValue, y : MinValue }
 
 ---A table of allowed maximum values for each axis
----Default: {x: 0.0, y: 0.0}
+---* Default: {x: 1.0, y: 1.0}
 ---@alias XYPadMaxValues { x : MaxValue, y : MaxValue }
 
 ---A table of snapback values for each axis
@@ -1132,12 +1143,20 @@ renoise.ViewBuilder = {}
 
 ---Default sizes for views and view layouts. Should be used instead of magic
 ---numbers, also useful to inherit global changes from the main app.
+
+---The default margin for all control views
 renoise.ViewBuilder.DEFAULT_CONTROL_MARGIN = 4
+---The default spacing for all control views
 renoise.ViewBuilder.DEFAULT_CONTROL_SPACING = 2
+---The default height for control views
 renoise.ViewBuilder.DEFAULT_CONTROL_HEIGHT = 18
+---The default height for mini-sliders
 renoise.ViewBuilder.DEFAULT_MINI_CONTROL_HEIGHT = 14
+---The default margin for dialogs
 renoise.ViewBuilder.DEFAULT_DIALOG_MARGIN = 8
+---The default spacing for dialogs
 renoise.ViewBuilder.DEFAULT_DIALOG_SPACING = 8
+---The default height for buttons
 renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 
 ---### properties
@@ -1286,7 +1305,7 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@class ButtonProperties : ControlProperties
 ---@field text ButtonLabel?
 ---@field bitmap ButtonBitmapPath?
----@field color RGBColor?
+---@field color ButtonColor?
 ---@field notifier Notifier?
 ---@field pressed Notifier?
 ---@field released Notifier?
@@ -1332,7 +1351,7 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field value NumberValue?
 ---@field notifier NumberValueNotifier?
 ---@field min MinValue?
----@field max MaxValue?
+---@field max ValueBoxMaxValue?
 ---@field steps StepAmounts?
 ---@field tostring ShowNumberAsString?
 ---@field tonumber ParseStringAsNumber?
