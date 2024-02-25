@@ -828,9 +828,20 @@ function renoise.Views.Chooser:add_notifier(notifier) end
 ---@overload fun(self, notifier: IntegerValueNotifierMethod2)
 function renoise.Views.Chooser:remove_notifier(notifier) end
 
-
+---Set a custom rule on how a number value should be displayed.
+---Useful for showing units like decibel or note values etc.
+---If none are set, a default string/number conversion is done, which
+---simply shows the number with 3 digits after the decimal point.
+---Note: When the callback fails with an error, it will be disabled to avoid
+---a flood of error messages.
 ---@alias ShowNumberAsString fun(value : number) : string?
+
+---Set a custom function to parse a number value from a user-provided string.
+---When returning nil, no conversion will be done and the value will not change.
+---Note: When the callback fails with an error, it will be disabled to avoid
+---a flood of error messages.
 ---@alias ParseStringAsNumber fun(value : string) : number?
+
 --------------------------------------------------------------------------------
 ---## renoise.Views.ValueBox
 
@@ -863,19 +874,6 @@ renoise.Views.ValueBox = {}
 ---Get/set the current value
 ---@field value number
 ---
----Valid in the construction table only: Setup custom rules on how the number
----should be displayed. Both 'tostring' and  'tonumber' must be set, or neither.
----If none are set, a default string/number conversion is done, which
----simply reads/writes the number as integer value.
----
----When defined, 'tostring' must be a function with one parameter, the
----conversion procedure, and must return a string or nil.
----'tonumber' must be a function with one parameter, also the conversion
----procedure, and return a a number or nil. When returning nil, no conversion is
----done and the value is not changed.
----
----Note: when any of the callbacks fail with an error, both will be disabled
----to avoid a flood of error messages.
 ---@field tostring ShowNumberAsString
 ---
 ---@field tonumber ParseStringAsNumber
@@ -931,13 +929,6 @@ renoise.Views.Value = {}
 ---
 ---@field align TextAlignment Default: "left"
 ---
----Valid in the construction table only: Setup a custom rule on how the
----number should be displayed. When defined, 'tostring' must be a function
----with one parameter, the conversion procedure, and must return a string
----or nil.
----
----Note: When the callback fails with an error, it will be disabled to avoid
----a flood of error messages.
 ---@field tostring ShowNumberAsString
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
@@ -995,20 +986,7 @@ renoise.Views.ValueField = {}
 ---
 ---Setup the text alignment.
 ---@field align TextAlignment Default: "left"
----
----Valid in the construction table only: setup custom rules on how the number
----should be displayed. Both, 'tostring' and  'tonumber' must be set, or none
----of them. If none are set, a default string/number conversion is done, which
----simply shows the number with 3 digits after the decimal point.
----
----When defined, 'tostring' must be a function with one parameter, the to be
----converted number, and must return a string or nil.
----'tonumber' must be a function with one parameter and gets the to be
----converted string passed, returning a a number or nil. When returning nil,
----no conversion will be done and the value is not changed.
----
----Note: when any of the callbacks fail with an error, both will be disabled
----to avoid a flood of error messages.
+---.
 ---@field tostring ShowNumberAsString
 ---
 ---@field tonumber ParseStringAsNumber
