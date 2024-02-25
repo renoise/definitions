@@ -151,6 +151,13 @@ renoise.Views.Control = {}
 --------------------------------------------------------------------------------
 ---## renoise.Views.Rack
 
+---Set the "borders" of a rack (left, right, top and bottom inclusively)
+---@alias RackMargin integer
+
+---Set the amount stacked child views are separated by (horizontally in
+---rows, vertically in columns).
+---@alias RackSpacing integer
+
 ---@class renoise.Views.Rack
 renoise.Views.Rack = {}
 
@@ -164,12 +171,9 @@ renoise.Views.Rack = {}
 ---
 ---@class renoise.Views.Rack : renoise.Views.View
 ---
----Set the "borders" of the rack (left, right, top and bottom inclusively)
----@field margin integer Default: 0 (no borders)
+---@field margin RackMargin Default: 0 (no borders)
 ---
----Setup the amount stacked child views are separated by (horizontally in
----rows, vertically in columns).
----@field spacing integer Default: 0 (no spacing)
+---@field spacing RackSpacing Default: 0 (no spacing)
 ---
 ---Setup a background style for the rack. Available styles are:
 ---@alias RackStyle
@@ -216,11 +220,11 @@ renoise.Views.Aligner = {}
 ---@class renoise.Views.Aligner : renoise.Views.View
 ---
 ---Setup "borders" for the aligner (left, right, top and bottom inclusively)
----@field margin integer Default: 0 (no borders)
+---@field margin RackMargin Default: 0 (no borders)
 ---
 ---Setup the amount child views are separated by (horizontally in rows,
 ---vertically in columns).
----@field spacing integer Default: 0 (no spacing)
+---@field spacing RackSpacing Default: 0 (no spacing)
 ---
 ---@alias AlignerMode
 ---| "left"       # align from left to right (for horizontal_aligner only)
@@ -679,6 +683,9 @@ function renoise.Views.CheckBox:remove_notifier(notifier) end
 --------------------------------------------------------------------------------
 ---## renoise.Views.Switch
 
+---The currently selected item's index
+---@alias SelectedItem integer
+
 ---@class renoise.Views.Switch : renoise.Views.Control
 renoise.Views.Switch = {}
 
@@ -697,8 +704,7 @@ renoise.Views.Switch = {}
 ---Get/set the currently shown button labels.
 ---@field items string[] size must be >= 2
 ---
----Get/set the currently pressed button index.
----@field value integer
+---@field value SelectedItem
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
 ---@field notifier IntegerValueNotifierFunction|IntegerValueNotifierMethod1|IntegerValueNotifierMethod2
@@ -747,8 +753,7 @@ renoise.Views.Popup = {}
 ---displayed and the value won't change.
 ---@field items string[]
 ---
----Get/set the currently selected item index.
----@field value integer
+---@field value SelectedItem
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
 ---@field notifier IntegerValueNotifierFunction|IntegerValueNotifierMethod1|IntegerValueNotifierMethod2
@@ -796,8 +801,7 @@ renoise.Views.Chooser = {}
 ---Get/set the currently shown items. Item list size must be >= 2.
 ---@field items string[]
 ---
----Get/set the currently selected items index.
----@field value integer
+---@field value SelectedItem
 ---
 ---**WRITE-ONLY** Valid in the construction table only: Set up a value notifier.
 ---@field notifier IntegerValueNotifierFunction|IntegerValueNotifierMethod1|IntegerValueNotifierMethod2
@@ -1378,14 +1382,14 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field midi_mapping string?
 
 ---@class RackViewProperties : ViewProperties
----@field margin integer?
----@field spacing integer?
+---@field margin RackMargin?
+---@field spacing RackSpacing?
 ---@field style RackStyle?
 ---@field uniform boolean?
 
 ---@class AlignmentRackViewProperties : ViewProperties
----@field margin integer?
----@field spacing integer?
+---@field margin RackMargin?
+---@field spacing RackSpacing?
 ---@field mode AlignerMode?
 
 ---@class TextViewProperties : ViewProperties
@@ -1440,19 +1444,19 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 
 ---@class ButtonSwitchProperties : ControlProperties
 ---@field bind renoise.Document.ObservableNumber?
----@field value integer?
+---@field value SelectedItem?
 ---@field notifier IntegerValueNotifierFunction?
 ---@field items string[]?
 
 ---@class PopUpMenuProperties : ControlProperties
 ---@field bind renoise.Document.ObservableNumber?
----@field value integer?
+---@field value SelectedItem?
 ---@field notifier IntegerValueNotifierFunction?
 ---@field items string[]?
 
 ---@class ChooserProperties : ControlProperties
 ---@field bind renoise.Document.ObservableNumber?
----@field value integer?
+---@field value SelectedItem?
 ---@field notifier IntegerValueNotifierFunction?
 ---@field items string[]?
 
