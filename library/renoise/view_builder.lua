@@ -807,11 +807,17 @@ function renoise.Views.Chooser:remove_notifier(notifier) end
 ---a flood of error messages.
 ---@alias ShowNumberAsString fun(value : number) : string?
 
+---Make sure to also set `tonumber` if you set this.
+---@alias PairedShowNumberAsString ShowNumberAsString
+
 ---Set a custom function to parse a number value from a user-provided string.
 ---When returning nil, no conversion will be done and the value will not change.
 ---Note: When the callback fails with an error, it will be disabled to avoid
 ---a flood of error messages.
 ---@alias ParseStringAsNumber fun(value : string) : number?
+
+---Make sure to also set `tostring` if you set this.
+---@alias PairedParseStringAsNumber fun(value : string) : number?
 
 ---Set up a value notifier that will be called whenever the value changes
 ---@alias NumberValueNotifier NumberValueNotifierFunction|NumberValueNotifierMethod1|NumberValueNotifierMethod2
@@ -835,8 +841,6 @@ renoise.Views.ValueBox = {}
 ---@field max ValueBoxMaxValue
 ---@field steps StepAmounts
 ---@field value NumberValue
----@field tostring ShowNumberAsString
----@field tonumber ParseStringAsNumber
 
 ---### functions
 
@@ -875,7 +879,6 @@ renoise.Views.Value = {}
 ---@field value NumberValue
 ---@field font FontStyle
 ---@field align TextAlignment
----@field tostring ShowNumberAsString
 
 ---### functions
 
@@ -915,8 +918,6 @@ renoise.Views.ValueField = {}
 ---@field max MaxValue
 ---@field value NumberValue
 ---@field align TextAlignment
----@field tostring ShowNumberAsString
----@field tonumber ParseStringAsNumber
 
 ---### functions
 
@@ -1353,8 +1354,8 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field min MinValue?
 ---@field max ValueBoxMaxValue?
 ---@field steps StepAmounts?
----@field tostring ShowNumberAsString?
----@field tonumber ParseStringAsNumber?
+---@field tostring PairedShowNumberAsString?
+---@field tonumber PairedParseStringAsNumber?
 
 ---@class ValueFieldProperties : ControlProperties
 ---@field bind NumberObservable?
@@ -1363,8 +1364,8 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field min MinValue?
 ---@field max MaxValue?
 ---@field align TextAlignment?
----@field tostring ShowNumberAsString?
----@field tonumber ParseStringAsNumber?
+---@field tostring PairedShowNumberAsString?
+---@field tonumber PairedParseStringAsNumber?
 
 ---@class SliderProperties : ControlProperties
 ---@field bind NumberObservable?
