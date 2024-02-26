@@ -63,7 +63,7 @@ function renoise.PatternTrack:lines_in_range(index_from, index_to) end
 ---Returns the automation for the given device parameter or nil when there is
 ---none.
 ---@param parameter renoise.DeviceParameter
----@return renoise.PatternTrackAutomation|nil
+---@return renoise.PatternTrackAutomation?
 function renoise.PatternTrack:find_automation(parameter) end
 
 ---Creates a new automation for the given device parameter.

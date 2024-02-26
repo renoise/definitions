@@ -48,7 +48,7 @@ renoise.Osc.Message = {}
 
 ---@class OscValue
 ---@field tag "i"|"f"|"s"|"b"|"h"|"t"|"d"|"S"|"c"|"r"|"m"|"T"|"F"|"N"|"I"
----@field value number|string|boolean|nil
+---@field value (number|string|boolean)?
 
 ---Create a new OSC message with the given pattern and optional arguments.
 ---When arguments are specified, they must be specified as a table of:
