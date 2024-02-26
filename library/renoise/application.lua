@@ -79,8 +79,8 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 --- * Mac : "shift", "option", "control", "command"
 ---If multiple modifiers are held down, the string will be formatted as  
 ---"<key> + <key>"
----Their order will correspond to the following precedence  
----`shift > alt/option > control > winkey/meta/command`  
+---Their order will correspond to the following precedence
+---`shift + alt/option + control + winkey/meta/command`  
 ---If no modifier is pressed, this will be an empty string
 ---@alias ModifierStates string
 
@@ -99,7 +99,7 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---for modal dialogs. This also only applies to global shortcuts in Renoise,
 ---because your dialog will steal the focus from all other Renoise views such as
 ---the Pattern Editor, etc.
----@alias KeyHandlerFunction fun(dialog : renoise.Dialog, key_event : KeyEvent) : KeyEvent?
+---@alias KeyHandler fun(dialog : renoise.Dialog, key_event : KeyEvent) : KeyEvent?
 ---@alias KeyHandlerMemberFunction fun(self: NotifierMemberContext, dialog: renoise.Dialog, key: KeyEvent): KeyEvent?
 ---@alias KeyHandlerMethod1 {[1]:NotifierMemberContext, [2]:KeyHandlerMemberFunction}
 ---@alias KeyHandlerMethod2 {[1]:KeyHandlerMemberFunction, [2]:NotifierMemberContext}
@@ -114,7 +114,7 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---@param title string Message box title.
 ---@param content_view renoise.Views.View Message box content view.
 ---@param button_labels string[]
----@param key_handler KeyHandlerFunction?
+---@param key_handler KeyHandler?
 ---@param key_handler_options KeyHandlerOptions?
 ---@overload fun(title: string, content_view: renoise.Views.View, button_labels: string[], key_handler: KeyHandlerMethod1?, key_handler_options: KeyHandlerOptions?): string
 ---@overload fun(title: string, content_view: renoise.Views.View, button_labels: string[], key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?): string
@@ -128,7 +128,7 @@ function renoise.Application:show_custom_prompt(title, content_view, button_labe
 ---@see renoise.ViewBuilder for more info about custom views.
 ---@param title DialogTitle
 ---@param content_view renoise.Views.View dialog content view.
----@param key_handler KeyHandlerFunction?
+---@param key_handler KeyHandler?
 ---@param key_handler_options KeyHandlerOptions?
 ---@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod1?, key_handler_options: KeyHandlerOptions?): string
 ---@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?): string
