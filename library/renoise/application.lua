@@ -92,11 +92,6 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---@field state ("released"|"pressed")? only present if `send_key_release` was set to true
 ---@field repeated boolean? only present if `send_key_repeat` was set to true
 
----@alias KeyHandlerFunction fun(dialog : renoise.Dialog, key_event : KeyEvent) : KeyEvent?
----@alias KeyHandlerMemberFunction fun(self: NotifierMemberContext, dialog: renoise.Dialog, key: KeyEvent): KeyEvent?
----@alias KeyHandlerMethod1 {[1]:NotifierMemberContext, [2]:KeyHandlerMemberFunction}
----@alias KeyHandlerMethod2 {[1]:KeyHandlerMemberFunction, [2]:NotifierMemberContext}
-
 ---Optional keyhandler to process key events on a custom dialog.  
 ---When returning the passed key from the key-handler function, the
 ---key will be passed back to Renoise's key event chain, in order to allow
@@ -104,7 +99,10 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---for modal dialogs. This also only applies to global shortcuts in Renoise,
 ---because your dialog will steal the focus from all other Renoise views such as
 ---the Pattern Editor, etc.
----@alias KeyHandler KeyHandlerFunction | KeyHandlerMethod1 | KeyHandlerMethod2
+---@alias KeyHandlerFunction fun(dialog : renoise.Dialog, key_event : KeyEvent) : KeyEvent?
+---@alias KeyHandlerMemberFunction fun(self: NotifierMemberContext, dialog: renoise.Dialog, key: KeyEvent): KeyEvent?
+---@alias KeyHandlerMethod1 {[1]:NotifierMemberContext, [2]:KeyHandlerMemberFunction}
+---@alias KeyHandlerMethod2 {[1]:KeyHandlerMemberFunction, [2]:NotifierMemberContext}
 
 ---@class KeyHandlerOptions
 ---@field send_key_repeat boolean? Default: true
@@ -115,9 +113,11 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---@see renoise.ViewBuilder for more info about custom views.
 ---@param title string Message box title.
 ---@param content_view renoise.Views.View Message box content view.
----@param button_labels string[]? Default: {"Ok"}
----@param key_handler KeyHandler?
+---@param button_labels string[]
+---@param key_handler KeyHandlerFunction?
 ---@param key_handler_options KeyHandlerOptions?
+---@overload fun(title: string, content_view: renoise.Views.View, button_labels: string[], key_handler: KeyHandlerMethod1?, key_handler_options: KeyHandlerOptions?): string
+---@overload fun(title: string, content_view: renoise.Views.View, button_labels: string[], key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?): string
 ---@return string label
 function renoise.Application:show_custom_prompt(title, content_view, button_labels, key_handler, key_handler_options) end
 
@@ -128,8 +128,10 @@ function renoise.Application:show_custom_prompt(title, content_view, button_labe
 ---@see renoise.ViewBuilder for more info about custom views.
 ---@param title DialogTitle
 ---@param content_view renoise.Views.View dialog content view.
----@param key_handler KeyHandler?
+---@param key_handler KeyHandlerFunction?
 ---@param key_handler_options KeyHandlerOptions?
+---@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod1?, key_handler_options: KeyHandlerOptions?): string
+---@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?): string
 ---@return renoise.Dialog
 function renoise.Application:show_custom_dialog(title, content_view, key_handler, key_handler_options) end
 
