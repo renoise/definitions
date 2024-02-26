@@ -1226,115 +1226,115 @@ function renoise.ViewBuilder() end
 
 --TODO note possible child views
 ---@see renoise.Views.Rack
----@param properties RackViewProperties?
+---@param properties RackViewProperties
 ---@return renoise.Views.Rack
 function renoise.ViewBuilder:column(properties) end
 
 --TODO note possible child views
 ---@see renoise.Views.Rack
----@param properties RackViewProperties?
+---@param properties RackViewProperties
 ---@return renoise.Views.Rack
 function renoise.ViewBuilder:row(properties) end
 
 --TODO note possible child views
 ---@see renoise.Views.Aligner
----@param properties AlignmentRackViewProperties?
+---@param properties AlignmentRackViewProperties
 ---@return renoise.Views.Aligner
 function renoise.ViewBuilder:horizontal_aligner(properties) end
 
 --TODO note possible child views
 ---@see renoise.Views.Aligner
----@param properties AlignmentRackViewProperties?
+---@param properties AlignmentRackViewProperties
 ---@return renoise.Views.Aligner
 function renoise.ViewBuilder:vertical_aligner(properties) end
 
 --TODO note possible child views
 ---@see renoise.Views.View
----@param properties ViewProperties?
+---@param properties ViewProperties
 ---@return renoise.Views.View
 function renoise.ViewBuilder:space(properties) end
 
 ---@see renoise.Views.Text
----@param properties TextViewProperties?
+---@param properties TextViewProperties
 ---@return renoise.Views.Text
 function renoise.ViewBuilder:text(properties) end
 
 ---@see renoise.Views.MultiLineText
----@param properties MultilineTextViewProperties?
+---@param properties MultilineTextViewProperties
 ---@return renoise.Views.MultiLineText
 function renoise.ViewBuilder:multiline_text(properties) end
 
 ---@see renoise.Views.TextField
----@param properties TextFieldProperties?
+---@param properties TextFieldProperties
 ---@return renoise.Views.TextField
 function renoise.ViewBuilder:textfield(properties) end
 
 ---@see renoise.Views.MultiLineTextField
----@param properties MultilineTextFieldProperties?
+---@param properties MultilineTextFieldProperties
 ---@return renoise.Views.MultiLineTextField
 function renoise.ViewBuilder:multiline_textfield(properties) end
 
 ---@see renoise.Views.Bitmap
----@param properties BitmapViewProperties?
+---@param properties BitmapViewProperties
 ---@return renoise.Views.Bitmap
 function renoise.ViewBuilder:bitmap(properties) end
 
 ---@see renoise.Views.Button
----@param properties ButtonProperties?
+---@param properties ButtonProperties
 ---@return renoise.Views.Button
 function renoise.ViewBuilder:button(properties) end
 
 ---@see renoise.Views.CheckBox
----@param properties CheckBoxProperties?
+---@param properties CheckBoxProperties
 ---@return renoise.Views.CheckBox
 function renoise.ViewBuilder:checkbox(properties) end
 
 ---@see renoise.Views.Switch
----@param properties ButtonSwitchProperties?
+---@param properties ButtonSwitchProperties
 ---@return renoise.Views.Switch
 function renoise.ViewBuilder:switch(properties) end
 
 ---@see renoise.Views.Popup
----@param properties PopUpMenuProperties?
+---@param properties PopUpMenuProperties
 ---@return renoise.Views.Popup
 function renoise.ViewBuilder:popup(properties) end
 
 ---@see renoise.Views.Chooser
----@param properties ChooserProperties?
+---@param properties ChooserProperties
 ---@return renoise.Views.Chooser
 function renoise.ViewBuilder:chooser(properties) end
 
 ---@see renoise.Views.ValueBox
----@param properties ValueBoxProperties?
+---@param properties ValueBoxProperties
 ---@return renoise.Views.ValueBox
 function renoise.ViewBuilder:valuebox(properties) end
 
 ---@see renoise.Views.Value
----@param properties ValueViewProperties?
+---@param properties ValueViewProperties
 ---@return renoise.Views.Value
 function renoise.ViewBuilder:value(properties) end
 
 ---@see renoise.Views.ValueField
----@param properties ValueFieldProperties?
+---@param properties ValueFieldProperties
 ---@return renoise.Views.ValueField
 function renoise.ViewBuilder:valuefield(properties) end
 
 ---@see renoise.Views.Slider
----@param properties SliderProperties?
+---@param properties SliderProperties
 ---@return renoise.Views.Slider
 function renoise.ViewBuilder:slider(properties) end
 
 ---@see renoise.Views.MiniSlider
----@param properties MiniSliderProperties?
+---@param properties MiniSliderProperties
 ---@return renoise.Views.MiniSlider
 function renoise.ViewBuilder:minislider(properties) end
 
 ---@see renoise.Views.RotaryEncoder
----@param properties RotaryEncoderProperties?
+---@param properties RotaryEncoderProperties
 ---@return renoise.Views.RotaryEncoder
 function renoise.ViewBuilder:rotary(properties) end
 
 ---@see renoise.Views.XYPad
----@param properties XYPadProperties?
+---@param properties XYPadProperties
 ---@return renoise.Views.XYPad
 function renoise.ViewBuilder:xypad(properties) end
