@@ -12,6 +12,33 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---
 
 --------------------------------------------------------------------------------
+---## renoise.ViewBuilder
+
+---@class renoise.ViewBuilder
+renoise.ViewBuilder = {}
+
+---### constants
+
+---Default sizes for views and view layouts. Should be used instead of magic
+---numbers, also useful to inherit global changes from the main app.
+
+---The default margin for all control views
+renoise.ViewBuilder.DEFAULT_CONTROL_MARGIN = 4
+---The default spacing for all control views
+renoise.ViewBuilder.DEFAULT_CONTROL_SPACING = 2
+---The default height for control views
+renoise.ViewBuilder.DEFAULT_CONTROL_HEIGHT = 18
+---The default height for mini-sliders
+renoise.ViewBuilder.DEFAULT_MINI_CONTROL_HEIGHT = 14
+---The default margin for dialogs
+renoise.ViewBuilder.DEFAULT_DIALOG_MARGIN = 8
+---The default spacing for dialogs
+renoise.ViewBuilder.DEFAULT_DIALOG_SPACING = 8
+---The default height for buttons
+renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
+
+
+--------------------------------------------------------------------------------
 ---## renoise.Views
 
 ---@class renoise.Views
@@ -1015,33 +1042,6 @@ local ViewBuilderInstance = {}
 ---vb.views["my_view"].visible = false
 ---```
 ---@field views table<string, renoise.Views.View>
-
-
---------------------------------------------------------------------------------
----## renoise.ViewBuilder
-
----@class renoise.ViewBuilder
-renoise.ViewBuilder = {}
-
----### constants
-
----Default sizes for views and view layouts. Should be used instead of magic
----numbers, also useful to inherit global changes from the main app.
-
----The default margin for all control views
-renoise.ViewBuilder.DEFAULT_CONTROL_MARGIN = 4
----The default spacing for all control views
-renoise.ViewBuilder.DEFAULT_CONTROL_SPACING = 2
----The default height for control views
-renoise.ViewBuilder.DEFAULT_CONTROL_HEIGHT = 18
----The default height for mini-sliders
-renoise.ViewBuilder.DEFAULT_MINI_CONTROL_HEIGHT = 14
----The default margin for dialogs
-renoise.ViewBuilder.DEFAULT_DIALOG_MARGIN = 8
----The default spacing for dialogs
-renoise.ViewBuilder.DEFAULT_DIALOG_SPACING = 8
----The default height for buttons
-renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 
 ---Construct a new viewbuilder instance you can use to create views
 ---@return ViewBuilderInstance
