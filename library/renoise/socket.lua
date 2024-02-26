@@ -174,7 +174,7 @@ function renoise.Socket.SocketClient:send(message) end
 ---fire a runtime error.
 ---@param mode SocketReceiveMode
 ---@param timeout_ms number
----@return boolean success, string? error
+---@return boolean? success, string? error
 function renoise.Socket.SocketClient:receive(mode, timeout_ms) end
 
 --------------------------------------------------------------------------------
