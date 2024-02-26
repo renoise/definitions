@@ -78,6 +78,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@class renoise.Document
 renoise.Document = {}
 
+---@alias ObservableTypes boolean|number|string|boolean[]|number[]|string[]
+---@alias ObservableProperties table <string, ObservableTypes|renoise.Document.DocumentNode|renoise.Document.DocumentList>
+
 ---### functions
 
 ---Create an empty DocumentNode or a DocumentNode that is modeled after the
@@ -118,7 +121,7 @@ renoise.Document = {}
 ---my_other_document = renoise.Document.instantiate("MyDoc")
 ---```
 ---@param model_name string
----@return fun(properties: { [string]: any }):renoise.Document.DocumentNode
+---@return fun(properties: ObservableProperties):renoise.Document.DocumentNode
 function renoise.Document.create(model_name)
     local new_node = renoise.Document.DocumentNode();
     return function(properties)
@@ -180,7 +183,7 @@ function renoise.Document.DocumentNode:property(property_name) end
 function renoise.Document.DocumentNode:add_property(name, value) end
 
 ---Add a batch of properties in one go, similar to renoise.Document.create.
----@param properties { [string]: any }
+---@param properties ObservableProperties
 function renoise.Document.DocumentNode:add_properties(properties) end
 
 ---Remove a previously added property. Property must exist.
