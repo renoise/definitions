@@ -970,30 +970,11 @@ function renoise.Views.XYPad:remove_notifier(notifier) end
 
 
 --------------------------------------------------------------------------------
----## renoise.ViewBuilder
+---## ViewBuilderInstance
 
----@class renoise.ViewBuilder
-renoise.ViewBuilder = {}
+---@class ViewBuilderInstance
+local ViewBuilderInstance = {}
 
----### constants
-
----Default sizes for views and view layouts. Should be used instead of magic
----numbers, also useful to inherit global changes from the main app.
-
----The default margin for all control views
-renoise.ViewBuilder.DEFAULT_CONTROL_MARGIN = 4
----The default spacing for all control views
-renoise.ViewBuilder.DEFAULT_CONTROL_SPACING = 2
----The default height for control views
-renoise.ViewBuilder.DEFAULT_CONTROL_HEIGHT = 18
----The default height for mini-sliders
-renoise.ViewBuilder.DEFAULT_MINI_CONTROL_HEIGHT = 14
----The default margin for dialogs
-renoise.ViewBuilder.DEFAULT_DIALOG_MARGIN = 8
----The default spacing for dialogs
-renoise.ViewBuilder.DEFAULT_DIALOG_SPACING = 8
----The default height for buttons
-renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 
 ---Class which is used to construct new views. All view properties can optionally be in-lined in a passed construction table:
 ---```lua
@@ -1021,7 +1002,7 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---}
 ---```
 ---Creates a column view with `margin = 1` and adds two text views to the column.
----@class renoise.ViewBuilder
+---@class ViewBuilderInstance
 ---
 ---Table of views, which got registered via the "id" property
 ---View id is the table key, the table's value is the view's object.
@@ -1035,8 +1016,35 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---```
 ---@field views table<string, renoise.Views.View>
 
+
+--------------------------------------------------------------------------------
+---## renoise.ViewBuilder
+
+---@class renoise.ViewBuilder
+renoise.ViewBuilder = {}
+
+---### constants
+
+---Default sizes for views and view layouts. Should be used instead of magic
+---numbers, also useful to inherit global changes from the main app.
+
+---The default margin for all control views
+renoise.ViewBuilder.DEFAULT_CONTROL_MARGIN = 4
+---The default spacing for all control views
+renoise.ViewBuilder.DEFAULT_CONTROL_SPACING = 2
+---The default height for control views
+renoise.ViewBuilder.DEFAULT_CONTROL_HEIGHT = 18
+---The default height for mini-sliders
+renoise.ViewBuilder.DEFAULT_MINI_CONTROL_HEIGHT = 14
+---The default margin for dialogs
+renoise.ViewBuilder.DEFAULT_DIALOG_MARGIN = 8
+---The default spacing for dialogs
+renoise.ViewBuilder.DEFAULT_DIALOG_SPACING = 8
+---The default height for buttons
+renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
+
 ---Construct a new viewbuilder instance you can use to create views
----@return renoise.ViewBuilder
+---@return ViewBuilderInstance
 function renoise.ViewBuilder() end
 
 --------------------------------------------------------------------------------
@@ -1228,113 +1236,113 @@ function renoise.ViewBuilder() end
 ---@see renoise.Views.Rack
 ---@param properties RackViewProperties
 ---@return renoise.Views.Rack
-function renoise.ViewBuilder:column(properties) end
+function ViewBuilderInstance:column(properties) end
 
 --TODO note possible child views
 ---@see renoise.Views.Rack
 ---@param properties RackViewProperties
 ---@return renoise.Views.Rack
-function renoise.ViewBuilder:row(properties) end
+function ViewBuilderInstance:row(properties) end
 
 --TODO note possible child views
 ---@see renoise.Views.Aligner
 ---@param properties AlignmentRackViewProperties
 ---@return renoise.Views.Aligner
-function renoise.ViewBuilder:horizontal_aligner(properties) end
+function ViewBuilderInstance:horizontal_aligner(properties) end
 
 --TODO note possible child views
 ---@see renoise.Views.Aligner
 ---@param properties AlignmentRackViewProperties
 ---@return renoise.Views.Aligner
-function renoise.ViewBuilder:vertical_aligner(properties) end
+function ViewBuilderInstance:vertical_aligner(properties) end
 
 --TODO note possible child views
 ---@see renoise.Views.View
 ---@param properties ViewProperties
 ---@return renoise.Views.View
-function renoise.ViewBuilder:space(properties) end
+function ViewBuilderInstance:space(properties) end
 
 ---@see renoise.Views.Text
 ---@param properties TextViewProperties
 ---@return renoise.Views.Text
-function renoise.ViewBuilder:text(properties) end
+function ViewBuilderInstance:text(properties) end
 
 ---@see renoise.Views.MultiLineText
 ---@param properties MultilineTextViewProperties
 ---@return renoise.Views.MultiLineText
-function renoise.ViewBuilder:multiline_text(properties) end
+function ViewBuilderInstance:multiline_text(properties) end
 
 ---@see renoise.Views.TextField
 ---@param properties TextFieldProperties
 ---@return renoise.Views.TextField
-function renoise.ViewBuilder:textfield(properties) end
+function ViewBuilderInstance:textfield(properties) end
 
 ---@see renoise.Views.MultiLineTextField
 ---@param properties MultilineTextFieldProperties
 ---@return renoise.Views.MultiLineTextField
-function renoise.ViewBuilder:multiline_textfield(properties) end
+function ViewBuilderInstance:multiline_textfield(properties) end
 
 ---@see renoise.Views.Bitmap
 ---@param properties BitmapViewProperties
 ---@return renoise.Views.Bitmap
-function renoise.ViewBuilder:bitmap(properties) end
+function ViewBuilderInstance:bitmap(properties) end
 
 ---@see renoise.Views.Button
 ---@param properties ButtonProperties
 ---@return renoise.Views.Button
-function renoise.ViewBuilder:button(properties) end
+function ViewBuilderInstance:button(properties) end
 
 ---@see renoise.Views.CheckBox
 ---@param properties CheckBoxProperties
 ---@return renoise.Views.CheckBox
-function renoise.ViewBuilder:checkbox(properties) end
+function ViewBuilderInstance:checkbox(properties) end
 
 ---@see renoise.Views.Switch
 ---@param properties ButtonSwitchProperties
 ---@return renoise.Views.Switch
-function renoise.ViewBuilder:switch(properties) end
+function ViewBuilderInstance:switch(properties) end
 
 ---@see renoise.Views.Popup
 ---@param properties PopUpMenuProperties
 ---@return renoise.Views.Popup
-function renoise.ViewBuilder:popup(properties) end
+function ViewBuilderInstance:popup(properties) end
 
 ---@see renoise.Views.Chooser
 ---@param properties ChooserProperties
 ---@return renoise.Views.Chooser
-function renoise.ViewBuilder:chooser(properties) end
+function ViewBuilderInstance:chooser(properties) end
 
 ---@see renoise.Views.ValueBox
 ---@param properties ValueBoxProperties
 ---@return renoise.Views.ValueBox
-function renoise.ViewBuilder:valuebox(properties) end
+function ViewBuilderInstance:valuebox(properties) end
 
 ---@see renoise.Views.Value
 ---@param properties ValueViewProperties
 ---@return renoise.Views.Value
-function renoise.ViewBuilder:value(properties) end
+function ViewBuilderInstance:value(properties) end
 
 ---@see renoise.Views.ValueField
 ---@param properties ValueFieldProperties
 ---@return renoise.Views.ValueField
-function renoise.ViewBuilder:valuefield(properties) end
+function ViewBuilderInstance:valuefield(properties) end
 
 ---@see renoise.Views.Slider
 ---@param properties SliderProperties
 ---@return renoise.Views.Slider
-function renoise.ViewBuilder:slider(properties) end
+function ViewBuilderInstance:slider(properties) end
 
 ---@see renoise.Views.MiniSlider
 ---@param properties MiniSliderProperties
 ---@return renoise.Views.MiniSlider
-function renoise.ViewBuilder:minislider(properties) end
+function ViewBuilderInstance:minislider(properties) end
 
 ---@see renoise.Views.RotaryEncoder
 ---@param properties RotaryEncoderProperties
 ---@return renoise.Views.RotaryEncoder
-function renoise.ViewBuilder:rotary(properties) end
+function ViewBuilderInstance:rotary(properties) end
 
 ---@see renoise.Views.XYPad
 ---@param properties XYPadProperties
 ---@return renoise.Views.XYPad
-function renoise.ViewBuilder:xypad(properties) end
+function ViewBuilderInstance:xypad(properties) end
