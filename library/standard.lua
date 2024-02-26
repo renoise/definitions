@@ -195,7 +195,7 @@ function table.count(t) end
 ---@param t table
 ---@param value any
 ---@param start_index integer?
----@return any key_or_nil
+---@return (string|integer|number)? key_or_nil
 ---### examples:
 ---```lua
 ---t = {"a", "b"}; table.find(t, "a") --> 1
