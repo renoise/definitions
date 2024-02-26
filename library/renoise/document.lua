@@ -160,7 +160,7 @@ function renoise.Document.DocumentNode:has_property(property_name) end
 
 ---Access a property by name. Returns the property, or nil when there is no
 ---such property.
----@param property_name any
+---@param property_name string
 ---@return DocumentMember?
 function renoise.Document.DocumentNode:property(property_name) end
 
