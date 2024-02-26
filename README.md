@@ -24,10 +24,12 @@ They are currently mentioned as @operator index, but won't be picked up by the l
 
 * Scripts to convert/generate a HTML doc page are missing. So no HTML version can be built from the definitions yet.
 The old conversion script won't work anymore, but maybe can be used as a template, for inspirations: 
-https://github.com/renoise/xrnx/tree/master/Xtra/HtmlGen
+https://github.com/renoise/xrnx/tree/master/Xtra/HtmlGen  
+Also, LuaLS [can export](https://luals.github.io/wiki/export-docs/) the annotation data formatted as JSON or Markdown
 
-* ViewBuilder: functions to create views are not yet annotated properly 
+* Return types for main class constructors (`renoise.app()`, `.tool()`, `.song()` etc.) should be specified as an instance to allow the LSP to warn when trying to access non-constant properties on the classes themselves (like `renoise.Song.selected_track`), see `ViewBuilderInstance` in `view_builder.lua` for a work-around.
 
+* The LuaLS type system allows setting non-existent properties for constructor tables, which then causes runtime crash (for example `vb:text { margin = 100 }`), using [(exact)](https://luals.github.io/wiki/annotations/#class) for `@class` annotations doesn't help.
 
 ## Usage
 
