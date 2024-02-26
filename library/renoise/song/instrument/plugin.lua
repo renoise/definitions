@@ -46,7 +46,7 @@ renoise.InstrumentPluginProperties = {}
 ---the alias points to.
 ---The observable is fired when the device changes: when a plugin gets loaded or
 ---unloaded or a plugin alias is assigned or unassigned.
----@field plugin_device (renoise.InstrumentPluginDevice|renoise.AudioDevice)?
+---@field plugin_device renoise.InstrumentPluginDevice|renoise.AudioDevice|nil
 ---@field plugin_device_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** Valid for loaded and unloaded plugins.

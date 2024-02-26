@@ -254,7 +254,7 @@ renoise.Document.ObservableBooleanList = {}
 
 ---List item access by index. returns nil for non existing items.
 ---@param index integer
----@return renoise.Document.ObservableBoolean?
+---@return nil|renoise.Document.ObservableBoolean
 function renoise.Document.ObservableBooleanList:property(index) end
 
 ---Find a value in the list by comparing the list values with the passed
@@ -262,8 +262,8 @@ function renoise.Document.ObservableBooleanList:property(index) end
 ---is returned.
 ---@param start_pos integer
 ---@param value boolean
----@return integer?
----@overload fun(self, value: boolean):integer?
+---@return integer|nil
+---@overload fun(self, value: boolean):integer|nil
 function renoise.Document.ObservableBooleanList:find(start_pos, value) end
 
 ---Insert a new item to the end of the list when no position is specified, or
@@ -299,7 +299,7 @@ renoise.Document.ObservableNumberList = {}
 
 ---List item access by index. returns nil for non existing items.
 ---@param index integer
----@return renoise.Document.ObservableNumber?
+---@return nil|renoise.Document.ObservableNumber
 function renoise.Document.ObservableNumberList:property(index) end
 
 ---Find a value in the list by comparing the list values with the passed
@@ -307,8 +307,8 @@ function renoise.Document.ObservableNumberList:property(index) end
 ---is returned.
 ---@param start_pos integer
 ---@param value number
----@return integer?
----@overload fun(self, value: number):integer?
+---@return integer|nil
+---@overload fun(self, value: number):integer|nil
 function renoise.Document.ObservableNumberList:find(start_pos, value) end
 
 ---Insert a new item to the end of the list when no position is specified, or
@@ -343,7 +343,7 @@ renoise.Document.ObservableStringList = {}
 
 ---List item access by index. returns nil for non existing items.
 ---@param index integer
----@return renoise.Document.ObservableString?
+---@return nil|renoise.Document.ObservableString
 function renoise.Document.ObservableStringList:property(index) end
 
 ---Find a value in the list by comparing the list values with the passed
@@ -351,8 +351,8 @@ function renoise.Document.ObservableStringList:property(index) end
 ---is returned.
 ---@param start_pos integer
 ---@param value number
----@return integer?
----@overload fun(self, value: number):integer?
+---@return integer|nil
+---@overload fun(self, value: number):integer|nil
 function renoise.Document.ObservableStringList:find(start_pos, value) end
 
 ---Insert a new item to the end of the list when no position is specified, or

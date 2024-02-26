@@ -42,11 +42,11 @@ renoise.PatternTrackAutomation = {
 ---
 ---Destination device. Can in some rare circumstances be nil, i.e. when
 ---a device or track is about to be deleted.
----@field dest_device renoise.AudioDevice?
+---@field dest_device renoise.AudioDevice|nil
 ---
 ---Destination device's parameter. Can in some rare circumstances be nil,
 ---i.e. when a device or track is about to be deleted.
----@field dest_parameter renoise.DeviceParameter?
+---@field dest_parameter renoise.DeviceParameter|nil
 ---
 ---play-mode (interpolation mode).
 ---@field playmode renoise.PatternTrackAutomation.Playmode

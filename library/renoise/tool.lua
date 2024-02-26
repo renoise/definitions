@@ -244,9 +244,9 @@ function renoise.ScriptingTool:remove_keybinding(keybinding_name) end
 ---@class renoise.ScriptingTool.MidiMessage
 ---Range: (0S - 127) for abs values, Range: (-63 - 63) for relative values
 ---valid when `is_rel_value()` or `is_abs_value()` returns true, else undefined
----@field int_value integer?
+---@field int_value integer|nil
 ---valid [true OR false] when `is_switch()` returns true, else undefined
----@field boolean_value boolean?
+---@field boolean_value boolean|nil
 renoise.ScriptingTool.MidiMessage = {}
 
 ---returns if action should be invoked
@@ -404,5 +404,5 @@ function renoise.ScriptingTool:remove_timer(timer) end
 ---If you don't need a notifier function to be called each time the script reloads,
 ---you can also simply set `_AUTO_RELOAD_DEBUG = true` to enable the automatic
 ---reloading of your tool.
----@type (true|fun())?
+---@type nil|true|fun()
 _AUTO_RELOAD_DEBUG = nil;
