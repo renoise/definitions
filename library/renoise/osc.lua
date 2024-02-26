@@ -46,42 +46,37 @@ renoise.Osc.Message = {}
 
 ---### functions
 
----@class OscValue
----@field tag "i"|"f"|"s"|"b"|"h"|"t"|"d"|"S"|"c"|"r"|"m"|"T"|"F"|"N"|"I"
----@field value (number|string|boolean)?
+---@alias OscTag
+---| "i" # int32
+---| "f" # float32
+---| "s" # OSC-string
+---| "b" # OSC-blob (raw string)
+---| "h" # 64 bit big-endian two's complement integer
+---| "t" # OSC-timetag
+---| "d" # 64 bit ("double") IEEE 754 floating point number
+---| "S" # Alternate type represented as an OSC-string
+---| "c" # An ascii character, sent as 32 bits
+---| "r" # 32 bit RGBA color
+---| "m" # 4 byte MIDI message. Bytes from MSB to LSB are: port id, status byte, data1, data2
+---| "T" # True. No value needs to be specified.
+---| "F" # False. No value needs to be specified.
+---| "N" # Nil. No value needs to be specified.
+---| "I" # Infinitum. No value needs to be specified.
+-- -| "[" "]" # Indicates the beginning, end of an array. (currently not supported)
 
----Create a new OSC message with the given pattern and optional arguments.
----When arguments are specified, they must be specified as a table of:
----```lua
----> { tag="X", value=SomeValue }
----```
+
 ---`tag` is a standard OSC type tag. `value` is the arguments value expressed
 ---by a Lua type. The value must be convertible to the specified tag, which
 ---means, you cannot for example specify an "i" (integer) as type and then pass
 ---a string as the value. Use a number value instead. Not all tags require a
 ---value, like the T,F boolean tags. Then a `value` field should not be
 ---specified. For more info, see: http://opensoundcontrol.org/spec-1_0
----
----Valid tags are {OSC Type Tag, Type of corresponding value}
----```lua
----+ "i" -- int32
----+ "f" -- float32
----+ "s" -- OSC-string
----+ "b" -- OSC-blob (raw string)
----+ "h" -- 64 bit big-endian two's complement integer
----+ "t" -- OSC-timetag
----+ "d" -- 64 bit ("double") IEEE 754 floating point number
----+ "S" -- Alternate type represented as an OSC-string
----+ "c" -- An ascii character, sent as 32 bits
----+ "r" -- 32 bit RGBA color
----+ "m" -- 4 byte MIDI message. Bytes from MSB to LSB are: port id, status byte, data1, data2
----+ "T" -- True. No value needs to be specified.
----+ "F" -- False. No value needs to be specified.
----+ "N" -- Nil. No value needs to be specified.
----+ "I" -- Infinitum. No value needs to be specified.
----+ "[", "]" -- Indicates the beginning, end of an array. (currently not supported)
----```
----@param pattern any
+---@class OscValue
+---@field tag OscTag
+---@field value (number|string|boolean)?
+
+---Create a new OSC message with the given pattern and optional arguments.
+---@param pattern string
 ---@param arguments OscValue[]?
 ---@return renoise.Osc.Message
 function renoise.Osc.Message(pattern, arguments) end
