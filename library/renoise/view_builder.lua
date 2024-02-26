@@ -1232,34 +1232,68 @@ function renoise.ViewBuilder() end
 
 ---### constructor functions
 
---TODO note possible child views
+---You can add nested child views when constructing a column or row 
+---by including them in the constructor table.  
+---For example:  
+---```lua
+---vb:column {
+---   margin = 1,
+---   vb:text {
+---     text = "Text1"
+---   },
+---   vb:text {
+---     text = "Text2"
+---   }
+---}
+---```
 ---@see renoise.Views.Rack
----@param properties RackViewProperties
----@return renoise.Views.Rack
+---@alias RackConstructor fun(self : ViewBuilderInstance, properties : RackViewProperties) : renoise.Views.Rack
+
+---You can add nested child views when constructing aligners by including them
+---in the constructor table.  
+---For example:  
+---```lua
+---vb:horizontal_aligner {
+---   mode = "center",
+---   vb:text {
+---     text = "Text1"
+---   },
+---   vb:text {
+---     text = "Text2"
+---   }
+---}
+---```
+---@see renoise.Views.Aligner
+---@alias AlignerConstructor fun(self : ViewBuilderInstance, properties : AlignmentRackViewProperties) : renoise.Views.Aligner
+
+---You can add nested child views by including them in the constructor table.  
+---For example:  
+---```lua
+---vb:space {
+---   vb:text {
+---     text = "Text1"
+---   },
+---   vb:text {
+---     text = "Text2"
+---   }
+---}
+---```
+---@see renoise.Views.View
+---@alias SpaceConstructor fun(self : ViewBuilderInstance, properties : ViewProperties) : renoise.Views.View
+
+---@type RackConstructor
 function ViewBuilderInstance:column(properties) end
 
---TODO note possible child views
----@see renoise.Views.Rack
----@param properties RackViewProperties
----@return renoise.Views.Rack
+---@type RackConstructor
 function ViewBuilderInstance:row(properties) end
 
---TODO note possible child views
----@see renoise.Views.Aligner
----@param properties AlignmentRackViewProperties
----@return renoise.Views.Aligner
+---@type AlignerConstructor
 function ViewBuilderInstance:horizontal_aligner(properties) end
 
---TODO note possible child views
----@see renoise.Views.Aligner
----@param properties AlignmentRackViewProperties
----@return renoise.Views.Aligner
+---@type AlignerConstructor
 function ViewBuilderInstance:vertical_aligner(properties) end
 
---TODO note possible child views
----@see renoise.Views.View
----@param properties ViewProperties
----@return renoise.Views.View
+---@type SpaceConstructor
 function ViewBuilderInstance:space(properties) end
 
 ---@see renoise.Views.Text
