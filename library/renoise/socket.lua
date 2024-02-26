@@ -54,8 +54,8 @@ renoise.Socket = {
 ---@param server_address string
 ---@param server_port integer
 ---@param protocol renoise.Socket.Protocol? Default: renoise.Socket.PROTOCOL_TCP
----@overload fun(server_port: integer, protocol: renoise.Socket.Protocol?):renoise.Socket.SocketServer|nil, string?
----@return renoise.Socket.SocketServer|nil, string?
+---@overload fun(server_port: integer, protocol: renoise.Socket.Protocol?):renoise.Socket.SocketServer?, string?
+---@return renoise.Socket.SocketServer?, string?
 function renoise.Socket.create_server(server_address, server_port, protocol) end
 
 ---Create a connected UPD or TCP client.
@@ -68,7 +68,7 @@ function renoise.Socket.create_server(server_address, server_port, protocol) end
 ---@param server_port integer
 ---@param protocol renoise.Socket.Protocol? Default: renoise.Socket.PROTOCOL_TCP
 ---@param timeout integer? Default: 1000
----@return renoise.Socket.SocketClient|nil client, string? error
+---@return renoise.Socket.SocketClient? client, string? error
 function renoise.Socket.create_client(server_address, server_port, protocol, timeout) end
 
 --------------------------------------------------------------------------------

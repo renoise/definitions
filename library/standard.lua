@@ -274,7 +274,7 @@ function os.filenames(path, file_extensions) end
 ---times. Returns true if the operation was successful; in case of error, it
 ---returns nil plus an error string.
 ---@param path string
----@return boolean, string|nil
+---@return boolean, string?
 function os.mkdir(path) end
 
 ---Moves a file or a directory from path 'src' to 'dest'. Unlike 'os.rename'
@@ -283,7 +283,7 @@ function os.mkdir(path) end
 ---an error string.
 ---@param src string
 ---@param dest string
----@return boolean, string|nil
+---@return boolean, string?
 function os.move(src, dest) end
 
 ---### changed

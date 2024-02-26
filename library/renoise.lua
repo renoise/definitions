@@ -38,7 +38,7 @@ function renoise.app() end
 ---so tools can not memorize the song instance globally once, but must instead
 ---react on the application's `new_document_observable`
 ---observable.
----@return renoise.Song|nil
+---@return renoise.Song?
 function renoise.song() end
 
 ---Global access to the Renoise Scripting Tool (your XRNX tool).
