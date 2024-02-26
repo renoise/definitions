@@ -12,66 +12,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---
 
 --------------------------------------------------------------------------------
----## introduction
-
---- Currently there are two ways to to create custom views:
----
----Shows a modal dialog with a title, custom content and custom button labels:
----```lua
----renoise.app():show_custom_prompt(
---- title, content_view, {button_labels} [, key_handler_func, key_handler_options])
---- --> [pressed button]
----```
----
----*(and)* Shows a non modal dialog, a floating tool window, with custom
----content:
----```lua
----renoise.app():show_custom_dialog(
---- title, content_view [, key_handler_func, key_handler_options])
---- --> [dialog object]
----```
----
----key_handler_func is optional. When defined, it should point to a function
----with the signature noted below. "key" is a table with the fields:
----```lua
----key = {
----  name,      -- name of the key, like 'esc' or 'a' - always valid
----  modifiers, -- modifier states. 'shift + control' - always valid
----  character, -- character representation of the key or nil
----  note,      -- virtual keyboard piano key value (starting from 0) or nil
----  state,     -- optional (see below) - is the key getting pressed or released?
----  repeated,  -- optional (see below) - true when the key is soft repeated (held down)
----}
----```
----
----The "repeated" field will not be present when 'send_key_repeat' in the key
----handler options is set to false. The "state" field only is present when the
----'send_key_release' in the key handler options is set to true. So by default only
----key presses are send to the key handler.
----
----key_handler_options is an optional table with the fields:
----```lua
----options = {
----  send_key_repeat=true OR false   -- by default true
----  send_key_release=true OR false  -- by default false
----}
----```
----Returned "dialog" is a reference to the dialog the keyhandler is running on.
----
----`function my_keyhandler_func(dialog, key) end`
-
----When no key handler is specified, the Escape key is used to close the dialog.
----For prompts, the first character of the button labels is used to invoke
----the corresponding button.
----
----When returning the passed key from the key-handler function, the
----key will be passed back to Renoise's key event chain, in order to allow
----processing global Renoise key-bindings from your dialog. This will not work
----for modal dialogs. This also only applies to global shortcuts in Renoise,
----because your dialog will steal the focus from all other Renoise views such as
----the Pattern Editor, etc.
-
---------------------------------------------------------------------------------
 ---## renoise.Views
 
 ---@class renoise.Views
@@ -99,13 +39,9 @@ renoise.Views = {}
 
 ---@class renoise.Views.View
 renoise.Views.View = {}
-
----### properties
-
 ---View is the base class for all child views. All View properties can be
 ---applied to any of the following specialized views.
 ---@class renoise.Views.View
----
 ---@field visible Visibility
 ---@field width ViewDimension
 ---@field height ViewDimension
@@ -140,13 +76,9 @@ function renoise.Views.View:remove_child(child) end
 
 ---@class renoise.Views.Control
 renoise.Views.Control = {}
-
----### properties
-
 ---Control is the base class for all views which let the user change a value or
 ---some "state" from the UI.
 ---@class renoise.Views.Control : renoise.Views.View
----
 ---@field active ControlActive
 ---@field midi_mapping MidiMappingString
 
@@ -182,17 +114,11 @@ renoise.Views.Control = {}
 
 ---@class renoise.Views.Rack
 renoise.Views.Rack = {}
-
----### properties
-
----@see renoise.ViewBuilder.column
----@see renoise.ViewBuilder.row
 ---A Rack has no content on its own. It only stacks child views. Either
 ---vertically (ViewBuilder.column) or horizontally (ViewBuilder.row). It allows
 ---you to create view layouts.
 ---
 ---@class renoise.Views.Rack : renoise.Views.View
----
 ---@field margin RackMargin
 ---@field spacing RackSpacing
 ---@field style RackStyle
@@ -220,11 +146,6 @@ function renoise.Views.Rack:resize() end
 
 ---@class renoise.Views.Aligner
 renoise.Views.Aligner = {}
-
----### properties
-
----@see renoise.ViewBuilder.horizontal_aligner
----@see renoise.ViewBuilder.vertical_aligner
 ---Just like a Rack, the Aligner shows no content on its own. It just aligns
 ---child views vertically or horizontally. As soon as children are added, the
 ---Aligner will expand itself to make sure that all children are visible
@@ -233,7 +154,6 @@ renoise.Views.Aligner = {}
 ---is bigger than the sum of the child sizes.
 ---
 ---@class renoise.Views.Aligner : renoise.Views.View
----
 ---@field margin RackMargin
 ---@field spacing RackSpacing
 ---@field mode AlignerMode
@@ -270,10 +190,6 @@ renoise.Views.Aligner = {}
 
 ---@class renoise.Views.Text
 renoise.Views.Text = {}
-
----### properties
-
----@see renoise.ViewBuilder.text
 ---Shows a "static" text string. Static just means that its not linked, bound
 ---to some value and has no notifiers. The text can not be edited by the user.
 ---Nevertheless you can of course change the text at run-time with the "text"
@@ -283,7 +199,6 @@ renoise.Views.Text = {}
 ---```
 ---@see renoise.Views.TextField for texts that can be edited by the user.
 ---@class renoise.Views.Text : renoise.Views.View
----
 ---@field text SingleLineString
 ---@field font FontStyle
 ---@field style TextStyle
@@ -311,10 +226,6 @@ renoise.Views.Text = {}
 
 ---@class renoise.Views.MultiLineText
 renoise.Views.MultiLineText = {}
-
----### properties
-
----@see renoise.ViewBuilder.multiline_textfield
 ---Shows multiple lines of text, auto-formatting and auto-wrapping paragraphs
 ---into lines. Size is not automatically set. As soon as the text no longer fits
 ---into the view, a vertical scroll bar will be shown.
@@ -330,7 +241,6 @@ renoise.Views.MultiLineText = {}
 --- +--------------+-+
 ---```
 ---@class renoise.Views.MultiLineText : renoise.Views.View
----
 ---@field text MultilineString
 ---@field paragraphs Paragraphs
 ---@field font FontStyle
@@ -379,10 +289,6 @@ function renoise.Views.MultiLineText:clear() end
 
 ---@class renoise.Views.TextField
 renoise.Views.TextField = {}
-
----### properties
-
----@see renoise.ViewBuilder.textfield
 ---Shows a text string that can be clicked and edited by the user.
 ---```md
 --- +----------------+
@@ -390,7 +296,6 @@ renoise.Views.TextField = {}
 --- +----------------+
 ---```
 ---@class renoise.Views.TextField : renoise.Views.View
----
 ---@field active TextActive
 ---@field value TextValue
 ---@field text TextValueAlias
@@ -417,10 +322,6 @@ function renoise.Views.TextField:remove_notifier(notifier) end
 
 ---@class renoise.Views.MultiLineTextField
 renoise.Views.MultiLineTextField = {}
-
----### properties
-
----@see renoise.ViewBuilder.multiline_textfield
 ---Shows multiple text lines of text, auto-wrapping paragraphs into lines. The
 ---text can be edited by the user.
 ---```md
@@ -432,7 +333,6 @@ renoise.Views.MultiLineTextField = {}
 --- +--------------------------+-+
 ---```
 ---@class renoise.Views.MultiLineTextField : renoise.Views.View
----
 ---@field active TextActive
 ---@field value MultilineString
 ---@field text TextValueAlias
@@ -495,10 +395,6 @@ function renoise.Views.MultiLineTextField:clear() end
 
 ---@class renoise.Views.Bitmap
 renoise.Views.Bitmap = {}
-
----### properties
-
----@see renoise.ViewBuilder.bitmap
 ---Draws a bitmap, or a draws a bitmap which acts like a button (as soon as a
 ---notifier is specified). The notifier is called when clicking the mouse
 ---somewhere on the bitmap. When using a re-colorable style (see 'mode'), the
@@ -516,7 +412,6 @@ renoise.Views.Bitmap = {}
 --- ||||||||||||
 ---```
 ---@class renoise.Views.Bitmap : renoise.Views.Control
----
 ---@field mode BitmapMode
 ---@field bitmap BitmapPath
 
@@ -562,10 +457,6 @@ function renoise.Views.Bitmap:remove_notifier(notifier) end
 
 ---@class renoise.Views.Button : renoise.Views.Control
 renoise.Views.Button = {}
-
----### properties
-
----@see renoise.ViewBuilder.button
 ---A simple button that calls a custom notifier function when clicked.
 ---Supports text or bitmap labels.
 ---```md
@@ -574,7 +465,6 @@ renoise.Views.Button = {}
 --- +--------+
 ---```
 ---@class renoise.Views.Button : renoise.Views.Control
----
 ---@field text ButtonLabel
 ---@field bitmap ButtonBitmapPath
 ---@field color ButtonColor
@@ -619,10 +509,6 @@ function renoise.Views.Button:remove_released_notifier(notifier) end
 
 ---@class renoise.Views.CheckBox
 renoise.Views.CheckBox = {}
-
----### properties
-
----@see renoise.ViewBuilder.checkbox
 ---A single button with a checkbox bitmap, which can be used to toggle
 ---something on/off.
 ---```md
@@ -631,7 +517,6 @@ renoise.Views.CheckBox = {}
 --- +----+
 ---```
 ---@class renoise.Views.CheckBox : renoise.Views.Control
----
 ---@field value CheckBoxBoolean
 
 ---### functions
@@ -664,10 +549,6 @@ function renoise.Views.CheckBox:remove_notifier(notifier) end
 
 ---@class renoise.Views.Switch : renoise.Views.Control
 renoise.Views.Switch = {}
-
----### properties
-
----@see renoise.ViewBuilder.switch
 ---A set of horizontally aligned buttons, where only one button can be enabled
 ---at the same time. Select one of multiple choices, indices.
 ---```md
@@ -676,7 +557,6 @@ renoise.Views.Switch = {}
 --- +-----------+------------+----------+
 ---```
 ---@class renoise.Views.Switch : renoise.Views.Control
----
 ---@field items ItemLabels
 ---@field value SelectedItem
 
@@ -704,10 +584,6 @@ function renoise.Views.Switch:remove_notifier(notifier) end
 
 ---@class renoise.Views.Popup
 renoise.Views.Popup = {}
-
----### properties
-
----@see renoise.ViewBuilder.popup
 ---A drop-down menu which shows the currently selected value when closed.
 ---When clicked, it pops up a list of all available items.
 ---```md
@@ -716,7 +592,6 @@ renoise.Views.Popup = {}
 --- +--------------++---+
 ---```
 ---@class renoise.Views.Popup : renoise.Views.Control
----
 ---@field items PopupItemLabels
 ---@field value SelectedItem
 
@@ -740,10 +615,6 @@ function renoise.Views.Popup:remove_notifier(notifier) end
 
 ---@class renoise.Views.Chooser
 renoise.Views.Chooser = {}
-
----### properties
-
----@see renoise.ViewBuilder.chooser
 ---A radio button like set of vertically stacked items. Only one value can be
 ---selected at a time.
 ---```md
@@ -752,7 +623,6 @@ renoise.Views.Chooser = {}
 --- . Item C
 ---```
 ---@class renoise.Views.Chooser : renoise.Views.Control
----
 ---@field items ItemLabels
 ---@field value SelectedItem
 
@@ -824,10 +694,6 @@ function renoise.Views.Chooser:remove_notifier(notifier) end
 
 ---@class renoise.Views.ValueBox
 renoise.Views.ValueBox = {}
-
----### properties
-
----@see renoise.ViewBuilder.valuebox
 ---A box with arrow buttons and a text field that can be edited by the user.
 ---Allows showing and editing natural numbers in a custom range.
 ---```md
@@ -836,7 +702,6 @@ renoise.Views.ValueBox = {}
 --- +---+-------+
 ---```
 ---@class renoise.Views.ValueBox : renoise.Views.Control
----
 ---@field min MinValue
 ---@field max ValueBoxMaxValue
 ---@field steps StepAmounts
@@ -862,10 +727,6 @@ function renoise.Views.ValueBox:remove_notifier(notifier) end
 
 ---@class renoise.Views.Value
 renoise.Views.Value = {}
-
----### properties
-
----@see renoise.ViewBuilder.value
 ---A static text view. Shows a string representation of a number and
 ---allows custom "number to string" conversion.
 ---@see renoise.Views.ValueField for a value text field that can be edited by the user.
@@ -875,7 +736,6 @@ renoise.Views.Value = {}
 --- +---+-------+
 ---```
 ---@class renoise.Views.Value : renoise.Views.View
----
 ---@field value NumberValue
 ---@field font FontStyle
 ---@field align TextAlignment
@@ -900,10 +760,6 @@ function renoise.Views.Value:remove_notifier(notifier) end
 
 ---@class renoise.Views.ValueField
 renoise.Views.ValueField = {}
-
----### properties
-
----@see renoise.ViewBuilder.valuefield
 ---A text view, which shows a string representation of a number and allows
 ---custom "number to string" conversion. The value's text can be edited by the
 ---user.
@@ -913,7 +769,6 @@ renoise.Views.ValueField = {}
 --- +---+-------+
 ---```
 ---@class renoise.Views.ValueField : renoise.Views.Control
----
 ---@field min MinValue
 ---@field max MaxValue
 ---@field value NumberValue
@@ -939,10 +794,6 @@ function renoise.Views.ValueField:remove_notifier(notifier) end
 
 ---@class renoise.Views.Slider
 renoise.Views.Slider = {}
-
----### properties
-
----@see renoise.ViewBuilder.slider
 ---A slider with arrow buttons, which shows and allows editing of values in a
 ---custom range. A slider can be horizontal or vertical; will flip its
 ---orientation according to the set width and height. By default horizontal.
@@ -952,7 +803,6 @@ renoise.Views.Slider = {}
 --- +---+---------------+
 ---```
 ---@class renoise.Views.Slider : renoise.Views.Control
----
 ---@field min MinValue
 ---@field max MaxValue
 ---@field steps StepAmounts
@@ -979,10 +829,6 @@ function renoise.Views.Slider:remove_notifier(notifier) end
 
 ---@class renoise.Views.MiniSlider
 renoise.Views.MiniSlider = {}
-
----### properties
-
----@see renoise.ViewBuilder.minislider
 ---Same as a slider, but without arrow buttons and a really tiny height. Just
 ---like the slider, a mini slider can be horizontal or vertical. It will flip
 ---its orientation according to the set width and height. By default horizontal.
@@ -990,7 +836,6 @@ renoise.Views.MiniSlider = {}
 --- --------[]
 ---```
 ---@class renoise.Views.MiniSlider : renoise.Views.Control
----
 ---@field min MinValue
 ---@field max MaxValue
 ---@field default DefaultValue
@@ -1016,10 +861,6 @@ function renoise.Views.MiniSlider:remove_notifier(notifier) end
 
 ---@class renoise.Views.RotaryEncoder
 renoise.Views.RotaryEncoder = {}
-
----### properties
-
----@see renoise.ViewBuilder.rotary
 ---A slider which looks like a potentiometer.
 ---Note: when changing the size, the minimum of either width or height will be
 ---used to draw and control the rotary, therefor you should always set both
@@ -1032,7 +873,6 @@ renoise.Views.RotaryEncoder = {}
 ---    +-+
 ---```
 ---@class renoise.Views.RotaryEncoder : renoise.Views.Control
----
 ---@field min MinValue
 ---@field max MaxValue
 ---@field default DefaultValue
@@ -1094,10 +934,6 @@ function renoise.Views.RotaryEncoder:remove_notifier(notifier) end
 
 ---@class renoise.Views.XYPad
 renoise.Views.XYPad = {}
-
----### properties
-
----@see renoise.ViewBuilder.xypad
 ---A slider like pad which allows for controlling two values at once. By default
 ---it freely moves the XY values, but it can also be configured to snap back to
 ---a predefined value when releasing the mouse button.
@@ -1113,7 +949,6 @@ renoise.Views.XYPad = {}
 --- +-------+
 ---```
 ---@class renoise.Views.XYPad : renoise.Views.Control
----
 ---@field min XYPadMinValues
 ---@field max XYPadMaxValues
 ---@field value XYPadValues
@@ -1160,10 +995,7 @@ renoise.ViewBuilder.DEFAULT_DIALOG_SPACING = 8
 ---The default height for buttons
 renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 
----### properties
-
----Class which is used to construct new views. All view properties, as listed
----above, can optionally be in-lined in a passed construction table:
+---Class which is used to construct new views. All view properties can optionally be in-lined in a passed construction table:
 ---```lua
 ---local vb = renoise.ViewBuilder() -- create a new ViewBuilder
 ---vb:button { text = "ButtonText" } -- is the same as
@@ -1174,18 +1006,6 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---
 ---* id = "SomeString": Can be use to resolve the view later on, e.g.
 ---  `vb.views.SomeString` or `vb.views["SomeString"]`
----
----* notifier = some_function or notifier = {some_obj, some_function} to
----  register value change notifiers in controls (views which represent values)
----
----* bind = a_document_value (Observable) to bind a view's value directly
----  to an Observable object. Notifiers can be added to the Observable or
----  the view. After binding a value to a view, the view will automatically
----  update its value as soon as the Observable's value changes, and the
----  Observable's value will automatically be updated as soon as the view's
----  value changes.
----  See "Renoise.Document.API.lua" for more general info about Documents &
----  Observables.
 ---
 ---* Nested child views: Add a child view to the currently specified view.
 ---  For example:
@@ -1203,20 +1023,24 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---Creates a column view with `margin = 1` and adds two text views to the column.
 ---@class renoise.ViewBuilder
 ---
----Construct a new view builder object.
----@overload fun():renoise.ViewBuilder
----
 ---Table of views, which got registered via the "id" property
 ---View id is the table key, the table's value is the view's object.
 ---
 ---### example
 ---```lua
----vb:text{ id="my_view", text="some_text"}
----vb.views.my_view.visible = false _(or)_
+---vb:text { id="my_view", text="some_text"}
+---vb.views.my_view.visible = false
+-----or
 ---vb.views["my_view"].visible = false
 ---```
 ---@field views table<string, renoise.Views.View>
 
+---Construct a new viewbuilder instance you can use to create views
+---@return renoise.ViewBuilder
+function renoise.ViewBuilder() end
+
+--------------------------------------------------------------------------------
+---## classes for constructor tables
 
 ---Bind the view's value to a renoise.Document.ObservableBoolean object.
 ---Automatically keep them in sync.
@@ -1246,9 +1070,7 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---Notifiers can be added to either the view or the Observable object.
 ---@alias NumberObservable renoise.Document.ObservableNumber
 
----### Construction table types
-
---- base for all View construction properties
+--- base for all View constructor tables
 ---@class ViewProperties
 ---@field id string?
 ---@field width ViewDimension?
@@ -1400,101 +1222,119 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---@field min XYPadMinValues?
 ---@field max XYPadMaxValues?
 
----### functions
-
----Construct a new viewbuilder instance.
----@return renoise.ViewBuilder
-function renoise.ViewBuilder() end
+---### constructor functions
 
 --TODO note possible child views
+---@see renoise.Views.Rack
 ---@param properties RackViewProperties?
----@return renoise.Views.Rack rack
+---@return renoise.Views.Rack
 function renoise.ViewBuilder:column(properties) end
 
 --TODO note possible child views
+---@see renoise.Views.Rack
 ---@param properties RackViewProperties?
----@return renoise.Views.Rack rack
+---@return renoise.Views.Rack
 function renoise.ViewBuilder:row(properties) end
 
 --TODO note possible child views
+---@see renoise.Views.Aligner
 ---@param properties AlignmentRackViewProperties?
----@return renoise.Views.Aligner aligner
+---@return renoise.Views.Aligner
 function renoise.ViewBuilder:horizontal_aligner(properties) end
 
 --TODO note possible child views
+---@see renoise.Views.Aligner
 ---@param properties AlignmentRackViewProperties?
----@return renoise.Views.Aligner aligner
+---@return renoise.Views.Aligner
 function renoise.ViewBuilder:vertical_aligner(properties) end
 
 --TODO note possible child views
+---@see renoise.Views.View
 ---@param properties ViewProperties?
----@return renoise.Views.View view
+---@return renoise.Views.View
 function renoise.ViewBuilder:space(properties) end
 
+---@see renoise.Views.Text
 ---@param properties TextViewProperties?
----@return renoise.Views.Text text
+---@return renoise.Views.Text
 function renoise.ViewBuilder:text(properties) end
 
+---@see renoise.Views.MultiLineText
 ---@param properties MultilineTextViewProperties?
----@return renoise.Views.MultiLineText multilinetext
+---@return renoise.Views.MultiLineText
 function renoise.ViewBuilder:multiline_text(properties) end
 
+---@see renoise.Views.TextField
 ---@param properties TextFieldProperties?
----@return renoise.Views.TextField textfield
+---@return renoise.Views.TextField
 function renoise.ViewBuilder:textfield(properties) end
 
+---@see renoise.Views.MultiLineTextField
 ---@param properties MultilineTextFieldProperties?
----@return renoise.Views.MultiLineTextField multilinetextfield
+---@return renoise.Views.MultiLineTextField
 function renoise.ViewBuilder:multiline_textfield(properties) end
 
+---@see renoise.Views.Bitmap
 ---@param properties BitmapViewProperties?
----@return renoise.Views.Bitmap bitmap
+---@return renoise.Views.Bitmap
 function renoise.ViewBuilder:bitmap(properties) end
 
+---@see renoise.Views.Button
 ---@param properties ButtonProperties?
----@return renoise.Views.Button button
+---@return renoise.Views.Button
 function renoise.ViewBuilder:button(properties) end
 
+---@see renoise.Views.CheckBox
 ---@param properties CheckBoxProperties?
----@return renoise.Views.CheckBox checkbox
+---@return renoise.Views.CheckBox
 function renoise.ViewBuilder:checkbox(properties) end
 
+---@see renoise.Views.Switch
 ---@param properties ButtonSwitchProperties?
----@return renoise.Views.Switch switch
+---@return renoise.Views.Switch
 function renoise.ViewBuilder:switch(properties) end
 
+---@see renoise.Views.Popup
 ---@param properties PopUpMenuProperties?
----@return renoise.Views.Popup popup
+---@return renoise.Views.Popup
 function renoise.ViewBuilder:popup(properties) end
 
+---@see renoise.Views.Chooser
 ---@param properties ChooserProperties?
----@return renoise.Views.Chooser chooser
+---@return renoise.Views.Chooser
 function renoise.ViewBuilder:chooser(properties) end
 
+---@see renoise.Views.ValueBox
 ---@param properties ValueBoxProperties?
----@return renoise.Views.ValueBox valuebox
+---@return renoise.Views.ValueBox
 function renoise.ViewBuilder:valuebox(properties) end
 
+---@see renoise.Views.Value
 ---@param properties ValueViewProperties?
----@return renoise.Views.Value value
+---@return renoise.Views.Value
 function renoise.ViewBuilder:value(properties) end
 
+---@see renoise.Views.ValueField
 ---@param properties ValueFieldProperties?
----@return renoise.Views.ValueField valuefield
+---@return renoise.Views.ValueField
 function renoise.ViewBuilder:valuefield(properties) end
 
+---@see renoise.Views.Slider
 ---@param properties SliderProperties?
----@return renoise.Views.Slider slider
+---@return renoise.Views.Slider
 function renoise.ViewBuilder:slider(properties) end
 
+---@see renoise.Views.MiniSlider
 ---@param properties MiniSliderProperties?
----@return renoise.Views.MiniSlider minislider
+---@return renoise.Views.MiniSlider
 function renoise.ViewBuilder:minislider(properties) end
 
+---@see renoise.Views.RotaryEncoder
 ---@param properties RotaryEncoderProperties?
----@return renoise.Views.RotaryEncoder rotaryencoder
+---@return renoise.Views.RotaryEncoder
 function renoise.ViewBuilder:rotary(properties) end
 
+---@see renoise.Views.XYPad
 ---@param properties XYPadProperties?
----@return renoise.Views.XYPad xypad
+---@return renoise.Views.XYPad
 function renoise.ViewBuilder:xypad(properties) end
