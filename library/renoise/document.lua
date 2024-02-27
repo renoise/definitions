@@ -78,6 +78,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@class renoise.Document
 renoise.Document = {}
 
+---@alias ObservableTypes boolean|number|string|boolean[]|number[]|string[]
+---@alias ObservableProperties table <string, ObservableTypes|renoise.Document.DocumentNode|renoise.Document.DocumentList>
+
 ---### functions
 
 ---Create an empty DocumentNode or a DocumentNode that is modeled after the
@@ -118,7 +121,7 @@ renoise.Document = {}
 ---my_other_document = renoise.Document.instantiate("MyDoc")
 ---```
 ---@param model_name string
----@return fun(properties: { [string]: any }):renoise.Document.DocumentNode
+---@return fun(properties: ObservableProperties):renoise.Document.DocumentNode
 function renoise.Document.create(model_name)
     local new_node = renoise.Document.DocumentNode();
     return function(properties)
@@ -142,7 +145,7 @@ function renoise.Document.instantiate(model_name) end
 ---documents or observables.
 ---@class renoise.Document.DocumentNode
 ---Property access
----@operator index(any):DocumentMember|nil
+---@operator index(any):DocumentMember?
 ---Construct a new document node.
 ---@overload fun():renoise.Document.DocumentNode
 renoise.Document.DocumentNode = {}
@@ -160,8 +163,8 @@ function renoise.Document.DocumentNode:has_property(property_name) end
 
 ---Access a property by name. Returns the property, or nil when there is no
 ---such property.
----@param property_name any
----@return DocumentMember|nil
+---@param property_name string
+---@return DocumentMember?
 function renoise.Document.DocumentNode:property(property_name) end
 
 ---Add a new property. Name must be unique: overwriting already existing
@@ -180,7 +183,7 @@ function renoise.Document.DocumentNode:property(property_name) end
 function renoise.Document.DocumentNode:add_property(name, value) end
 
 ---Add a batch of properties in one go, similar to renoise.Document.create.
----@param properties { [string]: any }
+---@param properties ObservableProperties
 function renoise.Document.DocumentNode:add_properties(properties) end
 
 ---Remove a previously added property. Property must exist.
@@ -228,7 +231,7 @@ function renoise.Document.DocumentNode:from_string(string) end
 ---nodes in an observable list.
 ---@class renoise.Document.DocumentList
 ---Property access.
----@operator index(any):renoise.Document.DocumentNode|nil
+---@operator index(any):renoise.Document.DocumentNode?
 ---Query a list's size (item count).
 ---@operator len():integer
 ---Construct a new document list.
@@ -243,7 +246,7 @@ function renoise.Document.DocumentList:size() end
 
 ---List item access by index. returns nil for non existing items.
 ---@param index integer
----@return nil|renoise.Document.DocumentNode
+---@return renoise.Document.DocumentNode?
 function renoise.Document.DocumentList:property(index) end
 
 ---Find a value in the list by comparing the list values with the passed
@@ -251,8 +254,8 @@ function renoise.Document.DocumentList:property(index) end
 ---is returned.
 ---@param start_pos integer
 ---@param value renoise.Document.DocumentNode
----@return integer|nil
----@overload fun(self, value: renoise.Document.DocumentNode):integer|nil
+---@return integer?
+---@overload fun(self, value: renoise.Document.DocumentNode):integer?
 function renoise.Document.DocumentList:find(start_pos, value) end
 
 ---Insert a new item to the end of the list when no position is specified, or

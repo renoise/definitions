@@ -42,11 +42,11 @@ renoise.SampleDeviceChain = {}
 
 ---### functions
 
----Insert a new device at the given position. "device_path" must be one of
+---Insert a new device at the given position. "device_path" must be an available device
 ---@see renoise.SampleDeviceChain.available_devices
 ---@param device_path string
 ---@param index integer
----@return any new_device
+---@return renoise.AudioDevice new_device
 function renoise.SampleDeviceChain:insert_device_at(device_path, index) end
 
 ---Delete an existing device from a chain. The mixer device at index 1 can not

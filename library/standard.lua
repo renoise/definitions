@@ -195,7 +195,7 @@ function table.count(t) end
 ---@param t table
 ---@param value any
 ---@param start_index integer?
----@return any key_or_nil
+---@return (string|integer|number)? key_or_nil
 ---### examples:
 ---```lua
 ---t = {"a", "b"}; table.find(t, "a") --> 1
@@ -274,7 +274,7 @@ function os.filenames(path, file_extensions) end
 ---times. Returns true if the operation was successful; in case of error, it
 ---returns nil plus an error string.
 ---@param path string
----@return boolean, string|nil
+---@return boolean?, string?
 function os.mkdir(path) end
 
 ---Moves a file or a directory from path 'src' to 'dest'. Unlike 'os.rename'
@@ -283,7 +283,7 @@ function os.mkdir(path) end
 ---an error string.
 ---@param src string
 ---@param dest string
----@return boolean, string|nil
+---@return boolean?, string?
 function os.move(src, dest) end
 
 ---### changed

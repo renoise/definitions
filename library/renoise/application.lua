@@ -130,8 +130,8 @@ function renoise.Application:show_custom_prompt(title, content_view, button_labe
 ---@param content_view renoise.Views.View dialog content view.
 ---@param key_handler KeyHandler?
 ---@param key_handler_options KeyHandlerOptions?
----@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod1?, key_handler_options: KeyHandlerOptions?): string
----@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?): string
+---@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod1?, key_handler_options: KeyHandlerOptions?): renoise.Dialog
+---@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?): renoise.Dialog
 ---@return renoise.Dialog
 function renoise.Application:show_custom_dialog(title, content_view, key_handler, key_handler_options) end
 
