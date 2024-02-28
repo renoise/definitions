@@ -141,9 +141,13 @@ function renoise.Document.instantiate(model_name) end
 
 ---@alias DocumentMember renoise.Document.Observable|renoise.Document.ObservableList|renoise.Document.DocumentNode|renoise.Document.DocumentList
 
+-- TODO 
+-- inheriting from 'table' is workaround here to allow users to define custom types
+-- for their document classes and still have useful diagnostics instead of warnings
+
 ---A document node is a sub component in a document which contains other
 ---documents or observables.
----@class (exact) renoise.Document.DocumentNode : table
+---@class renoise.Document.DocumentNode : table
 ---Property access
 ---@operator index(any):DocumentMember?
 ---Construct a new document node.
