@@ -73,9 +73,10 @@ function renoise.SampleModulationSet:copy_from(other_set) end
 ---Insert a new device at the given position. "device_path" must be one of
 ---renoise.song().instruments[].sample_modulation_sets[].available_devices.
 ---@param device_path string
+---@param target_type renoise.SampleModulationDevice.TargetType
 ---@param index integer
 ---@return renoise.SampleModulationDevice new_sample_modulation_device
-function renoise.SampleModulationSet:insert_device_at(device_path, index) end
+function renoise.SampleModulationSet:insert_device_at(device_path, target_type, index) end
 
 ---Delete a device at the given index.
 ---@param index integer
