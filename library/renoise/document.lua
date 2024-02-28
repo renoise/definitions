@@ -121,7 +121,7 @@ renoise.Document = {}
 ---my_other_document = renoise.Document.instantiate("MyDoc")
 ---```
 ---@param model_name string
----@return fun(properties: ObservableProperties):renoise.Document.DocumentNode<ObservableProperties>
+---@return fun(properties: ObservableProperties):renoise.Document.DocumentNode
 function renoise.Document.create(model_name)
     local new_node = renoise.Document.DocumentNode();
     return function(properties)
@@ -143,7 +143,7 @@ function renoise.Document.instantiate(model_name) end
 
 ---A document node is a sub component in a document which contains other
 ---documents or observables.
----@class renoise.Document.DocumentNode
+---@class (exact) renoise.Document.DocumentNode : table
 ---Property access
 ---@operator index(any):DocumentMember?
 ---Construct a new document node.
