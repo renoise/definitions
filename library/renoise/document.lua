@@ -121,7 +121,7 @@ renoise.Document = {}
 ---my_other_document = renoise.Document.instantiate("MyDoc")
 ---```
 ---@param model_name string
----@return fun(properties: ObservableProperties):renoise.Document.DocumentNode
+---@return fun(properties: ObservableProperties):renoise.Document.DocumentNode<ObservableProperties>
 function renoise.Document.create(model_name)
     local new_node = renoise.Document.DocumentNode();
     return function(properties)
@@ -177,7 +177,7 @@ function renoise.Document.DocumentNode:property(property_name) end
 ---@overload fun(self, name: string, value: boolean): renoise.Document.ObservableBoolean
 ---@overload fun(self, name: string, value: number): renoise.Document.ObservableNumber
 ---@overload fun(self, name: string, value: string): renoise.Document.ObservableString
----@overload fun(self, name: string, value: boolean[]): renoise.Document.ObservableBoolean
+---@overload fun(self, name: string, value: boolean[]): renoise.Document.ObservableBooleanList
 ---@overload fun(self, name: string, value: number[]): renoise.Document.ObservableNumberList
 ---@overload fun(self, name: string, value: string[]): renoise.Document.ObservableStringList
 function renoise.Document.DocumentNode:add_property(name, value) end
@@ -261,9 +261,9 @@ function renoise.Document.DocumentList:find(start_pos, value) end
 ---Insert a new item to the end of the list when no position is specified, or
 ---at the specified position. Returns the newly created and inserted Observable.
 ---@param pos integer
----@param value boolean
+---@param value renoise.Document.DocumentNode
 ---@return renoise.Document.DocumentNode
----@overload fun(self, value: renoise.Document.DocumentNode):renoise.Document.ObservableBoolean
+---@overload fun(self, value: renoise.Document.DocumentNode):renoise.Document.DocumentNode
 function renoise.Document.DocumentList:insert(pos, value) end
 
 ---Removes an item (or the last one if no index is specified) from the list.
@@ -281,8 +281,8 @@ function renoise.Document.DocumentList:swap(pos1, pos2) end
 ---Checks if the given function, method was already registered as notifier.
 ---@param notifier ListNotifierFunction
 ---@returns boolean
----@overload fun(self, notifier: ListNotifierMethod1)
----@overload fun(self, notifier: ListNotifierMethod2)
+---@overload fun(self, notifier: ListNotifierMethod1):boolean
+---@overload fun(self, notifier: ListNotifierMethod2):boolean
 function renoise.Document.DocumentList:has_notifier(notifier) end
 
 ---Register a function or method as a notifier, which will be called as soon as
