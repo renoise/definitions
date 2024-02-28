@@ -141,9 +141,13 @@ function renoise.Document.instantiate(model_name) end
 
 ---@alias DocumentMember renoise.Document.Observable|renoise.Document.ObservableList|renoise.Document.DocumentNode|renoise.Document.DocumentList
 
+-- TODO 
+-- inheriting from 'table' is workaround here to allow users to define custom types
+-- for their document classes and still have useful diagnostics instead of warnings
+
 ---A document node is a sub component in a document which contains other
 ---documents or observables.
----@class renoise.Document.DocumentNode
+---@class renoise.Document.DocumentNode : table
 ---Property access
 ---@operator index(any):DocumentMember?
 ---Construct a new document node.
@@ -177,7 +181,7 @@ function renoise.Document.DocumentNode:property(property_name) end
 ---@overload fun(self, name: string, value: boolean): renoise.Document.ObservableBoolean
 ---@overload fun(self, name: string, value: number): renoise.Document.ObservableNumber
 ---@overload fun(self, name: string, value: string): renoise.Document.ObservableString
----@overload fun(self, name: string, value: boolean[]): renoise.Document.ObservableBoolean
+---@overload fun(self, name: string, value: boolean[]): renoise.Document.ObservableBooleanList
 ---@overload fun(self, name: string, value: number[]): renoise.Document.ObservableNumberList
 ---@overload fun(self, name: string, value: string[]): renoise.Document.ObservableStringList
 function renoise.Document.DocumentNode:add_property(name, value) end
@@ -261,9 +265,9 @@ function renoise.Document.DocumentList:find(start_pos, value) end
 ---Insert a new item to the end of the list when no position is specified, or
 ---at the specified position. Returns the newly created and inserted Observable.
 ---@param pos integer
----@param value boolean
+---@param value renoise.Document.DocumentNode
 ---@return renoise.Document.DocumentNode
----@overload fun(self, value: renoise.Document.DocumentNode):renoise.Document.ObservableBoolean
+---@overload fun(self, value: renoise.Document.DocumentNode):renoise.Document.DocumentNode
 function renoise.Document.DocumentList:insert(pos, value) end
 
 ---Removes an item (or the last one if no index is specified) from the list.
@@ -281,8 +285,8 @@ function renoise.Document.DocumentList:swap(pos1, pos2) end
 ---Checks if the given function, method was already registered as notifier.
 ---@param notifier ListNotifierFunction
 ---@returns boolean
----@overload fun(self, notifier: ListNotifierMethod1)
----@overload fun(self, notifier: ListNotifierMethod2)
+---@overload fun(self, notifier: ListNotifierMethod1):boolean
+---@overload fun(self, notifier: ListNotifierMethod2):boolean
 function renoise.Document.DocumentList:has_notifier(notifier) end
 
 ---Register a function or method as a notifier, which will be called as soon as
