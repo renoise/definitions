@@ -58,7 +58,7 @@ renoise.SampleModulationSet = {}
 ---@field available_filter_types string[]
 ---
 ---@see renoise.SampleModulationSet.available_filter_types
----@field filter_type string a valid filter type
+---@field filter_type string | FilterTypes3 a valid filter type
 ---@field filter_type_observable renoise.Document.Observable
 
 ---### functions
@@ -116,6 +116,30 @@ renoise.SampleModulationDevice = {
   OPERATOR_MUL = 3,
   OPERATOR_DIV = 4,
 }
+
+---@alias FilterTypes3
+---| "None"
+---| "LP Clean"
+---| "LP K35"
+---| "LP Moog"
+---| "LP Diode"
+---| "HP Clean"
+---| "HP K35"
+---| "HP Moog"
+---| "BP Clean"
+---| "BP K35"
+---| "BP Moog"
+---| "BandPass"
+---| "BandStop"
+---| "Vowel"
+---| "Comb"
+---| "Decimator"
+---| "Dist Shape"
+---| "Dist Fold"
+---| "AM Sine"
+---| "AM Triangle"
+---| "AM Saw"
+---| "AM Pulse"
 
 ---### properties
 
