@@ -126,7 +126,7 @@ renoise.SampleModulationSet = {}
 ---
 ---**READ-ONLY** Filter version, 3 is the latest.
 ---@see renoise.SampleModulationSet.upgrade_filter_version
----@field filter_version 1|2|3
+---@field filter_version 1 | 2 | 3
 ---@field filter_version_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** List of available filter types depending on the filter_version.
@@ -164,7 +164,7 @@ function renoise.SampleModulationSet:delete_device_at(index) end
 ---@return renoise.SampleModulationDevice
 function renoise.SampleModulationSet:device(index) end
 
----Upgrade filter types to the latest version. Tries to find a somewhat matching
+---Upgrade filter to the latest version. Tries to find a somewhat matching
 ---filter in the new version, but things quite likely won't sound the same.
 function renoise.SampleModulationSet:upgrade_filter_version() end
 
