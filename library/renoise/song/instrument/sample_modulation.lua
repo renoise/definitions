@@ -9,6 +9,81 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.SampleModulationSet
 
+---Available filter types when filter_version = 1
+---@alias FilterTypes1
+---| "None"
+---| "LP -12 dB"
+---| "LP -24 dB"
+---| "LP -48 dB"
+---| "Moog LP"
+---| "Single Pole"
+---| "HP -12 dB"
+---| "HP -24 dB"
+---| "Moog HP"
+---| "Band Reject"
+---| "Band Pass"
+---| "EQ -15 dB"
+---| "EQ -6 dB"
+---| "EQ +6 dB"
+---| "EQ +15 dB"
+---| "Peaking EQ"
+---| "Dist. Low"
+---| "Dist. Mid"
+---| "Dist. High"
+---| "Dist."
+---| "AMod"
+
+---Available filter types when filter_version = 2
+---@alias FilterTypes2
+---| "None"
+---| "LP 2x2 Pole"
+---| "LP 2 Pole"
+---| "LP Biquad"
+---| "LP Moog"
+---| "LP Single"
+---| "HP 2x2 Pole"
+---| "HP 2 Pole"
+---| "HP Moog"
+---| "Band Reject"
+---| "Band Pass"
+---| "EQ -15 dB"
+---| "EQ -6 dB"
+---| "EQ +6 dB"
+---| "EQ +15 dB"
+---| "EQ Peaking"
+---| "Dist. Low"
+---| "Dist. Mid"
+---| "Dist. High"
+---| "Dist."
+---| "RingMod"
+
+---Available filter types when filter_version = 3
+---@alias FilterTypes3 
+---| "None"
+---| "LP Clean"
+---| "LP K35"
+---| "LP Moog"
+---| "LP Diode"
+---| "HP Clean"
+---| "HP K35"
+---| "HP Moog"
+---| "BP Clean"
+---| "BP K35"
+---| "BP Moog"
+---| "BandPass"
+---| "BandStop"
+---| "Vowel"
+---| "Comb"
+---| "Decimator"
+---| "Dist Shape"
+---| "Dist Fold"
+---| "AM Sine"
+---| "AM Triangle"
+---| "AM Saw"
+---| "AM Pulse"
+
+---@alias FilterTypes FilterTypes3 | FilterTypes2 | FilterTypes1
+
 ---@class renoise.SampleModulationSet
 renoise.SampleModulationSet = {}
 
@@ -39,7 +114,7 @@ renoise.SampleModulationSet = {}
 ---@field drive_input renoise.DeviceParameter
 ---
 ---Pitch range in semitones
----@field pitch_range  integer Range: (1 - 96)
+---@field pitch_range integer Range: (1 - 96)
 ---@field pitch_range_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** All available devices, to be used in 'insert_device_at'.
@@ -49,16 +124,18 @@ renoise.SampleModulationSet = {}
 ---@field devices renoise.SampleModulationDevice[]
 ---@field devices_observable renoise.Document.Observable
 ---
----**READ-ONLY** Filter version.
+---**READ-ONLY** Filter version, 3 is the latest.
 ---@see renoise.SampleModulationSet.upgrade_filter_version
----@field filter_version integer 1,2 or 3 which is the latest version
+---@field filter_version 1|2|3
 ---@field filter_version_observable renoise.Document.Observable
 ---
----**READ-ONLY** Filter type.
----@field available_filter_types string[]
+---**READ-ONLY** List of available filter types depending on the filter_version.
+---@field available_filter_types FilterTypes[]
 ---
+---The type of the filter selected for the modulation set. 
+---Songs made with previous versions of Renoise may use old filter types. 
 ---@see renoise.SampleModulationSet.available_filter_types
----@field filter_type string | FilterTypes3 a valid filter type
+---@field filter_type FilterTypes
 ---@field filter_type_observable renoise.Document.Observable
 
 ---### functions
@@ -87,7 +164,7 @@ function renoise.SampleModulationSet:delete_device_at(index) end
 ---@return renoise.SampleModulationDevice
 function renoise.SampleModulationSet:device(index) end
 
----upgrade filter type to the latest version. Tries to find a somewhat matching
+---Upgrade filter types to the latest version. Tries to find a somewhat matching
 ---filter in the new version, but things quite likely won't sound the same.
 function renoise.SampleModulationSet:upgrade_filter_version() end
 
@@ -116,30 +193,6 @@ renoise.SampleModulationDevice = {
   OPERATOR_MUL = 3,
   OPERATOR_DIV = 4,
 }
-
----@alias FilterTypes3
----| "None"
----| "LP Clean"
----| "LP K35"
----| "LP Moog"
----| "LP Diode"
----| "HP Clean"
----| "HP K35"
----| "HP Moog"
----| "BP Clean"
----| "BP K35"
----| "BP Moog"
----| "BandPass"
----| "BandStop"
----| "Vowel"
----| "Comb"
----| "Decimator"
----| "Dist Shape"
----| "Dist Fold"
----| "AM Sine"
----| "AM Triangle"
----| "AM Saw"
----| "AM Pulse"
 
 ---### properties
 
