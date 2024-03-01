@@ -59,8 +59,8 @@ renoise.Song = {
   SUB_COLUMN_DELAY = 5,
   SUB_COLUMN_SAMPLE_EFFECT_NUMBER = 6,
   SUB_COLUMN_SAMPLE_EFFECT_AMOUNT = 7,
-  SUB_COLUMN_EFFECT_NUMBER = 1,
-  SUB_COLUMN_EFFECT_AMOUNT = 2
+  SUB_COLUMN_EFFECT_NUMBER = 8,
+  SUB_COLUMN_EFFECT_AMOUNT = 9
 }
 
 ---### properties
@@ -102,20 +102,20 @@ renoise.Song = {
 ---Alternatively, write your own serializers for your custom data.
 ---@field tool_data string?
 ---
----**READ-ONLY** See renoise.Song:render(). Returns true while rendering is
----in progress.
+---**READ-ONLY** True while rendering is in progress.
+---@see renoise.Song.render
 ---@field rendering boolean
----**READ-ONLY** Range: (0.0 - 1.0) See renoise.Song:render(). 
----Returns the current render progress amount 
----@field rendering_progress number
+---**READ-ONLY** The current render progress amount 
+---@see renoise.Song.render
+---@field rendering_progress number Range: (0.0 - 1.0)
 ---
----**READ-ONLY** See renoise.Transport for more info.
+---**READ-ONLY**
 ---@field transport renoise.Transport
 ---
----**READ-ONLY** See renoise.PatternSequencer for more info.
+---**READ-ONLY**
 ---@field sequencer renoise.PatternSequencer
 ---
----**READ-ONLY** See renoise.PatternIterator for more info.
+---**READ-ONLY**
 ---@field pattern_iterator renoise.PatternIterator
 ---
 ---**READ-ONLY** number of normal playback tracks (non-master or sends) in song.
@@ -132,7 +132,7 @@ renoise.Song = {
 ---@field tracks_observable renoise.Document.ObservableList
 ---
 ---**READ-ONLY** Selected in the instrument box. Never nil.
----@field selected_instrument renoise.Instrument?
+---@field selected_instrument renoise.Instrument
 ---@field selected_instrument_observable renoise.Document.Observable
 ---@field selected_instrument_index integer
 ---@field selected_instrument_index_observable renoise.Document.Observable
@@ -391,13 +391,13 @@ function renoise.Song:cancel_rendering() end
 ---by default the song end.
 ---@field end_pos renoise.SongPos?
 ---by default the players current rate.
----@field sample_rate 22050|44100|48000|88200|96000|192000?
+---@field sample_rate (22050|44100|48000|88200|96000|192000)?
 ---by default 32.
----@field bit_depth 16|24|32?
+---@field bit_depth (16|24|32)?
 ---by default "default".
----@field interpolation "default"|"precise"?
+---@field interpolation ("default"|"precise")?
 ---by default "high".
----@field priority "low"|"realtime"|"high"?
+---@field priority ("low"|"realtime"|"high")?
 
 ---Start rendering a section of the song or the whole song to a WAV file.
 ---
