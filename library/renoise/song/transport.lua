@@ -105,7 +105,7 @@ renoise.Transport = {
 ---Metronome precount
 ---@field metronome_precount_enabled boolean
 ---@field metronome_precount_enabled_observable renoise.Document.Observable
----@field metronome_precount_bars integer Range: ([1 - 4)
+---@field metronome_precount_bars integer Range: (1 - 4)
 ---@field metronome_precount_bars_observable renoise.Document.Observable
 ---
 ---Quantize
