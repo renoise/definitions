@@ -131,14 +131,14 @@ renoise.Song = {
 ---@field tracks renoise.Track[]
 ---@field tracks_observable renoise.Document.ObservableList
 ---
----**READ-ONLY** Selected in the instrument box. Never nil.
+---**READ-ONLY** Selected in the instrument box.
 ---@field selected_instrument renoise.Instrument
 ---@field selected_instrument_observable renoise.Document.Observable
 ---@field selected_instrument_index integer
 ---@field selected_instrument_index_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** Currently selected phrase the instrument's phrase map piano
----view. Can be nil.
+---view.
 ---@field selected_phrase renoise.InstrumentPhrase?
 ---@field selected_phrase_observable renoise.Document.Observable
 ---@field selected_phrase_index integer
@@ -149,28 +149,28 @@ renoise.Song = {
 ---@field selected_sample_observable renoise.Document.Observable
 ---@field selected_sample_index integer
 ---
----**READ-ONLY** Selected in the instrument's modulation view. Can be nil.
+---**READ-ONLY** Selected in the instrument's modulation view.
 ---@field selected_sample_modulation_set renoise.SampleModulationSet?
 ---@field selected_sample_modulation_set_observable renoise.Document.Observable
 ---@field selected_sample_modulation_set_index integer
 ---
----**READ-ONLY** Selected in the instrument's effects view. Can be nil.
+---**READ-ONLY** Selected in the instrument's effects view.
 ---@field selected_sample_device_chain renoise.SampleDeviceChain?
 ---@field selected_sample_device_chain_observable renoise.Document.Observable
 ---@field selected_sample_device_chain_index integer
 ---
----**READ-ONLY** Selected in the sample effect mixer. Can be nil.
+---**READ-ONLY** Selected in the sample effect mixer.
 ---@field selected_sample_device renoise.AudioDevice?
 ---@field selected_sample_device_observable renoise.Document.Observable
 ---@field selected_sample_device_index integer
 ---
----**READ-ONLY** Selected in the pattern editor or mixer. Never nil.
+---**READ-ONLY** Selected in the pattern editor or mixer.
 ---@field selected_track renoise.Track
 ---@field selected_track_observable renoise.Document.Observable
 ---@field selected_track_index integer
 ---@field selected_track_index_observable renoise.Document.Observable
 ---
----**READ-ONLY** Selected in the track DSP chain editor. Can be nil.
+---**READ-ONLY** Selected in the track DSP chain editor.
 ---@field selected_track_device renoise.AudioDevice?
 ---@field selected_track_device_observable renoise.Document.Observable
 ---@field selected_track_device_index integer
@@ -184,7 +184,7 @@ renoise.Song = {
 ---@field selected_parameter renoise.DeviceParameter?
 ---@field selected_parameter_observable renoise.Document.Observable
 ---
----Selected parameter in the automation editor. Can be nil.
+---Selected parameter in the automation editor.
 ---When setting a new parameter, parameter must be automateable and
 ---must be one of the currently selected track device chain.
 ---@field selected_automation_parameter renoise.DeviceParameter?
@@ -193,14 +193,14 @@ renoise.Song = {
 ---@field selected_automation_device renoise.AudioDevice?
 ---@field selected_automation_device_observable renoise.Document.Observable
 ---
----**READ-ONLY** The currently edited pattern. Never nil.
+---**READ-ONLY** The currently edited pattern.
 ---@field selected_pattern renoise.Pattern
 ---@field selected_pattern_observable renoise.Document.Observable
 ---**READ-ONLY** The currently edited pattern index.
 ---@field selected_pattern_index integer
 ---@field selected_pattern_index_observable renoise.Document.Observable
 ---
----**READ-ONLY** The currently edited pattern track object. Never nil.
+---**READ-ONLY** The currently edited pattern track object.
 ---and selected_track_observable for notifications.
 ---@field selected_pattern_track renoise.PatternTrack
 ---@field selected_pattern_track_observable renoise.Document.Observable
