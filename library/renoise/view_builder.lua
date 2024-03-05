@@ -1387,4 +1387,3 @@ function ViewBuilderInstance:rotary(properties) end
 ---@param properties XYPadProperties
 ---@return renoise.Views.XYPad
 function ViewBuilderInstance:xypad(properties) end
-function ViewBuilderInstance:xypad(properties) end
