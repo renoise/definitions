@@ -408,14 +408,27 @@ function renoise.Views.MultiLineTextField:clear() end
 ---| "body_color"   # same as 'button_back' but with body text/back color
 ---| "main_color"   # same as 'button_back' but with main text/back colors
 
----Bitmap name and path. You should use a relative path that uses  Renoise's
----default resource folder as base (like "Icons/ArrowRight.bmp"). Or specify a
----file relative from your XRNX tool bundle:
----Lets say your tool is called "com.foo.MyTool.xrnx" and you pass
----"MyBitmap.bmp" as the name. Then the bitmap is loaded from
----"PATH_TO/com.foo.MyTool.xrnx/MyBitmap.bmp".
+---You can load an image from your tool's directory,
+---or use one from Renoise's built-in icons.  
+---* For the built-in icons, use "Icons/ArrowRight.bmp"
+---* For custom images, use a path relative to your tool's root folder.
+---
+---For example "Images/MyBitmap.bmp" will load the image from
+---"com.me.MyTool.xrnx/Images/MyBitmap.bmp".  
+---If your custom path matches a built-in icon's (like "Icons/ArrowRight.bmp"),
+---your image will be loaded instead of the one from Renoise.  
+---
+---If you want to support high DPI UI scaling with your bitmaps like the built-in Icons,
+---include high resolution versions with their filenames ending with "@4x"  
+---The following rules will be used when loading bitmaps  
+---* When UI scaling is 100%, only the base bitmaps are used.
+---* When UI scaling is 125%, the base bitmaps are used, except if there is a `BitmapName@x1.25.bmp` variant.
+---* For all other UI scaling > 125% the "@4x" variants are used and downscaled as needed,
+---except when there is an exact match for the current UI scaling factor (e.g. `BitmapName@1.5x.bmp` for 150%)
+---@alias ImagePath string
+
 ---Supported bitmap file formats are *.bmp, *.png or *.tif (no transparency).
----@alias BitmapPath string
+---@alias BitmapPath ImagePath
 
 ---A click notifier
 ---@alias Notifier NotifierFunction|NotifierMethod1|NotifierMethod2
@@ -464,18 +477,12 @@ function renoise.Views.Bitmap:remove_notifier(notifier) end
 ---* Default: ""
 ---@alias ButtonLabel string
 
----When set, existing text is cleared. You should use a relative path
----that either assumes Renoises default resource folder as base (like
----"Icons/ArrowRight.bmp"). Or specify a file relative from your XRNX tool
----bundle:
----Lets say your tool is called "com.foo.MyTool.xrnx" and you pass
----"MyBitmap.bmp" as name. Then the bitmap is loaded from
----"PATH_TO/com.foo.MyTool.xrnx/MyBitmap.bmp".
+---When set, existing text is cleared and the loaded image will be shown instead.  
 ---The only supported bitmap format is ".bmp" (Windows bitmap) right now.
 ---Colors will be overridden by the theme colors, using black as transparent
 ---color, white is the full theme color. All colors in between are mapped
 ---according to their gray value.
----@alias ButtonBitmapPath string
+---@alias ButtonBitmapPath ImagePath
 
 ---When set, the unpressed button's background will be drawn in the specified color.
 ---A text color is automatically selected to make sure its always visible.
