@@ -299,9 +299,12 @@ function renoise.Song:delete_track_at(index) end
 function renoise.Song:swap_tracks_at(index1, index2) end
 
 ---Access to a single track by index. Use properties 'tracks' to iterate over
----all tracks and to query the track count.
+---all tracks and to query the track count.  
+---Before accessing GroupTrack-only properties,
+---you have to narrow down the type by using  
+---`type(track) == "renoise.GroupTrack"`
 ---@param index integer
----@return renoise.Track | renoise.GroupTrack
+---@return renoise.Track
 function renoise.Song:track(index) end
 
 ---Set the selected track to prev relative to the current track. Takes
