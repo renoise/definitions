@@ -32,19 +32,19 @@ renoise.Song = {}
 
 ---Selection range in the current pattern
 ---@class PatternSelection
----@field start_line integer Start pattern line index
----@field start_track integer Start track index
----@field start_column integer Start column index within start_track
----@field end_line integer End pattern line index
----@field end_track integer End track index
----@field end_column integer End column index within end_track
+---@field start_line integer? Start pattern line index
+---@field start_track integer? Start track index
+---@field start_column integer? Start column index within start_track
+---@field end_line integer? End pattern line index
+---@field end_track integer? End track index
+---@field end_column integer? End column index within end_track
 
 ---Selection range in the current phrase
 ---@class PhraseSelection
----@field start_line integer Start pattern line index
----@field start_column integer Start column index within start_track
----@field end_line integer End pattern line index
----@field end_column integer End column index within end_track
+---@field start_line integer? Start pattern line index
+---@field start_column integer? Start column index within start_track
+---@field end_line integer? End pattern line index
+---@field end_column integer? End column index within end_track
 
 ---### constants
 
