@@ -24,7 +24,7 @@ renoise.Application = {}
 ---
 ---**READ-ONLY** Get the apps main document, the song.
 ---The global "renoise.song()" function is, in fact, a shortcut to this property.
----@field current_song renoise.Song
+---@field current_song renoise.Song?
 ---
 ---**READ-ONLY** List of recently loaded song files.
 ---@field recently_loaded_song_files string[]
