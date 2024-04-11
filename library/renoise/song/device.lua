@@ -93,6 +93,8 @@ renoise.DeviceParameter = {
 ---
 ---Device parameters.
 ---@field name string **READ-ONLY**
+---@field name_observable renoise.Document.ObservableString
+--
 ---@field polarity renoise.DeviceParameter.Polarity **READ-ONLY**
 ---
 ---@field value_min number **READ-ONLY**
