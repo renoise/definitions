@@ -82,16 +82,29 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---"<key> + <key>"
 ---Their order will correspond to the following precedence
 ---`shift + alt/option + control + winkey/meta/command`  
----If no modifier is pressed, this will be an empty string
+---If no modifier is pressed, this will be an empty string.
+---@deprecated use ModifierFlags instead.
 ---@alias ModifierStates string
+
+---The currently pressed/release key's modifiers as platform independent flags.
+---On macOS "control" is their "Command" key and the "meta" keyboard is the "Control" key.
+---On Windows the "meta" key is the "Windows" key and on Linux the "Super" key.
+---@alias ModifierFlags { shift: boolean, control: boolean, alt: boolean, meta: boolean }
 
 ---@class KeyEvent
 ---@field name string name of the key, like 'esc' or 'a'
----@field modifiers ModifierStates the held down modifiers as a string
----@field character string? possible character representation of the key
----@field note integer? virtual keyboard piano key value (starting from 0)
----@field state ("released"|"pressed")? only present if `send_key_release` was set to true
----@field repeated boolean? only present if `send_key_repeat` was set to true
+ ---**READ-ONLY** the held down modifiers as a string
+---@field modifiers ModifierStates
+---**READ-ONLY** the held down modifiers as flags
+---@field modifier_flags ModifierFlags
+---possible character representation of the key
+---@field character string?
+---virtual keyboard piano key value (starting from 0)
+---@field note integer? 
+---only present if `send_key_release` was set to true
+---@field state ("released"|"pressed")?
+---only present if `send_key_repeat` was set to true
+---@field repeated boolean?
 
 ---Optional keyhandler to process key events on a custom dialog.  
 ---When returning the passed key from the key-handler function, the
