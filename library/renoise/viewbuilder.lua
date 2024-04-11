@@ -57,11 +57,13 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---```lua
 ---vb:column {
 ---  margin = 1,
----  vb:text {
----    text = "Text1"
----  },
----  vb:text {
----    text = "Text1"
+---  views = {
+---    vb:text {
+---      text = "Text1"
+---    },
+---    vb:text {
+---      text = "Text1"
+---    }
 ---  }
 ---}
 ---```
@@ -94,11 +96,13 @@ function renoise.ViewBuilder() end
 ---```lua
 ---vb:column {
 ---  margin = 1,
----  vb:text {
----    text = "Text1"
----  },
----  vb:text {
----    text = "Text2"
+---  views = {
+---    vb:text {
+---      text = "Text1"
+---    },
+---    vb:text {
+---      text = "Text2"
+---    }
 ---  }
 ---}
 ---```
@@ -118,11 +122,13 @@ function ViewBuilderInstance:row(properties) end
 ---```lua
 ---vb:horizontal_aligner {
 ---   mode = "center",
----   vb:text {
----     text = "Text1"
----   },
----   vb:text {
----     text = "Text2"
+---   views = {
+---     vb:text {
+---       text = "Text1"
+---     },
+---     vb:text {
+---       text = "Text2"
+---     }
 ---   }
 ---}
 ---```
@@ -141,15 +147,17 @@ function ViewBuilderInstance:vertical_aligner(properties) end
 ---```lua
 -----Empty space in layouts
 ---vb:row {
----  vb:button {
----    text = "Some Button"
----  },
----  vb:space { -- extra spacing between buttons
----    width = 8
----  },
----  vb:button {
----    text = "Another Button"
----  },
+---  views = {
+---    vb:button {
+---      text = "Some Button"
+---    },
+---    vb:space { -- extra spacing between buttons
+---      width = 8
+---    },
+---    vb:button {
+---      text = "Another Button"
+---    },
+---  }
 ---}
 ---```
 ---@see renoise.Views.View
