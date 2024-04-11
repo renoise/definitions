@@ -86,8 +86,11 @@ renoise.Transport = {
 ---@field loop_pattern_observable renoise.Document.Observable
 ---
 ---@field loop_block_enabled boolean Block Loop On/Off
----@field loop_block_start_pos renoise.SongPos Start of block loop
+---@field loop_block_enabled_observable renoise.Document.Observable
 ---@field loop_block_range_coeff integer Range: (2 - 16)
+---@field loop_block_range_coeff_observable renoise.Document.Observable
+---
+---@field loop_block_start_pos renoise.SongPos Start of block loop
 ---
 ---Edit modes
 ---@field edit_mode boolean
