@@ -25,6 +25,11 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---* Default: false
 ---@alias RackUniformity boolean
 
+---The rack view's initial child views.
+---Views can later on also be added and removed dynamically after construction via 
+---`rack:add_view(child)` and `rack:remove_view(child)`
+---@alias RackChildViews renoise.Views.View[]
+
 -------------------------------------------------------------------------------
 ---## renoise.Views.Rack
 
@@ -45,3 +50,4 @@ local Rack = {}
 ---@field spacing RackSpacing?
 ---@field style ViewBackgroundStyle?
 ---@field uniform RackUniformity?
+---@field views RackChildViews?
