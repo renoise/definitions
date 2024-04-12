@@ -15,6 +15,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---| "bold"   # bold font
 ---| "italic" # italic font
 ---| "mono"   # monospace font
+---| "code"   # monospace code font
 
 ---Get/set the color style the text should be displayed with.
 ---@alias TextStyle
