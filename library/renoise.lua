@@ -15,13 +15,13 @@ renoise = {}
 
 ---### constants
 
----Currently 6.1. Any changes in the API which are not backwards compatible,
+---Currently 6.2. Any changes in the API which are not backwards compatible,
 ---will increase the internal API's major version number (e.g. from 1.4 -> 2.0).
 ---All other backwards compatible changes, like new functionality, new functions
 ---and classes which do not break existing scripts, will increase only the minor
 ---version number (e.g. 1.0 -> 1.1).
 ---@type number
-renoise.API_VERSION = 6.1
+renoise.API_VERSION = 6.2
 
 ---Renoise Version "Major.Minor.Revision[AlphaBetaRcVersion][Demo]"
 ---@type string
