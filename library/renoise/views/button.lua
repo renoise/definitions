@@ -22,10 +22,19 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@alias ButtonBitmapPath BitmapImagePath
 
 ---When set, the unpressed button's background will be drawn in the specified color.
----A text color is automatically selected unless explicitly set, to make sure it's
+---A text color is automatically selected unless explicitly set, to make sure its
 ---always visible.
 ---Set color {0,0,0} to enable the theme colors for the button again.
 ---@alias ButtonColor RGBColor
+
+---Get/set the style a button should be displayed with.
+---@alias ButtonStyle
+---| "normal"   # (Default)
+---| "rounded"   # rounded corners on all sides
+---| "rounded_left" # rounded left side
+---| "rounded_right" # rounded right side
+---| "rounded_top" # rounded left side
+---| "rounded_bottom" # rounded right side
 
 --------------------------------------------------------------------------------
 ---## renoise.Views.Button
@@ -41,6 +50,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@field text ButtonLabel
 ---@field bitmap ButtonBitmapPath
 ---@field color ButtonColor
+---@field style ButtonStyle
 local Button = {}
 
 ---### functions
@@ -76,6 +86,7 @@ function Button:remove_released_notifier(notifier) end
 ---@field text ButtonLabel?
 ---@field bitmap ButtonBitmapPath?
 ---@field color ButtonColor?
+---@field style ButtonStyle?
 ---@field notifier ButtonNotifier?
 ---@field pressed ButtonNotifier?
 ---@field released ButtonNotifier?
