@@ -304,10 +304,25 @@ function renoise.Song:redo() end
 ---line changed, and so on). When the song is changed from an action in a menu
 ---entry callback, the menu entry's label will automatically be used for the
 ---undo description.
----If those auto-generated names do not work for you, or you want  to use
----something more descriptive, you can (!before changing anything in the song!)
+---If those auto-generated names do not work for you, or you want to use
+---something more descriptive, you can, **before changing anything in the song**,
 ---give your changes a custom undo description (like: "Generate Synth Sample")
+---@param description string
 function renoise.Song:describe_undo(description) end
+---Same as `describe_undo`, but additionally this tries to merge the following 
+---changes to the document with the last one, if the description matches the last
+---description and the given timeout was not reached since the last describe_batch_undo 
+---call.
+---
+---Calls to `describe_undo` from other tools, or from Renoise internally, will cancel
+---batches and split the undo action.
+---
+---Batches can be useful to combine multiple changes in the document into a single
+---udo/redo step, when the changes happen asynchroniously, for example a process
+---sliced action (via Lua coroutines).  
+---@param description string
+---@param timeout_ms number? Default: 2000
+function renoise.Song:describe_batch_undo(description, timeout_ms) end
 
 ---Insert a new track at the given index. Inserting a track behind or at the
 ---Master Track's index will create a Send Track. Otherwise, a regular track is
