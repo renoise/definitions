@@ -223,17 +223,14 @@ renoise.Song = {
 ---**READ-ONLY** The currently edited line in the edited pattern.
 ---@field selected_line renoise.PatternLine
 ---@field selected_line_index integer
----
 ---**READ-ONLY** The currently edited column in the selected line in the edited
 ---sequence/pattern. Nil when an effect column is selected.
 ---@field selected_note_column renoise.NoteColumn?
 ---@field selected_note_column_index integer
----
 ---**READ-ONLY** The currently edited column in the selected line in the edited
 ---sequence/pattern. Nil when a note column is selected.
 ---@field selected_effect_column renoise.EffectColumn?
 ---@field selected_effect_column_index integer
----
 ---**READ-ONLY** The currently edited sub column type within the selected
 ---note/effect column.
 ---@field selected_sub_column_type renoise.Song.SubColumnType
@@ -260,6 +257,29 @@ renoise.Song = {
 ---  --> select line 1 to 4, in the first track only
 ---```
 ---@field selection_in_pattern PatternSelection?
+---
+---**READ-ONLY** The currently edited line in the currently edited phrase.
+---Nil when no phrase is selected.
+---@field selected_phrase_line renoise.PatternLine?
+---The currently edited line index in the currently edited phrase.
+---0 when no phrase is selected.
+---@field selected_phrase_line_index integer
+---**READ-ONLY** The currently edited column in the selected line in the currently 
+---edited phrase. Nil when no phrase is selected or when an effect column is selected.
+---@field selected_phrase_note_column renoise.NoteColumn?
+---The currently edited column index in the selected line in the currently edited
+---phrase. 0 when no phrase is selected or when an effect column is selected.
+---@field selected_phrase_note_column_index integer
+---**READ-ONLY** The currently edited column in the selected line in the currently 
+---edited phrase. Nil when no phrase is selected or when a note column is selected.
+---@field selected_phrase_effect_column renoise.EffectColumn?
+---The currently edited effect column index in the selected line in the currently 
+---edited phrase. 0 when no phrase is selected or when a note column is selected.
+---@field selected_phrase_effect_column_index integer
+---**READ-ONLY** The currently edited sub column type within the selected
+---note/effect column in the current phrase. 0 when no phrase is selected.
+---@field selected_phrase_sub_column_type renoise.Song.SubColumnType
+---
 ---Same as `selection_in_pattern` but for the currently selected phrase (if any).
 ---@field selection_in_phrase PhraseSelection?
 
