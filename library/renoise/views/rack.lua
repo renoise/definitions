@@ -50,4 +50,6 @@ local Rack = {}
 ---@field spacing RackSpacing?
 ---@field style ViewBackgroundStyle?
 ---@field uniform RackUniformity?
+---@field mouse_handler MouseHandler?
+---@field mouse_events MouseEventTypes?
 ---@field views RackChildViews?
