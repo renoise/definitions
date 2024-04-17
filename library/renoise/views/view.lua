@@ -40,6 +40,74 @@ error("Do not try to execute this file. It's just a type definition file.")
 
 --------------------------------------------------------------------------------
 
+---Event type of a `MouseEvent`.
+---@alias MouseEventType
+---|"enter"
+---|"exit"
+---|"move"
+---|"down"
+---|"up"
+---|"double"
+---|"drag"
+---|"wheel"
+
+---Mouse button of a `MouseEvent` of type "up"|"down"|"double"|"drag".
+---@alias MouseEventButton
+---|"left"
+---|"right"
+---|"middle"
+
+---Mouse wheel direction in a `MouseEvent` of type "wheel".
+---@alias MouseEventWheelDirection
+---|"up"
+---|"down"
+---|"left"
+---|"right"
+
+---Mouse event as passed to a layout view's "mouse_handler" function.
+---@class MouseEvent
+---Mouse event type. Only enabled types are passed to the handler.
+---@field type MouseEventType
+---For "up"|"down"|"double"|"drag" events, the mouse button which got pressed,
+---nil for all other events.
+---@field button MouseEventButton?
+---For "wheel" events, the wheel's direction, nil for all other events.
+---@field direction MouseEventWheelDirection?
+---Mouse cursor position in relative coordinates to the layout.
+---@field position { x: number, y: number }
+---Currently pressed (held down) keyboard modifier buttons.
+---@field modifier_flags { shift: boolean, control: boolean, alt: boolean, meta: boolean }
+---Currently pressed (held down) mouse buttons.
+---@field button_flags { left: boolean, right: boolean, middle: boolean }
+---List of sub views and possible layout subview's subviews, that are located below
+---the mouse cursor. In other words: all views that are located below the mouse cursor.
+---The list is orderd by containing the top-most visible view first, so you usually will
+---need to check the first table entry only.
+---
+---NB: Only views that got created with the same view builder instance as the layout,
+---and only subviews with valid viewbuilder "id"s will show up here!
+---@field hover_views { id: string, view: renoise.Views.View }[]
+
+---@alias MouseHandlerNotifierFunction fun(event: MouseEvent): MouseEvent?
+---@alias MouseHandlerNotifierMemberFunction fun(self: NotifierMemberContext, event: MouseEvent): MouseEvent?
+---@alias MouseHandlerNotifierMethod1 {[1]:NotifierMemberContext, [2]:MouseHandlerNotifierMemberFunction}
+---@alias MouseHandlerNotifierMethod2 {[1]:MouseHandlerNotifierMemberFunction, [2]:NotifierMemberContext}
+---Optional mouse event handler for a view. return nil when the event got handled
+---to stop propagating the event. return the event instance, as passed, to pass it
+---to the next view in the view hirarchy.
+---@alias MouseHandler MouseHandlerNotifierFunction|MouseHandlerNotifierMethod1|MouseHandlerNotifierMethod2
+
+---The mouse event types that should be passed to your `mouse_handler` function.
+---By default: `{ "down", "up", "double" }`
+---Avoid adding event types that you don't use, especially "move" events as they do
+---create quite some overhead. Also note that when enabling "drag", sub view controls
+---can no longer handle drag events, even when you pass back the event in the handler,
+---so only enable it when you want to completely override mouse drag behavior of
+---*all* your content views.
+---@alias MouseEventTypes (MouseEventType[])
+
+--------------------------------------------------------------------------------
+
 ---TODO
 ---inheriting from 'table' is workaround here to allow up casting views to
 ---other views via e.g. @type or @cast
@@ -48,7 +116,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---applied to any of the following specialized views.
 ---@class renoise.Views.View : table
 ---@field visible ViewVisibility
----@field width ViewDimension
 ---@field height ViewDimension
 ---@field tooltip ViewTooltip
 ---**READ-ONLY** Empty for all controls, for layout views this contains the
