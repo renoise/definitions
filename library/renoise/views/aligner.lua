@@ -45,4 +45,6 @@ local Aligner = {}
 ---@field margin RackMargin?
 ---@field spacing RackSpacing?
 ---@field mode AlignerMode?
+---@field mouse_handler MouseHandler?
+---@field mouse_events MouseEventTypes?
 ---@field views AlignerChildViews?
