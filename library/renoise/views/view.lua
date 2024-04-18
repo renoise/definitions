@@ -19,7 +19,42 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---relative to the view's parent size and will automatically update on size changes.
 ---@alias ViewDimension integer|string
 
----A tooltip text that should be shown for this view on mouse hover.
+---The cursor cursor for this view which apears on mouse hover.
+---Using a "none" shape will use use underlying view's cursor or the default cursor.
+---@alias ViewCursorShape
+---|"none"
+---|"empty"
+---|"default"
+---|"change_value"
+---|"edit_text"
+---|"pencil"
+---|"marker"
+---|"crosshair"
+---|"move"
+---|"play"
+---|"drag"
+---|"drop"
+---|"nodrop"
+---|"busy"
+---|"resize_vertical"
+---|"resize_horizontal"
+---|"resize_edge_vertical"
+---|"resize_edge_horizontal"
+---|"resize_edge_diagonal_left"
+---|"resize_edge_diagonal_right"
+---|"extend_left"
+---|"extend_right"
+---|"extend_top"
+---|"extend_bottom"
+---|"extend_left_alias"
+---|"extend_right_alias"
+---|"extend_top_alias"
+---|"extend_bottom_alias"
+---|"zoom_vertical"
+---|"zoom_horizontal"
+---|"zoom"
+
+---A ViewTooltip text that should be shown for this view on mouse hover.
 ---* Default: "" (no tip will be shown)
 ---@alias ViewTooltip string
 
@@ -116,8 +151,10 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---applied to any of the following specialized views.
 ---@class renoise.Views.View : table
 ---@field visible ViewVisibility
+---@field width ViewDimension
 ---@field height ViewDimension
 ---@field tooltip ViewTooltip
+---@field cursor ViewCursorShape
 ---**READ-ONLY** Empty for all controls, for layout views this contains the
 ---layout child views in the order they got added
 ---@field views renoise.Views.View[]
@@ -142,3 +179,4 @@ function View:remove_child(child) end
 ---@field height ViewDimension?
 ---@field visible ViewVisibility?
 ---@field tooltip ViewTooltip?
+---@field cursor ViewCursorShape?
