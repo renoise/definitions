@@ -162,13 +162,35 @@ local View = {}
 
 ---### functions
 
----Add a new child view to this view.
+---Deprecated. Use `add_view` instead
+---@deprecated
 ---@param child renoise.Views.View
 function View:add_child(child) end
 
----Remove a child view from this view.
+---Add a new child view to this view.
+---@param child renoise.Views.View
+function View:add_view(child) end
+
+---Deprecated. Use `remove_view` instead
+---@deprecated
 ---@param child renoise.Views.View
 function View:remove_child(child) end
+
+---Remove a child view from this view.
+---@param child renoise.Views.View
+function View:remove_view(child) end
+
+---Deprecated. Use `swap_views` instead
+---@deprecated
+---@param child1 renoise.Views.View
+---@param child2 renoise.Views.View
+function View:swap_childs(child1, child2) end
+
+---Swap position of two child views in this view. With a series of swaps views
+---can be moved to any position in the parent.
+---@param child1 renoise.Views.View
+---@param child2 renoise.Views.View
+function View:swap_views(child1, child2) end
 
 --------------------------------------------------------------------------------
 
