@@ -141,6 +141,30 @@ function ViewBuilderInstance:horizontal_aligner(properties) end
 ---@type AlignerConstructor
 function ViewBuilderInstance:vertical_aligner(properties) end
 
+---You can add nested child views when constructing stacks by including them
+---in the constructor table. Use the view property `origin` to position them
+---in the stack.
+---
+---```lua
+-----Stack multiple views
+---vb:stack {
+---   views = {
+---     vb:text {
+---       origin = { 10, 10 },
+---       text = "Text1"
+---     },
+---     vb:text {
+---       origin = { 100, 20 },
+---       text = "Text 2"
+---     }
+---   }
+---}
+---```
+---@see renoise.Views.Stack
+---@param properties StackViewProperties?
+---@return renoise.Views.Stack
+function ViewBuilderInstance:stack(properties) end
+
 ---You can create an empty space in layouts with a space.
 ---
 ---### example:
