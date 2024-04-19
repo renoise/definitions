@@ -19,6 +19,14 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---relative to the view's parent size and will automatically update on size changes.
 ---@alias ViewDimension integer|string
 
+---Horizontal (x) or Vertical (y) position of a view within its parent view.
+---@alias ViewPosition integer
+---The position of a view within its parent view.
+---Only the `stack` layouts allows to freely position child views. Other
+---layout views will automatically set the origin, but the origin
+---then still can be read in for example mouse handlers. 
+---@alias ViewOrigin { x: ViewPosition, y: ViewPosition }|{ [1]:ViewPosition, [2]:ViewPosition }
+
 ---The cursor cursor for this view which apears on mouse hover.
 ---Using a "none" shape will use use underlying view's cursor or the default cursor.
 ---@alias ViewCursorShape
@@ -151,6 +159,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---applied to any of the following specialized views.
 ---@class renoise.Views.View : table
 ---@field visible ViewVisibility
+---@field origin ViewOrigin 
 ---@field width ViewDimension
 ---@field height ViewDimension
 ---@field tooltip ViewTooltip
@@ -197,8 +206,9 @@ function View:swap_views(child1, child2) end
 --- Base for all View constructor tables in the viewbuilder.
 ---@class ViewProperties
 ---@field id ViewId?
+---@field visible ViewVisibility?
+---@field origin ViewOrigin 
 ---@field width ViewDimension?
 ---@field height ViewDimension?
----@field visible ViewVisibility?
 ---@field tooltip ViewTooltip?
 ---@field cursor ViewCursorShape?
