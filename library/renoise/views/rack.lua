@@ -39,7 +39,8 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@class renoise.Views.Rack : renoise.Views.View
 ---@field margin RackMargin
 ---@field spacing RackSpacing
----@field style ViewBackgroundStyle
+---@field style ViewBackgroundStyle #### **DEPRECATED** Use `background` property instead.
+---@field background ViewBackgroundStyle
 ---@field uniform RackUniformity
 local Rack = {}
 
@@ -49,6 +50,7 @@ local Rack = {}
 ---@field margin RackMargin?
 ---@field spacing RackSpacing?
 ---@field style ViewBackgroundStyle?
+---@field background ViewBackgroundStyle?
 ---@field uniform RackUniformity?
 ---@field mouse_handler MouseHandler?
 ---@field mouse_events MouseEventTypes?

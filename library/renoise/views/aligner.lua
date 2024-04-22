@@ -37,6 +37,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@field margin RackMargin
 ---@field spacing RackSpacing
 ---@field mode AlignerMode
+---@field background ViewBackgroundStyle
 local Aligner = {}
 
 ---------------------------------------------------------------------------------
@@ -45,6 +46,7 @@ local Aligner = {}
 ---@field margin RackMargin?
 ---@field spacing RackSpacing?
 ---@field mode AlignerMode?
+---@field background ViewBackgroundStyle?
 ---@field mouse_handler MouseHandler?
 ---@field mouse_events MouseEventTypes?
 ---@field views AlignerChildViews?
