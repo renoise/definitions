@@ -255,6 +255,11 @@ function ViewBuilderInstance:value(properties) end
 ---@return renoise.Views.ValueField
 function ViewBuilderInstance:valuefield(properties) end
 
+---@see renoise.Views.ScrollBar
+---@param properties ScrollBarProperties?
+---@return renoise.Views.ScrollBar
+function ViewBuilderInstance:scrollbar(properties) end
+
 ---@see renoise.Views.Slider
 ---@param properties SliderProperties?
 ---@return renoise.Views.Slider
