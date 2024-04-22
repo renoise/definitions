@@ -427,9 +427,6 @@ function renoise.Song:capture_nearest_instrument_from_pattern() end
 ---@return renoise.Pattern
 function renoise.Song:pattern(index) end
 
----When rendering (see rendering, renoise.song().rendering_progress),
----the current render process is canceled. Otherwise, nothing is done.
-function renoise.Song:cancel_rendering() end
 
 ---@class RenderOptions
 ---by default the song start.
@@ -475,6 +472,55 @@ function renoise.Song:cancel_rendering() end
 ---@return boolean success, string error?
 ---@overload fun(self, filename: string, rendering_done_callback: fun()): boolean, string?
 function renoise.Song:render(options, filename, rendering_done_callback) end
+
+---When rendering (see rendering, renoise.song().rendering_progress),
+---the current render process is canceled. Otherwise, nothing is done.
+function renoise.Song:cancel_rendering() end
+
+
+---Trigger instrument playback with the specified note or a table of notes (a chord)
+---and volume for preview purposes on the given track index.
+---
+---Send tracks can not play notes. When specifying a send track, notes will play on
+---the master track instead.
+---
+---This is evaluated from the GUI thread, not a real-time thread, so timing will
+---be a little bit wonky. Only use this to **preview instruments** from tools and
+---not as a sequencer.
+---
+---@param instrument_index integer The instrument to trigger.
+---@param track_index integer The track to play the instrument on.
+---@param note (integer|(integer[]))? A single note or a table of notes in Range: (0 - 127). Default: 48.
+---@param volume number? Volume in Range: (0 - 1). Default: 1.0.
+function renoise.Song:trigger_instrument_note_on(instrument_index, track_index, note, volume) end
+
+---Stop instrument playback which previously got started via `trigger_instrument_note_on`.
+---@param instrument_index integer The instrument to trigger.
+---@param track_index integer The track to play the instrument on.
+---@param note (integer|(integer[]))? A single note or a table of notes in Range: (0 - 127). Default: 48.
+function renoise.Song:trigger_instrument_note_off(instrument_index, track_index, note) end
+
+---Trigger a sample with the specified note and volume for preview purposes on the
+---given track. This directly triggers the sample, bypassing the instrument's keyzone. 
+---
+---Only use this to **preview samples** from tools and not as a sequencer.
+---See also `trigger_instrument_note_on`.
+---
+---@param instrument_index integer The instrument to trigger.
+---@param sample_index integer The sample to trigger.
+---@param track_index integer The track to play the instrument on.
+---@param note integer? A single note in Range: (0 - 127). Default: 48.
+---@param volume number? Volume in Range: (0 - 1). Default 1.0
+---@param use_selection boolean? Default: false. When true and a selection is set, play the selection instead of the whole sample. Also disables looping.
+function renoise.Song:trigger_sample_note_on(instrument_index, sample_index, track_index, note, volume, use_selection) end
+
+---Stops sample playback that previously got triggered via `trigger_sample_note_on`.
+---@param instrument_index integer The instrument to trigger.
+---@param sample_index integer The sample to trigger.
+---@param track_index integer The track to play the instrument on.
+---@param note integer? A single note in Range: (0 - 127). Default: 48.
+function renoise.Song:trigger_sample_note_off(instrument_index, sample_index, track_index, note) end
+
 
 ---Load all global MIDI mappings in the song into a XRNM file.
 ---Returns true when loading/saving succeeded, else false and the error message.
