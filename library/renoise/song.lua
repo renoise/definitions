@@ -490,14 +490,14 @@ function renoise.Song:cancel_rendering() end
 ---
 ---@param instrument_index integer The instrument to trigger.
 ---@param track_index integer The track to play the instrument on.
----@param note (integer|(integer[]))? A single note or a table of notes in Range: (0 - 127). Default: 48.
+---@param note (integer|(integer[]))? A single note or a table of notes in Range: (0 - 119). Default: 48.
 ---@param volume number? Volume in Range: (0 - 1). Default: 1.0.
 function renoise.Song:trigger_instrument_note_on(instrument_index, track_index, note, volume) end
 
 ---Stop instrument playback which previously got started via `trigger_instrument_note_on`.
 ---@param instrument_index integer The instrument to trigger.
 ---@param track_index integer The track to play the instrument on.
----@param note (integer|(integer[]))? A single note or a table of notes in Range: (0 - 127). Default: 48.
+---@param note (integer|(integer[]))? A single note or a table of notes in Range: (0 - 119). Default: 48.
 function renoise.Song:trigger_instrument_note_off(instrument_index, track_index, note) end
 
 ---Trigger a sample with the specified note and volume for preview purposes on the
@@ -509,7 +509,7 @@ function renoise.Song:trigger_instrument_note_off(instrument_index, track_index,
 ---@param instrument_index integer The instrument to trigger.
 ---@param sample_index integer The sample to trigger.
 ---@param track_index integer The track to play the instrument on.
----@param note integer? A single note in Range: (0 - 127). Default: 48.
+---@param note integer? A single note in Range: (0 - 119). Default: 48.
 ---@param volume number? Volume in Range: (0 - 1). Default 1.0
 ---@param use_selection boolean? Default: false. When true and a selection is set, play the selection instead of the whole sample. Also disables looping.
 function renoise.Song:trigger_sample_note_on(instrument_index, sample_index, track_index, note, volume, use_selection) end
@@ -518,7 +518,7 @@ function renoise.Song:trigger_sample_note_on(instrument_index, sample_index, tra
 ---@param instrument_index integer The instrument to trigger.
 ---@param sample_index integer The sample to trigger.
 ---@param track_index integer The track to play the instrument on.
----@param note integer? A single note in Range: (0 - 127). Default: 48.
+---@param note integer? A single note in Range: (0 - 119). Default: 48.
 function renoise.Song:trigger_sample_note_off(instrument_index, sample_index, track_index, note) end
 
 
