@@ -41,6 +41,12 @@ renoise.Application = {}
 ---**READ-ONLY** Access to the application's window.
 ---@field window renoise.ApplicationWindow
 ---
+---**READ-ONLY** Access to the application's color theme.
+---@field theme renoise.ApplicationTheme
+---Fired, when *any* theme color changed. e.g. when a new theme got loaded
+---or when theme colors got edited in the theme preferences.
+---@field theme_observable renoise.Document.Observable
+---
 ---Range: (1 - 4) Get or set globally used clipboard "slots" in the application.
 ---@field active_clipboard_index 1|2|3|4
 
