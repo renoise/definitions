@@ -197,7 +197,7 @@ renoise.GroupTrack = {}
 ---
 ---**READ-ONLY** All member tracks of this group, including subgroups and
 ---their tracks.
----@field members (renoise.Track|renoise.GroupTrack)[]
+---@field members renoise.Track[]
 ---
 ---Collapsed/expanded visual appearance of whole group.
 ---@field group_collapsed boolean
