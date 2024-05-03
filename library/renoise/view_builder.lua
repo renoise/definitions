@@ -66,9 +66,14 @@ renoise.Views = {}
 
 ---@class renoise.Views.View
 renoise.Views.View = {}
+
+-- TODO 
+-- inheriting from 'table' is workaround here to allow up casting views to 
+-- other views via e.g. @type or @cast
+
 ---View is the base class for all child views. All View properties can be
 ---applied to any of the following specialized views.
----@class renoise.Views.View
+---@class renoise.Views.View : table
 ---@field visible Visibility
 ---@field width ViewDimension
 ---@field height ViewDimension
