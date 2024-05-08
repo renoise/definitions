@@ -1,8 +1,13 @@
 {
     "name": "renoise",
-    "words"  : ["%s*renoise%.%w+"],
+    "words": [
+        "%s*renoise%.%w+"
+    ],
     "has_plugin": true,
-    "settings" : {
-        "Lua.runtime.version" : "Lua 5.1"
+    "settings": {
+        "Lua.runtime.version": "LuaJIT",
+        "Lua.runtime.builtin": {
+            "ffi": "disable"
+        }
     }
 }

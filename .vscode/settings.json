@@ -1,4 +1,6 @@
 {
     "Lua.misc.parameters": ["--develop=true"],
-    "Lua.runtime.plugin": "plugin.lua"
+    "Lua.runtime.plugin": "plugin.lua",
+    "Lua.runtime.version" : "LuaJIT",
+    "Lua.runtime.builtin": {"ffi": "disable"},
 }
