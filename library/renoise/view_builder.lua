@@ -482,11 +482,13 @@ function renoise.Views.Bitmap:remove_notifier(notifier) end
 ---* Default: ""
 ---@alias ButtonLabel string
 
----When set, existing text is cleared and the loaded image will be shown instead.  
----The only supported bitmap format is ".bmp" (Windows bitmap) right now.
----Colors will be overridden by the theme colors, using black as transparent
----color, white is the full theme color. All colors in between are mapped
----according to their gray value.
+---If set, existing text is removed and the loaded image is displayed instead.  
+---Supported bitmap file formats are ".bmp", ".png" and ".tiff".
+---Colors in bitpams will be overridden by the button's theme color, using black
+---as the transparent colour for BMPs and TIFFS, and the alpha channel for PNGs. 
+---All other colors are mapped to the theme colour according to their grey value,
+---so plain white is the target theme colour, and all other colors blend into the 
+---button's background color of the theme.
 ---@alias ButtonBitmapPath ImagePath
 
 ---When set, the unpressed button's background will be drawn in the specified color.
