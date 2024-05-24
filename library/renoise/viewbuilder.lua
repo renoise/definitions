@@ -190,6 +190,11 @@ function ViewBuilderInstance:stack(properties) end
 ---@type SpaceConstructor
 function ViewBuilderInstance:space(properties) end
 
+---@see renoise.Views.Canvas
+---@param properties CanvasViewProperties?
+---@return renoise.Views.Canvas
+function ViewBuilderInstance:canvas(properties) end
+
 ---@see renoise.Views.Text
 ---@param properties TextViewProperties?
 ---@return renoise.Views.Text

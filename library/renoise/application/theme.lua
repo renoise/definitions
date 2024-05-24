@@ -7,6 +7,20 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---
 
 --------------------------------------------------------------------------------
+
+---A table of 3 bytes (ranging from 0 to 255)
+---representing the red, green and blue channels of a color.
+---{0xFF, 0xFF, 0xFF} is white
+---{165, 73, 35} is the red from the Renoise logo
+---@alias RGBColor {[1] : integer, [2] : integer, [3] : integer}
+
+---A table of 4 bytes (ranging from 0 to 255)
+---representing the red, green, blue, alpha channels of a color.
+---{0xFF, 0xFF, 0xFF, 0xFF} is white
+---{165, 73, 35, 0x80} is the red from the Renoise logo, half opaque.
+---@alias RGBAColor {[1] : integer, [2] : integer, [3] : integer, [4]: integer}
+
+--------------------------------------------------------------------------------
 --- ## renoise.ApplicationTheme
 
 ---Application's theme colors and other general color theme properties.
