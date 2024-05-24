@@ -31,12 +31,12 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---A text color is automatically selected unless explicitly set, to make sure its
 ---always visible.
 ---Set color {0,0,0} to enable the theme colors for the button again.
----@alias ButtonColor RGBColor
+---@alias ButtonColor RGBColor|ThemeColor
 
 ---When set, the unpressed button's background text or bitmap will be drawn in the
 ---specified color.
 ---Set color {0,0,0} to enable the theme colors for the button again.
----@alias ButtonSecondaryColor RGBColor
+---@alias ButtonSecondaryColor RGBColor|ThemeColor
 
 ---Get/set the style a button should be displayed with.
 ---@alias ButtonStyle
