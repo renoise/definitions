@@ -41,12 +41,6 @@ renoise.Track = {
   MUTE_STATE_MUTED = 3
 }
 
----A table of 3 bytes (ranging from 0 to 255)
----representing the red, green and blue channels of a color.
----{0xFF, 0xFF, 0xFF} is white
----{165, 73, 35} is the red from the Renoise logo
----@alias RGBColor {[1] : integer, [2] : integer, [3] : integer}
-
 ---### properties
 
 ---@class renoise.Track
