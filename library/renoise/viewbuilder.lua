@@ -216,6 +216,11 @@ function renoise.ViewBuilder:textfield(properties) end
 ---@return renoise.Views.MultiLineTextField
 function renoise.ViewBuilder:multiline_textfield(properties) end
 
+---@see renoise.Views.TextLink
+---@param properties TextLinkViewProperties?
+---@return renoise.Views.TextLink
+function ViewBuilderInstance:link(properties) end
+
 ---@see renoise.Views.Bitmap
 ---@param properties BitmapViewProperties?
 ---@return renoise.Views.Bitmap
