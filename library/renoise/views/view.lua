@@ -24,7 +24,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---The position of a view within its parent view.
 ---Only the `stack` layouts allows to freely position child views. Other
 ---layout views will automatically set the origin, but the origin
----then still can be read in for example mouse handlers. 
+---then still can be read in for example mouse handlers.
 ---@alias ViewOrigin { x: ViewPosition, y: ViewPosition }|{ [1]:ViewPosition, [2]:ViewPosition }
 
 ---The cursor cursor for this view which apears on mouse hover.
@@ -159,7 +159,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---applied to any of the following specialized views.
 ---@class renoise.Views.View : table
 ---@field visible ViewVisibility
----@field origin ViewOrigin 
+---@field origin ViewOrigin
 ---@field width ViewDimension
 ---@field height ViewDimension
 ---@field tooltip ViewTooltip
@@ -207,7 +207,7 @@ function View:swap_views(child1, child2) end
 ---@class ViewProperties
 ---@field id ViewId?
 ---@field visible ViewVisibility?
----@field origin ViewOrigin 
+---@field origin ViewOrigin?
 ---@field width ViewDimension?
 ---@field height ViewDimension?
 ---@field tooltip ViewTooltip?
