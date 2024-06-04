@@ -11,7 +11,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 
 ---A slider which looks like a potentiometer.
 ---Note: when changing the size, the minimum of either width or height will be
----used to draw and control the rotary, therefor you should always set both
+---used to draw and control the rotary, therefore you should always set both
 ---equally when possible.
 ---```text
 ---    +-+

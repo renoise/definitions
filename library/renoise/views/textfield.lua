@@ -21,7 +21,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---* Default: ""
 ---@alias TextValueAlias string
 
----True when the text field is focused. setting it at run-time programatically
+---True when the text field is focused. setting it at run-time programmatically
 ---will focus the text field or remove the focus (focus the dialog) accordingly.
 ---* Default: false
 ---@alias TextEditMode boolean
