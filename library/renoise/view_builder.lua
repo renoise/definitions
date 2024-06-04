@@ -311,7 +311,7 @@ function renoise.Views.MultiLineText:clear() end
 ---* Default: ""
 ---@alias TextValueAlias string
 
----True when the text field is focused. setting it at run-time programatically
+---True when the text field is focused. setting it at run-time programmatically
 ---will focus the text field or remove the focus (focus the dialog) accordingly.
 ---* Default: false
 ---@alias EditMode boolean 
@@ -394,7 +394,7 @@ function renoise.Views.MultiLineTextField:scroll_to_last_line() end
 function renoise.Views.MultiLineTextField:scroll_to_first_line() end
 
 ---Append a new text to the existing text. Newline characters in the string will
----create new paragraphs, othwerise a single paragraph is appended.
+---create new paragraphs, otherwise a single paragraph is appended.
 ---@param text string
 function renoise.Views.MultiLineTextField:add_line(text) end
 
@@ -904,7 +904,7 @@ function renoise.Views.MiniSlider:remove_notifier(notifier) end
 renoise.Views.RotaryEncoder = {}
 ---A slider which looks like a potentiometer.
 ---Note: when changing the size, the minimum of either width or height will be
----used to draw and control the rotary, therefor you should always set both
+---used to draw and control the rotary, therefore you should always set both
 ---equally when possible.
 ---```md
 ---    +-+
