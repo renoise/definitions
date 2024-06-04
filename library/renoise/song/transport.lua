@@ -113,6 +113,8 @@ renoise.Transport = {
 ---@field metronome_precount_enabled_observable renoise.Document.Observable
 ---@field metronome_precount_bars integer Range: (1 - 4)
 ---@field metronome_precount_bars_observable renoise.Document.Observable
+---@field metronome_volume number Range: (0 - math.db2lin(6))
+---@field metronome_volume_observable renoise.Document.Observable
 ---
 ---Quantize
 ---@field record_quantize_enabled boolean
@@ -151,6 +153,9 @@ renoise.Transport = {
 ---Will return the default value of 127 when keyboard_velocity_enabled == false.
 ---@field keyboard_velocity integer Range: (0 - 127)
 ---@field keyboard_velocity_observable renoise.Document.Observable
+---
+---*READ-ONLY* true when sample sample dialog is visible and recording started.
+---@field sample_recording boolean
 
 ---### functions
 
@@ -191,8 +196,14 @@ function renoise.Transport:loop_block_move_forwards() end
 ---Move the block loop one segment backwards, when possible.
 function renoise.Transport:loop_block_move_backwards() end
 
----Start a new sample recording when the sample dialog is visible,
----otherwise stop and finish it.
+---Start a new sample recording when the sample dialog is visible.
+function renoise.Transport:start_sample_recording() end
+
+---Stop sample recording when the sample dialog is visible and running
+function renoise.Transport:stop_sample_recording() end
+
+---Deprecated. Use `start_sample_recording` or `stop_sample_recording` instead.
+---@deprecated
 function renoise.Transport:start_stop_sample_recording() end
 
 ---Cancel a currently running sample recording when the sample dialog
