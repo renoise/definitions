@@ -517,7 +517,7 @@ renoise.SampleStepperModulationDevice = {
 ---@class renoise.SampleStepperModulationDevice :  renoise.SampleModulationDevice
 ---
 ---External editor visibility.
----set to true to show he editor, false to close it
+---set to true to show the editor, false to close it
 ---@field external_editor_visible boolean
 ---
 ---Play mode (interpolation mode).
