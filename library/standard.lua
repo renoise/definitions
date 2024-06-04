@@ -79,7 +79,7 @@ function rprint(value) end
 ---    self.can_fly = false
 ---  end
 ---
------ show() function and base member are avilable for Mammal too
+----- show() function and base member are available for Mammal too
 ---local mamal = Mammal("Cow")
 ---mamal:show()
 ---```

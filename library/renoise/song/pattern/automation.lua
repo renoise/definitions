@@ -58,7 +58,7 @@ renoise.PatternTrackAutomation = {
 ---
 ---Selection range as visible in the automation editor. always valid.
 ---returns the automation range no selection is present in the UI.
----@field selection_start integer Rnage: (1 - automation.length + 1)
+---@field selection_start integer Range: (1 - automation.length + 1)
 ---@field selection_start_observable renoise.Document.Observable
 ---@field selection_end integer Range: (1  -  automation.length + 1)
 ---@field selection_end_observable renoise.Document.Observable

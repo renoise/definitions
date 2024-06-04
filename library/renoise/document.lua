@@ -13,10 +13,10 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---classes.
 ---
 ---**Please note**: the Lua wrappers are not really "the Lua way" of solving and
----expressing things. e.g: theres no support for mixed types in lists, tuples
+---expressing things. e.g: there's no support for mixed types in lists, tuples
 ---at the moment.
 ---
----Documents can be serialzed from/to XML, just like Renoise's internal
+---Documents can be serialized from/to XML, just like Renoise's internal
 ---document and are observable.
 ---
 ---An empty document (node) object can be created via

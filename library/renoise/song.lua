@@ -95,7 +95,7 @@ renoise.Song = {
 ---Returns nil when no data is present.
 ---
 ---Each tool gets it's own data slot in the song, which is resolved by the tool's
----bundle id, so this data is unique for every tool and persistent accross tools
+---bundle id, so this data is unique for every tool and persistent across tools
 ---with the same bundle id (but possibly different versions).
 ---If you want to store renoise.Document data in here, you can use the
 ---renoise.Document's 'to_string' and 'from_string' functions to serialize the data.
