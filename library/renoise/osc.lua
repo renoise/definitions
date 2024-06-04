@@ -39,7 +39,7 @@ function renoise.Osc.from_binary_data(binary_data) end
 ---message arguments. See `renoise.Osc.Message.create` for more info.
 ---@field arguments OscValue[]
 ---
----**READ-ONLY** Raw binary representation of the messsage, as needed when e.g.
+---**READ-ONLY** Raw binary representation of the message, as needed when e.g.
 ---sending the message over the network through sockets.
 ---@field binary_data string
 renoise.Osc.Message = {}
