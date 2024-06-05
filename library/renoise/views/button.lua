@@ -22,7 +22,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@alias ButtonBitmapPath BitmapImagePath
 
 ---When set, the unpressed button's background will be drawn in the specified color.
----A text color is automatically selected unless explicitely set, to make sure it's
+---A text color is automatically selected unless explicitly set, to make sure it's
 ---always visible.
 ---Set color {0,0,0} to enable the theme colors for the button again.
 ---@alias ButtonColor RGBColor
