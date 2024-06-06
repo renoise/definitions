@@ -43,6 +43,14 @@ renoise.ApplicationWindow = {
   LOWER_FRAME_TRACK_AUTOMATION = 2,
 }
 
+---@enum renoise.ApplicationWindow.DiskBrowserCategory
+renoise.ApplicationWindow = {
+  DISK_BROWSER_CATEGORY_SONGS = 1,
+  DISK_BROWSER_CATEGORY_INSTRUMENTS = 2,
+  DISK_BROWSER_CATEGORY_SAMPLES = 3,
+  DISK_BROWSER_CATEGORY_OTHER = 4
+}
+
 ---@enum renoise.ApplicationWindow.MixerFader
 ---@diagnostic disable-next-line: missing-fields
 renoise.ApplicationWindow = {
@@ -76,6 +84,9 @@ renoise.ApplicationWindow = {
 ---@field disk_browser_is_visible boolean
 ---@field disk_browser_is_visible_observable renoise.Document.Observable
 ---
+---@field disk_browser_category renoise.ApplicationWindow.DiskBrowserCategory
+---@field disk_browser_categorye_observable renoise.Document.Observable
+---
 ---InstrumentBox
 ---@field instrument_box_is_visible boolean
 ---@field instrument_box_is_visible_observable renoise.Document.Observable
@@ -83,6 +94,23 @@ renoise.ApplicationWindow = {
 ---Instrument Editor detaching.
 ---@field instrument_editor_is_detached boolean
 ---@field instrument_editor_is_detached_observable renoise.Document.Observable
+---
+---InstrumentProperties (below InstrumentBox)
+---@field instrument_properties_is_visible boolean
+---@field instrument_properties_is_visible_observable renoise.Document.Observable
+---@field instrument_properties_show_volume_transpose boolean
+---@field instrument_properties_show_trigger_options boolean
+---@field instrument_properties_show_scale_options boolean
+---@field instrument_properties_show_plugin boolean
+---@field instrument_properties_show_plugin_program boolean
+---@field instrument_properties_show_midi boolean
+---@field instrument_properties_show_midi_program boolean
+---@field instrument_properties_show_macros boolean
+---@field instrument_properties_show_phrases boolean
+---
+---SampleProperties (below SampleNavigator)
+---@field sample_properties_is_visible boolean
+---@field sample_properties_is_visible_observable renoise.Document.Observable
 ---
 ---Mixer View detaching.
 ---@field mixer_view_is_detached boolean
