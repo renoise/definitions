@@ -11,6 +11,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---Integer, Bit Operations, provided by <http://bitop.luajit.org/>
 ---
 --- [Documentation](http://bitop.luajit.org/api.html)
+bit = {}
 
 ---Normalizes a number to the numeric range for bit operations and returns it.
 --This function is usually not needed since all bit operations already normalize
