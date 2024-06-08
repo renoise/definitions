@@ -1,5 +1,13 @@
 ---@meta
 error("Do not try to execute this file. It's just a type definition file.")
+---
+---Please read the introduction at https://github.com/renoise/xrnx/
+---to get an overview about the complete API, and scripting for
+---Renoise in general...
+---
+
+-------------------------------------------------------------------------------
+
 ---Integer, Bit Operations, provided by <http://bitop.luajit.org/>
 ---
 --- [Documentation](http://bitop.luajit.org/api.html)
