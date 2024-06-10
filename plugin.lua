@@ -8,7 +8,11 @@ local str_find = string.find
 local str_sub = string.sub
 local str_gmatch = string.gmatch
 
+print("RNS class plugin: loading...")
+
 function OnSetText(uri, text)
+    -- print("RNS class plugin:", uri)
+
     -- ignore .vscode dir, extension files (i.e. natives), and other meta files
     if str_find(uri, "[\\/]%.vscode[\\/]") or str_sub(text, 1, 8) == "---@meta" then
         return
@@ -24,7 +28,7 @@ function OnSetText(uri, text)
     -- ---@class SomeClass : OptionalBaseClass
     -- SomeClass = {}
     for pos, comments, class, rest in str_gmatch(text, "()(%-?%-?)[ \t]*class[ \t]*['\"]([^'^\"^\n]+)['\"]([^\n]*)\n") do
-        -- print("RNS Class Plugin:", pos, comments, class, rest)
+        -- print("RNS class plugin:", pos, comments, class, rest)
         if comments == "" then
             local base_class = string.match(rest, "%s*%(([^%(^%)]+)%)")
             if base_class then
