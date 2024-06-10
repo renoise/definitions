@@ -329,7 +329,7 @@ function io.exists(filename) end
 ---Returns a table with status info about the file, folder or link at the given
 ---path and name, else nil the error and the error code is returned.
 ---@param filename string
----@return Stat[]? result, string? error, integer? error_code
+---@return Stat? result, string? error, integer? error_code
 function io.stat(filename) end
 
 ---Change permissions of a file, folder or link. mode is a unix permission
