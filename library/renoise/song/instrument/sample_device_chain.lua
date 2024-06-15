@@ -30,7 +30,7 @@ renoise.SampleDeviceChain = {}
 ---
 ---**READ-ONLY** Device access.
 ---@field devices renoise.AudioDevice[]
----@field devices_observable renoise.Document.Observable
+---@field devices_observable renoise.Document.ObservableList
 ---
 ---**READ-ONLY** Output routing.
 ---@field available_output_routings string[]

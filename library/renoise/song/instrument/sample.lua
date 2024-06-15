@@ -58,7 +58,7 @@ renoise.Sample = {
 ---functions). See function insert_slice_marker for info about marker limitations
 ---and preconditions.
 ---@field slice_markers integer[]
----@field slice_markers_observable renoise.Document.Observable
+---@field slice_markers_observable renoise.Document.ObservableList
 ---Name.
 ---@field name string
 ---@field name_observable renoise.Document.Observable

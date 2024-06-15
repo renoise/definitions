@@ -30,7 +30,7 @@ renoise.InstrumentMacro = {}
 ---
 ---**READ-ONLY** Macro mappings, target parameters
 ---@field mappings renoise.InstrumentMacroMapping[]
----@field mappings_observable renoise.Document.Observable
+---@field mappings_observable renoise.Document.ObservableList
 
 ---### functions
 

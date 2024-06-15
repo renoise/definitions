@@ -82,7 +82,7 @@ renoise.Song = {
 ---`comments[1] = "Hello"; renoise.song().comments[2] = "World"`
 ---will *not* work.
 ---@field comments string[]
----@field comments_observable renoise.Document.Observable
+---@field comments_observable renoise.Document.ObservableList
 ---**READ-ONLY** Notifier is called as soon as any paragraph in the comments change.
 ---@field comments_assignment_observable renoise.Document.Observable
 ---Set this to true to show the comments dialog after loading a song

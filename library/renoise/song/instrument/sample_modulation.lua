@@ -122,7 +122,7 @@ renoise.SampleModulationSet = {}
 ---
 ---**READ-ONLY** Device list access.
 ---@field devices renoise.SampleModulationDevice[]
----@field devices_observable renoise.Document.Observable
+---@field devices_observable renoise.Document.ObservableList
 ---
 ---**READ-ONLY** Filter version, 3 is the latest.
 ---@see renoise.SampleModulationSet.upgrade_filter_version
@@ -448,7 +448,7 @@ renoise.SampleEnvelopeModulationDevice = {
 ---`points[1].value` will not do anything. Instead, change them via
 ---`points = { something }` instead.
 ---@field points SampleEnvelopeModulationDevice.Point[]
----@field points_observable renoise.Document.Observable
+---@field points_observable renoise.Document.ObservableList
 ---
 ---@class SampleEnvelopeModulationDevice.Point
 ---An envelope point's time.
@@ -538,7 +538,7 @@ renoise.SampleStepperModulationDevice = {
 ---`points[1].value` will not do anything. Instead, change them via
 ---`points = { something }`.
 ---@field points SampleStepperModulationDevice.Point[]
----@field points_observable renoise.Document.Observable
+---@field points_observable renoise.Document.ObservableList
 ---
 ---@class SampleStepperModulationDevice.Point
 ---An envelope point's time.

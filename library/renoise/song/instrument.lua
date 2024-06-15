@@ -117,29 +117,30 @@ renoise.Instrument = {
 ---
 ---**READ-ONLY** Phrases.
 ---@field phrases renoise.InstrumentPhrase[]
----@field phrases_observable renoise.Document.Observable
+---@field phrases_observable renoise.Document.ObservableList
 ---
 ---**READ-ONLY** Phrase mappings.
 ---@field phrase_mappings renoise.InstrumentPhraseMapping[]
----@field phrase_mappings_observable renoise.Document.Observable
+---@field phrase_mappings_observable renoise.Document.ObservableList
 ---
 ---**READ-ONLY** Samples slots.
 ---@field samples renoise.Sample[]
----@field samples_observable renoise.Document.Observable
+---@field samples_observable renoise.Document.ObservableList
 ---
 ---**READ-ONLY**
 ---Sample mappings (key/velocity to sample slot mappings).
 ---sample_mappings[LAYER_NOTE_ON/OFF][]. Sample mappings also can
 ---be accessed via ---@field samples[].sample_mapping
 ---@field sample_mappings renoise.SampleMapping[]
----@field sample_mappings_observable renoise.Document.Observable
+---@field sample_mappings_observable renoise.Document.ObservableList
 ---
 ---**READ-ONLY** Sample modulation sets.
 ---@field sample_modulation_sets renoise.SampleModulationSet[]
----@field sample_modulation_sets_observable renoise.Document.Observable
+---@field sample_modulation_sets_observable renoise.Document.ObservableList
 ---
 ---**READ-ONLY** Sample device chains.
 ---@field sample_device_chains renoise.SampleDeviceChain[]
+---@field sample_device_chains_observable renoise.Document.ObservableList
 ---
 ---**READ-ONLY** MIDI input properties.
 ---@field midi_input_properties renoise.InstrumentMidiInputProperties
