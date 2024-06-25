@@ -400,12 +400,3 @@ function math.fader2db(min_dB, max_dB, fader_value) end
 
 ---db values at and below this value will be treated as silent (linearly 0)
 math.infdb = -200
-
-
--------------------------------------------------------------------------------
----## bit (added)
-
----Integer, Bit Operations, provided by <http://bitop.luajit.org/>
----
---- [Documentation](http://bitop.luajit.org/api.html)
-bit = {}
