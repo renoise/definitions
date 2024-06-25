@@ -9,9 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.InstrumentMidiOutputProperties
 
----@class renoise.InstrumentMidiOutputProperties
-renoise.InstrumentMidiOutputProperties = {}
-
 ---### constants
 
 ---@enum renoise.InstrumentMidiOutputProperties.Type
@@ -56,3 +53,4 @@ renoise.InstrumentMidiOutputProperties = {
 ---
 ---@field duration integer Range: (1 - 8000) 8000 = INF
 ---@field duration_observable renoise.Document.Observable
+renoise.InstrumentMidiOutputProperties = {}

@@ -9,9 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.Sample
 
----@class renoise.Sample
-renoise.Sample = {}
-
 ---### constants
 
 ---@enum renoise.Sample.InterpolationMode
@@ -126,6 +123,7 @@ renoise.Sample = {
 ---
 ---**READ-ONLY** Keyboard Note/velocity mapping
 ---@field sample_mapping renoise.SampleMapping
+renoise.Sample = {}
 
 ---### functions
 
@@ -166,9 +164,6 @@ function renoise.Sample:move_slice_marker(old_marker_pos, new_marker_pos) end
 --------------------------------------------------------------------------------
 ---## renoise.SampleMapping
 
----@class renoise.SampleMapping
-renoise.SampleMapping = {}
-
 ---### properties
 
 ---General remarks: Sample mappings of sliced samples are read-only: can not be
@@ -205,12 +200,10 @@ renoise.SampleMapping = {}
 ---Velocity range the mapping is triggered for.
 ---@field velocity_range integer[] Range: (0 - 127)
 ---@field velocity_range_observable renoise.Document.Observable
+renoise.SampleMapping = {}
 
 --------------------------------------------------------------------------------
 ---## renoise.SampleBuffer
-
----@class renoise.SampleBuffer
-renoise.SampleBuffer = {}
 
 ---### constants
 
@@ -277,6 +270,7 @@ renoise.SampleBuffer = {
 ---The selected channel.
 ---@field selected_channel renoise.SampleBuffer.Channel
 ---@field selected_channel_observable renoise.Document.Observable
+renoise.SampleBuffer = {}
 
 ---### functions
 

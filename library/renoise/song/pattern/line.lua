@@ -9,9 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.PatternLine
 
----@class renoise.PatternLine
-renoise.PatternLine = {}
-
 ---### constants
 
 renoise.PatternLine.EMPTY_NOTE = 121
@@ -35,6 +32,7 @@ renoise.PatternLine.EMPTY_EFFECT_AMOUNT = 0
 ---Columns.
 ---@field note_columns renoise.NoteColumn[] **READ-ONLY**
 ---@field effect_columns renoise.EffectColumn[] **READ-ONLY**
+renoise.PatternLine = {}
 
 ---### functions
 
@@ -77,6 +75,8 @@ function tostring(pattern_line) end
 --------------------------------------------------------------------------------
 ---renoise.NoteColumn
 
+---### properties
+
 ---A single note column in a pattern line.
 ---
 ---General remarks: instrument columns are available for lines in phrases
@@ -85,11 +85,6 @@ function tostring(pattern_line) end
 ---Access note column properties either by values (numbers) or by strings.
 ---The string representation uses exactly the same notation as you see
 ---them in Renoise's pattern or phrase editor.
----@class renoise.NoteColumn
-renoise.NoteColumn = {}
-
----### properties
-
 ---@class renoise.NoteColumn
 ---
 ---**READ-ONLY** True, when all note column properties are empty.
@@ -130,6 +125,7 @@ renoise.NoteColumn = {}
 ---
 ---@field effect_amount_value integer 0-255
 ---@field effect_amount_string string '00' - 'FF'
+renoise.NoteColumn = {}
 
 ---### functions
 
@@ -153,16 +149,13 @@ function tostring(note_column) end
 --------------------------------------------------------------------------------
 ---## renoise.EffectColumn
 
+---### properties
+
 ---A single effect column in a pattern line.
 ---
 ---Access effect column properties either by values (numbers) or by strings.
 ---The string representation uses exactly the same notation as you see
 ---them in Renoise's pattern or phrase editor.
----@class renoise.EffectColumn
-renoise.EffectColumn = {}
-
----### properties
-
 ---@class renoise.EffectColumn
 ---
 ---**READ-ONLY** True, when all effect column properties are empty.
@@ -177,6 +170,7 @@ renoise.EffectColumn = {}
 ---
 ---@field amount_value integer Range: (0 - 255)
 ---@field amount_string string Range: ('00' - 'FF')
+renoise.EffectColumn = {}
 
 ---### functions
 

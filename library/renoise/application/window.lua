@@ -9,10 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 --- ## renoise.ApplicationWindow
 
----Application window and general UI properties of the Renoise app.
----@class renoise.ApplicationWindow
-renoise.ApplicationWindow = {}
-
 ---## constants
 
 ---@enum renoise.ApplicationWindow.UpperFrame
@@ -50,6 +46,7 @@ renoise.ApplicationWindow = {
 
 ---### properties
 
+---Application window and general UI properties of the Renoise app.
 ---@class renoise.ApplicationWindow
 ---
 ---Get/set if the application is running fullscreen.
@@ -115,6 +112,7 @@ renoise.ApplicationWindow = {
 ---Mixer fader type setting.
 ---@field mixer_fader_type renoise.ApplicationWindow.MixerFader
 ---@field mixer_fader_type_observable renoise.Document.Observable
+renoise.ApplicationWindow = {}
 
 ---### functions
 

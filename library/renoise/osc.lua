@@ -5,16 +5,16 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---to get an overview about the complete API, and scripting for
 ---Renoise in general...
 ---
----Have a look at http://opensoundcontrol.org for general info about OSC.
----
----For some small examples on how to use the OSC and Sockets API, have a
----look at the code snippets in the Renoise Documentation "Snippets/Osc.lua".
----
 
 --------------------------------------------------------------------------------
 ---## renoise.Osc
 
 ---OSC (Open Sound Control) support for Lua scripts in Renoise.
+---Have a look at http://opensoundcontrol.org for general info about OSC.
+---
+---For some small examples on how to use the OSC and Sockets API, have a
+---look at the code snippets in the Renoise Documentation "Snippets/Osc.lua".
+---
 renoise.Osc = {}
 
 ---De-packetizing raw (socket) data to OSC messages or bundles:

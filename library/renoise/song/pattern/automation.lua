@@ -9,15 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.PatternTrackAutomation
 
----Graphical automation of a device parameter within a pattern track.
----
----General remarks: Automation "time" is specified in lines + optional 1/256
----line fraction for the sub line grid. The sub line grid has 256 units per
----line. All times are internally quantized to this sub line grid.
----For example a time of 1.5 means: line 1 with a note column delay of 128
----@class renoise.PatternTrackAutomation
-renoise.PatternTrackAutomation = {}
-
 ---### constants
 
 ---@enum renoise.PatternTrackAutomation.Playmode
@@ -38,6 +29,13 @@ renoise.PatternTrackAutomation = {
 ---Automation point scaling. Used in 'lines' playback mode only - 0.0 is linear.
 ---@field scaling number
 
+
+---Graphical automation of a device parameter within a pattern track.
+---
+---General remarks: Automation "time" is specified in lines + optional 1/256
+---line fraction for the sub line grid. The sub line grid has 256 units per
+---line. All times are internally quantized to this sub line grid.
+---For example a time of 1.5 means: line 1 with a note column delay of 128
 ---@class renoise.PatternTrackAutomation
 ---
 ---Destination device. Can in some rare circumstances be nil, i.e. when
@@ -76,6 +74,7 @@ renoise.PatternTrackAutomation = {
 ---`points = { modified_points }`.
 ---@field points EnvelopePoint[]
 ---@field points_observable renoise.Document.ObservableList
+renoise.PatternTrackAutomation = {}
 
 ---### functions
 

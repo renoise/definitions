@@ -20,9 +20,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.InstrumentPluginProperties
 
----@class renoise.InstrumentPluginProperties
-renoise.InstrumentPluginProperties = {}
-
 ---### properties
 
 ---@class renoise.InstrumentPluginProperties
@@ -77,6 +74,7 @@ renoise.InstrumentPluginProperties = {}
 ---Valid for loaded and unloaded plugins.
 ---@field auto_suspend boolean
 ---@field auto_suspend_observable renoise.Document.Observable
+renoise.InstrumentPluginProperties = {}
 
 ---### functions
 
@@ -97,9 +95,6 @@ function renoise.IntrumentPluginProperties:load_plugin(plugin_path) end
 
 --------------------------------------------------------------------------------
 ---## renoise.InstrumentPluginDevice
-
----@class renoise.InstrumentPluginDevice
-renoise.InstrumentPluginDevice = {}
 
 ---### properties
 
@@ -134,6 +129,7 @@ renoise.InstrumentPluginDevice = {}
 ---@see renoise.InstrumentPluginProperties.available_plugins for the list of valid paths
 ---The string can be passed into: renoise.InstrumentPluginProperties:load_plugin()
 ---@field device_path string
+renoise.InstrumentPluginDevice = {}
 
 ---### functions
 

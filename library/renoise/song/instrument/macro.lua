@@ -9,9 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.InstrumentMacro
 
----@class renoise.InstrumentMacro
-renoise.InstrumentMacro = {}
-
 ---### properties
 
 ---@class renoise.InstrumentMacro
@@ -31,6 +28,7 @@ renoise.InstrumentMacro = {}
 ---**READ-ONLY** Macro mappings, target parameters
 ---@field mappings renoise.InstrumentMacroMapping[]
 ---@field mappings_observable renoise.Document.ObservableList
+renoise.InstrumentMacro = {}
 
 ---### functions
 
@@ -42,9 +40,6 @@ function renoise.InstrumentMacro:mapping(index) end
 
 --------------------------------------------------------------------------------
 ---## renoise.InstrumentMacroMapping
-
----@class renoise.InstrumentMacroMapping
-renoise.InstrumentMacroMapping = {}
 
 ---### constants
 
@@ -77,3 +72,4 @@ renoise.InstrumentMacroMapping = {
 ---Scaling which gets applied within the min/max range to set the dest value.
 ---@field parameter_scaling renoise.InstrumentMacroMapping.Scaling
 ---@field parameter_scaling_observable renoise.Document.Observable
+renoise.InstrumentMacroMapping = {}

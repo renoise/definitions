@@ -9,9 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.SampleDeviceChain
 
----@class renoise.SampleDeviceChain
-renoise.SampleDeviceChain = {}
-
 ---### properties
 
 ---@class renoise.SampleDeviceChain
@@ -39,6 +36,7 @@ renoise.SampleDeviceChain = {}
 ---@see renoise.SampleDeviceChain.available_output_routings
 ---@field output_routing string
 ---@field output_routing_observable renoise.Document.Observable
+renoise.SampleDeviceChain = {}
 
 ---### functions
 

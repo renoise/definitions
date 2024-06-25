@@ -84,9 +84,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 
 ---@alias FilterTypes FilterTypes3 | FilterTypes2 | FilterTypes1
 
----@class renoise.SampleModulationSet
-renoise.SampleModulationSet = {}
-
 ---### properties
 
 ---@class renoise.SampleModulationSet
@@ -137,6 +134,7 @@ renoise.SampleModulationSet = {}
 ---@see renoise.SampleModulationSet.available_filter_types
 ---@field filter_type FilterTypes
 ---@field filter_type_observable renoise.Document.Observable
+renoise.SampleModulationSet = {}
 
 ---### functions
 
@@ -170,9 +168,6 @@ function renoise.SampleModulationSet:upgrade_filter_version() end
 
 --------------------------------------------------------------------------------
 ---## renoise.SampleModulationDevice
-
----@class renoise.SampleModulationDevice
-renoise.SampleModulationDevice = {}
 
 ---### constants
 
@@ -251,6 +246,7 @@ renoise.SampleModulationDevice = {
 ---
 ---**READ-ONLY**
 ---@field parameters renoise.DeviceParameter[]
+renoise.SampleModulationDevice = {}
 
 ---### functions
 
@@ -271,21 +267,16 @@ function renoise.SampleModulationDevice:parameter(index) end
 --------------------------------------------------------------------------------
 ---## renoise.SampleOperandModulationDevice
 
----@class renoise.SampleOperandModulationDevice
-renoise.SampleOperandModulationDevice = {}
-
 ---### properties
 
 ---@class renoise.SampleOperandModulationDevice : renoise.SampleModulationDevice
 ---
 ---Operand value.
 ---@field value renoise.DeviceParameter
+renoise.SampleOperandModulationDevice = {}
 
 --------------------------------------------------------------------------------
 ---## renoise.SampleFaderModulationDevice
-
----@class renoise.SampleFaderModulationDevice
-renoise.SampleFaderModulationDevice = {}
 
 ---### constants
 
@@ -315,12 +306,10 @@ renoise.SampleFaderModulationDevice = {
 ---Delay.
 ---@field delay renoise.DeviceParameter
 ---
+renoise.SampleFaderModulationDevice = {}
 
 --------------------------------------------------------------------------------
 ---## renoise.SampleAhdrsModulationDevice
-
----@class renoise.SampleAhdrsModulationDevice
-renoise.SampleAhdrsModulationDevice = {}
 
 ---### properties
 
@@ -336,12 +325,10 @@ renoise.SampleAhdrsModulationDevice = {}
 ---@field sustain renoise.DeviceParameter with range (0-1)
 ---Release duration.
 ---@field release renoise.DeviceParameter with range (0-1)
+renoise.SampleAhdrsModulationDevice = {}
 
 --------------------------------------------------------------------------------
 ---### renoise.SampleKeyTrackingModulationDevice
-
----@class renoise.SampleKeyTrackingModulationDevice
-renoise.SampleKeyTrackingModulationDevice = {}
 
 ---### properties
 
@@ -350,13 +337,11 @@ renoise.SampleKeyTrackingModulationDevice = {}
 ---Min/Max key value.
 ---@field min renoise.DeviceParameter with range (0-119)
 ---@field max renoise.DeviceParameter with range (0-119)
+renoise.SampleKeyTrackingModulationDevice = {}
 
 
 --------------------------------------------------------------------------------
 ---## renoise.SampleVelocityTrackingModulationDevice
-
----@class renoise.SampleVelocityTrackingModulationDevice
-renoise.SampleVelocityTrackingModulationDevice = {}
 
 ---### constants
 
@@ -378,12 +363,10 @@ renoise.SampleVelocityTrackingModulationDevice = {
 ---Min/Max velocity.
 ---@field min renoise.DeviceParameter with range (0-127)
 ---@field max renoise.DeviceParameter with range (0-127)
+renoise.SampleVelocityTrackingModulationDevice = {}
 
 --------------------------------------------------------------------------------
 ---## renoise.SampleEnvelopeModulationDevice
-
----@class renoise.SampleEnvelopeModulationDevice
-renoise.SampleEnvelopeModulationDevice = {}
 
 ---### constants
 
@@ -457,6 +440,7 @@ renoise.SampleEnvelopeModulationDevice = {
 ---@field value number Range: (0.0 - 1.0)
 ---An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
 ---@field scaling number Range: (-1.0 - 1.0)
+renoise.SampleEnvelopeModulationDevice = {}
 
 ---### functions
 
@@ -496,9 +480,6 @@ function renoise.SampleEnvelopeModulationDevice:remove_point_at(time) end
 
 --------------------------------------------------------------------------------
 ---## renoise.SampleStepperModulationDevice
-
----@class renoise.SampleStepperModulationDevice
-renoise.SampleStepperModulationDevice = {}
 
 ---### constants
 
@@ -547,6 +528,7 @@ renoise.SampleStepperModulationDevice = {
 ---@field value number Range: (0.0 - 1.0)
 ---An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
 ---@field scaling number Range: (-1.0 - 1.0)
+renoise.SampleStepperModulationDevice = {}
 
 ---### functions
 
@@ -587,9 +569,6 @@ function renoise.SampleStepperModulationDevice:remove_point_at(time) end
 --------------------------------------------------------------------------------
 ---## renoise.SampleLfoModulationDevice
 
----@class renoise.SampleLfoModulationDevice
-renoise.SampleLfoModulationDevice = {}
-
 ---### constants
 
 ---@enum renoise.SampleLfoModulationDevice.Mode
@@ -618,3 +597,4 @@ renoise.SampleLfoModulationDevice = {
 ---
 ---Delay.
 ---@field delay renoise.DeviceParameter
+renoise.SampleLfoModulationDevice = {}

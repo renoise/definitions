@@ -14,10 +14,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 
 ---Raw MIDI IO support for scripts in Renoise; the ability to send and receive
 ---MIDI data.
-renoise.Midi = {}
-
+---
 ---### error handling
-
+---
 ---When accessing a new device, not used by Renoise nor by your or other scripts,
 ---Renoise will try to open that device's driver. If something goes wrong an error
 ---will be shown to the user. Something like ("MIDI Device Foo failed to open
@@ -29,6 +28,7 @@ renoise.Midi = {}
 ---All other types of logic errors, such as sending MIDI to a manually closed
 ---device, sending bogus messages and so on, will be fired as typical Lua runtime
 ---errors.
+renoise.Midi = {}
 
 ---### enumeration
 

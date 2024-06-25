@@ -9,12 +9,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.Application
 
----The Renoise application.
----@class renoise.Application
-renoise.Application = {}
-
 ---### properties
 
+---The Renoise application.
 ---@class renoise.Application
 ---
 ---**READ-ONLY** Access to the application's full log filename and path. Will
@@ -43,6 +40,7 @@ renoise.Application = {}
 ---
 ---Range: (1 - 4) Get or set globally used clipboard "slots" in the application.
 ---@field active_clipboard_index 1|2|3|4
+renoise.Application = {}
 
 ---### functions
 

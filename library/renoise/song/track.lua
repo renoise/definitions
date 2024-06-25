@@ -9,10 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.Track
 
----Track component of a Renoise song.
----@class renoise.Track
-renoise.Track = {}
-
 ---Audio device info
 ---@class AudioDeviceInfo
 ---@field path string The device's path used by `renoise.Track:insert_device_at`
@@ -47,6 +43,7 @@ renoise.Track = {
 
 ---### properties
 
+---Track component of a Renoise song.
 ---@class renoise.Track
 ---
 ---Type, name, color.
@@ -116,6 +113,7 @@ renoise.Track = {
 ---@field available_device_infos AudioDeviceInfo[]
 ---@field devices renoise.AudioDevice[] **READ-ONLY** List of audio DSP FX.
 ---@field devices_observable renoise.Document.ObservableList
+renoise.Track = {}
 
 ---### functions
 
@@ -187,9 +185,6 @@ function renoise.Track:swap_effect_columns_at(column_index1, column_index2) end
 --------------------------------------------------------------------------------
 ---## renoise.GroupTrack
 
----@class renoise.GroupTrack
-renoise.GroupTrack = {}
-
 ---### properties
 
 ---Group track component of a Renoise song.
@@ -201,7 +196,7 @@ renoise.GroupTrack = {}
 ---
 ---Collapsed/expanded visual appearance of whole group.
 ---@field group_collapsed boolean
-
+renoise.GroupTrack = {}
 
 --------------------------------------------------------------------------------
 ---## renoise.TrackDevice

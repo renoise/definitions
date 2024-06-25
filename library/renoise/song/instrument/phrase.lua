@@ -9,9 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.InstrumentPhrase
 
----@class renoise.InstrumentPhrase
-renoise.InstrumentPhrase = {}
-
 ---### constants
 
 ---Maximum number of lines that can be present in a phrase.
@@ -126,6 +123,7 @@ renoise.InstrumentPhrase = {
 ---
 ---@field sample_effects_column_visible boolean
 ---@field sample_effects_column_visible_observable  renoise.Document.Observable
+renoise.InstrumentPhrase = {}
 
 ---### functions
 
@@ -240,9 +238,6 @@ function renoise.InstrumentPhrase:swap_effect_columns_at(index1, index2) end
 --------------------------------------------------------------------------------
 ---## renoise.InstrumentPhraseMapping
 
----@class renoise.InstrumentPhraseMapping
-renoise.InstrumentPhraseMapping = {}
-
 ---### constants
 
 ---@enum renoise.InstrumentPhraseMapping.KeyTrackingMode
@@ -285,3 +280,4 @@ renoise.InstrumentPhraseMapping = {
 ---
 ---@field loop_end integer
 ---@field loop_end_observable  renoise.Document.Observable
+renoise.InstrumentPhraseMapping = {}

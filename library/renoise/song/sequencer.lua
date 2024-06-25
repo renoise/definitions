@@ -9,12 +9,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.PatternSequencer
 
----Pattern sequencer component of the Renoise song.
----@class renoise.PatternSequencer
-renoise.PatternSequencer = {}
-
 ---### properties
 
+---Pattern sequencer component of the Renoise song.
 ---@class renoise.PatternSequencer
 ---
 ---When true, the sequence will be auto sorted.
@@ -38,6 +35,7 @@ renoise.PatternSequencer = {}
 ---Attach notifiers that will be fired as soon as any slot muting property
 ---in any track/sequence slot changes.
 ---@field pattern_slot_mutes_observable renoise.Document.Observable
+renoise.PatternSequencer = {}
 
 ---### functions
 

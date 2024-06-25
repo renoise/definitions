@@ -9,9 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.PatternTrack
 
----@class renoise.PatternTrack
-renoise.PatternTrack = {}
-
 ---### properties
 
 ---@class renoise.PatternTrack
@@ -37,6 +34,7 @@ renoise.PatternTrack = {}
 ---Automation.
 ---@field automation renoise.PatternTrackAutomation[]
 ---@field automation_observable renoise.Document.ObservableList
+renoise.PatternTrack = {}
 
 ---### functions
 

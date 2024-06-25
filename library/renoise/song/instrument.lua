@@ -9,9 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.Instrument
 
----@class renoise.Instrument
-renoise.Instrument = {}
-
 ---### constants
 
 renoise.Instrument.NUMBER_OF_MACROS = 8
@@ -150,6 +147,7 @@ renoise.Instrument = {
 ---
 ---**READ-ONLY** Plugin properties.
 ---@field plugin_properties renoise.InstrumentPluginProperties
+renoise.Instrument = {}
 
 ---### functions
 
@@ -283,9 +281,6 @@ function renoise.Instrument:sample_device_chain(index) end
 --------------------------------------------------------------------------------
 ---## renoise.InstrumentTriggerOptions
 
----@class renoise.InstrumentTriggerOptions
-renoise.InstrumentTriggerOptions = {}
-
 ---### constants
 
 ---@enum renoise.InstrumentTriggerOptions.QuantizeMode
@@ -322,3 +317,4 @@ renoise.InstrumentTriggerOptions = {
 ---Glide amount when monophonic. 0 == off, 255 = instant
 ---@field monophonic_glide integer
 ---@field monophonic_glide_observable renoise.Document.Observable
+renoise.InstrumentTriggerOptions = {}

@@ -9,10 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.Transport
 
----Transport component of the Renoise song.
----@class renoise.Transport
-renoise.Transport = {}
-
 ---### constants
 
 ---@enum renoise.Transport.PlayMode
@@ -35,6 +31,7 @@ renoise.Transport = {
 
 ---### properties
 
+---Transport component of the Renoise song.
 ---@class renoise.Transport
 ---
 ---Playing
@@ -145,6 +142,7 @@ renoise.Transport = {
 ---Will return the default value of 127 when keyboard_velocity_enabled == false.
 ---@field keyboard_velocity integer Range: (0 - 127)
 ---@field keyboard_velocity_observable renoise.Document.Observable
+renoise.Transport = {}
 
 ---### functions
 

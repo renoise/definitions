@@ -9,9 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.InstrumentMidiInputProperties
 
----@class renoise.InstrumentMidiInputProperties
-renoise.InstrumentMidiInputProperties = {}
-
 ---### properties
 
 ---@class renoise.InstrumentMidiInputProperties
@@ -30,3 +27,4 @@ renoise.InstrumentMidiInputProperties = {}
 ---Range: (1 - song.sequencer_track_count) 0 = Current track
 ---@field assigned_track integer
 ---@field assigned_track_observable renoise.Document.Observable
+renoise.InstrumentMidiInputProperties = {}

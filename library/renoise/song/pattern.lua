@@ -9,9 +9,6 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.Pattern
 
----@class renoise.Pattern
-renoise.Pattern = {}
-
 ---### constants
 
 ---Maximum number of lines that can be present in a pattern.
@@ -37,6 +34,7 @@ renoise.Pattern.MAX_NUMBER_OF_LINES = 512
 ---**READ-ONLY** Access to the pattern tracks. Each pattern has
 ---#renoise.song().tracks amount of tracks.
 ---@field tracks renoise.PatternTrack[]
+renoise.Pattern = {}
 
 ---### functions
 

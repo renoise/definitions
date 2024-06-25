@@ -9,12 +9,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.AudioDevice
 
----Audio DSP device in tracks or sample device chains.
----@class renoise.AudioDevice
-renoise.AudioDevice = {}
-
 ---### properties
 
+---Audio DSP device in tracks or sample device chains.
 ---@class renoise.AudioDevice
 ---
 ---Fixed name of the device.
@@ -55,6 +52,7 @@ renoise.AudioDevice = {}
 ---`available_devices`. The string can be passed into:
 ---`renoise.song().tracks[]:insert_device_at()`
 ---@field device_path string
+renoise.AudioDevice = {}
 
 ---### functions
 
@@ -74,10 +72,6 @@ function renoise.AudioDevice:parameter(index) end
 --------------------------------------------------------------------------------
 ---## renoise.DeviceParameter
 
----A single parameter within an audio DSP effect (renoise.AudioDevice)
----@class renoise.DeviceParameter
-renoise.DeviceParameter = {}
-
 ---### constants
 
 ---@enum renoise.DeviceParameter.Polarity
@@ -88,6 +82,7 @@ renoise.DeviceParameter = {
 
 ---### properties
 
+---A single parameter within an audio DSP effect (renoise.AudioDevice)
 ---@class renoise.DeviceParameter
 ---
 ---Device parameters.
@@ -127,6 +122,7 @@ renoise.DeviceParameter = {
 ---
 ---@field value_string string
 ---@field value_string_observable renoise.Document.Observable
+renoise.DeviceParameter = {}
 
 ---### functions
 

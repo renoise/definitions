@@ -17,10 +17,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---Right now UDP and TCP protocols are supported. The class interfaces for UDP
 ---and TCP sockets behave exactly the same. That is, they don't depend on the
 ---protocol, so both are easily interchangeable when needed.
-renoise.Socket = {}
-
+---
 ---### error handling
-
+---
 ---All socket functions which can fail, will return an error string as an optional
 ---second return value. They do not call Lua's error() handler, so you can decide
 ---yourself how to deal with expected errors like connection timeouts,
@@ -32,6 +31,7 @@ renoise.Socket = {}
 ---and spit out an error). If you get such an error, then this usually means you
 ---did something wrong: fed or used the sockets in a way that does not make sense.
 ---Never "pcall" such errors, fix the problem instead.
+renoise.Socket = {}
 
 ---### constants
 
@@ -140,6 +140,7 @@ renoise.Socket.SocketClient = {}
 function renoise.Socket.SocketClient:send(message) end
 
 ---@alias SocketReceiveMode "*line"|"*all"|integer
+
 ---Receive a message string from the the connected server with the given
 ---timeout in milliseconds. Mode can be one of "*line", "*all" or a number > 0,
 ---like Lua's io.read. \param timeout can be 0, which is useful for

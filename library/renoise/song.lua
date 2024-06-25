@@ -27,9 +27,6 @@ renoise.SongPos = {}
 --------------------------------------------------------------------------------
 ---## renoise.Song
 
----@class renoise.Song
-renoise.Song = {}
-
 ---Selection range in the current pattern
 ---@class PatternSelection
 ---@field start_line integer? Start pattern line index
@@ -251,6 +248,7 @@ renoise.Song = {
 ---@field selection_in_pattern PatternSelection?
 ---Same as `selection_in_pattern` but for the currently selected phrase (if any).
 ---@field selection_in_phrase PhraseSelection?
+renoise.Song = {}
 
 ---### functions
 
