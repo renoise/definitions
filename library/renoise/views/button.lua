@@ -14,15 +14,15 @@ error("Do not try to execute this file. It's just a type definition file.")
 
 ---If set, existing text is removed and the loaded image is displayed instead.
 ---Supported bitmap file formats are ".bmp", ".png" and ".tiff".
----Colors in bitpams will be overridden by the button's theme color, using black
----as the transparent colour for BMPs and TIFFS, and the alpha channel for PNGs.
----All other colors are mapped to the theme colour according to their grey value,
----so plain white is the target theme colour, and all other colors blend into the
+---Colors in bitmaps will be overridden by the button's theme color, using black
+---as the transparent color for BMPs and TIFFS, and the alpha channel for PNGs.
+---All other colors are mapped to the theme color according to their grey value,
+---so plain white is the target theme color, and all other colors blend into the
 ---button's background color of the theme.
 ---@alias ButtonBitmapPath BitmapImagePath
 
 ---When set, the unpressed button's background will be drawn in the specified color.
----A text color is automatically selected unless explicitely set, to make sure it's
+---A text color is automatically selected unless explicitly set, to make sure it's
 ---always visible.
 ---Set color {0,0,0} to enable the theme colors for the button again.
 ---@alias ButtonColor RGBColor
@@ -75,7 +75,6 @@ function Button:remove_released_notifier(notifier) end
 ---@class ButtonProperties : ControlProperties
 ---@field text ButtonLabel?
 ---@field bitmap ButtonBitmapPath?
----@field align ButtonAlignment?
 ---@field color ButtonColor?
 ---@field notifier ButtonNotifier?
 ---@field pressed ButtonNotifier?
