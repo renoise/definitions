@@ -36,6 +36,14 @@ renoise.Transport = {
   TIMING_MODEL_LPB = 2
 }
 
+---@enum renoise.Transport.SyncMode
+renoise.Transport = {
+  SYNC_MODE_INTERNAL = 1,
+  SYNC_MODE_MIDI_CLOCK = 2,
+  SYNC_MODE_ABLETON_LINK = 3,
+  SYNC_MODE_JACK = 4
+}
+
 ---### properties
 
 ---@class renoise.Transport
@@ -43,6 +51,12 @@ renoise.Transport = {
 ---Playing
 ---@field playing boolean
 ---@field playing_observable renoise.Document.Observable
+---
+---Transport sync mode. 
+---Note: `SYNC_MODE_JACK` only is available on Linux. Trying to enable it on
+---other platforms will fire an error.
+---@field sync_mode renoise.Transport.SyncMode
+---@field sync_mode_observable renoise.Document.Observable
 ---
 ---*READ-ONLY* Old school speed or new LPB timing used?
 ---With `TIMING_MODEL_SPEED`, tpl is used as speed factor. The lpb property
