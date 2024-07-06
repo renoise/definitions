@@ -39,6 +39,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---|"marker"
 ---|"crosshair"
 ---|"move"
+---|"erase"
 ---|"play"
 ---|"drag"
 ---|"drop"
