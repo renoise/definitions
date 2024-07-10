@@ -99,7 +99,8 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 
 ---@class KeyEvent
 ---@field name string name of the key, like 'esc' or 'a'
- ---**READ-ONLY** the held down modifiers as a string
+---**READ-ONLY** the held down modifiers as a string
+---@deprecated use `modifier_flags` instead
 ---@field modifiers ModifierStates
 ---**READ-ONLY** the held down modifiers as flags
 ---@field modifier_flags ModifierFlags
@@ -154,6 +155,45 @@ function renoise.Application:show_custom_prompt(title, content_view, button_labe
 ---@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?): renoise.Dialog
 ---@return renoise.Dialog
 function renoise.Application:show_custom_dialog(title, content_view, key_handler, key_handler_options) end
+
+---Defines a custom menu entry, shown in custom dialog windows.
+---
+---Separating entries:
+---To divide entries into groups prepend one or more dashes to the name:
+---```md
+------First Group Item
+---Regular item
+---```
+---
+---To create sub menus, define entries with a common path, using a colon as separator:
+---```md
+---Main Menu Item
+---Sub Menu:Sub Menu Item 1
+---Sub Menu:Sub Menu Item 2
+---```
+---
+---To insert a script menu entry into an existing context menu, see `ToolMenuEntry`.
+---@see ToolMenuEntry
+---
+---@class DialogMenuEntry
+---Name and optional path of the menu entry
+---@field name string
+---A function that is called as soon as the entry is clicked
+---@field invoke fun()
+---Default: true. When false, the action will not be invoked and will be "greyed out".
+---@field active boolean?
+---Default: false. When true, the entry will be marked as "this is a selected option"
+---@field selected boolean?
+
+---Shows a custom context menu on top of the given dialog.
+---
+---When specifying a view, the menu will be shown below the given view instance.
+---The view instance must be part of the dialog that shows the menu and must be visible.
+---By default the menu will be shown at the current mouse cursor position.
+---@param dialog renoise.Dialog
+---@param menu_entries DialogMenuEntry[]
+---@param below_view? renoise.Views.View
+function renoise.Application:show_menu(dialog, menu_entries, below_view) end
 
 ---Opens a modal dialog to query an existing directory from the user.
 ---@param title DialogTitle
