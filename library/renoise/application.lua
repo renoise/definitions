@@ -36,7 +36,10 @@ renoise.Application = {}
 ---@field installed_tools table<string, string>
 ---
 ---**READ-ONLY** Access keyboard modifier states.
+---@deprecated Use `key_modifier_flags` instead
 ---@field key_modifier_states table<string, string>
+---**READ-ONLY** Access keyboard modifier states.
+---@field key_modifier_flags ModifierFlags
 ---
 ---**READ-ONLY** Access to the application's window.
 ---@field window renoise.ApplicationWindow
@@ -399,6 +402,8 @@ function renoise.Application:save_theme(filename) end
 ---
 --- **READ-ONLY** Check if a dialog is alive and visible.
 ---@field visible boolean
+--- **READ-ONLY** Check if a dialog is visible and is the key window.
+---@field focused boolean
 renoise.Dialog = {}
 
 ---### functions
