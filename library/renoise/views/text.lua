@@ -22,6 +22,12 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---| "normal"   # (Default)
 ---| "strong"   # highlighted color
 ---| "disabled" # greyed out color
+---| "custom"   # custom color
+
+---When set, the text will be drawn in the specified color.
+---Set style to something else than "custom" or color to `{0, 0, 0}` 
+---to enable the default theme color for the text again.
+---@alias TextColor RGBColor|ThemeColor
 
 ---Setup the text's alignment. Applies only when the view's size is larger than
 ---the needed size to draw the text
@@ -50,6 +56,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@field text TextSingleLineString
 ---@field font TextFontStyle
 ---@field style TextStyle
+---@field color TextColor
 ---@field align TextAlignment
 local Text = {}
 
@@ -59,4 +66,5 @@ local Text = {}
 ---@field text TextSingleLineString?
 ---@field font TextFontStyle?
 ---@field style TextStyle?
+---@field color TextColor?
 ---@field align TextAlignment?
