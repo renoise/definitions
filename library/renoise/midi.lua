@@ -123,14 +123,14 @@ function renoise.Midi.MidiDevice:close() end
 
 ---Midi device interface for receiving MIDI messages.
 ---Instances are created via `renoise.Midi.create_input_device`
----@class renoise.Midi.MidiInputDevice
+---@class renoise.Midi.MidiInputDevice : renoise.Midi.MidiDevice
 renoise.Midi.MidiInputDevice = {}
 
 --------------------------------------------------------------------------------
 
 ---Midi device interface for sending MIDI messages.
 ---Instances are created via `renoise.Midi.create_output_device`
----@class renoise.Midi.MidiOutputDevice
+---@class renoise.Midi.MidiOutputDevice : renoise.Midi.MidiDevice
 renoise.Midi.MidiOutputDevice = {}
 
 ---### functions
