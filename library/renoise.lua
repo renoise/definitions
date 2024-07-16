@@ -10,6 +10,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 -- ## renoise
 
 ---Holds all renoise related API functions and classes.
+---@class renoise
 renoise = {}
 
 ---### constants

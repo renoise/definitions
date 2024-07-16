@@ -37,7 +37,6 @@ renoise.PatternIterator = {}
 ---@field line integer
 
 ---Note/Effect column iterator position.
----@class PatternLinePosition
 ---@class PatternColumnPosition : PatternLinePosition
 ---@field column integer
 
