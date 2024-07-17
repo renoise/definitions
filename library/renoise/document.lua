@@ -141,15 +141,14 @@ function renoise.Document.instantiate(model_name) end
 
 ---@alias DocumentMember renoise.Document.Observable|renoise.Document.ObservableList|renoise.Document.DocumentNode|renoise.Document.DocumentList
 
--- TODO 
--- inheriting from 'table' is workaround here to allow users to define custom types
--- for their document classes and still have useful diagnostics instead of warnings
+-- TODO:
+-- * inheriting from 'table' is workaround here to allow users to define custom types
+--   for their document classes and still have useful diagnostics instead of warnings
+-- * add @operator index(any):DocumentMember? once its supported by LuaLS
 
 ---A document node is a sub component in a document which contains other
 ---documents or observables.
 ---@class renoise.Document.DocumentNode : table
----Property access
----@operator index(any):DocumentMember?
 ---Construct a new document node.
 ---@overload fun():renoise.Document.DocumentNode
 renoise.Document.DocumentNode = {}
@@ -231,11 +230,12 @@ function renoise.Document.DocumentNode:from_string(string) end
 --------------------------------------------------------------------------------
 ---## renoise.Document.DocumentList
 
+-- TODO:
+-- * add @operator index(any):renoise.Document.DocumentNode? once its supported by LuaLS
+
 ---A document list is a document sub component which may contain other document
 ---nodes in an observable list.
 ---@class renoise.Document.DocumentList
----Property access.
----@operator index(any):renoise.Document.DocumentNode?
 ---Query a list's size (item count).
 ---@operator len():integer
 ---Construct a new document list.
