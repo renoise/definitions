@@ -23,6 +23,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@field active TextActive
 ---@field value TextMultilineString
 ---@field text TextValueAlias
+---@field selected_text TextMultilineSelectedString
 ---@field paragraphs TextParagraphs
 ---@field font TextFontStyle
 ---@field style TextBackgroundStyle  Default: "border"
