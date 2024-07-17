@@ -8,6 +8,10 @@ error("Do not try to execute this file. It's just a type definition file.")
 
 --------------------------------------------------------------------------------
 
+---**READ-ONLY** The currently selected text, if any.
+---Newlines (Windows, Mac or Unix styled) will use the unix newline format.
+---@alias TextMultilineSelectedString string
+
 ---The text that should be displayed.
 ---Newlines (Windows, Mac or Unix styled) in the text can be used to create
 ---paragraphs.
@@ -43,6 +47,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---```
 ---@class renoise.Views.MultiLineText : renoise.Views.View
 ---@field text TextMultilineString
+---@field selected_text TextMultilineSelectedString
 ---@field paragraphs TextParagraphs
 ---@field font TextFontStyle
 ---@field style TextBackgroundStyle Default: "body"
