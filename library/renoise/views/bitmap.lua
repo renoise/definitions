@@ -15,6 +15,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---| "button_color" # recolor the bitmap, using the theme's button color
 ---| "body_color"   # same as 'button_back' but with body text/back color
 ---| "main_color"   # same as 'button_back' but with main text/back colors
+---| "custom_color" # Recolor the bitmap using a custom color set by the `color'
+---                   property. Use bitmaps with an alpha channel, such as PNG
+---                   bitmaps, for custom colored bitmaps.
 
 ---You can load an image from your tool's directory,
 ---or use one from Renoise's built-in icons.  
@@ -26,17 +29,25 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---If your custom path matches a built-in icon's (like "Icons/ArrowRight.bmp"),
 ---your image will be loaded instead of the one from Renoise.  
 ---
----If you want to support high DPI UI scaling with your bitmaps like the built-in Icons,
----include high resolution versions with their filenames ending with "@4x"  
+---If you want to support high DPI UI scaling with your bitmaps like the 
+---built-in Icons, include high resolution versions with their filenames ending
+---with "@4x"  
 ---The following rules will be used when loading bitmaps  
 ---* When UI scaling is 100%, only the base bitmaps are used.
----* When UI scaling is 125%, the base bitmaps are used, except if there is a `BitmapName@x1.25.bmp` variant.
----* For all other UI scaling > 125% the "@4x" variants are used and downscaled as needed,
----except when there is an exact match for the current UI scaling factor (e.g. `BitmapName@1.5x.bmp` for 150%)
+---* When UI scaling is 125%, the base bitmaps are used, except if there is a
+---` BitmapName@x1.25.bmp` variant.
+---* For all other UI scaling > 125% the "@4x" variants are used and
+---  downscaled as needed, except when there is an exact match for the current
+---  UI scaling factor (e.g. `BitmapName@1.5x.bmp` for 150%)
 ---@alias BitmapImagePath string
 
 ---Supported bitmap file formats are *.bmp, *.png or *.tif (no transparency).
 ---@alias BitmapPath BitmapImagePath
+
+---When set, the bitmap will be drawn in the specified color and `mode` is set 
+---to `custom_color`. Set `mode` to something else than `custom_color` or the
+---`color` to `{0, 0, 0}` to enable a `plain` display mode.
+---@alias BitmapColor RGBColor|ThemeColor
 
 ---A click notifier
 ---@alias ButtonNotifier NotifierFunction|NotifierMethod1|NotifierMethod2
@@ -62,6 +73,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---```
 ---@class renoise.Views.Bitmap : renoise.Views.Control
 ---@field mode BitmapMode
+---@field color BitmapColor
 ---@field bitmap BitmapPath
 local Bitmap = {}
 
@@ -83,5 +95,6 @@ function Bitmap:remove_notifier(notifier) end
 
 ---@class BitmapViewProperties : ControlProperties
 ---@field mode BitmapMode?
+---@field color BitmapColor?
 ---@field bitmap BitmapPath?
 ---@field notifier ButtonNotifier?
