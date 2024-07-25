@@ -132,6 +132,14 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---@field send_key_repeat boolean? Default: true
 ---@field send_key_release boolean? Default: false
 
+---Optional focus change notifier for a custom dialog.  
+---Will be called when the dialog gains of loses key focus. You maybe want to initialize 
+---your dloag's (modifier) keyboard states here.
+---@alias FocusHandler fun(dialogs: renoise.Dialog, focused: boolean) : KeyEvent?
+---@alias FocusHandlerMemberFunction fun(self: NotifierMemberContext, dialog: renoise.Dialog, focused: boolean): KeyEvent?
+---@alias FocusHandlerMethod1 {[1]:NotifierMemberContext, [2]:FocusHandlerMemberFunction}
+---@alias FocusHandlerMethod2 {[1]:FocusHandlerMemberFunction, [2]:NotifierMemberContext}
+
 ---Opens a modal dialog with a title, custom content and custom button labels.  
 ---
 ---@see renoise.ViewBuilder for more info about custom views.
@@ -140,10 +148,11 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---@param button_labels string[]
 ---@param key_handler KeyHandler?
 ---@param key_handler_options KeyHandlerOptions?
----@overload fun(title: string, content_view: renoise.Views.View, button_labels: string[], key_handler: KeyHandlerMethod1?, key_handler_options: KeyHandlerOptions?): string
----@overload fun(title: string, content_view: renoise.Views.View, button_labels: string[], key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?): string
+---@param focus_handler FocusHandler?
+---@overload fun(title: string, content_view: renoise.Views.View, button_labels: string[], key_handler: KeyHandlerMethod1?, key_handler_options: KeyHandlerOptions?, focus_handler: FocusHandlerMethod1?): string
+---@overload fun(title: string, content_view: renoise.Views.View, button_labels: string[], key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?, focus_handler: FocusHandlerMethod2?): string
 ---@return string label
-function renoise.Application:show_custom_prompt(title, content_view, button_labels, key_handler, key_handler_options) end
+function renoise.Application:show_custom_prompt(title, content_view, button_labels, key_handler, key_handler_options, focus_handler) end
 
 
 ---Shows a non modal dialog (a floating tool window) with custom content.  
@@ -154,10 +163,11 @@ function renoise.Application:show_custom_prompt(title, content_view, button_labe
 ---@param content_view renoise.Views.View dialog content view.
 ---@param key_handler KeyHandler?
 ---@param key_handler_options KeyHandlerOptions?
----@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod1?, key_handler_options: KeyHandlerOptions?): renoise.Dialog
----@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?): renoise.Dialog
+---@param focus_handler FocusHandler?
+---@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod1?, key_handler_options: KeyHandlerOptions?, focus_handler: FocusHandlerMethod1?): renoise.Dialog
+---@overload fun(title: string, content_view: renoise.Views.View, key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?, focus_handler: FocusHandlerMethod2?): renoise.Dialog
 ---@return renoise.Dialog
-function renoise.Application:show_custom_dialog(title, content_view, key_handler, key_handler_options) end
+function renoise.Application:show_custom_dialog(title, content_view, key_handler, key_handler_options, focus_handler) end
 
 ---Defines a custom menu entry, shown in custom dialog windows.
 ---
