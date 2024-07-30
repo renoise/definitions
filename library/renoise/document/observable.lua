@@ -9,32 +9,8 @@ error("Do not try to execute this file. It's just a type definition file.")
 --------------------------------------------------------------------------------
 ---## renoise.Document.Observable
 
----Documents and views in the Renoise API are modelled after the
----[observer pattern](http://en.wikipedia.org/wiki/Observer_pattern).
----
----This means, in order to track changes, a document is basically just a
----set of raw data (booleans, numbers, lists, nested nodes) which anything can
----attach listeners (notifier functions) to. For example, a view in the Renoise
----API is an Observer, which listens to observable values in Documents.
----
----Attaching and removing notifiers can be done with the functions 'add_notifier',
----'remove_notifier' from the renoise.Document.Observable class. These support
----multiple kinds of callbacks, plain functions and methods (functions with a context).
----
----### example:
----```lua
----function bpm_changed()
----  print(("something changed the BPM to %s"):format(
----    renoise.song().transport.bpm))
----end
----
----local bpm_observable = renoise.song().transport.bpm_observable
----bpm_observable:add_notifier(bpm_changed)
------ later on, maybe:
----if bpm_observable:has_notifier(bpm_changed) then
----  bpm_observable:remove_notifier(bpm_changed)
----end
----```
+---Track changes to document properties or general states by attaching listener
+---functions to it.
 ---@class renoise.Document.Observable
 renoise.Document.Observable = {}
 
@@ -144,7 +120,7 @@ function renoise.Document.ObservableBang:bang() end
 ---Read/write access to the value of an observable.
 ---@field value boolean
 ---Construct a new observable boolean.
----@overload fun(boolean?):renoise.Document.ObservableBoolean
+---@overload fun(value?: boolean):renoise.Document.ObservableBoolean
 renoise.Document.ObservableBoolean = {}
 
 --------------------------------------------------------------------------------
@@ -154,7 +130,7 @@ renoise.Document.ObservableBoolean = {}
 ---Read/write access to the value of an Observable.
 ---@field value number
 ---Construct a new observable boolean.
----@overload fun(number?):renoise.Document.ObservableNumber
+---@overload fun(value?: number):renoise.Document.ObservableNumber
 renoise.Document.ObservableNumber = {}
 
 --------------------------------------------------------------------------------
@@ -164,7 +140,7 @@ renoise.Document.ObservableNumber = {}
 ---Read/write access to the value of an Observable.
 ---@field value string
 ---Construct a new observable string.
----@overload fun(string?):renoise.Document.ObservableString
+---@overload fun(value?: string):renoise.Document.ObservableString
 renoise.Document.ObservableString = {}
 
 --------------------------------------------------------------------------------
