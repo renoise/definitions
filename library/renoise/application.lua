@@ -62,7 +62,8 @@ function renoise.Application:show_warning(message) end
 ---@param message string
 function renoise.Application:show_status(message) end
 
----@alias DialogTitle string The title that shows up at the title-bar of the dialog
+---The title that shows up at the title-bar of the dialog.
+---@alias DialogTitle string
 
 ---Opens a modal dialog with a title, text and custom button labels.
 ---Returns the pressed button label or an empty string when canceled.
