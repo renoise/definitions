@@ -157,30 +157,9 @@ renoise.Document.ObservableString = {}
 ---@alias ListNotifierMethod1 {[1]:ListNotifierMemberContext, [2]:ListNotifierMemberFunction}
 ---@alias ListNotifierMethod2 {[1]:ListNotifierMemberFunction, [2]:ListNotifierMemberContext}
 
----Notifiers from renoise.Document.Observable are available for lists as well,
----but will not broadcast changes made to the items, but only changes to the
----**list** layout.
----
----This means you will get notified as soon as an item is added, removed or
----changes its position, but not when an item's value has changed. If you are
----interested in value changes, attach notifiers directly to the items and
----not to the list...
----
----### example:
----```lua
----function tracks_changed(notification)
----  if (notification.type == "insert") then
----    print(("new track was inserted at index: %d"):format(notification.index))
----  elseif (notification.type == "remove") then
----    print(("track got removed from index: %d"):format(notification.index))
----  elseif (notification.type == "swap") then
----    print(("track at index: %d and %d swapped their positions"):format(
----      notification.index1, notification.index2))
----  end
----end
----
----renoise.song().tracks_observable:add_notifier(tracks_changed)
----```
+---Track changes to document lists by attaching listener functions to it.
+---NB: Notifiers will not broadcast changes made to list items, but only changes
+---to the lists **layout** (items got added, removed, swapped).
 ---@class renoise.Document.ObservableList
 ---Query a list's size (item count).
 ---@operator len:integer
