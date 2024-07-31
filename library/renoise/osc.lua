@@ -15,6 +15,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---## renoise.Osc
 
 ---OSC (Open Sound Control) support for Lua scripts in Renoise.
+---@class renoise.Osc
 renoise.Osc = {}
 
 ---De-packetizing raw (socket) data to OSC messages or bundles:

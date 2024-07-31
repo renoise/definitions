@@ -14,6 +14,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 
 ---Raw MIDI IO support for scripts in Renoise; the ability to send and receive
 ---MIDI data.
+---@class renoise.Midi
 renoise.Midi = {}
 
 ---### error handling
