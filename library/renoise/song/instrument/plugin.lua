@@ -88,14 +88,6 @@ renoise.InstrumentPluginProperties = {}
 function renoise.IntrumentPluginProperties:load_plugin(plugin_path) end
 
 --------------------------------------------------------------------------------
----## renoise.InstrumentDevice
-
----@deprecated - alias for InstrumentPluginDevice
----@see renoise.InstrumentPluginDevice
----
----@class renoise.InstrumentDevice
-
---------------------------------------------------------------------------------
 ---## renoise.InstrumentPluginDevice
 
 ---@class renoise.InstrumentPluginDevice
@@ -148,3 +140,11 @@ function renoise.InstrumentPluginDevice:preset(index) end
 ---@param index integer
 ---@return renoise.DeviceParameter
 function renoise.InstrumentPluginDevice:parameter(index) end
+
+--------------------------------------------------------------------------------
+---## renoise.InstrumentDevice
+
+---@deprecated - alias for InstrumentPluginDevice
+---@see renoise.InstrumentPluginDevice
+---@class renoise.InstrumentDevice : renoise.InstrumentPluginDevice
+renoise.InstrumentDevice = {}
