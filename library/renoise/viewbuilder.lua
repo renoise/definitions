@@ -77,12 +77,12 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 -----or
 ---vb.views["my_view"].visible = false
 ---```
----@class ViewBuilder
+---@class renoise.ViewBuilder
 ---@field views table<string, renoise.Views.View>
-local ViewBuilder = {}
+renoise.ViewBuilder = {}
 
 ---Construct a new viewbuilder instance you can use to create views.
----@return ViewBuilder
+---@return renoise.ViewBuilder
 function renoise.ViewBuilder() end
 
 --------------------------------------------------------------------------------
@@ -103,13 +103,13 @@ function renoise.ViewBuilder() end
 ---}
 ---```
 ---@see renoise.Views.Rack
----@alias RackConstructor fun(self : ViewBuilder, properties : RackViewProperties?) : renoise.Views.Rack
+---@alias RackConstructor fun(self : renoise.ViewBuilder, properties : RackViewProperties?) : renoise.Views.Rack
 
 ---@type RackConstructor
-function ViewBuilder:column(properties) end
+function renoise.ViewBuilder:column(properties) end
 
 ---@type RackConstructor
-function ViewBuilder:row(properties) end
+function renoise.ViewBuilder:row(properties) end
 
 ---You can add nested child views when constructing aligners by including them
 ---in the constructor table.
@@ -127,13 +127,13 @@ function ViewBuilder:row(properties) end
 ---}
 ---```
 ---@see renoise.Views.Aligner
----@alias AlignerConstructor fun(self : ViewBuilder, properties : AlignerViewProperties?) : renoise.Views.Aligner
+---@alias AlignerConstructor fun(self : renoise.ViewBuilder, properties : AlignerViewProperties?) : renoise.Views.Aligner
 
 ---@type AlignerConstructor
-function ViewBuilder:horizontal_aligner(properties) end
+function renoise.ViewBuilder:horizontal_aligner(properties) end
 
 ---@type AlignerConstructor
-function ViewBuilder:vertical_aligner(properties) end
+function renoise.ViewBuilder:vertical_aligner(properties) end
 
 ---You can create an empty space in layouts with a space.
 ---
@@ -153,92 +153,92 @@ function ViewBuilder:vertical_aligner(properties) end
 ---}
 ---```
 ---@see renoise.Views.View
----@alias SpaceConstructor fun(self : ViewBuilder, properties : ViewProperties?) : renoise.Views.View
+---@alias SpaceConstructor fun(self : renoise.ViewBuilder, properties : ViewProperties?) : renoise.Views.View
 
 ---@type SpaceConstructor
-function ViewBuilder:space(properties) end
+function renoise.ViewBuilder:space(properties) end
 
 ---@see renoise.Views.Text
 ---@param properties TextViewProperties?
 ---@return renoise.Views.Text
-function ViewBuilder:text(properties) end
+function renoise.ViewBuilder:text(properties) end
 
 ---@see renoise.Views.MultiLineText
 ---@param properties MultilineTextViewProperties?
 ---@return renoise.Views.MultiLineText
-function ViewBuilder:multiline_text(properties) end
+function renoise.ViewBuilder:multiline_text(properties) end
 
 ---@see renoise.Views.TextField
 ---@param properties TextFieldProperties?
 ---@return renoise.Views.TextField
-function ViewBuilder:textfield(properties) end
+function renoise.ViewBuilder:textfield(properties) end
 
 ---@see renoise.Views.MultiLineTextField
 ---@param properties MultilineTextFieldProperties?
 ---@return renoise.Views.MultiLineTextField
-function ViewBuilder:multiline_textfield(properties) end
+function renoise.ViewBuilder:multiline_textfield(properties) end
 
 ---@see renoise.Views.Bitmap
 ---@param properties BitmapViewProperties?
 ---@return renoise.Views.Bitmap
-function ViewBuilder:bitmap(properties) end
+function renoise.ViewBuilder:bitmap(properties) end
 
 ---@see renoise.Views.Button
 ---@param properties ButtonProperties?
 ---@return renoise.Views.Button
-function ViewBuilder:button(properties) end
+function renoise.ViewBuilder:button(properties) end
 
 ---@see renoise.Views.CheckBox
 ---@param properties CheckBoxProperties?
 ---@return renoise.Views.CheckBox
-function ViewBuilder:checkbox(properties) end
+function renoise.ViewBuilder:checkbox(properties) end
 
 ---@see renoise.Views.Switch
 ---@param properties ButtonSwitchProperties?
 ---@return renoise.Views.Switch
-function ViewBuilder:switch(properties) end
+function renoise.ViewBuilder:switch(properties) end
 
 ---@see renoise.Views.Popup
 ---@param properties PopUpMenuProperties?
 ---@return renoise.Views.Popup
-function ViewBuilder:popup(properties) end
+function renoise.ViewBuilder:popup(properties) end
 
 ---@see renoise.Views.Chooser
 ---@param properties ChooserProperties?
 ---@return renoise.Views.Chooser
-function ViewBuilder:chooser(properties) end
+function renoise.ViewBuilder:chooser(properties) end
 
 ---@see renoise.Views.ValueBox
 ---@param properties ValueBoxProperties?
 ---@return renoise.Views.ValueBox
-function ViewBuilder:valuebox(properties) end
+function renoise.ViewBuilder:valuebox(properties) end
 
 ---@see renoise.Views.Value
 ---@param properties ValueViewProperties?
 ---@return renoise.Views.Value
-function ViewBuilder:value(properties) end
+function renoise.ViewBuilder:value(properties) end
 
 ---@see renoise.Views.ValueField
 ---@param properties ValueFieldProperties?
 ---@return renoise.Views.ValueField
-function ViewBuilder:valuefield(properties) end
+function renoise.ViewBuilder:valuefield(properties) end
 
 ---@see renoise.Views.Slider
 ---@param properties SliderProperties?
 ---@return renoise.Views.Slider
-function ViewBuilder:slider(properties) end
+function renoise.ViewBuilder:slider(properties) end
 
 ---@see renoise.Views.MiniSlider
 ---@param properties MiniSliderProperties?
 ---@return renoise.Views.MiniSlider
-function ViewBuilder:minislider(properties) end
+function renoise.ViewBuilder:minislider(properties) end
 
 ---@see renoise.Views.RotaryEncoder
 ---@param properties RotaryEncoderProperties?
 ---@return renoise.Views.RotaryEncoder
-function ViewBuilder:rotary(properties) end
+function renoise.ViewBuilder:rotary(properties) end
 
 ---@see renoise.Views.XYPad
 ---@param properties XYPadProperties?
 ---@return renoise.Views.XYPad
-function ViewBuilder:xypad(properties) end
+function renoise.ViewBuilder:xypad(properties) end
