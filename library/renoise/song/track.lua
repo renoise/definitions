@@ -25,6 +25,7 @@ renoise.Track = {}
 ---### constants
 
 ---@enum renoise.Track.TrackType
+---@diagnostic disable-next-line: missing-fields
 renoise.Track = {
   TRACK_TYPE_SEQUENCER = 1,
   TRACK_TYPE_MASTER = 2,
@@ -33,6 +34,7 @@ renoise.Track = {
 }
 
 ---@enum renoise.Track.MuteState
+---@diagnostic disable-next-line: missing-fields
 renoise.Track = {
   MUTE_STATE_ACTIVE = 1,
   MUTE_STATE_OFF = 2,

@@ -177,6 +177,7 @@ renoise.SampleModulationDevice = {}
 ---### constants
 
 ---@enum renoise.SampleModulationDevice.TargetType
+---@diagnostic disable-next-line: missing-fields
 renoise.SampleModulationDevice = {
   TARGET_VOLUME = 1,
   TARGET_PANNING = 2,
@@ -187,6 +188,7 @@ renoise.SampleModulationDevice = {
 }
 
 ---@enum renoise.SampleModulationDevice.OperatorType
+---@diagnostic disable-next-line: missing-fields
 renoise.SampleModulationDevice = {
   OPERATOR_ADD = 1,
   OPERATOR_SUB = 2,
@@ -290,6 +292,7 @@ renoise.SampleFaderModulationDevice = {}
 ---### constants
 
 ---@enum renoise.SampleFaderModulationDevice.ScalingType
+---@diagnostic disable-next-line: missing-fields
 renoise.SampleFaderModulationDevice = {
   SCALING_LOG_FAST = 1,
   SCALING_LOG_SLOW = 2,
@@ -361,6 +364,7 @@ renoise.SampleVelocityTrackingModulationDevice = {}
 ---### constants
 
 ---@enum renoise.SampleVelocityTrackingModulationDevice.Mode
+---@diagnostic disable-next-line: missing-fields
 renoise.SampleVelocityTrackingModulationDevice = {
   MODE_CLAMP = 1,
   MODE_SCALE = 2,
@@ -391,6 +395,7 @@ renoise.SampleEnvelopeModulationDevice.MIN_NUMBER_OF_POINTS = 6
 renoise.SampleEnvelopeModulationDevice.MAX_NUMBER_OF_POINTS = 6144
 
 ---@enum renoise.SampleEnvelopeModulationDevice.PlayMode
+---@diagnostic disable-next-line: missing-fields
 renoise.SampleEnvelopeModulationDevice = {
   PLAYMODE_POINTS = 1,
   PLAYMODE_LINES = 2,
@@ -398,6 +403,7 @@ renoise.SampleEnvelopeModulationDevice = {
 }
 
 ---@enum renoise.SampleEnvelopeModulationDevice.LoopMode
+---@diagnostic disable-next-line: missing-fields
 renoise.SampleEnvelopeModulationDevice = {
   LOOP_MODE_OFF = 1,
   LOOP_MODE_FORWARD = 2,
@@ -506,6 +512,7 @@ renoise.SampleStepperModulationDevice.MIN_NUMBER_OF_POINTS = 1
 renoise.SampleStepperModulationDevice.MAX_NUMBER_OF_POINTS = 256
 
 ---@enum renoise.SampleStepperModulationDevice.PlayMode
+---@diagnostic disable-next-line: missing-fields
 renoise.SampleStepperModulationDevice = {
   PLAYMODE_POINTS = 1,
   PLAYMODE_LINES = 2,
@@ -593,6 +600,7 @@ renoise.SampleLfoModulationDevice = {}
 ---### constants
 
 ---@enum renoise.SampleLfoModulationDevice.Mode
+---@diagnostic disable-next-line: missing-fields
 renoise.SampleLfoModulationDevice = {
   MODE_SIN = 1,
   MODE_SAW = 2,

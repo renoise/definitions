@@ -81,6 +81,7 @@ renoise.DeviceParameter = {}
 ---### constants
 
 ---@enum renoise.DeviceParameter.Polarity
+---@diagnostic disable-next-line: missing-fields
 renoise.DeviceParameter = {
   POLARITY_UNIPOLAR = 1,
   POLARITY_BIPOLAR = 2

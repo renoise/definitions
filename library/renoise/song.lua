@@ -51,6 +51,7 @@ renoise.Song = {}
 renoise.Song.MAX_NUMBER_OF_INSTRUMENTS = 255
 
 ---@enum renoise.Song.SubColumnType
+---@diagnostic disable-next-line: missing-fields
 renoise.Song = {
   SUB_COLUMN_NOTE = 1,
   SUB_COLUMN_INSTRUMENT = 2,

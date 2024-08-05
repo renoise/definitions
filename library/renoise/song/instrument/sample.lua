@@ -15,6 +15,7 @@ renoise.Sample = {}
 ---### constants
 
 ---@enum renoise.Sample.InterpolationMode
+---@diagnostic disable-next-line: missing-fields
 renoise.Sample = {
   INTERPOLATE_NONE = 1,
   INTERPOLATE_LINEAR = 2,
@@ -23,6 +24,7 @@ renoise.Sample = {
 }
 
 ---@enum renoise.Sample.LoopMode
+---@diagnostic disable-next-line: missing-fields
 renoise.Sample = {
   LOOP_MODE_OFF = 1,
   LOOP_MODE_FORWARD = 2,
@@ -31,6 +33,7 @@ renoise.Sample = {
 }
 
 ---@enum renoise.Sample.BeatSyncMode
+---@diagnostic disable-next-line: missing-fields
 renoise.Sample = {
   BEAT_SYNC_REPITCH = 1,
   BEAT_SYNC_PERCUSSION = 2,
@@ -38,6 +41,7 @@ renoise.Sample = {
 }
 
 ---@enum renoise.Sample.NewNoteActionMode
+---@diagnostic disable-next-line: missing-fields
 renoise.Sample = {
   NEW_NOTE_ACTION_NOTE_CUT = 1,
   NEW_NOTE_ACTION_NOTE_OFF = 2,
@@ -215,6 +219,7 @@ renoise.SampleBuffer = {}
 ---### constants
 
 ---@enum renoise.SampleBuffer.Channel
+---@diagnostic disable-next-line: missing-fields
 renoise.SampleBuffer = {
   CHANNEL_LEFT = 1,
   CHANNEL_RIGHT = 2,

@@ -16,12 +16,14 @@ renoise.ApplicationWindow = {}
 ---## constants
 
 ---@enum renoise.ApplicationWindow.UpperFrame
+---@diagnostic disable-next-line: missing-fields
 renoise.ApplicationWindow = {
   UPPER_FRAME_TRACK_SCOPES = 1,
   UPPER_FRAME_MASTER_SPECTRUM = 2
 }
 
 ---@enum renoise.ApplicationWindow.MiddleFrame
+---@diagnostic disable-next-line: missing-fields
 renoise.ApplicationWindow = {
   MIDDLE_FRAME_PATTERN_EDITOR = 1,
   MIDDLE_FRAME_MIXER = 2,
@@ -35,12 +37,14 @@ renoise.ApplicationWindow = {
 }
 
 ---@enum renoise.ApplicationWindow.LowerFrame
+---@diagnostic disable-next-line: missing-fields
 renoise.ApplicationWindow = {
   LOWER_FRAME_TRACK_DSPS = 1,
   LOWER_FRAME_TRACK_AUTOMATION = 2,
 }
 
 ---@enum renoise.ApplicationWindow.MixerFader
+---@diagnostic disable-next-line: missing-fields
 renoise.ApplicationWindow = {
   MIXER_FADER_TYPE_24DB = 1,
   MIXER_FADER_TYPE_48DB = 2,

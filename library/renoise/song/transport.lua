@@ -16,18 +16,21 @@ renoise.Transport = {}
 ---### constants
 
 ---@enum renoise.Transport.PlayMode
+---@diagnostic disable-next-line: missing-fields
 renoise.Transport = {
   PLAYMODE_RESTART_PATTERN = 1,
   PLAYMODE_CONTINUE_PATTERN = 2
 }
 
 ---@enum renoise.Transport.RecordParameterMode
+---@diagnostic disable-next-line: missing-fields
 renoise.Transport = {
   RECORD_PARAMETER_MODE_PATTERN = 1,
   RECORD_PARAMETER_MODE_AUTOMATION = 2,
 }
 
 ---@enum renoise.Transport.TimingModel
+---@diagnostic disable-next-line: missing-fields
 renoise.Transport = {
   TIMING_MODEL_SPEED = 1,
   TIMING_MODEL_LPB = 2

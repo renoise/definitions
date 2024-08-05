@@ -18,6 +18,7 @@ renoise.Instrument.NUMBER_OF_MACROS = 8
 renoise.Instrument.MAX_NUMBER_OF_PHRASES = 126
 
 ---@enum renoise.Instrument.Tab
+---@diagnostic disable-next-line: missing-fields
 renoise.Instrument = {
   TAB_SAMPLES = 1,
   TAB_PLUGIN = 2,
@@ -25,6 +26,7 @@ renoise.Instrument = {
 }
 
 ---@enum renoise.Instrument.PhrasePlaybackMode
+---@diagnostic disable-next-line: missing-fields
 renoise.Instrument = {
   PHRASES_OFF = 1,
   PHRASES_PLAY_SELECTIVE = 2,
@@ -32,6 +34,7 @@ renoise.Instrument = {
 }
 
 ---@enum renoise.Instrument.Layer
+---@diagnostic disable-next-line: missing-fields
 renoise.Instrument = {
   LAYER_NOTE_DISABLED = 0,
   LAYER_NOTE_ON = 1,
@@ -39,6 +42,7 @@ renoise.Instrument = {
 }
 
 ---@enum renoise.Instrument.OverlapMode
+---@diagnostic disable-next-line: missing-fields
 renoise.Instrument = {
   OVERLAP_MODE_ALL = 0,
   OVERLAP_MODE_CYCLED = 1,
@@ -289,6 +293,7 @@ renoise.InstrumentTriggerOptions = {}
 ---### constants
 
 ---@enum renoise.InstrumentTriggerOptions.QuantizeMode
+---@diagnostic disable-next-line: missing-fields
 renoise.InstrumentTriggerOptions = {
   QUANTIZE_NONE = 1,
   QUANTIZE_LINE = 2,

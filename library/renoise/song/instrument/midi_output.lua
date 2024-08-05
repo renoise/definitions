@@ -15,6 +15,7 @@ renoise.InstrumentMidiOutputProperties = {}
 ---### constants
 
 ---@enum renoise.InstrumentMidiOutputProperties.Type
+---@diagnostic disable-next-line: missing-fields
 renoise.InstrumentMidiOutputProperties = {
   TYPE_EXTERNAL = 1,
   TYPE_LINE_IN_RET = 2,

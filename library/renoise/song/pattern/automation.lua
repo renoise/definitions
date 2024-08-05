@@ -21,6 +21,7 @@ renoise.PatternTrackAutomation = {}
 ---### constants
 
 ---@enum renoise.PatternTrackAutomation.Playmode
+---@diagnostic disable-next-line: missing-fields
 renoise.PatternTrackAutomation = {
   PLAYMODE_POINTS = 1,
   PLAYMODE_LINES = 2,

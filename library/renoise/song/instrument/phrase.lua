@@ -26,6 +26,7 @@ renoise.InstrumentPhrase.MIN_NUMBER_OF_EFFECT_COLUMNS = 0
 renoise.InstrumentPhrase.MAX_NUMBER_OF_EFFECT_COLUMNS = 8
 
 ---@enum renoise.InstrumentPhrase.KeyTrackingMode
+---@diagnostic disable-next-line: missing-fields
 renoise.InstrumentPhrase = {
   ---Every note plays back the phrase unpitched from line 1.
   KEY_TRACKING_NONE = 1,
@@ -246,6 +247,7 @@ renoise.InstrumentPhraseMapping = {}
 ---### constants
 
 ---@enum renoise.InstrumentPhraseMapping.KeyTrackingMode
+---@diagnostic disable-next-line: missing-fields
 renoise.InstrumentPhraseMapping = {
   ---Every note plays back the phrase unpitched from line 1.
   KEY_TRACKING_NONE = 1,

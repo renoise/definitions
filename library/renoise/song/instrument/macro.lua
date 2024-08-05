@@ -49,6 +49,7 @@ renoise.InstrumentMacroMapping = {}
 ---### constants
 
 ---@enum renoise.InstrumentMacroMapping.Scaling
+---@diagnostic disable-next-line: missing-fields
 renoise.InstrumentMacroMapping = {
   SCALING_LOG_FAST = 1,
   SCALING_LOG_SLOW = 2,
