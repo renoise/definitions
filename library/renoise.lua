@@ -37,8 +37,7 @@ function renoise.app() end
 ---
 ---NB: The song instance changes when a new song is loaded or created in Renoise,
 ---so tools can not memorize the song instance globally once, but must instead
----react on the application's `new_document_observable`
----observable.
+---react on the application's `new_document_observable` observable.
 ---@return renoise.Song?
 function renoise.song() end
 
