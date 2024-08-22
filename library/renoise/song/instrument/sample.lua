@@ -198,7 +198,7 @@ renoise.SampleMapping = {}
 ---
 ---Mappings base-note. Final pitch of the played sample is:
 ---  played_note - mapping.base_note + sample.transpose + sample.finetune
----@field base_note integer  (0-119, c-4=48)]
+---@field base_note integer Range: (0-119, c-4=48)]
 ---@field base_note_observable renoise.Document.Observable
 ---
 ---Note range the mapping is triggered for.

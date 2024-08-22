@@ -99,37 +99,37 @@ renoise.NoteColumn = {}
 ---editors current pattern.
 ---@field is_selected boolean
 ---
----@field note_value integer 0-119, 120=Off, 121=Empty
----@field note_string string 'C-0'-'G-9', 'OFF' or '---'
+---@field note_value integer Range: (0-119) or 120=Off or 121=Empty
+---@field note_string string Range: (\'C-0\'-\'G-9\') or \'OFF\' or \'---\'
 ---
----@field instrument_value integer 0-254, 255==Empty
----@field instrument_string string '00'-'FE' or '..'
+---@field instrument_value integer Range: (0-254), 255==Empty
+---@field instrument_string string Range: (\'00\'-\'FE\') or \'..\'
 ---
----0-127 or 255==Empty when column value is <= 0x80 or is 0xFF,
+---Range: (0-127) or 255==Empty when column value is <= 0x80 or is 0xFF,
 ---i.e. to specify a volume value.
 ---
----0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2,
+---Range: (0-65535) in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2,
 ---when column value is > 0x80, i.e. to specify an effect.
 ---@field volume_value integer
----@field volume_string string '00'-'ZF' or '..'
+---@field volume_string string Range(\'00\'-\'ZF\') or \'..\'
 ---
----0-127, 255==Empty when column value is <= 0x80 or is 0xFF,
+---Range: (0-127) or 255==Empty when column value is <= 0x80 or is 0xFF,
 ---i.e. to specify a pan value.
 ---
----0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2,
+---Range: (0-65535) in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2,
 ---when column value is > 0x80, i.e. to specify an effect.
 ---@field panning_value integer
----@field panning_string string, '00'-'ZF' or '..'
+---@field panning_string string Range: (\'00'-\'ZF\') or \'..\'
 ---
----@field delay_value integer 0-255
----@field delay_string string '00'-'FF' or '..'
+---@field delay_value integer Range: (0-255)
+---@field delay_string string Range: (\'00'-\'FF\') or \'..\'
 ---
----0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2
+---Range: (0-65535) in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2
 ---@field effect_number_value integer
----@field effect_number_string string '00' - 'ZZ'
+---@field effect_number_string string Range: (\'00\'-\'ZZ\')
 ---
----@field effect_amount_value integer 0-255
----@field effect_amount_string string '00' - 'FF'
+---@field effect_amount_value integer Range: (0-255)
+---@field effect_amount_string string Range: (\'00\' - \'FF\')
 
 ---### functions
 

@@ -17,6 +17,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---Right now UDP and TCP protocols are supported. The class interfaces for UDP
 ---and TCP sockets behave exactly the same. That is, they don't depend on the
 ---protocol, so both are easily interchangeable when needed.
+---@class renoise.Socket
 renoise.Socket = {}
 
 ---### error handling
