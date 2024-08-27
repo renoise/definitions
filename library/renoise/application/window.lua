@@ -44,6 +44,7 @@ renoise.ApplicationWindow = {
 }
 
 ---@enum renoise.ApplicationWindow.DiskBrowserCategory
+---@diagnostic disable-next-line: missing-fields
 renoise.ApplicationWindow = {
   DISK_BROWSER_CATEGORY_SONGS = 1,
   DISK_BROWSER_CATEGORY_INSTRUMENTS = 2,
