@@ -37,6 +37,7 @@ renoise.Transport = {
 }
 
 ---@enum renoise.Transport.SyncMode
+---@diagnostic disable-next-line: missing-fields
 renoise.Transport = {
   SYNC_MODE_INTERNAL = 1,
   SYNC_MODE_MIDI_CLOCK = 2,
