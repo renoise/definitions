@@ -164,7 +164,7 @@ function renoise.ViewBuilder:vertical_aligner(properties) end
 ---@see renoise.Views.Stack
 ---@param properties StackViewProperties?
 ---@return renoise.Views.Stack
-function ViewBuilderInstance:stack(properties) end
+function renoise.ViewBuilder:stack(properties) end
 
 ---You can create an empty space in layouts with a space.
 ---
@@ -194,7 +194,7 @@ function renoise.ViewBuilder:space(properties) end
 ---@see renoise.Views.Canvas
 ---@param properties CanvasViewProperties?
 ---@return renoise.Views.Canvas
-function ViewBuilderInstance:canvas(properties) end
+function renoise.ViewBuilder:canvas(properties) end
 
 ---@see renoise.Views.Text
 ---@param properties TextViewProperties?
@@ -219,7 +219,7 @@ function renoise.ViewBuilder:multiline_textfield(properties) end
 ---@see renoise.Views.TextLink
 ---@param properties TextLinkViewProperties?
 ---@return renoise.Views.TextLink
-function ViewBuilderInstance:link(properties) end
+function renoise.ViewBuilder:link(properties) end
 
 ---@see renoise.Views.Bitmap
 ---@param properties BitmapViewProperties?
@@ -269,7 +269,7 @@ function renoise.ViewBuilder:valuefield(properties) end
 ---@see renoise.Views.ScrollBar
 ---@param properties ScrollBarProperties?
 ---@return renoise.Views.ScrollBar
-function ViewBuilderInstance:scrollbar(properties) end
+function renoise.ViewBuilder:scrollbar(properties) end
 
 ---@see renoise.Views.Slider
 ---@param properties SliderProperties?
