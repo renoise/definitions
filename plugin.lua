@@ -1,5 +1,5 @@
 --- LuaLS plugin to add [Luabind class](https://luabind.sourceforge.net/docs.html#class_lua) support.
---- Part of the [Renoise Lua API definitions](https://github.com/renoise/definitions). 
+--- Part of the [Renoise Lua API definitions](https://github.com/renoise/definitions).
 ---
 --- To use it in your workspace, set the LuaLS "Lua.runtime.plugin" to "PATH_TO_THIS/plugin.lua"
 --- See [LuaLS Settings](https://luals.github.io/wiki/settings/#runtimeplugin)
@@ -26,24 +26,24 @@ function OnSetText(uri, text)
     --   class "SomeClass" (OptionalBaseClass)
     -- and then adds:
     -- ---@class SomeClass : OptionalBaseClass
+    -- ---@overload fun(...:unknown?):SomeClass
     -- SomeClass = {}
-    for pos, comments, class, rest in str_gmatch(text, "()(%-?%-?)[ \t]*class[ \t]*['\"]([^'^\"^\n]+)['\"]([^\n]*)\n") do
+
+    local class_match = "()(%-?%-?)[ \t]*class[ \t]*['\"]([^'^\"^\n]+)['\"]([^\n]*)\n"
+    for pos, comments, class, rest in str_gmatch(text, class_match) do
         -- print("RNS class plugin:", pos, comments, class, rest)
         if comments == "" then
             local base_class = string.match(rest, "%s*%(([^%(^%)]+)%)")
-            if base_class then
-                table.insert(diffs, {
-                    start = pos,
-                    finish = pos - 1,
-                    text = ("\n---@class %s : %s\n%s = {}\n"):format(class, base_class, class),
-                })
-            else
-                table.insert(diffs, {
-                    start = pos,
-                    finish = pos - 1,
-                    text = ("\n---@class %s\n%s = {}\n"):format(class, class),
-                })
-            end
+            local class_def = base_class ~= nil 
+                and ("---@class %s : %s"):format(class, base_class)
+                or  ("---@class %s"):format(class)
+            local constructor_def = ("---@overload fun(...:unknown?):%s"):format(class)
+            local class_table_def = ("%s = {}"):format(class)
+            table.insert(diffs, {
+                start = pos,
+                finish = pos - 1,
+                text = ("%s\n%s\n%s"):format(class_def, constructor_def, class_table_def)
+            })
         end
     end
 
