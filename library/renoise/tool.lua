@@ -62,6 +62,12 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---to connect the new script instance to the already running document.
 ---@field app_new_document_observable renoise.Document.Observable
 ---
+---Invoked just before the application document (song) is saved.
+---This is the last chance to make any changes that should be part of 
+---the saved song. You could for example write your tool data to 
+---`renoise.song().tool_data` here.
+---@field app_will_save_document_observable renoise.Document.Observable
+---
 ---Invoked each time the app's document (song) is successfully saved.
 ---renoise.song().file_name will point to the filename that it was saved to.
 ---@field app_saved_document_observable renoise.Document.Observable
