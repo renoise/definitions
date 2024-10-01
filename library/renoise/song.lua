@@ -478,6 +478,22 @@ function renoise.Song:render(options, filename, rendering_done_callback) end
 function renoise.Song:cancel_rendering() end
 
 
+---Trigger the given pattern line index in the current pattern for preview purposes.
+---This works similar to the Renoise `PlayCurrentLine` keyboard shortcut, but does now
+---advance the playback position.
+---
+---If you want to preview a single track's note only, mute other tracks before 
+---triggering the pattern line. To stop the preview, invoke `stop` from the transport.
+---
+---Transport playback must be stopped for this to work. If it's not, an error is 
+---thrown.
+---
+---This is evaluated from the GUI thread, not a real-time thread, so timing will
+---be a little bit wonky. Don't try to use this as a custom sequencer!
+---
+---@param line_index integer line index in current pattern.
+function renoise.Song:trigger_pattern_line(line_index) end
+
 ---Trigger instrument playback with the specified note or a table of notes (a chord)
 ---and volume for preview purposes on the given track index.
 ---
