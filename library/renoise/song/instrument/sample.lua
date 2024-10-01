@@ -317,17 +317,27 @@ function renoise.SampleBuffer:sample_data(channel_index, frame_index) end
 ---@param sample_value integer
 function renoise.SampleBuffer:set_sample_data(channel_index, frame_index, sample_value) end
 
----To be called once BEFORE sample data gets manipulated via 'set_sample_data'.
----This will prepare undo/redo data for the whole sample. See also
----'finalize_sample_data_changes'.
-function renoise.SampleBuffer:prepare_sample_data_changes() end
+---To be called once **before** sample data gets manipulated via `set_sample_data`.
+---This will prepare undo/redo data for the whole sample and does other internal 
+---housekeeping. Every *prepare_sample_data_changes* call must be paired with a
+---*finalize_sample_data_changes* call.
+---
+---When param `undo_redo_enabled` is false, no undo/redo data is generated for the
+---following changes. When undefined or true, the global "Enable Undo/Redo in Sample
+---Editor" option is applied.
+---
+---See also 'finalize_sample_data_changes'.
+---@param undo_redo_enabled boolean?
+function renoise.SampleBuffer:prepare_sample_data_changes(undo_redo_enabled) end
 
----To be called once AFTER the sample data is manipulated via 'set_sample_data'.
----This will create undo/redo data for the whole sample, and also  update the
----sample view caches for the sample. The reason this isn't automatically
----invoked is to avoid performance overhead when changing sample data 'sample by
----sample'. Don't forget to call this after any data changes, or changes may not
----be visible in the GUI and can not be un/redone!
+---To be called once *after* the sample data got manipulated via `set_sample_data`.
+---This will create undo/redo data for the whole samples, and also updates the
+---sample view caches for the sample.
+---The reason this isn't automatically invoked is to avoid performance overhead when
+---changing sample data 'sample by sample'. 
+---
+---Don't forget to call this after any data changes, or changes may not be visible
+---in the GUI and can not be un/redone!
 function renoise.SampleBuffer:finalize_sample_data_changes() end
 
 ---Load sample data from a file. Files can be any audio format Renoise supports.
