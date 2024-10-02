@@ -132,7 +132,7 @@ function Canvas:update() end
 ---
 ---The actual shape may be affected by the current transform at the time
 ---of drawing. Only affects stroking. Defaults to "miter".
----@field line_join "miter"|"beval"|"rounded"
+---@field line_join "miter"|"bevel"|"rounded"
 ---The width of the lines when stroking.<br>
 ---
 ---Initially this is measured in pixels, though the current transform
