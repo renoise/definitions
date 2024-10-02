@@ -355,7 +355,7 @@ function io.chmod(filename, mode) end
 ---math.infdb.
 ---@param n number
 ---@return number
----### example:
+---### examples:
 ---```lua
 ---print(math.lin2db(1.0)) --> 0
 ---print(math.lin2db(0.0)) --> -200 (math.infdb)
@@ -365,7 +365,7 @@ function math.lin2db(n) end
 ---Converts a dB value to a linear value.
 ---@param n number
 ---@return number
----### example:
+---### examples:
 ---```lua
 ---print(math.db2lin(math.infdb)) --> 0
 ---print(math.db2lin(6.0)) --> 1.9952623149689
@@ -378,7 +378,7 @@ function math.db2lin(n) end
 ---@param max_dB number
 ---@param dB_to_convert number
 ---@return number
----### example:
+---### examples:
 ---```lua
 ---print(math.db2fader(-96, 0, 1)) --> 0
 ---print(math.db2fader(-48, 6, 0)) --> 0.73879611492157
@@ -391,7 +391,7 @@ function math.db2fader(min_dB, max_dB, dB_to_convert) end
 ---@param max_dB number
 ---@param fader_value number
 ---@return number
----### example:
+---### examples:
 ---```lua
 ---print(math.fader2db(-96, 0, 1)) --> 0
 ---print(math.fader2db(-96, 0, 0)) --> -96

@@ -53,7 +53,9 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---  `vb.views.SomeString` or `vb.views["SomeString"]`
 ---
 ---* Nested child views: Add child views to the currently specified view.
---- ### example:
+---
+---### examples:
+---Creates a column view with `margin = 1` and adds two text views to the column.
 ---```lua
 ---vb:column {
 ---  margin = 1,
@@ -65,19 +67,18 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---  }
 ---}
 ---```
----Creates a column view with `margin = 1` and adds two text views to the column.
+---@class renoise.ViewBuilder
 ---
 ---Table of views, which got registered via the "id" property
 ---View id is the table key, the table's value is the view's object.
 ---
----### example
+---### examples:
 ---```lua
 ---vb:text { id="my_view", text="some_text"}
 ---vb.views.my_view.visible = false
 -----or
 ---vb.views["my_view"].visible = false
 ---```
----@class renoise.ViewBuilder
 ---@field views table<string, renoise.Views.View>
 renoise.ViewBuilder = {}
 
@@ -90,7 +91,7 @@ function renoise.ViewBuilder() end
 ---You can add nested child views when constructing a column or row
 ---by including them in the constructor table in the views property.
 ---
----### example:
+---### examples:
 ---```lua
 ---vb:column {
 ---  margin = 1,
@@ -114,7 +115,7 @@ function renoise.ViewBuilder:row(properties) end
 ---You can add nested child views when constructing aligners by including them
 ---in the constructor table.
 ---
----### example:
+---### examples:
 ---```lua
 ---vb:horizontal_aligner {
 ---   mode = "center",
@@ -137,7 +138,7 @@ function renoise.ViewBuilder:vertical_aligner(properties) end
 
 ---You can create an empty space in layouts with a space.
 ---
----### example:
+---### examples:
 ---```lua
 -----Empty space in layouts
 ---vb:row {

@@ -117,7 +117,7 @@ renoise.DeviceParameter = {
 ---**READ-ONLY** Parameter has a custom MIDI mapping in the current song.
 ---@field is_midi_mapped boolean
 ---@field is_midi_mapped_observable renoise.Document.Observable
-----
+---
 ---Show in mixer. Not valid for parameters of instrument devices.
 ---@field show_in_mixer boolean
 ---@field show_in_mixer_observable renoise.Document.Observable
