@@ -133,6 +133,10 @@ renoise.ApplicationWindow = {
 ---@field active_lower_frame renoise.ApplicationWindow.LowerFrame
 ---@field active_lower_frame_observable renoise.Document.Observable
 ---
+---Frame with Disk Browser and Instrument Box.
+---@field right_frame_is_visible boolean
+---@field right_frame_is_visible_observable renoise.Document.Observable
+---
 ---Pattern matrix, visible in pattern editor and mixer only...
 ---@field pattern_matrix_is_visible boolean
 ---@field pattern_matrix_is_visible_observable renoise.Document.Observable
