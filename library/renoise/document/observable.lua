@@ -288,7 +288,7 @@ function renoise.Document.ObservableNumberList:swap(pos1, pos2) end
 --------------------------------------------------------------------------------
 ---## renoise.Document.ObservableStringList
 
----A observable list of number values.
+---A observable list of string values.
 ---@class renoise.Document.ObservableStringList : renoise.Document.ObservableList, renoise.Document.Serializable
 ---Query a list's size (item count).
 ---@operator len:integer
