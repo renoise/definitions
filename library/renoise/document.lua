@@ -235,6 +235,62 @@ function renoise.Document.DocumentNode:from_string(string) end
 
 ---A document list is a document sub component which may contain other document
 ---nodes in an observable list.
+---
+---### example:
+---```lua
+----- our goal here is to have a document that contains a list of documents
+----- which can loaded as preferences for our tool
+-----
+----- define a class for our complex type for document items in the list
+----- so that Renoise knows how to load it later
+----- our entries will have
+---class "Entry" (renoise.Document.DocumentNode)
+---
+----- implement a constructor that adds two string properties
+---function Entry:__init()
+---  renoise.Document.DocumentNode.__init(self)
+---  self:add_properties({
+---    name = "",
+---    path = ""
+---  })
+---end
+---
+----- a helper function to create new instances with data
+---function create_entry(name, path)
+---  local entry = Entry()
+---  entry.name.value = name
+---  entry.path.value = path
+---  return entry
+---end
+---
+----- create our main document with a DocumentList element to hold entries
+---preferences = renoise.Document.create("MyPreferences") {
+---  list = renoise.Document.DocumentList()
+---}
+---
+----- assign it to our tool
+---renoise.tool().preferences = preferences
+---
+----- insert elements into the list using :insert(index, element)
+----- we call our helper to create an instance of Entry
+---preferences.list:insert(1, create_entry("some name", "some/path"))
+---
+----- access entries by using :property(index)
+---print(preferences.list:property(1).name)
+---
+----- get the size of the list (you can use :size() as well)
+---print(#preferences.list)
+---
+----- loop over the list to print all entries
+---for i = 1, #preferences.list do
+---  local entry = preferences.list:property(i)
+---  print(i)
+---  print(entry.name)
+---  print(entry.path)
+---end
+---
+----- try reloading your tool to see the list get bigger
+---```
 ---@class renoise.Document.DocumentList
 ---Query a list's size (item count).
 ---@operator len():integer
