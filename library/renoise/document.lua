@@ -241,34 +241,28 @@ function renoise.Document.DocumentNode:from_string(string) end
 ----- our goal here is to have a document that contains a list of documents
 ----- which can loaded as preferences for our tool
 -----
------ define a class for our complex type for document items in the list
------ so that Renoise knows how to load it later
------ our entries will have
----class "Entry" (renoise.Document.DocumentNode)
+----- define a class model for our complex type for document items in the list
+----- so that Renoise knows how to load it later our entries will have
+---renoise.Document.create("Entry") {
+---  name = renoise.Document.ObservableString(),
+---  path = renoise.Document.ObservableString(),
+---}
 ---
------ implement a constructor that adds two string properties
----function Entry:__init()
----  renoise.Document.DocumentNode.__init(self)
----  self:add_properties({
----    name = "",
----    path = ""
----  })
----end
----
------ a helper function to create new instances with data
+----- create new entry instances with the given data
 ---function create_entry(name, path)
----  local entry = Entry()
+---  local entry = renoise.Document.instantiate("Entry")
 ---  entry.name.value = name
 ---  entry.path.value = path
 ---  return entry
 ---end
 ---
------ create our main document with a DocumentList element to hold entries
----preferences = renoise.Document.create("MyPreferences") {
+----- define a class model for our preferences which is using a list of entries
+---renoise.Document.create("MyPreferences") {
 ---  list = renoise.Document.DocumentList()
 ---}
 ---
------ assign it to our tool
+----- assign a fresh instance of our main document as preferences
+---local preferences = renoise.Document.instantiate("MyPreferences")
 ---renoise.tool().preferences = preferences
 ---
 ----- insert elements into the list using :insert(index, element)
