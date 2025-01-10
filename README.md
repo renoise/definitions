@@ -46,6 +46,8 @@ In your project's `/.vscode/settings.json` file, add:
 
 Note: The `Lua.runtime.plugin` setting only is needed in order to automatically annotate the custom `class` keyword.
 
+See the [XRNX Development](https://renoise.github.io/xrnx/start/development.html) in the Renoise Scripting Book for more detailed information on how to install and use the definitions in vscode and other editors.
+
 
 ## Contribute
 
