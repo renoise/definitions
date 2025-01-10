@@ -94,17 +94,22 @@ Note: The `Lua.runtime.plugin` setting only is needed in order to automatically 
 }
 ```
 11. Save.
-12. Save your Project (which you've added your Renoise LUA script tool folder to) ( `Project -> Save Project...` from the Top Menu)
-13. Go to `Project -> Edit Project` from the Top Menu.
+12. Add your current tool folder via `Project -> Add Folder to Project...` from the Top Menu
+13. Add the `definitions` folder via `Project -> Add Folder to Project...` from the Top Menu
+14. Save your Project (which you've added your Renoise LUA script tool folder to) ( `Project -> Save Project...` from the Top Menu)
+15. Go to `Project -> Edit Project` from the Top Menu.
 Change the following
 ```
 {
 	"folders":
 	[
 		{
-			"path": "Renoise/Tools/yourtool.xrnx"
-		}
-	]
+			"path": "Renoise/Tools/yourtool.xrnx",
+		},
+    {
+			"path": "/Users/yourusername/definitions"
+		},
+  ]
 }
 ```
 to this:
@@ -113,9 +118,12 @@ to this:
 	"folders":
 	[
 		{
-			"path": "Renoise/Tools/yourtool.xrnx"
-		}
-	],
+			"path": "Renoise/Tools/yourtool.xrnx",
+		},
+    {
+			"path": "/Users/yourusername/definitions"
+		},
+  ],
   "settings": {
     "LSP": {
       "lua-ls": {
@@ -128,25 +136,24 @@ to this:
           "Lua": {
             "workspace": {
               "library": {
-                "/Users/yourusername/work/definitions": true
-              }
+                "/Users/yourusername/definitions": true,
+              },
             },
             "diagnostics": {
-              "globals": ["renoise"]
-            }
-          }
-        }
-      }
-    }
-  }	
+              "globals": ["renoise"],
+            },
+          },
+        },
+      },
+    },
+  },	
 }
+
 ``` 
-15. Restart Sublime Text
-16. Open a .LUA file from within the Project.
+16. Restart Sublime Text
+17. Open a .LUA file from within the Project.
 
-    TODO//: While the autocomplete now works and the documentation too, there's this strange `Undefined global 'renoise'. LUA Diagnostics.(undefined-global)` error that needs to be fixed.
-    
-
+Enjoy.
 
 ## Contribute
 
