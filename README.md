@@ -46,6 +46,107 @@ In your project's `/.vscode/settings.json` file, add:
 
 Note: The `Lua.runtime.plugin` setting only is needed in order to automatically annotate the custom `class` keyword.
 
+### How to install into Sublime Text using macOS & Homebrew
+
+1. If you have Homebrew installed, launch the Terminal and type in `brew install lua-language-server`
+2. Type in `which lua-language-server` and copy the path to the clipboard / textfile, example: `/opt/homebrew/bin/lua-language-server`
+3. If you have Git installed, clone this repository to a folder ( navigate to where you want it to be added to, and type `git clone https://github.com/renoise/definitions`, example: `/Users/yourusername/work/definitions` 
+4. If you already have Sublime Text installed, launch Sublime Text.
+5. Navigate to `Tools -> Command Palette` from the Top Menu
+6. Type in `Package Control -> Install Package`
+7. Type in `LSP-lua`
+8. LSP-lua installs
+9. Go to `Sublime Text -> Settings... -> Package Settings -> LSP -> Settings` from the Top Menu
+10. Two instances of  `LSP.sublime-settings` file open. Select the second one (the User one), and paste in something similar to this, making sure the paths match to what you have on your computer:
+```
+// In "LSP.sublime-settings - User"
+{
+  "clients": {
+    "lua-ls": {
+      "enabled": true,
+      "command": [
+        // Single binary from Homebrew
+        "/opt/homebrew/bin/lua-language-server"
+      ],
+      "selector": "source.lua",
+      // Optionally set additional settings:
+      "settings": {
+        "Lua": {
+          "workspace": {
+            // Add your Renoise definitions so they're treated like built-in libraries
+            "library": {
+              "/Users/yourusername/work/definitions": true
+            },
+            "maxPreload": 2000,
+            "preloadFileSize": 500
+          },
+          "completion": {
+            "callSnippet": "Replace"
+          },
+          "diagnostics": {
+            // If 'renoise' is a global, define it so you don't get "undefined global" errors
+            "globals": ["renoise"]
+          }
+        }
+      }
+    }
+  }
+}
+```
+11. Save.
+12. Save your Project (which you've added your Renoise LUA script tool folder to) ( `Project -> Save Project...` from the Top Menu)
+13. Go to `Project -> Edit Project` from the Top Menu.
+Change the following
+```
+{
+	"folders":
+	[
+		{
+			"path": "Renoise/Tools/yourtool.xrnx"
+		}
+	]
+}
+```
+to this:
+```
+{
+	"folders":
+	[
+		{
+			"path": "Renoise/Tools/yourtool.xrnx"
+		}
+	],
+  "settings": {
+    "LSP": {
+      "lua-ls": {
+        "enabled": true,
+        "command": [
+          "/opt/homebrew/bin/lua-language-server"
+        ],
+        "selector": "source.lua",
+        "settings": {
+          "Lua": {
+            "workspace": {
+              "library": {
+                "/Users/yourusername/work/definitions": true
+              }
+            },
+            "diagnostics": {
+              "globals": ["renoise"]
+            }
+          }
+        }
+      }
+    }
+  }	
+}
+``` 
+15. Restart Sublime Text
+16. Open a .LUA file from within the Project.
+
+    TODO//: While the autocomplete now works and the documentation too, there's this strange `Undefined global 'renoise'. LUA Diagnostics.(undefined-global)` error that needs to be fixed.
+    
+
 
 ## Contribute
 
