@@ -164,10 +164,10 @@ function renoise.Instrument:clear() end
 ---@param instrument renoise.Instrument
 function renoise.Instrument:copy_from(instrument) end
 
----Range: (1 - renoise.Instrument.NUMBER_OF_MACROS) 
+---Range: (1 - renoise.Instrument.NUMBER_OF_MACROS)
 ---Access a single macro by index.
 ---See also property `macros`.
----@param index integer 
+---@param index integer
 ---@return renoise.InstrumentMacro instrument_macro
 function renoise.Instrument:macro(index) end
 
@@ -316,6 +316,36 @@ renoise.InstrumentTriggerOptions = {
 ---@field scale_key integer
 ---@field scale_key_observable renoise.Document.Observable
 ---
+---When true, act as MTS ESP client. Disables custom tunings.
+---@field mts_esp_tuning boolean
+---@field mts_esp_tuning_observable renoise.Document.Observable
+---
+---Array of custom pitch values relative to 1/1, used as custom tuning values for 
+---instrument sample playback. The root key is assumed to be middle C (48 in Renoise), 
+---The scale will be repeated, so only one octave of values should be defined. An 
+---octave may contain more or less than 12 notes. 
+--- 
+---When set mts_esp_tuning is disabled. Set an empty table to disable custom tuning
+---using default 12-ET tuning instead.
+---
+---Use property `tuning_name` to give your custom tuning a name.
+---
+---### examples:
+---```lua
+----- Andreas Werckmeister's temperament III (the most famous one, 1681)
+---local well_tempered_tuning = { 
+---  256/243, 1.117403, 32/27, 1.252827, 4/3, 1024/729, 
+---  1.494927, 128/81, 1.670436, 16/9, 1.879241, 2/1
+---}
+---instrument.tuning = well_tempered_tuning
+---``` 
+---@field tuning number[]
+---@field tuning_observable renoise.Document.Observable
+---
+---Name, as displayed in the UI for a custom tuning or a tuning loaded from a file.
+---@field tuning_name string
+---@field tuning_name_observable renoise.Document.Observable
+---
 ---Trigger quantization mode.
 ---@field quantize renoise.InstrumentTriggerOptions.QuantizeMode
 ---@field quantize_observable renoise.Document.Observable
@@ -327,3 +357,11 @@ renoise.InstrumentTriggerOptions = {
 ---Glide amount when monophonic. 0 == off, 255 = instant
 ---@field monophonic_glide integer
 ---@field monophonic_glide_observable renoise.Document.Observable
+
+---### functions
+
+---Load and apply a scala tuning file as custom tuning. Disables `mts_esp_tuning`.
+---Any errors during the export are shown to the user.
+---@param filename string abs path to the scala file
+---@return boolean success
+function renoise.InstrumentTriggerOptions:load_tuning(filename) end
