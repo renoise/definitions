@@ -92,6 +92,10 @@ renoise.ApplicationWindow = {
 ---@field instrument_box_is_visible boolean
 ---@field instrument_box_is_visible_observable renoise.Document.Observable
 ---
+---InstrumentBox slot size
+---@field instrument_box_slot_size boolean
+---@field instrument_box_slot_size_observable renoise.Document.Observable
+---
 ---Instrument Editor detaching.
 ---@field instrument_editor_is_detached boolean
 ---@field instrument_editor_is_detached_observable renoise.Document.Observable
