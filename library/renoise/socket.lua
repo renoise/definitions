@@ -37,6 +37,7 @@ renoise.Socket = {}
 ---### constants
 
 ---@enum renoise.Socket.Protocol
+---@diagnostic disable-next-line: missing-fields
 renoise.Socket = {
   PROTOCOL_TCP = 1,
   PROTOCOL_UDP = 2
