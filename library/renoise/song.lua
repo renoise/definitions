@@ -124,56 +124,66 @@ renoise.Song = {
 ----**READ-ONLY** number of send tracks in song.
 ---@field send_track_count integer
 ---
----**READ-ONLY** Instrument, Pattern, and Track arrays
+---**READ-ONLY** Instrument arrays
 ---@field instruments renoise.Instrument[]
 ---@field instruments_observable renoise.Document.ObservableList
+---**READ-ONLY** Pattern arrays
 ---@field patterns renoise.Pattern[]
 ---@field patterns_observable renoise.Document.ObservableList
+---**READ-ONLY** Track array
 ---@field tracks renoise.Track[]
 ---@field tracks_observable renoise.Document.ObservableList
 ---
 ---**READ-ONLY** Selected in the instrument box.
 ---@field selected_instrument renoise.Instrument
 ---@field selected_instrument_observable renoise.Document.Observable
+---**READ-ONLY** Selected instrument index in the instrument box.
 ---@field selected_instrument_index integer
 ---@field selected_instrument_index_observable renoise.Document.Observable
 ---
----**READ-ONLY** Currently selected phrase the instrument's phrase map piano
----view.
+---**READ-ONLY** Selected phrase the instrument's phrase map piano view.
 ---@field selected_phrase renoise.InstrumentPhrase?
 ---@field selected_phrase_observable renoise.Document.Observable
+---**READ-ONLY** Selected phrase index the instrument's phrase map piano view.
 ---@field selected_phrase_index integer
 ---
----**READ-ONLY** Selected in the instrument's sample list. Only nil when no
----samples are present in the selected instrument.
+---**READ-ONLY** Selected in the instrument's sample list.
+---Only nil when no samples are present in the selected instrument.
 ---@field selected_sample renoise.Sample?
 ---@field selected_sample_observable renoise.Document.Observable
+---**READ-ONLY** Selected sample index in the instrument's sample list. 
+---Only 0 when no samples are present in the selected instrument.
 ---@field selected_sample_index integer
 ---
 ---**READ-ONLY** Selected in the instrument's modulation view.
 ---@field selected_sample_modulation_set renoise.SampleModulationSet?
 ---@field selected_sample_modulation_set_observable renoise.Document.Observable
+---**READ-ONLY** Selected modulation set index in the instrument's modulation view.
 ---@field selected_sample_modulation_set_index integer
 ---
 ---**READ-ONLY** Selected in the instrument's effects view.
 ---@field selected_sample_device_chain renoise.SampleDeviceChain?
 ---@field selected_sample_device_chain_observable renoise.Document.Observable
+---**READ-ONLY** Selected chain index in the instrument's effects view.
 ---@field selected_sample_device_chain_index integer
 ---
 ---**READ-ONLY** Selected in the sample effect mixer.
 ---@field selected_sample_device renoise.AudioDevice?
 ---@field selected_sample_device_observable renoise.Document.Observable
+---**READ-ONLY** Selected device index in the sample effect mixer.
 ---@field selected_sample_device_index integer
 ---
 ---**READ-ONLY** Selected in the pattern editor or mixer.
 ---@field selected_track renoise.Track
 ---@field selected_track_observable renoise.Document.Observable
+---**READ-ONLY** Selected track index in the pattern editor or mixer.
 ---@field selected_track_index integer
 ---@field selected_track_index_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** Selected in the track DSP chain editor.
 ---@field selected_track_device renoise.AudioDevice?
 ---@field selected_track_device_observable renoise.Document.Observable
+---**READ-ONLY** Selected device index in the track DSP chain editor.
 ---@field selected_track_device_index integer
 ---
 ---@deprecated **READ-ONLY** alias for new 'selected_track_device' property
