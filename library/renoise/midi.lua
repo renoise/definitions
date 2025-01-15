@@ -111,6 +111,7 @@ function renoise.Midi.create_output_device(device_name) end
 ---The name of a device. This is the name you create a device with via
 ---`renoise.Midi.create_input_device` or `renoise.Midi.create_output_device`.
 ---@field name string
+renoise.Midi.MidiDevice = {}
 
 ---### functions
 
