@@ -35,8 +35,8 @@ renoise.Application = {}
 ---**READ-ONLY** Returns information about all currently installed tools.
 ---@field installed_tools table<string, string>
 ---
----**READ-ONLY** Access keyboard modifier states.
----@deprecated Use `key_modifier_flags` instead
+---**Deprecated.** **READ-ONLY** Use `key_modifier_flags` instead
+---@deprecated 
 ---@field key_modifier_states table<string, string>
 ---**READ-ONLY** Access keyboard modifier states.
 ---@field key_modifier_flags ModifierFlags
@@ -82,17 +82,19 @@ function renoise.Application:show_status(message) end
 ---@return string label
 function renoise.Application:show_prompt(title, message, button_labels) end
 
----The modifier keys will be provided as a string.  
+---**Deprecated.** Use `ModifierFlags` instead.
+---
+---The modifier keys will be provided as a string.
 ---Possible keys are dependent on the platform
 --- * Windows : "shift", "alt", "control", "winkey"
 --- * Linux : "shift", "alt", "control", "meta"
---- * Mac : "shift", "option", "control", "command"
+--- * Mac : "shift", "option", "control", "command".
 ---If multiple modifiers are held down, the string will be formatted as  
 ---"<key> + <key>"
 ---Their order will correspond to the following precedence
 ---`shift + alt/option + control + winkey/meta/command`  
 ---If no modifier is pressed, this will be an empty string.
----@deprecated use ModifierFlags instead.
+---@deprecated 
 ---@alias ModifierStates string
 
 ---The currently pressed/release key's modifiers as platform independent flags.
@@ -102,8 +104,9 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 
 ---@class KeyEvent
 ---@field name string name of the key, like 'esc' or 'a'
+---**Deprecated.** Use `modifier_flags` instead
 ---**READ-ONLY** the held down modifiers as a string
----@deprecated use `modifier_flags` instead
+---@deprecated
 ---@field modifiers ModifierStates
 ---**READ-ONLY** the held down modifiers as flags
 ---@field modifier_flags ModifierFlags

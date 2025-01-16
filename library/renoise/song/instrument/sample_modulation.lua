@@ -210,8 +210,8 @@ renoise.SampleModulationDevice = {
 ---@field display_name  string
 ---@field display_name_observable renoise.Document.Observable
 ---
----@deprecated use 'is_active' instead
----@see renoise.SampleModulationSet.is_active
+---**Deprecated.** Use `is_active` instead.
+---@deprecated
 ---@field enabled boolean
 ---@field enabled_observable renoise.Document.Observable
 ---

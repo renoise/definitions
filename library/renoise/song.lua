@@ -186,12 +186,17 @@ renoise.Song = {
 ---**READ-ONLY** Selected device index in the track DSP chain editor.
 ---@field selected_track_device_index integer
 ---
----@deprecated **READ-ONLY** alias for new 'selected_track_device' property
+---**Deprecated.** **READ-ONLY** Use 'selected_track_device' instead.
+---@deprecated 
 ---@field selected_device renoise.AudioDevice?
+---**Deprecated.** Use 'selected_track_device_observable' instead.
+---@deprecated 
 ---@field selected_device_observable renoise.Document.Observable
+---**Deprecated.** **READ-ONLY** Use 'selected_track_device_index' instead.
+---@deprecated 
 ---@field selected_device_index integer
----
----@deprecated **READ-ONLY** alias for new 'selected_automation_parameter' property
+---**Deprecated.** **READ-ONLY** Use 'selected_automation_parameter' instead.
+---@deprecated 
 ---@field selected_parameter renoise.DeviceParameter?
 ---@field selected_parameter_observable renoise.Document.Observable
 ---
@@ -200,7 +205,7 @@ renoise.Song = {
 ---must be one of the currently selected track device chain.
 ---@field selected_automation_parameter renoise.DeviceParameter?
 ---@field selected_automation_parameter_observable renoise.Document.Observable
----**READ-ONLY** parent device of 'selected_automation_parameter'. not settable.
+---**READ-ONLY** Parent device of 'selected_automation_parameter'.
 ---@field selected_automation_device renoise.AudioDevice?
 ---@field selected_automation_device_observable renoise.Document.Observable
 ---

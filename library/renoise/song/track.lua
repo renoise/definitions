@@ -202,5 +202,6 @@ renoise.GroupTrack = {}
 --------------------------------------------------------------------------------
 ---## renoise.TrackDevice
 
----@deprecated - alias for renoise.AudioDevice
+---**Deprecated** Use `renoise.AudioDevice` instead.
+---@deprecated
 ---@alias renoise.TrackDevice renoise.AudioDevice

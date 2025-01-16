@@ -55,8 +55,8 @@ renoise.ViewBuilder.DEFAULT_DIALOG_BUTTON_HEIGHT = 22
 ---* Nested child views: Add child views to the currently specified view.
 ---
 ---### examples:
----Creates a column view with `margin = 1` and adds two text views to the column.
 ---```lua
+----- creates a column view with `margin = 1` and adds two text views to the column.
 ---vb:column {
 ---  margin = 1,
 ---  views = {

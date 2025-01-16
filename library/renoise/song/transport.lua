@@ -217,8 +217,8 @@ function renoise.Transport:start_sample_recording() end
 ---Stop sample recording when the sample dialog is visible and running
 function renoise.Transport:stop_sample_recording() end
 
----Deprecated. Use `start_sample_recording` or `stop_sample_recording` instead.
----@deprecated
+---**Deprecated.** Use `start_sample_recording` or `stop_sample_recording` instead.
+---@deprecated 
 function renoise.Transport:start_stop_sample_recording() end
 
 ---Cancel a currently running sample recording when the sample dialog
