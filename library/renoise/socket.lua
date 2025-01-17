@@ -216,7 +216,7 @@ renoise.Socket.SocketServer = {}
 ---  end
 ---}
 ---```
----@class NotifierTable
+---@class SocketNotifierTable
 ---
 ---An error happened in the servers background thread.
 ---@field socket_error fun(error_message: string)?
@@ -255,17 +255,17 @@ renoise.Socket.SocketServer = {}
 ---  -- do something with socket and message
 ---end
 ---```
----@class NotifierClass
----@field socket_error fun(self, error_message: string)?
----@field socket_accepted fun(self, socket: renoise.Socket.SocketClient)?
----@field socket_message fun(self, socket: renoise.Socket.SocketClient, message: string)?
+---@class SocketNotifierClass
+---@field socket_error fun(self: SocketNotifierClass, error_message: string)?
+---@field socket_accepted fun(self: SocketNotifierClass, socket: renoise.Socket.SocketClient)?
+---@field socket_message fun(self: SocketNotifierClass, socket: renoise.Socket.SocketClient, message: string)?
 
 
 ---## functions
 
 ---Start running the server by specifying a class or table which defines the
 ---callback functions for the server.
----@param notifier_table NotifierTable|NotifierClass
+---@param notifier_table SocketNotifierTable|SocketNotifierClass
 function renoise.Socket.SocketServer:run(notifier_table) end
 
 ---Stop a running server.
