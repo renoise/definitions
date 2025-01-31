@@ -118,7 +118,7 @@ renoise.Transport = {
 ---Metronome
 ---@field metronome_enabled boolean
 ---@field metronome_enabled_observable renoise.Document.Observable
----@field metronome_beats_per_bar integer Range: (1 - 16)
+---@field metronome_beats_per_bar integer Range: (1 - 16) or 0 = guess from pattern length
 ---@field metronome_beats_per_bar_observable renoise.Document.Observable
 ---@field metronome_lines_per_beat integer Range: (1 - 256) or 0 = songs current LPB
 ---@field metronome_lines_per_beat_observable renoise.Document.Observable
