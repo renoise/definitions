@@ -86,7 +86,7 @@ renoise.ApplicationWindow = {
 ---@field disk_browser_is_visible_observable renoise.Document.Observable
 ---
 ---@field disk_browser_category renoise.ApplicationWindow.DiskBrowserCategory
----@field disk_browser_categorye_observable renoise.Document.Observable
+---@field disk_browser_category_observable renoise.Document.Observable
 ---
 ---InstrumentBox
 ---@field instrument_box_is_visible boolean

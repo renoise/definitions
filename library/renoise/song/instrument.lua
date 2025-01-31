@@ -326,7 +326,7 @@ renoise.InstrumentTriggerOptions = {
 ---octave may contain more or less than 12 notes. 
 --- 
 ---When set mts_esp_tuning is disabled. Set an empty table to disable custom tuning
----using default 12-ET tuning instead.
+---using default 12-TET tuning instead.
 ---
 ---Use property `tuning_name` to give your custom tuning a name.
 ---
