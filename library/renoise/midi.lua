@@ -51,7 +51,7 @@ function renoise.Midi.available_output_devices() end
 ---may happen when using ReWire slaves. ReWire adds virtual MIDI devices to
 ---Renoise.
 ---Already opened references to devices which are no longer available will
----do nothing: ou can use them as before and they will not fire any errors.
+---do nothing: you can use them as before and they will not fire any errors.
 ---The messages will simply go into the void...
 ---@return renoise.Document.Observable
 function renoise.Midi.devices_changed_observable() end

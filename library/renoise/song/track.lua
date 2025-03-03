@@ -110,6 +110,7 @@ renoise.Track = {
 ---@field available_devices string[] **READ-ONLY** FX devices this track can handle.
 ---**READ-ONLY** Array of tables containing information about the devices.
 ---@field available_device_infos AudioDeviceInfo[]
+---
 ---@field devices renoise.AudioDevice[] **READ-ONLY** List of audio DSP FX.
 ---@field devices_observable renoise.Document.ObservableList
 
