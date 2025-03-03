@@ -52,6 +52,14 @@ renoise.ApplicationWindow = {
   DISK_BROWSER_CATEGORY_OTHER = 4
 }
 
+---@enum renoise.ApplicationWindow.InstrumentBoxSlotSize
+---@diagnostic disable-next-line: missing-fields
+renoise.ApplicationWindow = {
+  INSTRUMENT_BOX_SLOT_SIZE_SMALL = 1,
+  INSTRUMENT_BOX_SLOT_SIZE_MEDIUM = 2,
+  INSTRUMENT_BOX_SLOT_SIZE_LARGE = 3,
+}
+
 ---@enum renoise.ApplicationWindow.MixerFader
 ---@diagnostic disable-next-line: missing-fields
 renoise.ApplicationWindow = {
@@ -93,7 +101,7 @@ renoise.ApplicationWindow = {
 ---@field instrument_box_is_visible_observable renoise.Document.Observable
 ---
 ---InstrumentBox slot size
----@field instrument_box_slot_size boolean
+---@field instrument_box_slot_size renoise.ApplicationWindow.InstrumentBoxSlotSize
 ---@field instrument_box_slot_size_observable renoise.Document.Observable
 ---
 ---Instrument Editor detaching.
