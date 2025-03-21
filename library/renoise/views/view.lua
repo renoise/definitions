@@ -19,8 +19,16 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---relative to the view's parent size and will automatically update on size changes.
 ---@alias ViewDimension integer|string
 
+---The dimensions of a view has to be larger than 0.
+---For nested views you can also specify relative size, for example 
+---`vb:text { size = { width = "80%", height = 20}}`. 
+---The percentage values are relative to the view's parent size and will 
+---automatically update when the parent view's size changes.
+---@alias ViewSize { width: ViewDimension, height: ViewDimension }|{ [1]:ViewDimension, [2]:ViewDimension }
+
 ---Horizontal (x) or Vertical (y) position of a view within its parent view.
 ---@alias ViewPosition integer
+
 ---The position of a view within its parent view.
 ---Only the `stack` layouts allows to freely position child views. Other
 ---layout views will automatically set the origin, but the origin
@@ -161,8 +169,11 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@class renoise.Views.View : table
 ---@field visible ViewVisibility
 ---@field origin ViewOrigin
+---**Deprecated.** Use property `size` instead.
 ---@field width ViewDimension
+---**Deprecated.** Use property `size` instead.
 ---@field height ViewDimension
+---@field size ViewSize
 ---@field tooltip ViewTooltip
 ---@field cursor ViewCursorShape
 ---**READ-ONLY** Empty for all controls, for layout views this contains the
@@ -209,7 +220,10 @@ function View:swap_childs(child1, child2) end
 ---@field id ViewId?
 ---@field visible ViewVisibility?
 ---@field origin ViewOrigin?
+---**Deprecated.** Use property `size` instead.
 ---@field width ViewDimension?
+---**Deprecated.** Use property `size` instead.
 ---@field height ViewDimension?
+---@field size ViewSize?
 ---@field tooltip ViewTooltip?
 ---@field cursor ViewCursorShape?
