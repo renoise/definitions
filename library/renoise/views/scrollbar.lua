@@ -18,6 +18,10 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---Default 100. Size of the currently visible area.
 ---@alias ScrollbarPagestep integer
 
+---Default 1. Amount the mouse-wheel or additional +/- buttons in the scroll bar
+---move the scrollable area.
+---@alias ScrollbarStep integer
+
 ---Default: false. When true, view gets automatically hidden when no scrolling is needed
 ---@alias ScrollbarAutoHide boolean
 
@@ -27,11 +31,11 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---A special slider alike control to scroll through some content.
 ---
 ---`min` and `max` define to the scrollable area's range. `pagesize` is the
----currently visible area within that range and `values` is the offset from
+---currently visible area within that range and `value` is the offset from
 --`min` to `max - pagestep` within the whole scrollable area:
 ---
 ---```text
----min   offset                     max
+---min   value                      max
 --- |      [xxxxxxxxxxxxxx]          |
 ---        <---pagestep--->
 --- <---------scroll-area------------>
@@ -46,6 +50,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@field min ScrollbarMin
 ---@field max ScrollbarMax
 ---@field value ScrollbarValue
+---@field step ScrollbarStep
 ---@field pagestep ScrollbarPagestep
 ---@field background ViewBackgroundStyle
 ---@field autohide ScrollbarAutoHide
@@ -73,6 +78,7 @@ function ScrollBar:remove_notifier(notifier) end
 ---@field notifier NumberValueNotifier?
 ---@field min ScrollbarMin?
 ---@field max ScrollbarMax?
+---@field step ScrollbarStep?
 ---@field pagestep ScrollbarPagestep?
 ---@field background ViewBackgroundStyle?
 ---@field autohide ScrollbarAutoHide?
