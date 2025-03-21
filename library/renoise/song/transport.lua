@@ -176,6 +176,9 @@ renoise.Transport = {
 ---
 ---*READ-ONLY* true when sample sample dialog is visible and recording started.
 ---@field sample_recording boolean
+---Sample recording pattern quantization On/Off.
+---@field sample_recording_sync_enabled boolean
+---@field sample_recording_sync_enabled_observable renoise.Document.Observable
 
 ---### functions
 
