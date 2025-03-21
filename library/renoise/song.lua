@@ -290,6 +290,10 @@ renoise.Song = {
 
 ---### functions
 
+---True while an undo/redo action is invoked. This may be useful to check in notifiers,
+--- to figure out if the document currently changes because of an undo/redo operation.
+function renoise.Song:is_undo_redoing() end
+
 ---Test if something in the song can be undone.
 ---@return boolean
 function renoise.Song:can_undo() end
