@@ -36,6 +36,15 @@ renoise.InstrumentPhrase = {
   KEY_TRACKING_OFFSET = 3,
 }
 
+---@enum renoise.InstrumentPhrase.PlaybackMode
+---@diagnostic disable-next-line: missing-fields
+renoise.InstrumentPhrase = {
+  ---Play/edit phrase pattern
+  PLAY_PATTERN = 1,
+  ---Play/edit phrase script
+  PLAY_SCRIPT = 2,
+}
+
 ---### properties
 
 ---General remarks: Phrases do use renoise.PatternLine objects just like the
@@ -49,6 +58,14 @@ renoise.InstrumentPhrase = {
 ---
 ---(Key)Mapping properties of the phrase or nil when no mapping is present.
 ---@field mapping renoise.InstrumentPhraseMapping?
+---
+---playback mode
+---@field playback_mode renoise.InstrumentPhrase.PlaybackMode
+---@field playback_mode_observable renoise.Document.Observable
+---
+---**READ-ONLY** Phrase script properties. Only used when `playback_mode` is 
+---set to `renoise.InstrumentPhrase.PLAY_SCRIPT`
+---@field script renoise.InstrumentPhraseScript
 ---
 ---**READ-ONLY**
 ---Quickly check if a phrase has some non empty pattern lines.
@@ -127,6 +144,7 @@ renoise.InstrumentPhrase = {
 ---
 ---@field sample_effects_column_visible boolean
 ---@field sample_effects_column_visible_observable  renoise.Document.Observable
+
 
 ---### functions
 
