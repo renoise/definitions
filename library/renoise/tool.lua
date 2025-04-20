@@ -63,8 +63,8 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@field app_new_document_observable renoise.Document.Observable
 ---
 ---Invoked just before the application document (song) is saved.
----This is the last chance to make any changes that should be part of 
----the saved song. You could for example write your tool data to 
+---This is the last chance to make any changes that should be part of
+---the saved song. You could for example write your tool data to
 ---`renoise.song().tool_data` here.
 ---@field app_will_save_document_observable renoise.Document.Observable
 ---
@@ -133,6 +133,7 @@ renoise.ScriptingTool = {}
 ---+ "Phrase Editor"
 ---+ "Phrase Mappings"
 ---+ "Phrase Grid"
+---+ "Phrase Script Editor"
 ---+ "Sample Navigator"
 ---+ "Sample Editor"
 ---+ "Sample Editor Ruler"
@@ -155,6 +156,7 @@ renoise.ScriptingTool = {}
 ---+ "Tool Browser"
 ---+ "Script File Browser"
 ---+ "Script File Tabs"
+---+ "Script Editor"
 ---```
 ---Separating entries:
 ---To divide entries into groups (separate entries with a line), prepend one or
