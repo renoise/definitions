@@ -8,6 +8,13 @@ error("Do not try to execute this file. It's just a type definition file.")
 
 --------------------------------------------------------------------------------
 
+---Value polarity of the control. Bipolar controls show the value from the
+---center to left and right or up and down and typically controls a range
+---around zero, e.g. -1 to 1. Unipolar controls show the value from left to
+---right or bottom to top.
+---* Default: "unipolar" 
+---@alias SliderPolarity "unipolar"|"bipolar"
+
 ---The minimum value that can be set using the view
 ---* Default: 0
 ---@alias SliderMinValue number
@@ -40,6 +47,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 --- +---+---------------+
 ---```
 ---@class renoise.Views.Slider : renoise.Views.Control
+---@field polarity SliderPolarity
 ---@field min SliderMinValue
 ---@field max SliderMaxValue
 ---@field steps SliderStepAmounts
@@ -67,6 +75,7 @@ function Slider:remove_notifier(notifier) end
 ---@field bind ViewNumberObservable?
 ---@field value SliderNumberValue?
 ---@field notifier NumberValueNotifier?
+---@field polarity SliderPolarity?
 ---@field min SliderMinValue?
 ---@field max SliderMaxValue?
 ---@field steps SliderStepAmounts?

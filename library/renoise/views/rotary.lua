@@ -21,6 +21,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---    +-+
 ---```
 ---@class renoise.Views.RotaryEncoder : renoise.Views.Control
+---@field polarity SliderPolarity
 ---@field min SliderMinValue
 ---@field max SliderMaxValue
 ---@field default SliderDefaultValue
@@ -47,6 +48,7 @@ function RotaryEncoder:remove_notifier(notifier) end
 ---@field bind ViewNumberObservable?
 ---@field value SliderNumberValue?
 ---@field notifier NumberValueNotifier?
+---@field polarity SliderPolarity?
 ---@field min SliderMinValue?
 ---@field max SliderMaxValue?
 ---@field default SliderDefaultValue?
