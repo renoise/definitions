@@ -25,7 +25,7 @@ renoise.SQLite = {}
 
 ---### constants
 
----@enum SQLiteStatusCode
+---@enum renoise.SQLite.Status
 renoise.SQLite.Status = {
   ---The operation was successful and that there were no errors.
   ---Most other result codes indicate an error.
@@ -91,7 +91,7 @@ renoise.SQLite.Status = {
 ---
 ---@param filename? string The name of the database file. When undefined or nil a new in-memory db is created.
 ---@param flags? SQLiteOpenModes|SQLiteOpenFlags Optional flags that can be passed to control the behavior of this function.
----@return SQLiteDatabase?, SQLiteStatusCode?, string?
+---@return SQLiteDatabase?, renoise.SQLite.Status?, string?
 function renoise.SQLite.open(filename, flags) end
 
 --------------------------------------------------------------------------------
@@ -106,7 +106,7 @@ function renoise.SQLite.open(filename, flags) end
 ---@field is_closed boolean
 ---
 ---**READ-ONLY** The most recent error code.
----@field error_code SQLiteStatusCode
+---@field error_code renoise.SQLite.Status
 ---**READ-ONLY** The most recent error message.
 ---@field error_message string 
 ---
@@ -142,7 +142,7 @@ local SQLiteDatabase = {}
 ---have been finalized before this function is called.
 ---
 ---The function returns `renoise.SQLlite.Status.OK` on success or else a error code.
----@return SQLiteStatusCode
+---@return renoise.SQLite.Status
 function SQLiteDatabase:close() end
 
 ---Compiles the SQL statement in string sql into an internal representation
@@ -164,7 +164,7 @@ function SQLiteDatabase:close() end
 ---```
 ---@see SQLiteStatement
 ---@param sql string
----@return SQLiteStatement?, SQLiteStatusCode, string?
+---@return SQLiteStatement?, renoise.SQLite.Status, string?
 function SQLiteDatabase:prepare(sql) end
 
 --- Finalizes all statements that have not been explicitly finalized.
@@ -212,7 +212,7 @@ function SQLiteDatabase:finalize(temp_only) end
 ---@param sql string
 ---@param fun? fun(data: any, cols: integer, values: table<SQLiteValue>, names: table<string>)
 ---@param data? any
----@return SQLiteStatusCode, string?
+---@return renoise.SQLite.Status, string?
 function SQLiteDatabase:execute(sql, fun, data) end
 
 --- Causes any pending database operation to abort and return at the next opportunity.
@@ -348,7 +348,7 @@ function SQLiteStatement:type(n) end
 ---If the statement was executed successfully, or not executed at all,
 ---then `renoise.SQLlite.Status.OK` is returned. If execution of the statement
 ---failed then an error code is returned.
----@return SQLiteStatusCode
+---@return renoise.SQLite.Status
 function SQLiteStatement:finalize() end
 
 ---Resets the statement so that it is ready to be re-executed.
@@ -376,7 +376,7 @@ function SQLiteStatement:reset() end
 --- - `renoise.SQLite.Status.MISUSE`: the function was called inappropriately.
 ---   Perhaps because the statement has already been finalized or a previous call to 
 ---   `stmt:step()` has returned `sqlite.ERROR` or `sqlite.DONE`.
----@return SQLiteStatusCode
+---@return renoise.SQLite.Status
 function SQLiteStatement:step() end
 
 ---Gets the largest statement parameter index in prepared statement stmt.
@@ -404,8 +404,8 @@ function SQLiteStatement:bind_parameter_count() end
 ---
 ---The function returns `renoise.SQLlite.Status.OK` on success or else a numerical error code.
 ---@return string?
----@return SQLiteStatusCode
----@see SQLiteStatusCode
+---@return renoise.SQLite.Status
+---@see renoise.SQLite.Status
 function SQLiteStatement:bind_parameter_name(n) end
 
 ---Binds `value` to statement parameter `n`. If `value` is a string, it is
@@ -416,7 +416,7 @@ function SQLiteStatement:bind_parameter_name(n) end
 ---The function returns `renoise.SQLlite.Status.OK` on success or else a error code.
 ---@param n integer
 ---@param value? string | number | boolean
----@return SQLiteStatusCode
+---@return renoise.SQLite.Status
 function SQLiteStatement:bind(n, value) end
 
 ---Binds string `blob` (which can be a binary string) as a blob to
@@ -425,7 +425,7 @@ function SQLiteStatement:bind(n, value) end
 ---The function returns `renoise.SQLlite.Status.OK` on success or else a error code.
 ---@param n integer
 ---@param blob string
----@return SQLiteStatusCode
+---@return renoise.SQLite.Status
 function SQLiteStatement:bind_blob(n, blob) end
 
 ---Binds the values in `nametable` to statement parameters.
@@ -437,15 +437,15 @@ function SQLiteStatement:bind_blob(n, blob) end
 ---
 ---The function returns `renoise.SQLlite.Status.OK` on success or else a error code.
 ---@param nametable table<string | integer, string | number | boolean>
----@return SQLiteStatusCode
+---@return renoise.SQLite.Status
 function SQLiteStatement:bind_names(nametable) end
 
 ---Binds the given values to statement parameters.
 ---
 ---The function returns `renoise.SQLlite.Status.OK` on success or else a error code.
 ---@param ... string | number | boolean
----@return SQLiteStatusCode
----@see SQLiteStatusCode
+---@return renoise.SQLite.Status
+---@see renoise.SQLite.Status
 function SQLiteStatement:bind_values(...) end
 
 
