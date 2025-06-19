@@ -29,6 +29,7 @@ renoise.PatternSequencer = {}
 ---Pattern order list: Notifiers will only be fired when sequence positions are
 ---added, removed or their order changed. To get notified of pattern assignment
 ---changes use the property `pattern_assignments_observable`.
+---Use `set_pattern` to change a single pattern in the sequence. 
 ---@field pattern_sequence integer[]
 ---@field pattern_sequence_observable renoise.Document.ObservableList
 ---Attach notifiers that will be called as soon as any pattern assignment
@@ -62,6 +63,12 @@ function renoise.PatternSequencer:delete_sequence_at(sequence_index) end
 ---@param sequence_index integer
 ---@return integer pattern_index
 function renoise.PatternSequencer:pattern(sequence_index) end
+
+---Change a single assigned pattern for the given sequence index. Use `pattern_sequence`
+---to iterate or change the whole sequence and to query the sequence count.
+---@param sequence_index integer
+---@param pattern_index integer
+function renoise.PatternSequencer:set_pattern(sequence_index, pattern_index) end
 
 ---Clone a sequence range, appending it right after to_sequence_index.
 ---Slot muting is copied as well.
