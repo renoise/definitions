@@ -444,7 +444,7 @@ function CanvasContext:bezier_curve_to(control_1_x, control_1_y, control_2_x, co
 ---@param radius             number radius of the circle containing the arc
 ---@param start_angle        number radians clockwise from x-axis to begin
 ---@param end_angle          number radians clockwise from x-axis to end
----@param counter_clockwise  number true if the arc turns counter-clockwise
+---@param counter_clockwise  boolean? by default false. set to true to turn the arc counter-clockwise
 function CanvasContext:arc(x, y, radius, start_angle, end_angle, counter_clockwise) end
 
 ---Extend the current subpath with an arc tangent to two lines.<br>
