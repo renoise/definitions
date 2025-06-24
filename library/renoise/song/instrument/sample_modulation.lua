@@ -58,7 +58,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---| "RingMod"
 
 ---Available filter types when filter_version = 3
----@alias FilterTypes3 
+---@alias FilterTypes3
 ---| "None"
 ---| "LP Clean"
 ---| "LP K35"
@@ -132,8 +132,8 @@ renoise.SampleModulationSet = {}
 ---**READ-ONLY** List of available filter types depending on the filter_version.
 ---@field available_filter_types FilterTypes[]
 ---
----The type of the filter selected for the modulation set. 
----Songs made with previous versions of Renoise may use old filter types. 
+---The type of the filter selected for the modulation set.
+---Songs made with previous versions of Renoise may use old filter types.
 ---@see renoise.SampleModulationSet.available_filter_types
 ---@field filter_type FilterTypes
 ---@field filter_type_observable renoise.Document.Observable

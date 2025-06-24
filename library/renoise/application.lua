@@ -100,12 +100,12 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 --- * Windows : "shift", "alt", "control", "winkey"
 --- * Linux : "shift", "alt", "control", "meta"
 --- * Mac : "shift", "option", "control", "command".
----If multiple modifiers are held down, the string will be formatted as  
+---If multiple modifiers are held down, the string will be formatted as
 ---"<key> + <key>"
 ---Their order will correspond to the following precedence
----`shift + alt/option + control + winkey/meta/command`  
+---`shift + alt/option + control + winkey/meta/command`
 ---If no modifier is pressed, this will be an empty string.
----@deprecated 
+---@deprecated
 ---@alias ModifierStates string
 
 ---The currently pressed/release key's modifiers as platform independent flags.
@@ -124,13 +124,13 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---possible character representation of the key
 ---@field character string?
 ---virtual keyboard piano key value (starting from 0)
----@field note integer? 
+---@field note integer?
 ---only present if `send_key_release` was set to true
 ---@field state ("released"|"pressed")?
 ---only present if `send_key_repeat` was set to true
 ---@field repeated boolean?
 
----Optional keyhandler to process key events on a custom dialog.  
+---Optional keyhandler to process key events on a custom dialog.
 ---When returning the passed key from the key-handler function, the
 ---key will be passed back to Renoise's key event chain, in order to allow
 ---processing global Renoise key-bindings from your dialog. This will not work
@@ -146,15 +146,15 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---@field send_key_repeat boolean? Default: true
 ---@field send_key_release boolean? Default: false
 
----Optional focus change notifier for a custom dialog.  
----Will be called when the dialog gains of loses key focus. You maybe want to initialize 
+---Optional focus change notifier for a custom dialog.
+---Will be called when the dialog gains of loses key focus. You maybe want to initialize
 ---your dloag's (modifier) keyboard states here.
 ---@alias FocusHandler fun(dialogs: renoise.Dialog, focused: boolean) : KeyEvent?
 ---@alias FocusHandlerMemberFunction fun(self: NotifierMemberContext, dialog: renoise.Dialog, focused: boolean): KeyEvent?
 ---@alias FocusHandlerMethod1 {[1]:NotifierMemberContext, [2]:FocusHandlerMemberFunction}
 ---@alias FocusHandlerMethod2 {[1]:FocusHandlerMemberFunction, [2]:NotifierMemberContext}
 
----Opens a modal dialog with a title, custom content and custom button labels.  
+---Opens a modal dialog with a title, custom content and custom button labels.
 ---
 ---@see renoise.ViewBuilder for more info about custom views.
 ---@param title string Message box title.
@@ -168,8 +168,7 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---@return string label
 function renoise.Application:show_custom_prompt(title, content_view, button_labels, key_handler, key_handler_options, focus_handler) end
 
-
----Shows a non modal dialog (a floating tool window) with custom content.  
+---Shows a non modal dialog (a floating tool window) with custom content.
 ---When no key_handler is provided, the Escape key is used to close the dialog.
 ---
 ---@see renoise.ViewBuilder for more info about custom views.

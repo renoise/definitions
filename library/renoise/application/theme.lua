@@ -25,7 +25,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 
 ---Application's theme colors and other general color theme properties.
 ---
----Note: All properties and functions of the app theme are **read-only**, so the 
+---Note: All properties and functions of the app theme are **read-only**, so the
 ---theme can't be modified here. Use the app's `renoise.Application:load_theme`
 ---function to load and apply new themes instead.
 ---
@@ -127,11 +127,11 @@ renoise.ApplicationTheme = {}
 
 ---@class renoise.ApplicationTheme
 ---
----**READ-ONLY** Get all theme colors in a flat list of RGBColors. 
+---**READ-ONLY** Get all theme colors in a flat list of RGBColors.
 ---Color table keys are string identifiers as used in the theme XML file,
 ---but in lower case.
 ---
----Note that if you only need to access a single color from the theme, 
+---Note that if you only need to access a single color from the theme,
 ---use `renoise.app().theme.color(color_name)` instead.
 ---
 ---To get notified of color changes, use `renoise.app().theme_observable`
@@ -155,11 +155,11 @@ renoise.ApplicationTheme = {}
 ---
 ---### functions
 
----Get a single color from the theme using a color identifier as used 
+---Get a single color from the theme using a color identifier as used
 ---in the theme XML file - but in lower case.
 ---
----e.g. to access the button background color from the theme, use 
----`renoise.app().theme.color("button_back")` 
+---e.g. to access the button background color from the theme, use
+---`renoise.app().theme.color("button_back")`
 ---
 ---To get notified of color changes, use `renoise.app().theme_observable`
 ---@param color_name ThemeColor

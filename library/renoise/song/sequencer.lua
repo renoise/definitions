@@ -29,7 +29,7 @@ renoise.PatternSequencer = {}
 ---Pattern order list: Notifiers will only be fired when sequence positions are
 ---added, removed or their order changed. To get notified of pattern assignment
 ---changes use the property `pattern_assignments_observable`.
----Use `set_pattern` to change a single pattern in the sequence. 
+---Use `set_pattern` to change a single pattern in the sequence.
 ---@field pattern_sequence integer[]
 ---@field pattern_sequence_observable renoise.Document.ObservableList
 ---Attach notifiers that will be called as soon as any pattern assignment

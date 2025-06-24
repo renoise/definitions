@@ -318,7 +318,7 @@ function renoise.SampleBuffer:sample_data(channel_index, frame_index) end
 function renoise.SampleBuffer:set_sample_data(channel_index, frame_index, sample_value) end
 
 ---To be called once **before** sample data gets manipulated via `set_sample_data`.
----This will prepare undo/redo data for the whole sample and does other internal 
+---This will prepare undo/redo data for the whole sample and does other internal
 ---housekeeping. Every *prepare_sample_data_changes* call must be paired with a
 ---*finalize_sample_data_changes* call.
 ---
@@ -334,7 +334,7 @@ function renoise.SampleBuffer:prepare_sample_data_changes(undo_redo_enabled) end
 ---This will create undo/redo data for the whole samples, and also updates the
 ---sample view caches for the sample.
 ---The reason this isn't automatically invoked is to avoid performance overhead when
----changing sample data 'sample by sample'. 
+---changing sample data 'sample by sample'.
 ---
 ---Don't forget to call this after any data changes, or changes may not be visible
 ---in the GUI and can not be un/redone!

@@ -108,16 +108,16 @@ function renoise.SQLite.open(filename, flags) end
 ---**READ-ONLY** The most recent error code.
 ---@field error_code renoise.SQLite.Status
 ---**READ-ONLY** The most recent error message.
----@field error_message string 
+---@field error_message string
 ---
----**READ-ONLY** Number of database rows that were changed, inserted, or deleted by 
----the most recent SQL statement. 
+---**READ-ONLY** Number of database rows that were changed, inserted, or deleted by
+---the most recent SQL statement.
 ---Only changes that are directly specified by INSERT, UPDATE, or DELETE statements
 ---are counted.
 ---Auxiliary changes caused by triggers are not counted. Use `db.total_changes`
 ---to find the total number of changes.
 ---@field changes integer
----**READ-ONLY** The number of database rows that have been modified by INSERT, 
+---**READ-ONLY** The number of database rows that have been modified by INSERT,
 ---UPDATE or DELETE statements since the database was opened.
 ---This includes UPDATE, INSERT and DELETE statements executed as part of
 ---trigger programs. All changes are counted as soon as the statement that
@@ -218,7 +218,7 @@ function SQLiteDatabase:execute(sql, fun, data) end
 --- Causes any pending database operation to abort and return at the next opportunity.
 function SQLiteDatabase:interrupt() end
 
----Sets or removes a busy handler for a SQLiteDatabase. 
+---Sets or removes a busy handler for a SQLiteDatabase.
 ---`fun` is either a Lua function that implements the busy handler or `nil`
 ---to remove a previously set handler. This function returns nothing.
 ---The handler function is called with two parameters: `data` and the number
@@ -291,7 +291,7 @@ function SQLiteDatabase:urows(sql) end
 ---or 0 if the statement does not return data (for example an UPDATE).
 ---@field columns integer
 ---
----**READ-ONLY** rowid of the most recent INSERT into the database corresponding 
+---**READ-ONLY** rowid of the most recent INSERT into the database corresponding
 ---to this statement.
 ---@field last_insert_rowid integer
 ---
@@ -358,23 +358,23 @@ function SQLiteStatement:reset() end
 
 ---Evaluates the (next iteration of the) prepared statement.
 ---It will return one of the following values:
---- - `renoise.SQLite.Status.BUSY`: the engine was unable to acquire the locks needed. 
----   If the statement is a COMMIT or occurs outside of an explicit transaction, 
+--- - `renoise.SQLite.Status.BUSY`: the engine was unable to acquire the locks needed.
+---   If the statement is a COMMIT or occurs outside of an explicit transaction,
 ---   then you can retry the statement. If the statement is not a COMMIT and
 ---   occurs within a explicit transaction then you should rollback the transaction
 ---   before continuing.
---- - `renoise.SQLite.Status.DONE`: the statement has finished executing successfully. 
+--- - `renoise.SQLite.Status.DONE`: the statement has finished executing successfully.
 ---   `stmt:step()` should not be called again on this statement without first
 ---   calling `stmt:reset()` to reset the virtual machine back to the initial state.
 --- - `renoise.SQLite.Status.ROW`: this is returned each time a new row of data is ready.
----   The values may be accessed using the column access functions. 
+---   The values may be accessed using the column access functions.
 ---   `stmt:step()` can be called again to retrieve the next row of data.
 --- - `renoise.SQLite.Status.ERROR`: a run-time error (e.g. a constraint violation) occurred.
 ---   `stmt:step()` should not be called again. More information may be found by
----   calling `db:error_message()`. A more specific error code can be obtained by calling 
+---   calling `db:error_message()`. A more specific error code can be obtained by calling
 ---   `stmt:reset()`.
 --- - `renoise.SQLite.Status.MISUSE`: the function was called inappropriately.
----   Perhaps because the statement has already been finalized or a previous call to 
+---   Perhaps because the statement has already been finalized or a previous call to
 ---   `stmt:step()` has returned `sqlite.ERROR` or `sqlite.DONE`.
 ---@return renoise.SQLite.Status
 function SQLiteStatement:step() end
@@ -447,7 +447,6 @@ function SQLiteStatement:bind_names(nametable) end
 ---@return renoise.SQLite.Status
 ---@see renoise.SQLite.Status
 function SQLiteStatement:bind_values(...) end
-
 
 ---Creates an iterator over the names and values of the result
 ---set of the statement. Each iteration returns a table with the names

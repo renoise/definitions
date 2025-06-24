@@ -82,7 +82,7 @@ renoise.Track = {
 ---@field output_routing_observable renoise.Document.Observable
 ---
 ---Delay.
----@field output_delay number Range: (-100.0-100.0) in ms 
+---@field output_delay number Range: (-100.0-100.0) in ms
 ---@field output_delay_observable renoise.Document.Observable
 ---
 ---Pattern editor columns.

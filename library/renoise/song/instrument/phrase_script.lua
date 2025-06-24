@@ -51,7 +51,7 @@ renoise.InstrumentPhraseScript = {}
 ---@field runtime_error string
 ---@field runtime_error_observable renoise.Document.Observable
 ---
----**READ-ONLY** Number of changes since the last commit() or auto-commit call, 
+---**READ-ONLY** Number of changes since the last commit() or auto-commit call,
 ---that have been applied to the parapgraphs.
 ---Note: `auto-commit` only is applied for scripts which are currently edited.
 ---@field pending_changes integer

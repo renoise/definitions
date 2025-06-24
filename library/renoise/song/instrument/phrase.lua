@@ -63,7 +63,7 @@ renoise.InstrumentPhrase = {
 ---@field playback_mode renoise.InstrumentPhrase.PlaybackMode
 ---@field playback_mode_observable renoise.Document.Observable
 ---
----**READ-ONLY** Phrase script properties. Only used when `playback_mode` is 
+---**READ-ONLY** Phrase script properties. Only used when `playback_mode` is
 ---set to `renoise.InstrumentPhrase.PLAY_SCRIPT`
 ---@field script renoise.InstrumentPhraseScript
 ---

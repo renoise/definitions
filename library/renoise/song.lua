@@ -106,7 +106,7 @@ renoise.Song = {
 ---**READ-ONLY** True while rendering is in progress.
 ---@see renoise.Song.render
 ---@field rendering boolean
----**READ-ONLY** The current render progress amount 
+---**READ-ONLY** The current render progress amount
 ---@see renoise.Song.render
 ---@field rendering_progress number Range: (0.0 - 1.0)
 ---
@@ -151,7 +151,7 @@ renoise.Song = {
 ---Only nil when no samples are present in the selected instrument.
 ---@field selected_sample renoise.Sample?
 ---@field selected_sample_observable renoise.Document.Observable
----**READ-ONLY** Selected sample index in the instrument's sample list. 
+---**READ-ONLY** Selected sample index in the instrument's sample list.
 ---Only 0 when no samples are present in the selected instrument.
 ---@field selected_sample_index integer
 ---
@@ -187,16 +187,16 @@ renoise.Song = {
 ---@field selected_track_device_index integer
 ---
 ---**Deprecated.** **READ-ONLY** Use 'selected_track_device' instead.
----@deprecated 
+---@deprecated
 ---@field selected_device renoise.AudioDevice?
 ---**Deprecated.** Use 'selected_track_device_observable' instead.
----@deprecated 
+---@deprecated
 ---@field selected_device_observable renoise.Document.Observable
 ---**Deprecated.** **READ-ONLY** Use 'selected_track_device_index' instead.
----@deprecated 
+---@deprecated
 ---@field selected_device_index integer
 ---**Deprecated.** **READ-ONLY** Use 'selected_automation_parameter' instead.
----@deprecated 
+---@deprecated
 ---@field selected_parameter renoise.DeviceParameter?
 ---@field selected_parameter_observable renoise.Document.Observable
 ---
@@ -269,16 +269,16 @@ renoise.Song = {
 ---The currently edited line index in the currently edited phrase.
 ---0 when no phrase is selected.
 ---@field selected_phrase_line_index integer
----**READ-ONLY** The currently edited column in the selected line in the currently 
+---**READ-ONLY** The currently edited column in the selected line in the currently
 ---edited phrase. Nil when no phrase is selected or when an effect column is selected.
 ---@field selected_phrase_note_column renoise.NoteColumn?
 ---The currently edited column index in the selected line in the currently edited
 ---phrase. 0 when no phrase is selected or when an effect column is selected.
 ---@field selected_phrase_note_column_index integer
----**READ-ONLY** The currently edited column in the selected line in the currently 
+---**READ-ONLY** The currently edited column in the selected line in the currently
 ---edited phrase. Nil when no phrase is selected or when a note column is selected.
 ---@field selected_phrase_effect_column renoise.EffectColumn?
----The currently edited effect column index in the selected line in the currently 
+---The currently edited effect column index in the selected line in the currently
 ---edited phrase. 0 when no phrase is selected or when a note column is selected.
 ---@field selected_phrase_effect_column_index integer
 ---**READ-ONLY** The currently edited sub column type within the selected
@@ -318,9 +318,10 @@ function renoise.Song:redo() end
 ---give your changes a custom undo description (like: "Generate Synth Sample")
 ---@param description string
 function renoise.Song:describe_undo(description) end
----Same as `describe_undo`, but additionally this tries to merge the following 
+
+---Same as `describe_undo`, but additionally this tries to merge the following
 ---changes to the document with the last one, if the description matches the last
----description and the given timeout was not reached since the last describe_batch_undo 
+---description and the given timeout was not reached since the last describe_batch_undo
 ---call.
 ---
 ---Calls to `describe_undo` from other tools, or from Renoise internally, will cancel
@@ -328,7 +329,7 @@ function renoise.Song:describe_undo(description) end
 ---
 ---Batches can be useful to combine multiple changes in the document into a single
 ---udo/redo step, when the changes happen asynchroniously, for example a process
----sliced action (via Lua coroutines).  
+---sliced action (via Lua coroutines).
 ---@param description string
 ---@param timeout_ms number? Default: 2000
 function renoise.Song:describe_batch_undo(description, timeout_ms) end
@@ -436,7 +437,6 @@ function renoise.Song:capture_nearest_instrument_from_pattern() end
 ---@return renoise.Pattern
 function renoise.Song:pattern(index) end
 
-
 ---@class RenderOptions
 ---by default the song start.
 ---@field start_pos renoise.SongPos?
@@ -486,15 +486,14 @@ function renoise.Song:render(options, filename, rendering_done_callback) end
 ---the current render process is canceled. Otherwise, nothing is done.
 function renoise.Song:cancel_rendering() end
 
-
 ---Trigger the given pattern line index in the current pattern for preview purposes.
 ---This works similar to the Renoise `PlayCurrentLine` keyboard shortcut, but does now
 ---advance the playback position.
 ---
----If you want to preview a single track's note only, mute other tracks before 
+---If you want to preview a single track's note only, mute other tracks before
 ---triggering the pattern line. To stop the preview, invoke `stop` from the transport.
 ---
----Transport playback must be stopped for this to work. If it's not, an error is 
+---Transport playback must be stopped for this to work. If it's not, an error is
 ---thrown.
 ---
 ---This is evaluated from the GUI thread, not a real-time thread, so timing will
@@ -526,7 +525,7 @@ function renoise.Song:trigger_instrument_note_on(instrument_index, track_index, 
 function renoise.Song:trigger_instrument_note_off(instrument_index, track_index, note) end
 
 ---Trigger a sample with the specified note and volume for preview purposes on the
----given track. This directly triggers the sample, bypassing the instrument's keyzone. 
+---given track. This directly triggers the sample, bypassing the instrument's keyzone.
 ---
 ---Only use this to **preview samples** from tools and not as a sequencer.
 ---See also `trigger_instrument_note_on`.
@@ -545,7 +544,6 @@ function renoise.Song:trigger_sample_note_on(instrument_index, sample_index, tra
 ---@param track_index integer The track to play the instrument on.
 ---@param note integer? A single note in Range: (0 - 119). Default: 48.
 function renoise.Song:trigger_sample_note_off(instrument_index, sample_index, track_index, note) end
-
 
 ---Load all global MIDI mappings in the song into a XRNM file.
 ---Returns true when loading/saving succeeded, else false and the error message.
