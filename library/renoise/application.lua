@@ -28,15 +28,26 @@ renoise.Application = {}
 ---
 ---**READ-ONLY** List of recently loaded song files.
 ---@field recently_loaded_song_files string[]
----
 ---**READ-ONLY** List of recently saved song files.
 ---@field recently_saved_song_files string[]
 ---
 ---**READ-ONLY** Returns information about all currently installed tools.
 ---@field installed_tools table<string, string>
+---Fired when the list of installed tools changed.
+---@field installed_tools_observable renoise.Document.Observable
+---
+---Fired when the list of available audio plugin effects changed, for example
+---when scanning for new plugins in the preferences.
+---Use the component's `available_plugins` or `available_devices` properties
+---to access currently available devices which are supported by the component
+---such as the track device chains.
+---@field audio_plugin_effects_observable renoise.Document.Observable
+---Fired when the list of available audio plugin instruments changed, for example
+---when scanning for new plugins in the preferences.
+---@field audio_plugin_instruments_observable renoise.Document.Observable
 ---
 ---**Deprecated.** **READ-ONLY** Use `key_modifier_flags` instead
----@deprecated 
+---@deprecated
 ---@field key_modifier_states table<string, string>
 ---**READ-ONLY** Access keyboard modifier states.
 ---@field key_modifier_flags ModifierFlags
