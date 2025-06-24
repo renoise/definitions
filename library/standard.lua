@@ -241,6 +241,10 @@ function table.rcopy(t) end
 ---@param t table
 function table.clear(t) end
 
+--Backwards compatibility with Lua 5.1.
+---@diagnostic disable-next-line: deprecated
+table.unpack = table.unpack or unpack
+
 -------------------------------------------------------------------------------
 ---## os
 
