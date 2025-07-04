@@ -18,7 +18,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@field max_events number?
 
 --------------------------------------------------------------------------------
----## renoise.InstrumentPhrase
+---## renoise.InstrumentPhraseScript
 
 ---@class renoise.InstrumentPhraseScript
 renoise.InstrumentPhraseScript = {}
@@ -26,6 +26,11 @@ renoise.InstrumentPhraseScript = {}
 ---### properties
 
 ---@class renoise.InstrumentPhraseScript
+---
+---When false, a preview of the script is shown instead of a text editor.
+---@field editor_visible boolean
+---fired, when the editor visibility changed.
+---@field editor_visible_observable renoise.Document.Observable
 ---
 --- **READ-ONLY** List of script input parameters, if any.
 ---@field parameters renoise.DeviceParameter[]
