@@ -79,20 +79,22 @@ function renoise.InstrumentPhraseScript:parameter(index) end
 ---Commit paragraph changes for playback.
 function renoise.InstrumentPhraseScript:commit() end
 
+---@alias RenderingDoneCallback fun(error: string?, rendered_events: integer, skipped_events: integer)
+
 ---Render script content with the given options to the phrase pattern.
 ---Only committed content will be rendered, so make sure to commit changes first.
----Parameter `rendering_done_callback` carries along rendering results:
---- - 1. optional error as string that happened while rendering. nil when succeeded.
---- - 2. number of successfully rendered raw events (not pattern lines) or 0.
---- - 3. number of skipped raw events, in case the pattern can't fit all events, or 0.
+---Parameter `rendering_done_callback` is called with the results:
+--- * `error`: nil when the rendering succeeded, otherwise a string describing the error
+--- * `rendered_events`: number of successfully rendered raw events (not pattern lines) or 0
+--- * `skipped_events`: number of skipped raw events, in case the pattern couldn't fit all events, or 0
 ---@param options RenderScriptOptions
----@param rendering_done_callback fun(string?, integer, integer)
----@overload fun(self, rendering_done_callback: fun()): boolean, string?
+---@param rendering_done_callback RenderingDoneCallback
+---@overload fun(self, rendering_done_callback: RenderingDoneCallback): boolean, string?
 function renoise.InstrumentPhraseScript:render_to_pattern(options, rendering_done_callback) end
 
 ---Same as `render_to_pattern`, but rendering into a temporary phrase object in the clipboard,
 ---which can then be pasted by the user somewhere.
 ---@param options RenderScriptOptions
----@param rendering_done_callback fun(string?, integer, integer)
----@overload fun(self, rendering_done_callback: fun()): boolean, string?
+---@param rendering_done_callback RenderingDoneCallback
+---@overload fun(self, rendering_done_callback: RenderingDoneCallback): boolean, string?
 function renoise.InstrumentPhraseScript:render_to_clipboard(options, rendering_done_callback) end
