@@ -147,8 +147,8 @@ renoise.Document.ObservableString = {}
 ---## renoise.Document.ObservableList
 
 ---@alias ListElementAdded {type: "insert", index:integer}
----@alias ListElementRemoved {type: "removed", index:integer}
----@alias ListElementsSwapped {type: "swapped", index1:integer, index2:integer}
+---@alias ListElementRemoved {type: "remove", index:integer}
+---@alias ListElementsSwapped {type: "swap", index1:integer, index2:integer}
 ---@alias ListElementChange ListElementAdded|ListElementRemoved|ListElementsSwapped
 
 ---@alias ListNotifierFunction fun(change: ListElementChange)
