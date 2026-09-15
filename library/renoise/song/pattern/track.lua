@@ -30,9 +30,9 @@ renoise.PatternTrack = {}
 ---@field is_empty boolean
 ---@field is_empty_observable renoise.Document.Observable
 ---
----**READ-ONLY** Get all lines in range [1, number_of_lines_in_pattern].
+---Get all lines in range [1, number_of_lines_in_pattern].
 ---Use `renoise.Pattern:add/remove_line_notifier` for change notifications.
----@field lines renoise.PatternLine[]
+---@field lines renoise.PatternLine[] **READ-ONLY**
 ---
 ---Automation.
 ---@field automation renoise.PatternTrackAutomation[]

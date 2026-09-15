@@ -53,9 +53,9 @@ renoise.PatternTrackAutomation = {
 ---@field playmode renoise.PatternTrackAutomation.Playmode
 ---@field playmode_observable renoise.Document.Observable
 ---
----**READ-ONLY** Max length (time in lines) of the automation.
+---Max length (time in lines) of the automation.
 ---Will always fit the patterns length.
----@field length integer Range: (1 - NUM_LINES_IN_PATTERN)
+---@field length integer Range: (1 - NUM_LINES_IN_PATTERN) **READ-ONLY** 
 ---
 ---Selection range as visible in the automation editor. always valid.
 ---returns the automation range no selection is present in the UI.

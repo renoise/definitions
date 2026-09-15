@@ -23,38 +23,39 @@ renoise.AudioDevice = {}
 ---
 ---Configurable device display name. When empty `name` is displayed.
 ---@field display_name string
----@field display_name_observable renoise.Document.Observable
+---@field display_name_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Enable/bypass the device.
 ---@field is_active boolean !active = bypassed
----@field is_active_observable renoise.Document.Observable
+---@field is_active_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Maximize state in DSP chain.
 ---@field is_maximized boolean
----@field is_maximized_observable renoise.Document.Observable
+---@field is_maximized_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Preset handling.
 ---@field active_preset integer 0 when none is active or available
----@field active_preset_observable renoise.Document.Observable
+---@field active_preset_observable renoise.Document.Observable **READ-ONLY**
 ---@field active_preset_data string raw serialized data in XML format of the active preset
----@field presets string[] **READ-ONLY** preset names
+---The names of existing presets
+---@field presets string[] **READ-ONLY**
 ---
 ---Parameters.
 ---@field is_active_parameter renoise.DeviceParameter **READ-ONLY**
 ---@field parameters renoise.DeviceParameter[] **READ-ONLY**
 ---
----**READ-ONLY** Returns whether or not the device provides its own custom GUI
+---Returns whether or not the device provides its own custom GUI
 ---(only available for some plugin devices)
----@field external_editor_available boolean
+---@field external_editor_available boolean **READ-ONLY**
 ---
 ---When the device has no custom GUI an error will be fired (see
 ---external_editor_available), otherwise the external editor is opened/closed.
 ---@field external_editor_visible boolean true to show the editor, false to close it
 ---
----**READ-ONLY** Returns a string that uniquely identifies the device, from
+---Returns a string that uniquely identifies the device, from
 ---`available_devices`. The string can be passed into:
 ---`renoise.song().tracks[]:insert_device_at()`
----@field device_path string
+---@field device_path string **READ-ONLY**
 
 ---### functions
 
@@ -93,7 +94,7 @@ renoise.DeviceParameter = {
 ---
 ---Device parameters.
 ---@field name string **READ-ONLY**
----@field name_observable renoise.Document.ObservableString
+---@field name_observable renoise.Document.ObservableString **READ-ONLY**
 --
 ---@field polarity renoise.DeviceParameter.Polarity **READ-ONLY**
 ---
@@ -112,24 +113,24 @@ renoise.DeviceParameter = {
 ---renoise.song().patterns[].tracks[]:create_automation)
 ---@field is_automatable boolean **READ-ONLY**
 ---
----**READ-ONLY** Is automated. Not valid for parameters of instrument devices.
----@field is_automated boolean
----@field is_automated_observable renoise.Document.Observable
+---Is automated. Not valid for parameters of instrument devices.
+---@field is_automated boolean **READ-ONLY**
+---@field is_automated_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Parameter has a custom MIDI mapping in the current song.
----@field is_midi_mapped boolean
----@field is_midi_mapped_observable renoise.Document.Observable
+---Parameter has a custom MIDI mapping in the current song.
+---@field is_midi_mapped boolean **READ-ONLY**
+---@field is_midi_mapped_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Show in mixer. Not valid for parameters of instrument devices.
 ---@field show_in_mixer boolean
----@field show_in_mixer_observable renoise.Document.Observable
+---@field show_in_mixer_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Values.
 ---@field value number value in Range: (value_min - value_max)
----@field value_observable renoise.Document.Observable
+---@field value_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field value_string string
----@field value_string_observable renoise.Document.Observable
+---@field value_string_observable renoise.Document.Observable **READ-ONLY**
 
 ---### functions
 

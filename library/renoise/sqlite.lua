@@ -19,8 +19,8 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---
 ---@class SQLite
 ---
----**READ-ONLY** SQLite version information, in the form `x.y[.z[.p]]`.
----@field version string
+---SQLite version information, in the form `x.y[.z[.p]]`.
+---@field version string **READ-ONLY**
 renoise.SQLite = {}
 
 ---### constants
@@ -100,31 +100,31 @@ function renoise.SQLite.open(filename, flags) end
 
 ---@class SQLiteDatabase : userdata
 ---
----**READ-ONLY** Whether or not the database is open.
----@field is_open boolean
----**READ-ONLY** Whether or not the database is closed.
----@field is_closed boolean
+---Whether or not the database is open.
+---@field is_open boolean **READ-ONLY**
+---Whether or not the database is closed.
+---@field is_closed boolean **READ-ONLY**
 ---
----**READ-ONLY** The most recent error code.
----@field error_code renoise.SQLite.Status
----**READ-ONLY** The most recent error message.
----@field error_message string
+---The most recent error code.
+---@field error_code renoise.SQLite.Status **READ-ONLY**
+---The most recent error message.
+---@field error_message string **READ-ONLY**
 ---
----**READ-ONLY** Number of database rows that were changed, inserted, or deleted by
+---Number of database rows that were changed, inserted, or deleted by
 ---the most recent SQL statement.
 ---Only changes that are directly specified by INSERT, UPDATE, or DELETE statements
 ---are counted.
 ---Auxiliary changes caused by triggers are not counted. Use `db.total_changes`
 ---to find the total number of changes.
----@field changes integer
----**READ-ONLY** The number of database rows that have been modified by INSERT,
+---@field changes integer **READ-ONLY**
+---The number of database rows that have been modified by INSERT,
 ---UPDATE or DELETE statements since the database was opened.
 ---This includes UPDATE, INSERT and DELETE statements executed as part of
 ---trigger programs. All changes are counted as soon as the statement that
 ---produces them is completed by calling either `stmt:reset()` or `stmt:finalize()`.
----@field total_changes integer
+---@field total_changes integer **READ-ONLY**
 ---
----**READ-ONLY** Gets the rowid of the most recent INSERT into the database.
+---Gets the rowid of the most recent INSERT into the database.
 ---If no inserts have ever occurred, 0 is returned.
 ---(Each row in an SQLite table has a unique 64-bit signed integer
 ---key called the 'rowid'. This id is always available as an undeclared
@@ -135,7 +135,7 @@ function renoise.SQLite.open(filename, flags) end
 ---If an INSERT occurs within a trigger, then the rowid of the inserted
 ---row is returned as long as the trigger is running. Once the trigger terminates,
 ---the value returned reverts to the last value inserted before the trigger fired.
----@field last_insert_rowid integer
+---@field last_insert_rowid integer **READ-ONLY**
 local SQLiteDatabase = {}
 
 --- Closes a database. All SQL statements prepared using `db:prepare()` should
@@ -282,45 +282,45 @@ function SQLiteDatabase:urows(sql) end
 ---Precompiled SQLite statements, as created with `db:prepare()`.
 ---@class SQLiteStatement: userdata
 ---
----**READ-ONLY** Whether or not the statement hasn't been finalized.
----@field is_open boolean
----**READ-ONLY** Whether or not the statement has been finalized.
----@field is_closed boolean
+---Whether or not the statement hasn't been finalized.
+---@field is_open boolean **READ-ONLY**
+---Whether or not the statement has been finalized.
+---@field is_closed boolean **READ-ONLY**
 ---
----**READ-ONLY** Number of columns in the result set returned by the statement,
+---Number of columns in the result set returned by the statement,
 ---or 0 if the statement does not return data (for example an UPDATE).
----@field columns integer
+---@field columns integer **READ-ONLY**
 ---
----**READ-ONLY** rowid of the most recent INSERT into the database corresponding
+---rowid of the most recent INSERT into the database corresponding
 ---to this statement.
----@field last_insert_rowid integer
+---@field last_insert_rowid integer **READ-ONLY**
 ---
----**READ-ONLY** A table with the names and types of all columns in the current
+---A table with the names and types of all columns in the current
 ---result set of the statement.
----@field named_types table<string, string>
----**READ-ONLY** A table with names and values of all columns in the current
+---@field named_types table<string, string> **READ-ONLY**
+---A table with names and values of all columns in the current
 ---result row of a query.
----@field named_values table<string, SQLiteValue>
+---@field named_values table<string, SQLiteValue> **READ-ONLY**
 ---
----**READ-ONLY** A list of the names of all columns in the result set returned
+---A list of the names of all columns in the result set returned
 ---by the statement.
----@field names string[]
----**READ-ONLY** A list of the values of all columns in the result set
+---@field names string[] **READ-ONLY**
+---A list of the values of all columns in the result set
 ---returned by the statement.
----@field values SQLiteValue[]
----**READ-ONLY** A list of the types of all columns in the result set returned
+---@field values SQLiteValue[] **READ-ONLY**
+---A list of the types of all columns in the result set returned
 ---by the statement.
----@field types string[]
+---@field types string[] **READ-ONLY**
 ---
----**READ-ONLY** A list of the names of all columns in the result set returned
+---A list of the names of all columns in the result set returned
 ---by the statement.
----@field unames string[]
----**READ-ONLY** A list of the types of all columns in the result set returned
+---@field unames string[] **READ-ONLY**
+---A list of the types of all columns in the result set returned
 ---by the statement.
----@field utypes string[]
----**READ-ONLY** A list of the values of all columns in the current result
+---@field utypes string[] **READ-ONLY**
+---A list of the values of all columns in the current result
 ---row of a query.
----@field uvalues SQLiteValue[]
+---@field uvalues SQLiteValue[] **READ-ONLY**
 local SQLiteStatement = {}
 
 ---### functions

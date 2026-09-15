@@ -176,9 +176,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@field size ViewSize
 ---@field tooltip ViewTooltip
 ---@field cursor ViewCursorShape
----**READ-ONLY** Empty for all controls, for layout views this contains the
+---Empty for all controls, for layout views this contains the
 ---layout child views in the order they got added
----@field views renoise.Views.View[]
+---@field views renoise.Views.View[] **READ-ONLY**
 local View = {}
 
 ---### functions

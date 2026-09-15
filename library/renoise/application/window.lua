@@ -76,11 +76,11 @@ renoise.ApplicationWindow = {
 ---Get/set if the application is running fullscreen.
 ---@field fullscreen boolean
 ---
----**READ-ONLY**. Window status flag.
----@field is_maximized boolean
+---Window status flag.
+---@field is_maximized boolean **READ-ONLY**
 ---
----**READ-ONLY**. Window status flag.
----@field is_minimized boolean
+---Window status flag.
+---@field is_minimized boolean **READ-ONLY**
 ---
 ---When true, the middle frame views (like the pattern editor) will
 ---stay focused unless alt or middle mouse is clicked.

@@ -34,9 +34,9 @@ renoise.Pattern.MAX_NUMBER_OF_LINES = 512
 ---@field number_of_lines integer
 ---@field number_of_lines_observable renoise.Document.Observable
 ---
----**READ-ONLY** Access to the pattern tracks. Each pattern has
+---Access to the pattern tracks. Each pattern has
 ---#renoise.song().tracks amount of tracks.
----@field tracks renoise.PatternTrack[]
+---@field tracks renoise.PatternTrack[] **READ-ONLY**
 
 ---### functions
 

@@ -33,16 +33,16 @@ function renoise.Osc.from_binary_data(binary_data) end
 
 ---@class renoise.Osc.Message
 ---
----**READ-ONLY** The message pattern (e.g. "/renoise/transport/start")
----@field pattern string
+---The message pattern (e.g. "/renoise/transport/start")
+---@field pattern string **READ-ONLY**
 ---
----**READ-ONLY** Table of `{tag="X", value=SomeValue}` that represents the
+---Table of `{tag="X", value=SomeValue}` that represents the
 ---message arguments. See `renoise.Osc.Message.create` for more info.
----@field arguments OscValue[]
+---@field arguments OscValue[] **READ-ONLY**
 ---
----**READ-ONLY** Raw binary representation of the message, as needed when e.g.
+---Raw binary representation of the message, as needed when e.g.
 ---sending the message over the network through sockets.
----@field binary_data string
+---@field binary_data string **READ-ONLY**
 renoise.Osc.Message = {}
 
 ---### functions
@@ -87,11 +87,11 @@ function renoise.Osc.Message(pattern, arguments) end
 
 ---@class renoise.Osc.Bundle
 ---
----**READ-ONLY** Time value of the bundle.
----@field timetag number
+---Time value of the bundle.
+---@field timetag number **READ-ONLY**
 ---
----**READ-ONLY** Access to the bundle elements (table of messages or bundles)
----@field elements (renoise.Osc.Message|renoise.Osc.Bundle)[]
+---Access to the bundle elements (table of messages or bundles)
+---@field elements (renoise.Osc.Message|renoise.Osc.Bundle)[] **READ-ONLY**
 ---
 -- **READ-ONLY** Raw binary representation of the bundle, as needed when e.g.
 ---sending the message over the network through sockets.

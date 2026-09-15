@@ -18,8 +18,8 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---attaching it to some common tool related notifiers.
 ---@class renoise.ScriptingTool
 ---
----**READ_ONLY** Full absolute path and name to your tool's bundle directory.
----@field bundle_path string
+---Full absolute path and name to your tool's bundle directory.
+---@field bundle_path string **READ_ONLY**
 ---
 ---Invoked when the tool finished loading/initializing and no errors happened.
 ---When the tool has preferences, they are loaded here as well when the

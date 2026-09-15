@@ -52,10 +52,10 @@ renoise.Sample = {
 
 ---@class renoise.Sample
 ---
----**READ-ONLY** True, when the sample slot is an alias to a sliced master sample.
+---True, when the sample slot is an alias to a sliced master sample.
 ---Such sample slots are read-only and automatically managed with the master samples
 ---slice list.
----@field is_slice_alias boolean
+---@field is_slice_alias boolean **READ-ONLY**
 ---Read/write access to the slice marker list of a sample. When new markers are
 ---set or existing ones unset, existing 0S effects or notes to existing slices
 ---will NOT be remapped (unlike its done with the insert/remove/move_slice_marker
@@ -65,71 +65,70 @@ renoise.Sample = {
 ---@field slice_markers_observable renoise.Document.ObservableList
 ---Name.
 ---@field name string
----@field name_observable renoise.Document.Observable
+---@field name_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Panning, volume.
 ---@field panning number Range: (0.0 - 1.0)
----@field panning_observable renoise.Document.Observable
+---@field panning_observable renoise.Document.Observable **READ-ONLY**
 ---@field volume number Range: (0.0 - 4.0)
----@field volume_observable renoise.Document.Observable
+---@field volume_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Tuning.
 ---@field transpose integer Range: (-120 - 120)
----@field transpose_observable renoise.Document.Observable
+---@field transpose_observable renoise.Document.Observable **READ-ONLY**
 ---@field fine_tune integer Range: (-127 - 127)
----@field fine_tune_observable renoise.Document.Observable
+---@field fine_tune_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Beat sync.
 ---@field beat_sync_enabled boolean
----@field beat_sync_enabled_observable renoise.Document.Observable
+---@field beat_sync_enabled_observable renoise.Document.Observable **READ-ONLY**
 ---@field beat_sync_lines integer Range: (1 - 512)
----@field beat_sync_lines_observable renoise.Document.Observable
+---@field beat_sync_lines_observable renoise.Document.Observable **READ-ONLY**
 ---@field beat_sync_mode renoise.Sample.BeatSyncMode
----@field beat_sync_mode_observable renoise.Document.Observable
+---@field beat_sync_mode_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Interpolation, new note action, oneshot, mute_group, autoseek, autofade.
 ---@field interpolation_mode renoise.Sample.InterpolationMode
----@field interpolation_mode_observable renoise.Document.Observable
+---@field interpolation_mode_observable renoise.Document.Observable **READ-ONLY**
 ---@field oversample_enabled  boolean
----@field oversample_enabled_observable renoise.Document.Observable
+---@field oversample_enabled_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field new_note_action renoise.Sample.NewNoteActionMode
----@field new_note_action_observable renoise.Document.Observable
+---@field new_note_action_observable renoise.Document.Observable **READ-ONLY**
 ---@field oneshot  boolean
----@field oneshot_observable renoise.Document.Observable
+---@field oneshot_observable renoise.Document.Observable **READ-ONLY**
 ---@field mute_group  integer Range: (0 - 15) where 0 means no group
----@field mute_group_observable renoise.Document.Observable
+---@field mute_group_observable renoise.Document.Observable **READ-ONLY**
 ---@field autoseek boolean
----@field autoseek_observable renoise.Document.Observable
+---@field autoseek_observable renoise.Document.Observable **READ-ONLY**
 ---@field autofade boolean
----@field autofade_observable renoise.Document.Observable
+---@field autofade_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Loops.
 ---@field loop_mode renoise.Sample.LoopMode
----@field loop_mode_observable renoise.Document.Observable
+---@field loop_mode_observable renoise.Document.Observable **READ-ONLY**
 ---@field loop_release boolean
----@field loop_release_observable renoise.Document.Observable
+---@field loop_release_observable renoise.Document.Observable **READ-ONLY**
 ---@field loop_start integer Range: (1 - num_sample_frames)
----@field loop_start_observable renoise.Document.Observable
+---@field loop_start_observable renoise.Document.Observable **READ-ONLY**
 ---@field loop_end integer Range: (1 - num_sample_frames)
----@field loop_end_observable renoise.Document.Observable
+---@field loop_end_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---The linked modulation set. 0 when disable, else a valid index for the
 ---renoise.Instrument.sample_modulation_sets table
 ---@field modulation_set_index integer
----@field modulation_set_index_observable renoise.Document.Observable
+---@field modulation_set_index_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---The linked instrument device chain. 0 when disable, else a valid index for the
 ---renoise.Instrument.sample_device_chain table
 ---@field device_chain_index integer
----@field device_chain_index_observable renoise.Document.Observable
+---@field device_chain_index_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY**
----@field sample_buffer renoise.SampleBuffer
----@field sample_buffer_observable renoise.Document.Observable
+---@field sample_buffer renoise.SampleBuffer **READ-ONLY**
+---@field sample_buffer_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Keyboard Note/velocity mapping
----@field sample_mapping renoise.SampleMapping
+---Keyboard Note/velocity mapping
+---@field sample_mapping renoise.SampleMapping **READ-ONLY**
 
 ---### functions
 
@@ -179,9 +178,9 @@ renoise.SampleMapping = {}
 ---modified. See `sample_mappings[].read_only`
 ---@class renoise.SampleMapping
 ---
----**READ-ONLY** True for sliced instruments. No sample mapping properties are
+---True for sliced instruments. No sample mapping properties are
 ---allowed to be modified, but can be read.
----@field read_only boolean
+---@field read_only boolean **READ-ONLY**
 ---
 ---Linked sample.
 ---@field sample renoise.Sample
@@ -232,24 +231,24 @@ renoise.SampleBuffer = {
 ---'has_sample_data' returns false:
 ---@class renoise.SampleBuffer
 ---
----**READ-ONLY** Check this before accessing properties
----@field has_sample_data boolean
+---Check this before accessing properties
+---@field has_sample_data boolean **READ-ONLY**
 ---
----**READ-ONLY** True, when the sample buffer can only be read, but not be
+---True, when the sample buffer can only be read, but not be
 ---modified. true for sample aliases of sliced samples. To modify such sample
 ---buffers, modify the sliced master sample buffer instead.
----@field read_only boolean
----**READ-ONLY** The current sample rate in Hz, like 44100.
----@field sample_rate integer
+---@field read_only boolean **READ-ONLY**
+---The current sample rate in Hz, like 44100.
+---@field sample_rate integer **READ-ONLY**
 ---
----**READ-ONLY** The current bit depth, like 32, 16, 8.
----@field bit_depth integer
+---The current bit depth, like 32, 16, 8.
+---@field bit_depth integer **READ-ONLY**
 ---
----**READ-ONLY** The integer of sample channels (1 or 2)
----@field number_of_channels integer
+---The integer of sample channels (1 or 2)
+---@field number_of_channels integer **READ-ONLY**
 ---
----**READ-ONLY** The sample frame count (integer of samples per channel)
----@field number_of_frames integer
+---The sample frame count (integer of samples per channel)
+---@field number_of_frames integer **READ-ONLY**
 ---
 ---The first sample displayed in the sample editor view. Set together with
 ---DisplayLength to control zooming.

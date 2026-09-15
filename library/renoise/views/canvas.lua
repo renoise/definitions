@@ -93,16 +93,15 @@ function Canvas:update() end
 --- [HTML5 Canvas Documentation](https://www.w3schools.com/tags/ref_canvas.asp)
 ---@class renoise.Views.Canvas.Context
 ---
----**READ_ONLY** Size of the render context backend **in raw pixel resolution**.
+---Size of the render context backend **in raw pixel resolution**.
 ---This is the view ports size, multiplied with the global UI scaling factor.
 ---It does not change with transformations.
----@field pixel_size { width: integer, height: integer }
+---@field pixel_size { width: integer, height: integer } **READ-ONLY**
 ---
----**READ_ONLY** Size of the render context **with transformations applied**.
+---Size of the render context **with transformations applied**.
 ---This initially will be the view's size. Calls to `transform` or `scale`
 ---may change the size further.
----@field size { width: integer, height: integer }
----
+---@field size { width: integer, height: integer } **READ_ONLY**
 ---The degree of opacity applied to all drawing operations.<br>
 ---
 ---If an operation already uses a transparent color, this can make it

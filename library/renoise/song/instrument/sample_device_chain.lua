@@ -20,25 +20,25 @@ renoise.SampleDeviceChain = {}
 ---@field name string
 ---@field name_observable renoise.Document.Observable
 ---
----**READ-ONLY** Allowed, available devices for 'insert_device_at'.
----@field available_devices string[]
+---Allowed, available devices for 'insert_device_at'.
+---@field available_devices string[] **READ-ONLY**
 ---
----**READ-ONLY** Returns a list of tables containing more information about
+---Returns a list of tables containing more information about
 ---the devices.
 ---@see renoise.Track.available_device_infos
----@field available_device_infos AudioDeviceInfo[]
+---@field available_device_infos AudioDeviceInfo[] **READ-ONLY**
 ---
----**READ-ONLY** Device access.
----@field devices renoise.AudioDevice[]
----@field devices_observable renoise.Document.ObservableList
+---Device access.
+---@field devices renoise.AudioDevice[] **READ-ONLY**
+---@field devices_observable renoise.Document.ObservableList **READ-ONLY**
 ---
----**READ-ONLY** Output routing.
----@field available_output_routings string[]
+---Output routing.
+---@field available_output_routings string[] **READ-ONLY**
 ---
 ---One of 'available_output_routings'
 ---@see renoise.SampleDeviceChain.available_output_routings
 ---@field output_routing string
----@field output_routing_observable renoise.Document.Observable
+---@field output_routing_observable renoise.Document.Observable **READ-ONLY**
 
 ---### functions
 

@@ -80,18 +80,18 @@ function renoise.Socket.create_client(server_address, server_port, protocol, tim
 ---SocketBase properties and functions are available for servers and clients.
 ---@class renoise.Socket.SocketBase
 ---
----**READ-ONLY** Returns true when the socket object is valid and connected.
+---Returns true when the socket object is valid and connected.
 ---Sockets can manually be closed (see socket:close()). Client sockets can also
 ---actively be closed/refused by the server. In this case the client:receive()
 ---calls will fail and return an error.
----@field is_open boolean
+---@field is_open boolean **READ-ONLY**
 ---
----**READ-ONLY** The socket's resolved local address (for example "127.0.0.1"
+---The socket's resolved local address (for example "127.0.0.1"
 ---when a socket is bound to "localhost")
----@field local_address string
+---@field local_address string **READ-ONLY**
 ---
----**READ-ONLY** The socket's local port number, as specified when instantiated.
----@field local_port integer
+---The socket's local port number, as specified when instantiated.
+---@field local_port integer **READ-ONLY**
 renoise.Socket.SocketBase = {}
 
 ---### functions
@@ -120,13 +120,13 @@ function renoise.Socket.SocketBase:close() end
 ---messages it will not block or timeout.
 ---@class renoise.Socket.SocketClient : renoise.Socket.SocketBase
 ---
----**READ-ONLY** Address of the socket's peer, the socket address this client
+---Address of the socket's peer, the socket address this client
 ---is connected to.
----@field peer_address string
+---@field peer_address string **READ-ONLY**
 ---
----**READ-ONLY** Port of the socket's peer, the socket this client is
+---Port of the socket's peer, the socket this client is
 ---connected to.
----@field peer_port integer
+---@field peer_port integer **READ-ONLY**
 renoise.Socket.SocketClient = {}
 
 ---### functions
@@ -192,8 +192,8 @@ function renoise.Socket.SocketClient:receive(mode, timeout_ms) end
 ---callbacks are invoked to respond to messages.
 ---@class renoise.Socket.SocketServer : renoise.Socket.SocketBase
 ---
----**READ-ONLY** true while the server is running, else false.
----@field is_running boolean
+---true while the server is running, else false.
+---@field is_running boolean **READ-ONLY**
 renoise.Socket.SocketServer = {}
 
 

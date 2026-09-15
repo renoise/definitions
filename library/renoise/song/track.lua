@@ -48,18 +48,18 @@ renoise.Track = {
 ---Type, name, color.
 ---@field type renoise.Track.TrackType **READ-ONLY**
 ---@field name string Name, as visible in track headers
----@field name_observable renoise.Document.Observable
+---@field name_observable renoise.Document.Observable **READ-ONLY**
 ---@field color RGBColor
----@field color_observable renoise.Document.Observable
+---@field color_observable renoise.Document.Observable **READ-ONLY**
 ---@field color_blend integer Range: (0 - 100) Color blend in percent
----@field color_blend_observable renoise.Document.Observable
+---@field color_blend_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Mute and solo states. Not available for the master track.
 ---@field mute_state renoise.Track.MuteState
----@field mute_state_observable renoise.Document.Observable
+---@field mute_state_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field solo_state boolean
----@field solo_state_observable renoise.Document.Observable
+---@field solo_state_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Volume, panning, width.
 ---@field prefx_volume renoise.DeviceParameter **READ-ONLY**
@@ -71,7 +71,7 @@ renoise.Track = {
 ---
 ---Collapsed/expanded visual appearance.
 ---@field collapsed boolean
----@field collapsed_observable renoise.Document.Observable
+---@field collapsed_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Returns most immediate group parent or nil if not in a group.
 ---@field group_parent renoise.GroupTrack? **READ-ONLY**
@@ -79,11 +79,11 @@ renoise.Track = {
 ---Output routing.
 ---@field available_output_routings string[] **READ-ONLY**
 ---@field output_routing string One of `available_output_routings`
----@field output_routing_observable renoise.Document.Observable
+---@field output_routing_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Delay.
 ---@field output_delay number Range: (-100.0-100.0) in ms
----@field output_delay_observable renoise.Document.Observable
+---@field output_delay_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Pattern editor columns.
 ---@field max_effect_columns integer **READ-ONLY** 8 OR 0 depending on the track type
@@ -93,26 +93,27 @@ renoise.Track = {
 ---@field min_note_columns integer **READ-ONLY** 1 OR 0 depending on the track type
 ---
 ---@field visible_effect_columns integer 1-8 OR 0-8, depending on the track type
----@field visible_effect_columns_observable renoise.Document.Observable
+---@field visible_effect_columns_observable renoise.Document.Observable **READ-ONLY**
 ---@field visible_note_columns integer 0 OR 1-12, depending on the track type
----@field visible_note_columns_observable renoise.Document.Observable
+---@field visible_note_columns_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field volume_column_visible boolean
----@field volume_column_visible_observable renoise.Document.Observable
+---@field volume_column_visible_observable renoise.Document.Observable **READ-ONLY**
 ---@field panning_column_visible boolean
----@field panning_column_visible_observable renoise.Document.Observable
+---@field panning_column_visible_observable renoise.Document.Observable **READ-ONLY**
 ---@field delay_column_visible boolean
----@field delay_column_visible_observable renoise.Document.Observable
+---@field delay_column_visible_observable renoise.Document.Observable **READ-ONLY**
 ---@field sample_effects_column_visible boolean
----@field sample_effects_column_visible_observable renoise.Document.Observable
+---@field sample_effects_column_visible_observable renoise.Document.Observable **READ-ONLY**
 ---
----Devices.
----@field available_devices string[] **READ-ONLY** FX devices this track can handle.
----**READ-ONLY** Array of tables containing information about the devices.
----@field available_device_infos AudioDeviceInfo[]
+---The FX devices this track can handle.
+---@field available_devices string[] **READ-ONLY**
+---Array of tables containing information about the devices.
+---@field available_device_infos AudioDeviceInfo[] **READ-ONLY**
 ---
----@field devices renoise.AudioDevice[] **READ-ONLY** List of audio DSP FX.
----@field devices_observable renoise.Document.ObservableList
+---List of audio DSP FX.
+---@field devices renoise.AudioDevice[] **READ-ONLY**
+---@field devices_observable renoise.Document.ObservableList **READ-ONLY**
 
 ---### functions
 
@@ -190,13 +191,11 @@ renoise.GroupTrack = {}
 ---### properties
 
 ---Group track component of a Renoise song.
----@class renoise.GroupTrack : renoise.Track
----
----**READ-ONLY** All member tracks of this group, including subgroups and
----their tracks.
----@field members renoise.Track[]
----
----Collapsed/expanded visual appearance of whole group.
+---All member tracks of this group, including subgroups
+---and their tracks.
+---@class renoise.GroupTrack
+---@field members renoise.Track[] **READ-ONLY**
+---Collapsed/expanded visual appearce of whole group.
 ---@field group_collapsed boolean
 
 

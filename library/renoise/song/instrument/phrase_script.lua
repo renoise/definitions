@@ -30,12 +30,12 @@ renoise.InstrumentPhraseScript = {}
 ---When false, a preview of the script is shown instead of a text editor.
 ---@field editor_visible boolean
 ---fired, when the editor visibility changed.
----@field editor_visible_observable renoise.Document.Observable
+---@field editor_visible_observable renoise.Document.Observable **READ-ONLY**
 ---
---- **READ-ONLY** List of script input parameters, if any.
----@field parameters renoise.DeviceParameter[]
+---List of script input parameters, if any.
+---@field parameters renoise.DeviceParameter[] **READ-ONLY**
 ---fired, when the input parameter set changed.
----@field parameters_observable renoise.Document.ObservableList
+---@field parameters_observable renoise.Document.ObservableList **READ-ONLY**
 ---
 ---Script content. When changing paragraphs, changes are visible in the
 ---script editor, but are not applied for playback until they get committed.
@@ -46,27 +46,27 @@ renoise.InstrumentPhraseScript = {}
 ---Notifier which is called when existing paragraph content changed.
 ---@field paragraphs_assignment_observable renoise.Document.Observable
 ---
----**READ-ONLY** When not empty, the script failed to compile.
+---When not empty, the script failed to compile.
 ---This error text is also visible to the user in the script preview.
----@field compile_error string
----@field compile_error_observable renoise.Document.Observable
----**READ-ONLY** When not empty, script compiled successfully, but caused an
+---@field compile_error string **READ-ONLY**
+---@field compile_error_observable renoise.Document.Observable **READ-ONLY**
+---When not empty, script compiled successfully, but caused an
 ---error while running. This error text is also visible to the user in the
 ---script editor.
----@field runtime_error string
----@field runtime_error_observable renoise.Document.Observable
+---@field runtime_error string **READ-ONLY**
+---@field runtime_error_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Number of changes since the last commit() or auto-commit call,
+---Number of changes since the last commit() or auto-commit call,
 ---that have been applied to the parapgraphs.
 ---Note: `auto-commit` only is applied for scripts which are currently edited.
----@field pending_changes integer
----@field pending_changes_observable renoise.Document.Observable
+---@field pending_changes integer **READ-ONLY**
+---@field pending_changes_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Fired when script paragraph changes got committed: Either by an explicit
 ---`commit` call or via `auto-commit` in the editor when the script currently is
 ---edited. Script compile errors will be set or cleared *after* the observable
 ---fires as the commit & compilation happens asynchroniously in the player engine.
----@field committed_observable renoise.Document.Observable
+---@field committed_observable renoise.Document.Observable **READ-ONLY**
 
 ---### functions
 

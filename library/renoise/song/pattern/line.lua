@@ -92,12 +92,12 @@ renoise.NoteColumn = {}
 
 ---@class renoise.NoteColumn
 ---
----**READ-ONLY** True, when all note column properties are empty.
----@field is_empty boolean
+---True, when all note column properties are empty.
+---@field is_empty boolean **READ-ONLY**
 ---
----**READ-ONLY** True, when this column is selected in the pattern or phrase
+---True, when this column is selected in the pattern or phrase
 ---editors current pattern.
----@field is_selected boolean
+---@field is_selected boolean **READ-ONLY**
 ---
 ---@field note_value integer Range: (0-119) or 120=Off or 121=Empty
 ---@field note_string string Range: (\'C-0\'-\'G-9\') or \'OFF\' or \'---\'
@@ -165,11 +165,11 @@ renoise.EffectColumn = {}
 
 ---@class renoise.EffectColumn
 ---
----**READ-ONLY** True, when all effect column properties are empty.
----@field is_empty boolean
+---True, when all effect column properties are empty.
+---@field is_empty boolean **READ-ONLY**
 ---
----**READ-ONLY** True, when this column is selected in the pattern or phrase editor.
----@field is_selected boolean
+---True, when this column is selected in the pattern or phrase editor.
+---@field is_selected boolean **READ-ONLY**
 ---
 ---0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2
 ---@field number_value integer

@@ -93,7 +93,7 @@ renoise.SampleModulationSet = {}
 ---
 ---Name of the modulation set.
 ---@field name string
----@field name_observable renoise.Document.Observable
+---@field name_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Input value for the volume domain
 ---@field volume_input renoise.DeviceParameter
@@ -115,28 +115,28 @@ renoise.SampleModulationSet = {}
 ---
 ---Pitch range in semitones
 ---@field pitch_range integer Range: (1 - 96)
----@field pitch_range_observable renoise.Document.Observable
+---@field pitch_range_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** All available devices, to be used in 'insert_device_at'.
----@field available_devices string[]
+---All available devices, to be used in 'insert_device_at'.
+---@field available_devices string[] **READ-ONLY**
 ---
----**READ-ONLY** Device list access.
----@field devices renoise.SampleModulationDevice[]
----@field devices_observable renoise.Document.ObservableList
+---Device list access.
+---@field devices renoise.SampleModulationDevice[] **READ-ONLY**
+---@field devices_observable renoise.Document.ObservableList **READ-ONLY**
 ---
----**READ-ONLY** Filter version, 3 is the latest.
+---Filter version, 3 is the latest.
 ---@see renoise.SampleModulationSet.upgrade_filter_version
----@field filter_version 1 | 2 | 3
----@field filter_version_observable renoise.Document.Observable
+---@field filter_version 1 | 2 | 3 **READ-ONLY**
+---@field filter_version_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** List of available filter types depending on the filter_version.
----@field available_filter_types FilterTypes[]
+---List of available filter types depending on the filter_version.
+---@field available_filter_types FilterTypes[] **READ-ONLY**
 ---
 ---The type of the filter selected for the modulation set.
 ---Songs made with previous versions of Renoise may use old filter types.
 ---@see renoise.SampleModulationSet.available_filter_types
----@field filter_type FilterTypes
----@field filter_type_observable renoise.Document.Observable
+---@field filter_type FilterTypes **READ-ONLY**
+---@field filter_type_observable renoise.Document.Observable **READ-ONLY**
 
 ---### functions
 
@@ -200,11 +200,11 @@ renoise.SampleModulationDevice = {
 
 ---@class renoise.SampleModulationDevice
 ---
----**READ-ONLY** Fixed name of the device.
----@field name string
+---Fixed name of the device.
+---@field name string **READ-ONLY**
 ---
----**READ-ONLY**
----@field short_name string
+---
+---@field short_name string **READ-ONLY**
 ---
 ---Configurable device display name.
 ---@field display_name  string
@@ -223,9 +223,9 @@ renoise.SampleModulationDevice = {
 ---@field is_maximized boolean
 ---@field is_maximized_observable renoise.Document.Observable
 ---
----**READ-ONLY** Where the modulation gets applied (Volume,
+---Where the modulation gets applied (Volume,
 ---Pan, Pitch, Cutoff, Resonance).
----@field target renoise.SampleModulationDevice.TargetType
+---@field target renoise.SampleModulationDevice.TargetType **READ-ONLY**
 ---
 ---Modulation operator: how the device applies.
 ---@field operator renoise.SampleModulationDevice.OperatorType
@@ -237,10 +237,10 @@ renoise.SampleModulationDevice = {
 ---@field bipolar boolean
 ---@field bipolar_observable renoise.Document.Observable
 ---
----**READ-ONLY** When true, the device has one of more time parameters,
+---When true, the device has one of more time parameters,
 ---which can be switched to operate in synced or unsynced mode.
---- see also field tempo_synced.
----@field tempo_sync_switching_allowed boolean
+---see also field tempo_synced.
+---@field tempo_sync_switching_allowed boolean **READ-ONLY**
 ---
 ---When true and the device supports sync switching the device operates
 ---in wall-clock (ms) instead of beat times.
@@ -248,11 +248,11 @@ renoise.SampleModulationDevice = {
 ---@field tempo_synced boolean
 ---@field tempo_synced_observable renoise.Document.Observable
 ---
----**READ-ONLY** Generic access to all parameters of this device.
----@field is_active_parameter renoise.DeviceParameter
+---Generic access to all parameters of this device.
+---@field is_active_parameter renoise.DeviceParameter **READ-ONLY**
 ---
----**READ-ONLY**
----@field parameters renoise.DeviceParameter[]
+---
+---@field parameters renoise.DeviceParameter[] **READ-ONLY**
 
 ---### functions
 
@@ -416,7 +416,7 @@ renoise.SampleEnvelopeModulationDevice = {
 ---@class renoise.SampleEnvelopeModulationDevice : renoise.SampleModulationDevice
 ---
 ---External editor visibility.
---- set to true to show the editor, false to close it
+---set to true to show the editor, false to close it
 ---@field external_editor_visible boolean
 ---
 ---Play mode (interpolation mode).
