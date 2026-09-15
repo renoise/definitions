@@ -148,7 +148,7 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 
 ---Optional focus change notifier for a custom dialog.
 ---Will be called when the dialog gains of loses key focus. You maybe want to initialize
----your dloag's (modifier) keyboard states here.
+---your dialog's (modifier) keyboard states here.
 ---@alias FocusHandler fun(dialogs: renoise.Dialog, focused: boolean) : KeyEvent?
 ---@alias FocusHandlerMemberFunction fun(self: NotifierMemberContext, dialog: renoise.Dialog, focused: boolean): KeyEvent?
 ---@alias FocusHandlerMethod1 {[1]:NotifierMemberContext, [2]:FocusHandlerMemberFunction}

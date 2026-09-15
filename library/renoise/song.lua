@@ -137,53 +137,55 @@ renoise.Song = {
 ---**READ-ONLY** Selected in the instrument box.
 ---@field selected_instrument renoise.Instrument
 ---@field selected_instrument_observable renoise.Document.Observable
----**READ-ONLY** Selected instrument index in the instrument box.
+---Selected instrument index in the instrument box.
+---Note, Renoise displays zero-based indices here
+---but this value starts from one.
 ---@field selected_instrument_index integer
 ---@field selected_instrument_index_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** Selected phrase the instrument's phrase map piano view.
 ---@field selected_phrase renoise.InstrumentPhrase?
 ---@field selected_phrase_observable renoise.Document.Observable
----**READ-ONLY** Selected phrase index the instrument's phrase map piano view.
+---Selected phrase index the instrument's phrase map piano view.
 ---@field selected_phrase_index integer
 ---
 ---**READ-ONLY** Selected in the instrument's sample list.
 ---Only nil when no samples are present in the selected instrument.
 ---@field selected_sample renoise.Sample?
 ---@field selected_sample_observable renoise.Document.Observable
----**READ-ONLY** Selected sample index in the instrument's sample list.
+---Selected sample index in the instrument's sample list.
 ---Only 0 when no samples are present in the selected instrument.
 ---@field selected_sample_index integer
 ---
 ---**READ-ONLY** Selected in the instrument's modulation view.
 ---@field selected_sample_modulation_set renoise.SampleModulationSet?
 ---@field selected_sample_modulation_set_observable renoise.Document.Observable
----**READ-ONLY** Selected modulation set index in the instrument's modulation view.
+---Selected modulation set index in the instrument's modulation view.
 ---@field selected_sample_modulation_set_index integer
 ---
 ---**READ-ONLY** Selected in the instrument's effects view.
 ---@field selected_sample_device_chain renoise.SampleDeviceChain?
 ---@field selected_sample_device_chain_observable renoise.Document.Observable
----**READ-ONLY** Selected chain index in the instrument's effects view.
+---Selected chain index in the instrument's effects view.
 ---@field selected_sample_device_chain_index integer
 ---
 ---**READ-ONLY** Selected in the sample effect mixer.
 ---@field selected_sample_device renoise.AudioDevice?
 ---@field selected_sample_device_observable renoise.Document.Observable
----**READ-ONLY** Selected device index in the sample effect mixer.
+---Selected device index in the sample effect mixer.
 ---@field selected_sample_device_index integer
 ---
 ---**READ-ONLY** Selected in the pattern editor or mixer.
 ---@field selected_track renoise.Track
 ---@field selected_track_observable renoise.Document.Observable
----**READ-ONLY** Selected track index in the pattern editor or mixer.
+---Selected track index in the pattern editor or mixer.
 ---@field selected_track_index integer
 ---@field selected_track_index_observable renoise.Document.Observable
 ---
 ---**READ-ONLY** Selected in the track DSP chain editor.
 ---@field selected_track_device renoise.AudioDevice?
 ---@field selected_track_device_observable renoise.Document.Observable
----**READ-ONLY** Selected device index in the track DSP chain editor.
+---Selected device index in the track DSP chain editor.
 ---@field selected_track_device_index integer
 ---
 ---**Deprecated.** **READ-ONLY** Use 'selected_track_device' instead.
@@ -212,7 +214,7 @@ renoise.Song = {
 ---**READ-ONLY** The currently edited pattern.
 ---@field selected_pattern renoise.Pattern
 ---@field selected_pattern_observable renoise.Document.Observable
----**READ-ONLY** The currently edited pattern index.
+---The currently edited pattern index.
 ---@field selected_pattern_index integer
 ---@field selected_pattern_index_observable renoise.Document.Observable
 ---
