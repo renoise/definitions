@@ -26,21 +26,21 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---notification fires, but 'renoise.song()' may not yet be available.
 ---
 ---See also 'renoise.tool().app_new_document_observable'.
----@field tool_finished_loading_observable renoise.Document.Observable
+---@field tool_finished_loading_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Invoked right before a tool gets unloaded: either because it got disabled,
 ---reloaded or the application exists. You can cleanup resources or connections
 ---to other devices here if necessary.
----@field tool_will_unload_observable renoise.Document.Observable
+---@field tool_will_unload_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Invoked as soon as the application becomes the foreground window.
 ---For example, when you ATL-TAB to it, or activate it with the mouse
 ---from another app to Renoise.
----@field app_became_active_observable renoise.Document.Observable
+---@field app_became_active_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Invoked as soon as the application looses focus and another app
 ---becomes the foreground window.
----@field app_resigned_active_observable renoise.Document.Observable
+---@field app_resigned_active_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Invoked periodically in the background, more often when the work load
 ---is low, less often when Renoise's work load is high.
@@ -48,29 +48,29 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---around 10 times per sec.
 ---You can do stuff in the background without blocking the application here.
 ---Be gentle and don't do CPU heavy stuff please!
----@field app_idle_observable renoise.Document.Observable
+---@field app_idle_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Invoked each time before a new document gets created or loaded: this is the
 ---last time renoise.song() still points to the old song before a new one arrives.
 ---You can explicitly release notifiers to the old document here, or do your own
 ---housekeeping. Also called right before the application exits.
----@field app_release_document_observable renoise.Document.Observable
+---@field app_release_document_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Invoked each time a new document (song) is created or loaded. In other words:
 ---each time the result of renoise.song() is changed. Also called when the script
 ---gets reloaded (only happens with the auto_reload debugging tools), in order
 ---to connect the new script instance to the already running document.
----@field app_new_document_observable renoise.Document.Observable
+---@field app_new_document_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Invoked just before the application document (song) is saved.
 ---This is the last chance to make any changes that should be part of
 ---the saved song. You could for example write your tool data to
 ---`renoise.song().tool_data` here.
----@field app_will_save_document_observable renoise.Document.Observable
+---@field app_will_save_document_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Invoked each time the app's document (song) is successfully saved.
 ---renoise.song().file_name will point to the filename that it was saved to.
----@field app_saved_document_observable renoise.Document.Observable
+---@field app_saved_document_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Get or set an optional renoise.Document.DocumentNode object, which will be
 ---used as set of persistent "options" or preferences for your tool.

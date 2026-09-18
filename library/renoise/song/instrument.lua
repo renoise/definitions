@@ -56,27 +56,27 @@ renoise.Instrument = {
 ---Currently active tab in the instrument GUI (samples, plugin or MIDI).
 ---@see renoise.
 ---@field active_tab renoise.Instrument.Tab
----@field active_tab_observable renoise.Document.Observable
+---@field active_tab_observable renoise.Document.Observable **READ-ONLY**
 --
 ---Instrument's name.
 ---@field name string
----@field name_observable renoise.Document.Observable
+---@field name_observable renoise.Document.Observable **READ-ONLY**
 --
 ---Instrument's comment list. See renoise.song().comments for more info on
 ---how to get notified on changes and how to change it.
 ---@field comments string[]
----@field comments_observable renoise.Document.Observable
+---@field comments_observable renoise.Document.Observable **READ-ONLY**
 --
 ---Notifier which is called as soon as any paragraph in the comments change.
----@field comments_assignment_observable renoise.Document.Observable
+---@field comments_assignment_observable renoise.Document.Observable **READ-ONLY**
 --
 ---Set this to true to show the comments dialog after loading a song
 ---@field show_comments_after_loading  boolean
----@field show_comments_after_loading_observable renoise.Document.Observable
+---@field show_comments_after_loading_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Macro parameter pane visibility in the GUI.
 ---@field macros_visible boolean
----@field macros_visible_observable renoise.Document.Observable
+---@field macros_visible_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Macro parameters. Array with size Instrument.NUMBER_OF_MACROS.
 ---**READ-ONLY**
