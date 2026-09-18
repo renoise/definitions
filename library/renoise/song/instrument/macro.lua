@@ -29,7 +29,8 @@ renoise.InstrumentMacro = {}
 ---@field value_string_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Macro mappings, target parameters
----@field mappings renoise.InstrumentMacroMapping[] **READ-ONLY**
+---**READ-ONLY**
+---@field mappings renoise.InstrumentMacroMapping[]
 ---@field mappings_observable renoise.Document.ObservableList **READ-ONLY**
 
 ---### functions
@@ -65,7 +66,8 @@ renoise.InstrumentMacroMapping = {
 ---
 ---Linked parameter.
 ---Can be a sample FX- or modulation parameter. Never nil.
----@field parameter renoise.DeviceParameter **READ-ONLY**
+---**READ-ONLY**
+---@field parameter renoise.DeviceParameter
 ---
 ---Min/max range in which the macro applies its value to the target parameter.
 ---Max can be < than Min. Mapping is then flipped.

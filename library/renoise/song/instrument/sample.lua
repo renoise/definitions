@@ -55,7 +55,8 @@ renoise.Sample = {
 ---True, when the sample slot is an alias to a sliced master sample.
 ---Such sample slots are read-only and automatically managed with the master samples
 ---slice list.
----@field is_slice_alias boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_slice_alias boolean
 ---Read/write access to the slice marker list of a sample. When new markers are
 ---set or existing ones unset, existing 0S effects or notes to existing slices
 ---will NOT be remapped (unlike its done with the insert/remove/move_slice_marker
@@ -97,7 +98,7 @@ renoise.Sample = {
 ---@field new_note_action_observable renoise.Document.Observable **READ-ONLY**
 ---@field oneshot  boolean
 ---@field oneshot_observable renoise.Document.Observable **READ-ONLY**
----@field mute_group  integer Range: (0 - 15) where 0 means no group
+---@field mute_group integer Range: (0 - 15) where 0 means no group
 ---@field mute_group_observable renoise.Document.Observable **READ-ONLY**
 ---@field autoseek boolean
 ---@field autoseek_observable renoise.Document.Observable **READ-ONLY**
@@ -128,7 +129,8 @@ renoise.Sample = {
 ---@field sample_buffer_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Keyboard Note/velocity mapping
----@field sample_mapping renoise.SampleMapping **READ-ONLY**
+---**READ-ONLY**
+---@field sample_mapping renoise.SampleMapping
 
 ---### functions
 
@@ -180,7 +182,8 @@ renoise.SampleMapping = {}
 ---
 ---True for sliced instruments. No sample mapping properties are
 ---allowed to be modified, but can be read.
----@field read_only boolean **READ-ONLY**
+---**READ-ONLY**
+---@field read_only boolean
 ---
 ---Linked sample.
 ---@field sample renoise.Sample
@@ -196,17 +199,20 @@ renoise.SampleMapping = {}
 ---@field map_key_to_pitch_observable renoise.Document.Observable
 ---
 ---Mappings base-note. Final pitch of the played sample is:
----  played_note - mapping.base_note + sample.transpose + sample.finetune
----@field base_note integer Range: (0-119, c-4=48)]
+---`played_note - mapping.base_note + sample.transpose + sample.finetune`
+---Range: (0-119, c-4=48)
+---@field base_note integer
 ---@field base_note_observable renoise.Document.Observable
 ---
 ---Note range the mapping is triggered for.
 ---table of two integers
----@field note_range integer[] Range: (0 - 119) where C-4 is 48
+---Range: (0 - 119) where C-4 is 48
+---@field note_range integer[]
 ---@field note_range_observable renoise.Document.Observable
 ---
 ---Velocity range the mapping is triggered for.
----@field velocity_range integer[] Range: (0 - 127)
+---Range: (0 - 127)
+---@field velocity_range integer[]
 ---@field velocity_range_observable renoise.Document.Observable
 
 --------------------------------------------------------------------------------
@@ -232,23 +238,29 @@ renoise.SampleBuffer = {
 ---@class renoise.SampleBuffer
 ---
 ---Check this before accessing properties
----@field has_sample_data boolean **READ-ONLY**
+---**READ-ONLY**
+---@field has_sample_data boolean
 ---
 ---True, when the sample buffer can only be read, but not be
 ---modified. true for sample aliases of sliced samples. To modify such sample
 ---buffers, modify the sliced master sample buffer instead.
----@field read_only boolean **READ-ONLY**
+---**READ-ONLY**
+---@field read_only boolean
 ---The current sample rate in Hz, like 44100.
----@field sample_rate integer **READ-ONLY**
+---**READ-ONLY**
+---@field sample_rate integer
 ---
 ---The current bit depth, like 32, 16, 8.
----@field bit_depth integer **READ-ONLY**
+---**READ-ONLY**
+---@field bit_depth integer
 ---
 ---The integer of sample channels (1 or 2)
----@field number_of_channels integer **READ-ONLY**
+---**READ-ONLY**
+---@field number_of_channels integer
 ---
 ---The sample frame count (integer of samples per channel)
----@field number_of_frames integer **READ-ONLY**
+---**READ-ONLY**
+---@field number_of_frames integer
 ---
 ---The first sample displayed in the sample editor view. Set together with
 ---DisplayLength to control zooming.

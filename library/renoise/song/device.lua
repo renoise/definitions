@@ -18,7 +18,8 @@ renoise.AudioDevice = {}
 ---@class renoise.AudioDevice
 ---
 ---Fixed name of the device.
----@field name string **READ-ONLY**
+---**READ-ONLY**
+---@field name string
 ---@field short_name string **READ-ONLY**
 ---
 ---Configurable device display name. When empty `name` is displayed.
@@ -38,15 +39,17 @@ renoise.AudioDevice = {}
 ---@field active_preset_observable renoise.Document.Observable **READ-ONLY**
 ---@field active_preset_data string raw serialized data in XML format of the active preset
 ---The names of existing presets
----@field presets string[] **READ-ONLY**
+---**READ-ONLY**
+---@field presets string[]
 ---
----Parameters.
 ---@field is_active_parameter renoise.DeviceParameter **READ-ONLY**
+---Parameters.
 ---@field parameters renoise.DeviceParameter[] **READ-ONLY**
 ---
 ---Returns whether or not the device provides its own custom GUI
 ---(only available for some plugin devices)
----@field external_editor_available boolean **READ-ONLY**
+---**READ-ONLY**
+---@field external_editor_available boolean
 ---
 ---When the device has no custom GUI an error will be fired (see
 ---external_editor_available), otherwise the external editor is opened/closed.
@@ -55,7 +58,8 @@ renoise.AudioDevice = {}
 ---Returns a string that uniquely identifies the device, from
 ---`available_devices`. The string can be passed into:
 ---`renoise.song().tracks[]:insert_device_at()`
----@field device_path string **READ-ONLY**
+---**READ-ONLY**
+---@field device_path string
 
 ---### functions
 
@@ -93,10 +97,12 @@ renoise.DeviceParameter = {
 ---@class renoise.DeviceParameter
 ---
 ---Device parameters.
----@field name string **READ-ONLY**
+---**READ-ONLY**
+---@field name string
 ---@field name_observable renoise.Document.ObservableString **READ-ONLY**
 --
----@field polarity renoise.DeviceParameter.Polarity **READ-ONLY**
+---**READ-ONLY**
+---@field polarity renoise.DeviceParameter.Polarity
 ---
 ---@field value_min number **READ-ONLY**
 ---@field value_max number **READ-ONLY**
@@ -106,26 +112,29 @@ renoise.DeviceParameter = {
 ---The minimum interval in pattern lines (as a number) at which a parameter can
 ---have automation points. It is 1/256 for most parameters, but 1 for e.g. song
 ---tempo, LPB and TPL which can only be automated once per pattern line.
----@field time_quantum number **READ-ONLY**
+---**READ-ONLY**
+---@field time_quantum number
 ---
 ---Not valid for parameters of instrument devices. Returns true if creating
 ---envelope automation is possible for the parameter (see also
 ---renoise.song().patterns[].tracks[]:create_automation)
----@field is_automatable boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_automatable boolean
 ---
 ---Is automated. Not valid for parameters of instrument devices.
----@field is_automated boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_automated boolean
 ---@field is_automated_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Parameter has a custom MIDI mapping in the current song.
----@field is_midi_mapped boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_midi_mapped boolean
 ---@field is_midi_mapped_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Show in mixer. Not valid for parameters of instrument devices.
 ---@field show_in_mixer boolean
 ---@field show_in_mixer_observable renoise.Document.Observable **READ-ONLY**
 ---
----Values.
 ---@field value number value in Range: (value_min - value_max)
 ---@field value_observable renoise.Document.Observable **READ-ONLY**
 ---

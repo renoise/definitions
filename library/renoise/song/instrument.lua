@@ -79,7 +79,8 @@ renoise.Instrument = {
 ---@field macros_visible_observable renoise.Document.Observable
 ---
 ---Macro parameters. Array with size Instrument.NUMBER_OF_MACROS.
----@field macros renoise.InstrumentMacro[] **READ-ONLY**
+---**READ-ONLY**
+---@field macros renoise.InstrumentMacro[]
 ---
 ---Access the MIDI pitch-bend macro
 ---@field pitchbend_macro renoise.InstrumentMacro
@@ -92,7 +93,8 @@ renoise.Instrument = {
 ---
 ---Global linear volume of the instrument. Applied to all samples, MIDI and
 ---plugins in the instrument.
----@field volume number Range: (0 - math.db2lin(6))
+---Range: (0 - math.db2lin(6))
+---@field volume number
 ---@field volume_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Range: (-120 - 120). Global relative pitch in semi tones.
@@ -119,16 +121,16 @@ renoise.Instrument = {
 ---@field phrase_program integer
 ---@field phrase_program_observable renoise.Document.Observable **READ-ONLY**
 ---
----Phrases.
----@field phrases renoise.InstrumentPhrase[] **READ-ONLY**
+---**READ-ONLY**
+---@field phrases renoise.InstrumentPhrase[]
 ---@field phrases_observable renoise.Document.ObservableList **READ-ONLY**
 ---
----Phrase mappings.
----@field phrase_mappings renoise.InstrumentPhraseMapping[] **READ-ONLY**
+---**READ-ONLY**
+---@field phrase_mappings renoise.InstrumentPhraseMapping[]
 ---@field phrase_mappings_observable renoise.Document.ObservableList **READ-ONLY**
 ---
----Samples slots.
----@field samples renoise.Sample[] **READ-ONLY**
+---**READ-ONLY**
+---@field samples renoise.Sample[]
 ---@field samples_observable renoise.Document.ObservableList **READ-ONLY**
 ---
 ---Sample mappings (key/velocity to sample slot mappings).
@@ -137,22 +139,22 @@ renoise.Instrument = {
 ---@field sample_mappings renoise.SampleMapping[]
 ---@field sample_mappings_observable renoise.Document.ObservableList **READ-ONLY**
 ---
----Sample modulation sets.
----@field sample_modulation_sets renoise.SampleModulationSet[] **READ-ONLY**
+---**READ-ONLY**
+---@field sample_modulation_sets renoise.SampleModulationSet[]
 ---@field sample_modulation_sets_observable renoise.Document.ObservableList **READ-ONLY**
 ---
----Sample device chains.
----@field sample_device_chains renoise.SampleDeviceChain[] **READ-ONLY**
+---**READ-ONLY**
+---@field sample_device_chains renoise.SampleDeviceChain[]
 ---@field sample_device_chains_observable renoise.Document.ObservableList **READ-ONLY**
 ---
----MIDI input properties.
----@field midi_input_properties renoise.InstrumentMidiInputProperties **READ-ONLY**
+---**READ-ONLY**
+---@field midi_input_properties renoise.InstrumentMidiInputProperties
 ---
----MIDI output properties.
----@field midi_output_properties renoise.InstrumentMidiOutputProperties **READ-ONLY**
+---**READ-ONLY**
+---@field midi_output_properties renoise.InstrumentMidiOutputProperties
 ---
----Plugin properties.
----@field plugin_properties renoise.InstrumentPluginProperties **READ-ONLY**
+---**READ-ONLY**
+---@field plugin_properties renoise.InstrumentPluginProperties
 
 ---### functions
 
@@ -305,7 +307,8 @@ renoise.InstrumentTriggerOptions = {
 ---@class renoise.InstrumentTriggerOptions
 ---
 ---List of all available scale modes.
----@field available_scale_modes string[] **READ-ONLY**
+---**READ-ONLY**
+---@field available_scale_modes string[]
 ---
 ---Scale to use when transposing. One of 'available_scales'.
 ---@field scale_mode string, one of 'available_scales']

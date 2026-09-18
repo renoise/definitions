@@ -20,46 +20,58 @@ renoise.Application = {}
 ---Access to the application's full log filename and path. Will
 ---already be opened for writing, but you nevertheless should be able to read
 ---from it.
----@field log_filename string **READ-ONLY**
+---**READ-ONLY**
+---@field log_filename string
 ---
 ---Get the apps main document, the song.
 ---The global "renoise.song()" function is, in fact, a shortcut to this property.
----@field current_song renoise.Song? **READ-ONLY**
+---**READ-ONLY**
+---@field current_song renoise.Song?
 ---
 ---List of recently loaded song files.
----@field recently_loaded_song_files string[] **READ-ONLY**
+---**READ-ONLY**
+---@field recently_loaded_song_files string[]
 ---List of recently saved song files.
----@field recently_saved_song_files string[] **READ-ONLY**
+---**READ-ONLY**
+---@field recently_saved_song_files string[]
 ---
 ---Returns information about all currently installed tools.
----@field installed_tools table<string, string> **READ-ONLY**
+---**READ-ONLY**
+---@field installed_tools table<string, string>
 ---Fired when the list of installed tools changed.
----@field installed_tools_observable renoise.Document.Observable **READ-ONLY**
+---**READ-ONLY**
+---@field installed_tools_observable renoise.Document.Observable
 ---
 ---Fired when the list of available audio plugin effects changed, for example
 ---when scanning for new plugins in the preferences.
 ---Use the component's `available_plugins` or `available_devices` properties
 ---to access currently available devices which are supported by the component
 ---such as the track device chains.
----@field audio_plugin_effects_observable renoise.Document.Observable **READ-ONLY**
+---**READ-ONLY**
+---@field audio_plugin_effects_observable renoise.Document.Observable
 ---Fired when the list of available audio plugin instruments changed, for example
 ---when scanning for new plugins in the preferences.
----@field audio_plugin_instruments_observable renoise.Document.Observable **READ-ONLY**
+---**READ-ONLY**
+---@field audio_plugin_instruments_observable renoise.Document.Observable
 ---
 ---**Deprecated.** **READ-ONLY** Use `key_modifier_flags` instead
 ---@deprecated
 ---@field key_modifier_states table<string, string>
 ---Access keyboard modifier states.
----@field key_modifier_flags ModifierFlags **READ-ONLY**
+---**READ-ONLY**
+---@field key_modifier_flags ModifierFlags
 ---
 ---Access to the application's window.
----@field window renoise.ApplicationWindow **READ-ONLY**
+---**READ-ONLY**
+---@field window renoise.ApplicationWindow
 ---
 ---Access to the application's color theme.
----@field theme renoise.ApplicationTheme **READ-ONLY**
+---**READ-ONLY**
+---@field theme renoise.ApplicationTheme
 ---Fired, when *any* theme color changed. e.g. when a new theme got loaded
 ---or when theme colors got edited in the theme preferences.
----@field theme_observable renoise.Document.Observable **READ-ONLY**
+---**READ-ONLY**
+---@field theme_observable renoise.Document.Observable
 ---
 ---Range: (1 - 4) Get or set globally used clipboard "slots" in the application.
 ---@field active_clipboard_index 1|2|3|4
@@ -120,7 +132,8 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---@deprecated **READ-ONLY**
 ---@field modifiers ModifierStates
 ---the held down modifiers as flags
----@field modifier_flags ModifierFlags **READ-ONLY**
+---**READ-ONLY**
+---@field modifier_flags ModifierFlags
 ---possible character representation of the key
 ---@field character string?
 ---virtual keyboard piano key value (starting from 0)
@@ -424,9 +437,11 @@ function renoise.Application:save_theme(filename) end
 ---@class renoise.Dialog
 ---
 ---Check if a dialog is alive and visible.
----@field visible boolean **READ-ONLY**
+---**READ-ONLY**
+---@field visible boolean
 ---Check if a dialog is visible and is the key window.
----@field focused boolean **READ-ONLY** 
+---**READ-ONLY**
+---@field focused boolean 
 renoise.Dialog = {}
 
 ---### functions

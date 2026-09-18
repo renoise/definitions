@@ -32,13 +32,16 @@ renoise.InstrumentPluginProperties = {}
 ---not including the vendor names as visible in Renoise's GUI. So its an
 ---identifier, and not the name as visible in the GUI. When no plugin is loaded,
 ---the identifier is an empty string.
----@field available_plugins string[] **READ-ONLY**
+---**READ-ONLY**
+---@field available_plugins string[]
 ---
 ---Returns a list of tables containing more information about the plugins.
----@field available_plugin_infos PluginInfo[] **READ-ONLY**
+---**READ-ONLY**
+---@field available_plugin_infos PluginInfo[]
 ---
 ---Returns true when a plugin is present; loaded successfully.
----@see renoise.PluginProperties.plugin_device_observable for related notifications. **READ-ONLY**
+---@see renoise.PluginProperties.plugin_device_observable for related notifications.
+---**READ-ONLY**
 ---@field plugin_loaded boolean
 ---
 ---Valid object for successfully loaded plugins, otherwise nil. Alias plugin
@@ -46,33 +49,40 @@ renoise.InstrumentPluginProperties = {}
 ---the alias points to.
 ---The observable is fired when the device changes: when a plugin gets loaded or
 ---unloaded or a plugin alias is assigned or unassigned.
----@field plugin_device (renoise.InstrumentPluginDevice|renoise.AudioDevice)? **READ-ONLY**
+---**READ-ONLY**
+---@field plugin_device (renoise.InstrumentPluginDevice|renoise.AudioDevice)?
 ---@field plugin_device_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Valid for loaded and unloaded plugins,
 ---0 when no alias instrument is set.
----@field alias_instrument_index integer **READ-ONLY**
+---**READ-ONLY**
+---@field alias_instrument_index integer
 ---@field alias_instrument_index_observable renoise.Document.Observable **READ-ONLY**
 ---0 when no alias FX is set
----@field alias_fx_track_index integer **READ-ONLY**
+---**READ-ONLY**
+---@field alias_fx_track_index integer
 ---@field alias_fx_track_index_observable renoise.Document.Observable **READ-ONLY**
 ---0 when no alias FX is set
----@field alias_fx_device_index integer **READ-ONLY**
+---**READ-ONLY**
+---@field alias_fx_device_index integer
 ---@field alias_fx_device_index_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Valid for loaded and unloaded plugins.
 ---target instrument index of the plugin's MIDI output (when present)
----@field midi_output_routing_index integer 0 when no routing is set **READ-ONLY**
+---**READ-ONLY**
+---@field midi_output_routing_index integer 0 when no routing is set
 ---@field midi_output_routing_index_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Valid for loaded and unloaded plugins.
----@field channel integer Range: (1 - 16)
+---Range: (1 - 16)
+---@field channel integer
 ---@field channel_observable renoise.Document.Observable **READ-ONLY**
 ---@field transpose integer Range: (-120 - 120)
 ---@field transpose_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Valid for loaded and unloaded plugins.
----@field volume number Range: (0.0 - 4.0) linear gain
+---Range: (0.0 - 4.0) linear gain
+---@field volume number
 ---@field volume_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Valid for loaded and unloaded plugins.
@@ -115,8 +125,8 @@ renoise.InstrumentPluginDevice = {}
 ---@field parameters renoise.DeviceParameter[] **READ-ONLY**
 ---
 ---Returns whether or not the plugin provides its own custom GUI.
----
----@field external_editor_available boolean **READ-ONLY**
+---**READ-ONLY**
+---@field external_editor_available boolean
 ---
 ---When the plugin has no custom GUI, Renoise will create a dummy editor for it which
 ---lists the plugin parameters.
@@ -126,7 +136,8 @@ renoise.InstrumentPluginDevice = {}
 ---Returns a string that uniquely identifies the plugin
 ---@see renoise.InstrumentPluginProperties.available_plugins for the list of valid paths
 ---The string can be passed into: renoise.InstrumentPluginProperties:load_plugin()
----@field device_path string **READ-ONLY**
+---**READ-ONLY**
+---@field device_path string
 
 ---### functions
 

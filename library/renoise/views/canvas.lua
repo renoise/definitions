@@ -96,12 +96,14 @@ function Canvas:update() end
 ---Size of the render context backend **in raw pixel resolution**.
 ---This is the view ports size, multiplied with the global UI scaling factor.
 ---It does not change with transformations.
----@field pixel_size { width: integer, height: integer } **READ-ONLY**
+---**READ-ONLY**
+---@field pixel_size { width: integer, height: integer }
 ---
 ---Size of the render context **with transformations applied**.
 ---This initially will be the view's size. Calls to `transform` or `scale`
 ---may change the size further.
----@field size { width: integer, height: integer } **READ_ONLY**
+---**READ-ONLY**
+---@field size { width: integer, height: integer }
 ---The degree of opacity applied to all drawing operations.<br>
 ---
 ---If an operation already uses a transparent color, this can make it

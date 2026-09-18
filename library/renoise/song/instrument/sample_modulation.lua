@@ -118,24 +118,29 @@ renoise.SampleModulationSet = {}
 ---@field pitch_range_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---All available devices, to be used in 'insert_device_at'.
----@field available_devices string[] **READ-ONLY**
+---**READ-ONLY**
+---@field available_devices string[]
 ---
 ---Device list access.
----@field devices renoise.SampleModulationDevice[] **READ-ONLY**
+---**READ-ONLY**
+---@field devices renoise.SampleModulationDevice[]
 ---@field devices_observable renoise.Document.ObservableList **READ-ONLY**
 ---
 ---Filter version, 3 is the latest.
 ---@see renoise.SampleModulationSet.upgrade_filter_version
----@field filter_version 1 | 2 | 3 **READ-ONLY**
+---**READ-ONLY**
+---@field filter_version 1 | 2 | 3
 ---@field filter_version_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---List of available filter types depending on the filter_version.
----@field available_filter_types FilterTypes[] **READ-ONLY**
+---**READ-ONLY**
+---@field available_filter_types FilterTypes[]
 ---
 ---The type of the filter selected for the modulation set.
 ---Songs made with previous versions of Renoise may use old filter types.
 ---@see renoise.SampleModulationSet.available_filter_types
----@field filter_type FilterTypes **READ-ONLY**
+---**READ-ONLY**
+---@field filter_type FilterTypes
 ---@field filter_type_observable renoise.Document.Observable **READ-ONLY**
 
 ---### functions
@@ -201,55 +206,57 @@ renoise.SampleModulationDevice = {
 ---@class renoise.SampleModulationDevice
 ---
 ---Fixed name of the device.
----@field name string **READ-ONLY**
----
----
+---**READ-ONLY**
+---@field name string
 ---@field short_name string **READ-ONLY**
 ---
 ---Configurable device display name.
 ---@field display_name  string
----@field display_name_observable renoise.Document.Observable
+---@field display_name_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---**Deprecated.** Use `is_active` instead.
 ---@deprecated
 ---@field enabled boolean
----@field enabled_observable renoise.Document.Observable
+---@field enabled_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Enable/bypass the device.
 ---@field is_active boolean not active = bypassed
----@field is_active_observable renoise.Document.Observable
+---@field is_active_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Maximize state in modulation chain.
 ---@field is_maximized boolean
----@field is_maximized_observable renoise.Document.Observable
+---@field is_maximized_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Where the modulation gets applied (Volume,
 ---Pan, Pitch, Cutoff, Resonance).
----@field target renoise.SampleModulationDevice.TargetType **READ-ONLY**
+---**READ-ONLY**
+---@field target renoise.SampleModulationDevice.TargetType
 ---
 ---Modulation operator: how the device applies.
----@field operator renoise.SampleModulationDevice.OperatorType
----@field operator_observable renoise.Document.Observable
+---@field operator renoise.SampleModulationDevice.OperatorType **READ-ONLY**
+---@field operator_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Modulation polarity:
 ---when bipolar, the device applies it's values in a -1 to 1 range,
 ---when unipolar in a 0 to 1 range.
 ---@field bipolar boolean
----@field bipolar_observable renoise.Document.Observable
+---@field bipolar_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---When true, the device has one of more time parameters,
 ---which can be switched to operate in synced or unsynced mode.
 ---see also field tempo_synced.
----@field tempo_sync_switching_allowed boolean **READ-ONLY**
+---**READ-ONLY**
+---@field tempo_sync_switching_allowed boolean
 ---
 ---When true and the device supports sync switching the device operates
 ---in wall-clock (ms) instead of beat times.
 ---see also property 'tempo_sync_switching_allowed'
 ---@field tempo_synced boolean
----@field tempo_synced_observable renoise.Document.Observable
+---@field tempo_synced_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Generic access to all parameters of this device.
----@field is_active_parameter renoise.DeviceParameter **READ-ONLY**
+---**READ-ONLY**
+---@field is_active_parameter renoise.DeviceParameter
 ---
 ---
 ---@field parameters renoise.DeviceParameter[] **READ-ONLY**
@@ -307,7 +314,7 @@ renoise.SampleFaderModulationDevice = {
 ---
 ---Scaling mode.
 ---@field scaling renoise.SampleFaderModulationDevice.ScalingType
----@field scaling_observable renoise.Document.Observable
+---@field scaling_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Start value.
 ---@field from renoise.DeviceParameter
@@ -330,15 +337,20 @@ renoise.SampleAhdrsModulationDevice = {}
 ---@class renoise.SampleAhdrsModulationDevice : renoise.SampleModulationDevice
 ---
 ---Attack duration.
----@field attack renoise.DeviceParameter with range (0-1)
+---Range: (0 - 1)
+---@field attack renoise.DeviceParameter
 ---Hold duration.
----@field hold renoise.DeviceParameter with range (0-1)
+---Range: (0 - 1)
+---@field hold renoise.DeviceParameter
 ---Duration.
----@field duration renoise.DeviceParameter with range (0-1)
+---Range: (0 - 1)
+---@field duration renoise.DeviceParameter
 ---Sustain amount.
----@field sustain renoise.DeviceParameter with range (0-1)
+---Range: (0 - 1)
+---@field sustain renoise.DeviceParameter
 ---Release duration.
----@field release renoise.DeviceParameter with range (0-1)
+---Range: (0 - 1)
+---@field release renoise.DeviceParameter
 
 --------------------------------------------------------------------------------
 ---### renoise.SampleKeyTrackingModulationDevice
@@ -351,8 +363,10 @@ renoise.SampleKeyTrackingModulationDevice = {}
 ---@class renoise.SampleKeyTrackingModulationDevice : renoise.SampleModulationDevice
 ---
 ---Min/Max key value.
----@field min renoise.DeviceParameter with range (0-119)
----@field max renoise.DeviceParameter with range (0-119)
+---Range: (0 - 119)
+---@field min renoise.DeviceParameter
+---Range: (0 - 119)
+---@field max renoise.DeviceParameter
 
 
 --------------------------------------------------------------------------------
@@ -380,8 +394,10 @@ renoise.SampleVelocityTrackingModulationDevice = {
 ---
 ---
 ---Min/Max velocity.
----@field min renoise.DeviceParameter with range (0-127)
----@field max renoise.DeviceParameter with range (0-127)
+---Range: (0 - 127)
+---@field min renoise.DeviceParameter
+---Range: (0 - 127)
+---@field max renoise.DeviceParameter
 
 --------------------------------------------------------------------------------
 ---## renoise.SampleEnvelopeModulationDevice
@@ -424,10 +440,10 @@ renoise.SampleEnvelopeModulationDevice = {
 ---@field play_mode_observable renoise.Document.Observable
 ---
 ---Envelope length.
----@field length integer Range: (6 - 1000)
+---Range: (6 - 1000)
+---@field length integer
 ---@field length_observable renoise.Document.Observable
 ---
----Loop.
 ---@field loop_mode renoise.SampleEnvelopeModulationDevice.LoopMode
 ---@field loop_mode_observable renoise.Document.Observable
 ---
@@ -437,7 +453,6 @@ renoise.SampleEnvelopeModulationDevice = {
 ---@field loop_end integer Range: (1 - envelope.length)
 ---@field loop_end_observable renoise.Document.Observable
 ---
----Sustain.
 ---@field sustain_enabled boolean
 ---@field sustain_enabled_observable renoise.Document.Observable
 ---
@@ -458,11 +473,14 @@ renoise.SampleEnvelopeModulationDevice = {
 ---
 ---@class SampleEnvelopeModulationDevice.Point
 ---An envelope point's time.
----@field time integer Range: (1 - envelope.length)
+---Range: (1 - envelope.length)
+---@field time integer
 ---An envelope point's value.
----@field value number Range: (0.0 - 1.0)
+---Range: (0.0 - 1.0)
+---@field value number
 ---An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
----@field scaling number Range: (-1.0 - 1.0)
+---Range: ( - 1.0 - 1.0)
+---@field scaling number
 
 ---### functions
 
@@ -492,7 +510,7 @@ function renoise.SampleEnvelopeModulationDevice:has_point_at(time) end
 
 ---@param time integer Range: (1 - envelope.length)
 ---@param value number Range: (0.0 - 1.0)
----@param scaling number? Range: (-1.0 - 1.0)
+---@param scaling number? Range: ( - 1.0 - 1.0)
 ---Add a new point value (or replace any existing value) at time.
 function renoise.SampleEnvelopeModulationDevice:add_point_at(time, value, scaling) end
 
@@ -532,11 +550,13 @@ renoise.SampleStepperModulationDevice = {
 ---@field play_mode_observable renoise.Document.Observable
 ---
 ---Step size. -1 is the same as choosing RANDOM
----@field play_step integer Range: (-1 - 16)
+---Range: ( - 1 - 16)
+---@field play_step integer
 ---@field play_step_observable renoise.Document.Observable
 ---
 ---Envelope length.
----@field length integer Range: (1 - 256)
+---Range: (1 - 256)
+---@field length integer
 ---@field length_observable renoise.Document.Observable
 ---
 ---Get all points of the envelope. When setting a new list of points,
@@ -549,11 +569,14 @@ renoise.SampleStepperModulationDevice = {
 ---
 ---@class SampleStepperModulationDevice.Point
 ---An envelope point's time.
----@field time integer Range: (1 - envelope.length)
+---Range: (1 - envelope.length)
+---@field time integer
 ---An envelope point's value.
----@field value number Range: (0.0 - 1.0)
+---Range: (0.0 - 1.0)
+---@field value number
 ---An envelope point's scaling (used in 'lines' playback mode only - 0.0 is linear).
----@field scaling number Range: (-1.0 - 1.0)
+---Range: ( - 1.0 - 1.0)
+---@field scaling number
 
 ---### functions
 
@@ -615,14 +638,13 @@ renoise.SampleLfoModulationDevice = {
 ---LFO mode.
 ---@field mode renoise.SampleLfoModulationDevice.Mode
 ---
----Phase.
----@field phase renoise.DeviceParameter with range (0-360)
+---Range: (0 - 360)
+---@field phase renoise.DeviceParameter
 --
----Frequency.
----@field frequency renoise.DeviceParameter with range (0-1)
+---Range: (0 - 1)
+---@field frequency renoise.DeviceParameter
 ---
----Amount.
----@field amount renoise.DeviceParameter with range (0-1)
+---Range: (0 - 1)
+---@field amount renoise.DeviceParameter
 ---
----Delay.
 ---@field delay renoise.DeviceParameter

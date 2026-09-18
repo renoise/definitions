@@ -135,22 +135,27 @@ renoise.ApplicationTheme = {}
 ---use `renoise.app().theme.color(color_name)` instead.
 ---
 ---To get notified of color changes, use `renoise.app().theme_observable`
----@field colors { [ThemeColor]: RGBColor } **READ-ONLY**
+---**READ-ONLY**
+---@field colors { [ThemeColor]: RGBColor }
 ---
 ---Get theme's knob shade setting. Range: (1 - 2)
----@field knob_shade number **READ-ONLY**
+---**READ-ONLY**
+---@field knob_shade number
 ---@field knob_shade_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Get theme's body shade setting. Range: (1 - 2)
----@field body_shade number **READ-ONLY**
+---**READ-ONLY**
+---@field body_shade number
 ---@field body_shade_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Get theme's contrast setting. Range: (-0.5 - 0.5)
----@field contrast number **READ-ONLY**
+---**READ-ONLY**
+---@field contrast number
 ---@field contrast_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Get theme's texture set name
----@field texture_set string **READ-ONLY**
+---**READ-ONLY**
+---@field texture_set string
 ---@field texture_set_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---### functions

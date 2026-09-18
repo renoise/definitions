@@ -17,7 +17,8 @@ renoise.PatternTrack = {}
 ---@class renoise.PatternTrack
 ---
 ---Ghosting (aliases)
----@field is_alias boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_alias boolean
 ---
 ---Pattern index the pattern track is aliased or 0 when its not aliased.
 ---@field alias_pattern_index integer index or 0 when no alias is present
@@ -32,7 +33,8 @@ renoise.PatternTrack = {}
 ---
 ---Get all lines in range [1, number_of_lines_in_pattern].
 ---Use `renoise.Pattern:add/remove_line_notifier` for change notifications.
----@field lines renoise.PatternLine[] **READ-ONLY**
+---**READ-ONLY**
+---@field lines renoise.PatternLine[]
 ---
 ---Automation.
 ---@field automation renoise.PatternTrackAutomation[]

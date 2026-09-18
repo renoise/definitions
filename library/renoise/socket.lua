@@ -84,14 +84,17 @@ function renoise.Socket.create_client(server_address, server_port, protocol, tim
 ---Sockets can manually be closed (see socket:close()). Client sockets can also
 ---actively be closed/refused by the server. In this case the client:receive()
 ---calls will fail and return an error.
----@field is_open boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_open boolean
 ---
 ---The socket's resolved local address (for example "127.0.0.1"
 ---when a socket is bound to "localhost")
----@field local_address string **READ-ONLY**
+---**READ-ONLY**
+---@field local_address string
 ---
 ---The socket's local port number, as specified when instantiated.
----@field local_port integer **READ-ONLY**
+---**READ-ONLY**
+---@field local_port integer
 renoise.Socket.SocketBase = {}
 
 ---### functions
@@ -122,11 +125,13 @@ function renoise.Socket.SocketBase:close() end
 ---
 ---Address of the socket's peer, the socket address this client
 ---is connected to.
----@field peer_address string **READ-ONLY**
+---**READ-ONLY**
+---@field peer_address string
 ---
 ---Port of the socket's peer, the socket this client is
 ---connected to.
----@field peer_port integer **READ-ONLY**
+---**READ-ONLY**
+---@field peer_port integer
 renoise.Socket.SocketClient = {}
 
 ---### functions
@@ -193,7 +198,8 @@ function renoise.Socket.SocketClient:receive(mode, timeout_ms) end
 ---@class renoise.Socket.SocketServer : renoise.Socket.SocketBase
 ---
 ---true while the server is running, else false.
----@field is_running boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_running boolean
 renoise.Socket.SocketServer = {}
 
 

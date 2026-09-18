@@ -20,7 +20,8 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@class SQLite
 ---
 ---SQLite version information, in the form `x.y[.z[.p]]`.
----@field version string **READ-ONLY**
+---**READ-ONLY**
+---@field version string
 renoise.SQLite = {}
 
 ---### constants
@@ -101,14 +102,18 @@ function renoise.SQLite.open(filename, flags) end
 ---@class SQLiteDatabase : userdata
 ---
 ---Whether or not the database is open.
----@field is_open boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_open boolean
 ---Whether or not the database is closed.
----@field is_closed boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_closed boolean
 ---
 ---The most recent error code.
----@field error_code renoise.SQLite.Status **READ-ONLY**
+---**READ-ONLY**
+---@field error_code renoise.SQLite.Status
 ---The most recent error message.
----@field error_message string **READ-ONLY**
+---**READ-ONLY**
+---@field error_message string
 ---
 ---Number of database rows that were changed, inserted, or deleted by
 ---the most recent SQL statement.
@@ -116,13 +121,15 @@ function renoise.SQLite.open(filename, flags) end
 ---are counted.
 ---Auxiliary changes caused by triggers are not counted. Use `db.total_changes`
 ---to find the total number of changes.
----@field changes integer **READ-ONLY**
+---**READ-ONLY**
+---@field changes integer
 ---The number of database rows that have been modified by INSERT,
 ---UPDATE or DELETE statements since the database was opened.
 ---This includes UPDATE, INSERT and DELETE statements executed as part of
 ---trigger programs. All changes are counted as soon as the statement that
 ---produces them is completed by calling either `stmt:reset()` or `stmt:finalize()`.
----@field total_changes integer **READ-ONLY**
+---**READ-ONLY**
+---@field total_changes integer
 ---
 ---Gets the rowid of the most recent INSERT into the database.
 ---If no inserts have ever occurred, 0 is returned.
@@ -135,7 +142,8 @@ function renoise.SQLite.open(filename, flags) end
 ---If an INSERT occurs within a trigger, then the rowid of the inserted
 ---row is returned as long as the trigger is running. Once the trigger terminates,
 ---the value returned reverts to the last value inserted before the trigger fired.
----@field last_insert_rowid integer **READ-ONLY**
+---**READ-ONLY**
+---@field last_insert_rowid integer
 local SQLiteDatabase = {}
 
 --- Closes a database. All SQL statements prepared using `db:prepare()` should
@@ -283,44 +291,56 @@ function SQLiteDatabase:urows(sql) end
 ---@class SQLiteStatement: userdata
 ---
 ---Whether or not the statement hasn't been finalized.
----@field is_open boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_open boolean
 ---Whether or not the statement has been finalized.
----@field is_closed boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_closed boolean
 ---
 ---Number of columns in the result set returned by the statement,
 ---or 0 if the statement does not return data (for example an UPDATE).
----@field columns integer **READ-ONLY**
+---**READ-ONLY**
+---@field columns integer
 ---
 ---rowid of the most recent INSERT into the database corresponding
 ---to this statement.
----@field last_insert_rowid integer **READ-ONLY**
+---**READ-ONLY**
+---@field last_insert_rowid integer
 ---
 ---A table with the names and types of all columns in the current
 ---result set of the statement.
----@field named_types table<string, string> **READ-ONLY**
+---**READ-ONLY**
+---@field named_types table<string, string>
 ---A table with names and values of all columns in the current
 ---result row of a query.
----@field named_values table<string, SQLiteValue> **READ-ONLY**
+---**READ-ONLY**
+---@field named_values table<string, SQLiteValue>
 ---
 ---A list of the names of all columns in the result set returned
 ---by the statement.
----@field names string[] **READ-ONLY**
+---**READ-ONLY**
+---@field names string[]
 ---A list of the values of all columns in the result set
 ---returned by the statement.
----@field values SQLiteValue[] **READ-ONLY**
+---**READ-ONLY**
+---@field values SQLiteValue[]
 ---A list of the types of all columns in the result set returned
 ---by the statement.
----@field types string[] **READ-ONLY**
+---**READ-ONLY**
+---@field types string[]
 ---
 ---A list of the names of all columns in the result set returned
 ---by the statement.
----@field unames string[] **READ-ONLY**
+---**READ-ONLY**
+---@field unames string[]
 ---A list of the types of all columns in the result set returned
 ---by the statement.
----@field utypes string[] **READ-ONLY**
+---**READ-ONLY**
+---@field utypes string[]
 ---A list of the values of all columns in the current result
 ---row of a query.
----@field uvalues SQLiteValue[] **READ-ONLY**
+---**READ-ONLY**
+---@field uvalues SQLiteValue[]
 local SQLiteStatement = {}
 
 ---### functions
