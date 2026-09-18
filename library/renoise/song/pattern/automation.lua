@@ -59,19 +59,23 @@ renoise.PatternTrackAutomation = {
 ---**READ-ONLY**
 ---@field length integer
 ---
----Selection range as visible in the automation editor. always valid.
----returns the automation range no selection is present in the UI.
+---Selection range as visible in the automation editor, always valid.
+---1 when no selection is present.
 ---Range: (1 - automation.length + 1)
 ---@field selection_start integer
 ---@field selection_start_observable renoise.Document.Observable **READ-ONLY**
+---Selection range as visible in the automation editor, always valid.
+---The automation's length + 1 when no selection is present.
 ---Range: (1  -  automation.length + 1)
 ---@field selection_end integer
 ---@field selection_end_observable renoise.Document.Observable **READ-ONLY**
 ---
+---Selection range as visible in the automation editor, always valid.
 ---Get or set selection range. when setting an empty table, the existing
 ---selection, if any, will be cleared.
----array of two numbers [] OR Range: (1  -  automation.length + 1)
----@field selection_range integer[]
+---The whole automation range when no selection is present.
+---Range: (1  -  automation.length + 1)
+---@field selection_range {[1]: integer, [2]: integer}
 ---@field selection_range_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Get all points of the automation. When setting a new list of points,

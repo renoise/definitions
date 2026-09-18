@@ -297,7 +297,7 @@ renoise.InstrumentPhraseMapping = {
 ---note_range start can only be set behind previous's (if any) end and
 ---note_range end can only be set before next mapping's (if any) start.
 ---Range: (0 - 119) where C-4 is 48
----@field note_range integer[]
+---@field note_range {[1]: integer, [2]: integer}
 ---@field note_range_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Loop mode. The phrase plays as one-shot when disabled.

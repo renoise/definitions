@@ -90,11 +90,14 @@ renoise.Transport = {
 ---@field loop_range renoise.SongPos[] {loop start, loop end}
 ---@field loop_start_beats number **READ-ONLY** Range: (0 - song_end_beats)
 ---@field loop_end_beats number **READ-ONLY** Range: (0 - song_end_beats)
----@field loop_range_beats number[] {loop start beats, loop end beats}
+---{loop start beats, loop end beats}
+---@field loop_range_beats {[1]: number, [2]: number}
 ---
 ---@field loop_sequence_start integer **READ-ONLY** 0 or Range: (1  -  sequence length)
 ---@field loop_sequence_end integer **READ-ONLY** 0 or Range: (1  -  sequence length)
----@field loop_sequence_range integer[] {} or Range(sequence start, sequence end)
+---Range: (sequence_start - sequence_end)
+---The table will contain two zeros when no sequence loop is selected
+---@field loop_sequence_range {[1]: integer, [2]: integer}
 ---
 ---@field loop_pattern boolean Pattern Loop On/Off
 ---@field loop_pattern_observable renoise.Document.Observable **READ-ONLY**
@@ -148,8 +151,8 @@ renoise.Transport = {
 ---Groove (aka Shuffle)
 ---@field groove_enabled boolean
 ---@field groove_enabled_observable renoise.Document.Observable **READ-ONLY**
----table with 4 numbers in Range: (0 - 1)
----@field groove_amounts number[]
+---Range: (0 - 1)
+---@field groove_amounts {[1]: number, [2]: number, [3]: number, [4]: number}
 ---Will be called as soon as any groove value changed.
 ---@field groove_assignment_observable renoise.Document.Observable **READ-ONLY**
 ---

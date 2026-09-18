@@ -207,12 +207,12 @@ renoise.SampleMapping = {}
 ---Note range the mapping is triggered for.
 ---table of two integers
 ---Range: (0 - 119) where C-4 is 48
----@field note_range integer[]
+---@field note_range {[1]: integer, [2]: integer}
 ---@field note_range_observable renoise.Document.Observable
 ---
 ---Velocity range the mapping is triggered for.
 ---Range: (0 - 127)
----@field velocity_range integer[]
+---@field velocity_range {[1]: integer, [2]: integer}
 ---@field velocity_range_observable renoise.Document.Observable
 
 --------------------------------------------------------------------------------
@@ -272,8 +272,9 @@ renoise.SampleBuffer = {
 ---@field display_length integer Range: (1 - number_of_frames)
 ---@field display_length_observable renoise.Document.Observable
 ---
----Array of two integers, the start and end points of the sample editor display.
----@field display_range integer[] Range: (1 - number_of_frames)
+---The start and end points of the sample editor display.
+---Range: (1 - number_of_frames)
+---@field display_range {[1]: integer, [2]: integer}
 ---@field display_range_observable renoise.Document.Observable
 ---
 ---The vertical zoom level where 1.0 is fully zoomed out.
@@ -286,8 +287,8 @@ renoise.SampleBuffer = {
 ---@field selection_start_observable renoise.Document.Observable
 ---@field selection_end integer Range: (1 - number_of_frames)
 ---@field selection_end_observable renoise.Document.Observable
----Array of two integers
----@field selection_range integer[] Range: (1 - number_of_frames)
+---Range: (1 - number_of_frames)
+---@field selection_range {[1]: integer, [2]: integer}
 ---@field selection_range_observable renoise.Document.Observable
 ---
 ---The selected channel.
