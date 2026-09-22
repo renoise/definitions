@@ -21,9 +21,10 @@ renoise.PatternSequencer = {}
 ---@field keep_sequence_sorted boolean
 ---@field keep_sequence_sorted_observable renoise.Document.Observable
 ---
----Access to the selected slots in the sequencer. When no selection is present
----`{0, 0}` is returned, else Range: (1 - #sequencer.pattern_sequence)
----@field selection_range integer[]
+---Access to the selected slots in the sequencer.
+---Range: (1 - #sequencer.pattern_sequence)
+---The table will contain two zeros when no selection is present
+---@field selection_range {[1]: integer, [2]: integer}
 ---@field selection_range_observable renoise.Document.Observable
 ---
 ---Pattern order list: Notifiers will only be fired when sequence positions are

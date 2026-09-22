@@ -8,9 +8,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 
 --------------------------------------------------------------------------------
 
----Unique identifier to resolve the view later on in the viewbuilder, 
+---Unique identifier to resolve the view later on in the viewbuilder,
 ---e.g. `vb.views.SomeString` or `vb.views["Some String"]`
----View ids must be unique within a single view builder instance. 
+---View ids must be unique within a single view builder instance.
 ---@alias ViewId string
 
 ---The dimensions of a view has to be larger than 0.
@@ -20,9 +20,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@alias ViewDimension integer|string
 
 ---The dimensions of a view has to be larger than 0.
----For nested views you can also specify relative size, for example 
----`vb:text { size = { width = "80%", height = 20}}`. 
----The percentage values are relative to the view's parent size and will 
+---For nested views you can also specify relative size, for example
+---`vb:text { size = { width = "80%", height = 20}}`.
+---The percentage values are relative to the view's parent size and will
 ---automatically update when the parent view's size changes.
 ---@alias ViewSize { width: ViewDimension, height: ViewDimension }|{ [1]:ViewDimension, [2]:ViewDimension }
 
@@ -81,7 +81,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---* Default: true
 ---@alias ViewVisibility boolean
 
----Setup a background style for the view. 
+---Setup a background style for the view.
 ---@alias ViewBackgroundStyle
 ---| "invisible" # no background (Default)
 ---| "plain"     # undecorated, single coloured background
@@ -176,8 +176,9 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@field size ViewSize
 ---@field tooltip ViewTooltip
 ---@field cursor ViewCursorShape
----**READ-ONLY** Empty for all controls, for layout views this contains the
+---Empty for all controls, for layout views this contains the
 ---layout child views in the order they got added
+---**READ-ONLY**
 ---@field views renoise.Views.View[]
 local View = {}
 
@@ -203,7 +204,7 @@ function View:swap_views(child1, child2) end
 function View:add_child(child) end
 
 ---**Deprecated.** Use `remove_view` instead
----@deprecated 
+---@deprecated
 ---@param child renoise.Views.View
 function View:remove_child(child) end
 

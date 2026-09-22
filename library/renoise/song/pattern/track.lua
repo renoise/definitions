@@ -17,26 +17,28 @@ renoise.PatternTrack = {}
 ---@class renoise.PatternTrack
 ---
 ---Ghosting (aliases)
----@field is_alias boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_alias boolean
 ---
 ---Pattern index the pattern track is aliased or 0 when its not aliased.
 ---@field alias_pattern_index integer index or 0 when no alias is present
----@field alias_pattern_index_observable renoise.Document.Observable
+---@field alias_pattern_index_observable renoise.Document.Observable **READ-ONLY**
 ----
 ---@field color RGBColor? slot color of the pattern in the matrix, nil when no slot color is set
----@field color_observable renoise.Document.Observable
+---@field color_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Returns true when all the track lines are empty. Does not look at automation.
 ---@field is_empty boolean
----@field is_empty_observable renoise.Document.Observable
+---@field is_empty_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Get all lines in range [1, number_of_lines_in_pattern].
+---Get all lines in range [1, number_of_lines_in_pattern].
 ---Use `renoise.Pattern:add/remove_line_notifier` for change notifications.
+---**READ-ONLY**
 ---@field lines renoise.PatternLine[]
 ---
 ---Automation.
 ---@field automation renoise.PatternTrackAutomation[]
----@field automation_observable renoise.Document.ObservableList
+---@field automation_observable renoise.Document.ObservableList **READ-ONLY**
 
 ---### functions
 

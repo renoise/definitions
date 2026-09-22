@@ -127,7 +127,7 @@ renoise.ApplicationTheme = {}
 
 ---@class renoise.ApplicationTheme
 ---
----**READ-ONLY** Get all theme colors in a flat list of RGBColors.
+---Get all theme colors in a flat list of RGBColors.
 ---Color table keys are string identifiers as used in the theme XML file,
 ---but in lower case.
 ---
@@ -135,23 +135,28 @@ renoise.ApplicationTheme = {}
 ---use `renoise.app().theme.color(color_name)` instead.
 ---
 ---To get notified of color changes, use `renoise.app().theme_observable`
+---**READ-ONLY**
 ---@field colors { [ThemeColor]: RGBColor }
 ---
----**READ-ONLY** Get theme's knob shade setting. Range: (1 - 2)
+---Get theme's knob shade setting. Range: (1 - 2)
+---**READ-ONLY**
 ---@field knob_shade number
----@field knob_shade_observable renoise.Document.Observable
+---@field knob_shade_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Get theme's body shade setting. Range: (1 - 2)
+---Get theme's body shade setting. Range: (1 - 2)
+---**READ-ONLY**
 ---@field body_shade number
----@field body_shade_observable renoise.Document.Observable
+---@field body_shade_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Get theme's contrast setting. Range: (-0.5 - 0.5)
+---Get theme's contrast setting. Range: (-0.5 - 0.5)
+---**READ-ONLY**
 ---@field contrast number
----@field contrast_observable renoise.Document.Observable
+---@field contrast_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Get theme's texture set name
+---Get theme's texture set name
+---**READ-ONLY**
 ---@field texture_set string
----@field texture_set_observable renoise.Document.Observable
+---@field texture_set_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---### functions
 

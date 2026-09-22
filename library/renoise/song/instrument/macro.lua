@@ -18,19 +18,20 @@ renoise.InstrumentMacro = {}
 ---
 ---Macro name as visible in the GUI when mappings are presents.
 ---@field name string
----@field name_observable renoise.Document.Observable
+---@field name_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Macro value
 ---@field value number Range: (0 - 1)
----@field value_observable renoise.Document.Observable
+---@field value_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Macro value string
 ---@field value_string string Range: (0 - 100)
----@field value_string_observable renoise.Document.Observable
+---@field value_string_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Macro mappings, target parameters
+---Macro mappings, target parameters
+---**READ-ONLY**
 ---@field mappings renoise.InstrumentMacroMapping[]
----@field mappings_observable renoise.Document.ObservableList
+---@field mappings_observable renoise.Document.ObservableList **READ-ONLY**
 
 ---### functions
 
@@ -63,18 +64,19 @@ renoise.InstrumentMacroMapping = {
 ---@class renoise.InstrumentMacroMapping
 ---
 ---
----**READ-ONLY** Linked parameter.
+---Linked parameter.
 ---Can be a sample FX- or modulation parameter. Never nil.
+---**READ-ONLY**
 ---@field parameter renoise.DeviceParameter
 ---
 ---Min/max range in which the macro applies its value to the target parameter.
 ---Max can be < than Min. Mapping is then flipped.
 ---@field parameter_min number Range: (0 - 1)
----@field parameter_min_observable renoise.Document.Observable
+---@field parameter_min_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field parameter_max number Range: (0 - 1)
----@field parameter_max_observable renoise.Document.Observable
+---@field parameter_max_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Scaling which gets applied within the min/max range to set the dest value.
 ---@field parameter_scaling renoise.InstrumentMacroMapping.Scaling
----@field parameter_scaling_observable renoise.Document.Observable
+---@field parameter_scaling_observable renoise.Document.Observable **READ-ONLY**

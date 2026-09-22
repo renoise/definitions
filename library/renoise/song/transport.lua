@@ -51,27 +51,28 @@ renoise.Transport = {
 ---
 ---Playing
 ---@field playing boolean
----@field playing_observable renoise.Document.Observable
+---@field playing_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Transport sync mode.
 ---Note: `SYNC_MODE_JACK` only is available on Linux. Trying to enable it on
 ---other platforms will fire an error.
 ---@field sync_mode renoise.Transport.SyncMode
----@field sync_mode_observable renoise.Document.Observable
+---@field sync_mode_observable renoise.Document.Observable **READ-ONLY**
 ---
----*READ-ONLY* Old school speed or new LPB timing used?
+---Old school speed or new LPB timing used?
 ---With `TIMING_MODEL_SPEED`, tpl is used as speed factor. The lpb property
 ---is unused then. With `TIMING_MODEL_LPB`, tpl is used as event rate for effects
 ---only and lpb defines relationship between pattern lines and beats.
+---**READ-ONLY**
 ---@field timing_model renoise.Transport.TimingModel
 ---
 ---BPM, LPB, and TPL
 ---@field bpm number Range: (32 - 999) Beats per Minute
----@field bpm_observable renoise.Document.Observable
+---@field bpm_observable renoise.Document.Observable **READ-ONLY**
 ---@field lpb integer Range: (1 - 256) Lines per Beat
----@field lpb_observable renoise.Document.Observable
+---@field lpb_observable renoise.Document.Observable **READ-ONLY**
 ---@field tpl integer  Range: (1 - 16) Ticks per Line
----@field tpl_observable renoise.Document.Observable
+---@field tpl_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Playback position
 ---@field playback_pos renoise.SongPos
@@ -81,104 +82,100 @@ renoise.Transport = {
 ---@field edit_pos renoise.SongPos
 ---@field edit_pos_beats number Range: (0 - song_end_beats) Song position in beats
 ---
----Song length
 ---@field song_length renoise.SongPos **READ-ONLY**
 ---@field song_length_beats number **READ-ONLY**
 ---
----Loop
 ---@field loop_start renoise.SongPos **READ-ONLY**
 ---@field loop_end renoise.SongPos **READ-ONLY**
 ---@field loop_range renoise.SongPos[] {loop start, loop end}
 ---@field loop_start_beats number **READ-ONLY** Range: (0 - song_end_beats)
 ---@field loop_end_beats number **READ-ONLY** Range: (0 - song_end_beats)
----@field loop_range_beats number[] {loop start beats, loop end beats}
+---{loop start beats, loop end beats}
+---@field loop_range_beats {[1]: number, [2]: number}
 ---
 ---@field loop_sequence_start integer **READ-ONLY** 0 or Range: (1  -  sequence length)
 ---@field loop_sequence_end integer **READ-ONLY** 0 or Range: (1  -  sequence length)
----@field loop_sequence_range integer[] {} or Range(sequence start, sequence end)
+---Range: (sequence_start - sequence_end)
+---The table will contain two zeros when no sequence loop is selected
+---@field loop_sequence_range {[1]: integer, [2]: integer}
 ---
 ---@field loop_pattern boolean Pattern Loop On/Off
----@field loop_pattern_observable renoise.Document.Observable
+---@field loop_pattern_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field loop_block_enabled boolean Block Loop On/Off
----@field loop_block_enabled_observable renoise.Document.Observable
+---@field loop_block_enabled_observable renoise.Document.Observable **READ-ONLY**
 ---@field loop_block_range_coeff integer Range: (2 - 16)
----@field loop_block_range_coeff_observable renoise.Document.Observable
+---@field loop_block_range_coeff_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field loop_block_start_pos renoise.SongPos Start of block loop
 ---
----Edit modes
 ---@field edit_mode boolean Pattern edit/record mode On/Off
----@field edit_mode_observable renoise.Document.Observable
+---@field edit_mode_observable renoise.Document.Observable **READ-ONLY**
 ---@field edit_step integer Range: (0 - 64)
----@field edit_step_observable renoise.Document.Observable
+---@field edit_step_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field octave integer Range: (0 - 8)
----@field octave_observable renoise.Document.Observable
+---@field octave_observable renoise.Document.Observable **READ-ONLY**
 ---@field octave_enabled boolean Enabled for MIDI keyboards
----@field octave_enabled_observable renoise.Document.Observable
+---@field octave_enabled_observable renoise.Document.Observable **READ-ONLY**
 ---
----Metronome
 ---@field metronome_enabled boolean Metronome playback On/Off
----@field metronome_enabled_observable renoise.Document.Observable
+---@field metronome_enabled_observable renoise.Document.Observable **READ-ONLY**
 ---@field metronome_beats_per_bar integer Range: (1 - 16) or 0 = guess from pattern length
----@field metronome_beats_per_bar_observable renoise.Document.Observable
+---@field metronome_beats_per_bar_observable renoise.Document.Observable **READ-ONLY**
 ---@field metronome_lines_per_beat integer Range: (1 - 256) or 0 = songs current LPB
----@field metronome_lines_per_beat_observable renoise.Document.Observable
+---@field metronome_lines_per_beat_observable renoise.Document.Observable **READ-ONLY**
 ---
----Metronome precount
 ---@field metronome_precount_enabled boolean Metronome precount playback On/Off
----@field metronome_precount_enabled_observable renoise.Document.Observable
+---@field metronome_precount_enabled_observable renoise.Document.Observable **READ-ONLY**
 ---@field metronome_precount_bars integer Range: (1 - 4)
----@field metronome_precount_bars_observable renoise.Document.Observable
+---@field metronome_precount_bars_observable renoise.Document.Observable **READ-ONLY**
 ---@field metronome_volume number Range: (0 - math.db2lin(6))
----@field metronome_volume_observable renoise.Document.Observable
+---@field metronome_volume_observable renoise.Document.Observable **READ-ONLY**
 ---
----Quantize
 ---@field record_quantize_enabled boolean Record note quantization On/Off
----@field record_quantize_enabled_observable renoise.Document.Observable
+---@field record_quantize_enabled_observable renoise.Document.Observable **READ-ONLY**
 ---@field record_quantize_lines integer Range: (1 - 32)
----@field record_quantize_lines_observable renoise.Document.Observable
+---@field record_quantize_lines_observable renoise.Document.Observable **READ-ONLY**
 ---
----Record parameter
 ---@field record_parameter_mode renoise.Transport.RecordParameterMode
----@field record_parameter_mode_observable renoise.Document.Observable
+---@field record_parameter_mode_observable renoise.Document.Observable **READ-ONLY**
 ---
----Follow, wrapped pattern, single track modes
 ---@field follow_player boolean
----@field follow_player_observable renoise.Document.Observable
+---@field follow_player_observable renoise.Document.Observable **READ-ONLY**
 ---@field wrapped_pattern_edit boolean
----@field wrapped_pattern_edit_observable renoise.Document.Observable
+---@field wrapped_pattern_edit_observable renoise.Document.Observable **READ-ONLY**
 ---@field single_track_edit_mode boolean
----@field single_track_edit_mode_observable renoise.Document.Observable
+---@field single_track_edit_mode_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Groove (aka Shuffle)
 ---@field groove_enabled boolean
----@field groove_enabled_observable renoise.Document.Observable
----@field groove_amounts number[] table with 4 numbers in Range: (0 - 1)
+---@field groove_enabled_observable renoise.Document.Observable **READ-ONLY**
+---Range: (0 - 1)
+---@field groove_amounts {[1]: number, [2]: number, [3]: number, [4]: number}
 ---Will be called as soon as any groove value changed.
----@field groove_assignment_observable renoise.Document.Observable
+---@field groove_assignment_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Global Track Headroom
 ---To convert to dB: `dB = math.lin2db(renoise.Transport.track_headroom)`
 ---To convert from dB: `renoise.Transport.track_headroom = math.db2lin(dB)`
 ---Range: (math.db2lin(-12) - math.db2lin(0))
 ---@field track_headroom number
----@field track_headroom_observable renoise.Document.Observable
+---@field track_headroom_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Computer Keyboard Velocity.
 ---@field keyboard_velocity_enabled boolean
----@field keyboard_velocity_enabled_observable renoise.Document.Observable
+---@field keyboard_velocity_enabled_observable renoise.Document.Observable **READ-ONLY**
 ---Will return the default value of 127 when keyboard_velocity_enabled == false.
 ---Range: (0 - 127)
 ---@field keyboard_velocity integer
----@field keyboard_velocity_observable renoise.Document.Observable
+---@field keyboard_velocity_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---*READ-ONLY* true when sample sample dialog is visible and recording started.
 ---@field sample_recording boolean
 ---Sample recording pattern quantization On/Off.
 ---@field sample_recording_sync_enabled boolean
----@field sample_recording_sync_enabled_observable renoise.Document.Observable
+---@field sample_recording_sync_enabled_observable renoise.Document.Observable **READ-ONLY**
 
 ---### functions
 

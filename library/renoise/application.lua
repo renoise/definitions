@@ -17,23 +17,29 @@ renoise.Application = {}
 
 ---@class renoise.Application
 ---
----**READ-ONLY** Access to the application's full log filename and path. Will
+---Access to the application's full log filename and path. Will
 ---already be opened for writing, but you nevertheless should be able to read
 ---from it.
+---**READ-ONLY**
 ---@field log_filename string
 ---
----**READ-ONLY** Get the apps main document, the song.
+---Get the apps main document, the song.
 ---The global "renoise.song()" function is, in fact, a shortcut to this property.
+---**READ-ONLY**
 ---@field current_song renoise.Song?
 ---
----**READ-ONLY** List of recently loaded song files.
+---List of recently loaded song files.
+---**READ-ONLY**
 ---@field recently_loaded_song_files string[]
----**READ-ONLY** List of recently saved song files.
+---List of recently saved song files.
+---**READ-ONLY**
 ---@field recently_saved_song_files string[]
 ---
----**READ-ONLY** Returns information about all currently installed tools.
+---Returns information about all currently installed tools.
+---**READ-ONLY**
 ---@field installed_tools table<string, string>
 ---Fired when the list of installed tools changed.
+---**READ-ONLY**
 ---@field installed_tools_observable renoise.Document.Observable
 ---
 ---Fired when the list of available audio plugin effects changed, for example
@@ -41,24 +47,30 @@ renoise.Application = {}
 ---Use the component's `available_plugins` or `available_devices` properties
 ---to access currently available devices which are supported by the component
 ---such as the track device chains.
+---**READ-ONLY**
 ---@field audio_plugin_effects_observable renoise.Document.Observable
 ---Fired when the list of available audio plugin instruments changed, for example
 ---when scanning for new plugins in the preferences.
+---**READ-ONLY**
 ---@field audio_plugin_instruments_observable renoise.Document.Observable
 ---
 ---**Deprecated.** **READ-ONLY** Use `key_modifier_flags` instead
 ---@deprecated
 ---@field key_modifier_states table<string, string>
----**READ-ONLY** Access keyboard modifier states.
+---Access keyboard modifier states.
+---**READ-ONLY**
 ---@field key_modifier_flags ModifierFlags
 ---
----**READ-ONLY** Access to the application's window.
+---Access to the application's window.
+---**READ-ONLY**
 ---@field window renoise.ApplicationWindow
 ---
----**READ-ONLY** Access to the application's color theme.
+---Access to the application's color theme.
+---**READ-ONLY**
 ---@field theme renoise.ApplicationTheme
 ---Fired, when *any* theme color changed. e.g. when a new theme got loaded
 ---or when theme colors got edited in the theme preferences.
+---**READ-ONLY**
 ---@field theme_observable renoise.Document.Observable
 ---
 ---Range: (1 - 4) Get or set globally used clipboard "slots" in the application.
@@ -116,10 +128,11 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---@class KeyEvent
 ---@field name string name of the key, like 'esc' or 'a'
 ---**Deprecated.** Use `modifier_flags` instead
----**READ-ONLY** the held down modifiers as a string
----@deprecated
+---the held down modifiers as a string
+---@deprecated **READ-ONLY**
 ---@field modifiers ModifierStates
----**READ-ONLY** the held down modifiers as flags
+---the held down modifiers as flags
+---**READ-ONLY**
 ---@field modifier_flags ModifierFlags
 ---possible character representation of the key
 ---@field character string?
@@ -148,7 +161,7 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 
 ---Optional focus change notifier for a custom dialog.
 ---Will be called when the dialog gains of loses key focus. You maybe want to initialize
----your dloag's (modifier) keyboard states here.
+---your dialog's (modifier) keyboard states here.
 ---@alias FocusHandler fun(dialogs: renoise.Dialog, focused: boolean) : KeyEvent?
 ---@alias FocusHandlerMemberFunction fun(self: NotifierMemberContext, dialog: renoise.Dialog, focused: boolean): KeyEvent?
 ---@alias FocusHandlerMethod1 {[1]:NotifierMemberContext, [2]:FocusHandlerMemberFunction}
@@ -423,10 +436,12 @@ function renoise.Application:save_theme(filename) end
 ---create views for the dialog.
 ---@class renoise.Dialog
 ---
---- **READ-ONLY** Check if a dialog is alive and visible.
+---Check if a dialog is alive and visible.
+---**READ-ONLY**
 ---@field visible boolean
---- **READ-ONLY** Check if a dialog is visible and is the key window.
----@field focused boolean
+---Check if a dialog is visible and is the key window.
+---**READ-ONLY**
+---@field focused boolean 
 renoise.Dialog = {}
 
 ---### functions

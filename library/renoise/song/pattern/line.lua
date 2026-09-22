@@ -30,10 +30,12 @@ renoise.PatternLine.EMPTY_EFFECT_AMOUNT = 0
 ---@class renoise.PatternLine
 ---
 ---Is empty.
----@field is_empty boolean **READ-ONLY**
+---**READ-ONLY**
+---@field is_empty boolean
 ---
 ---Columns.
----@field note_columns renoise.NoteColumn[] **READ-ONLY**
+---**READ-ONLY**
+---@field note_columns renoise.NoteColumn[]
 ---@field effect_columns renoise.EffectColumn[] **READ-ONLY**
 
 ---### functions
@@ -92,11 +94,13 @@ renoise.NoteColumn = {}
 
 ---@class renoise.NoteColumn
 ---
----**READ-ONLY** True, when all note column properties are empty.
+---True, when all note column properties are empty.
+---**READ-ONLY**
 ---@field is_empty boolean
 ---
----**READ-ONLY** True, when this column is selected in the pattern or phrase
+---True, when this column is selected in the pattern or phrase
 ---editors current pattern.
+---**READ-ONLY**
 ---@field is_selected boolean
 ---
 ---@field note_value integer Range: (0-119) or 120=Off or 121=Empty
@@ -165,10 +169,12 @@ renoise.EffectColumn = {}
 
 ---@class renoise.EffectColumn
 ---
----**READ-ONLY** True, when all effect column properties are empty.
+---True, when all effect column properties are empty.
+---**READ-ONLY**
 ---@field is_empty boolean
 ---
----**READ-ONLY** True, when this column is selected in the pattern or phrase editor.
+---True, when this column is selected in the pattern or phrase editor.
+---**READ-ONLY**
 ---@field is_selected boolean
 ---
 ---0-65535 in the form 0x0000xxyy where xx=effect char 1 and yy=effect char 2

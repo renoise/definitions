@@ -27,15 +27,16 @@ renoise.Pattern.MAX_NUMBER_OF_LINES = 512
 ---
 ---Name of the pattern, as visible in the pattern sequencer.
 ---@field name string
----@field name_observable renoise.Document.Observable
+---@field name_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Number of lines the pattern currently has. 64 by default. Max is
 ---renoise.Pattern.MAX_NUMBER_OF_LINES, min is 1.
 ---@field number_of_lines integer
----@field number_of_lines_observable renoise.Document.Observable
+---@field number_of_lines_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Access to the pattern tracks. Each pattern has
+---Access to the pattern tracks. Each pattern has
 ---#renoise.song().tracks amount of tracks.
+---**READ-ONLY**
 ---@field tracks renoise.PatternTrack[]
 
 ---### functions

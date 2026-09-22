@@ -56,29 +56,30 @@ renoise.Instrument = {
 ---Currently active tab in the instrument GUI (samples, plugin or MIDI).
 ---@see renoise.
 ---@field active_tab renoise.Instrument.Tab
----@field active_tab_observable renoise.Document.Observable
+---@field active_tab_observable renoise.Document.Observable **READ-ONLY**
 --
 ---Instrument's name.
 ---@field name string
----@field name_observable renoise.Document.Observable
+---@field name_observable renoise.Document.Observable **READ-ONLY**
 --
 ---Instrument's comment list. See renoise.song().comments for more info on
 ---how to get notified on changes and how to change it.
 ---@field comments string[]
----@field comments_observable renoise.Document.Observable
+---@field comments_observable renoise.Document.Observable **READ-ONLY**
 --
 ---Notifier which is called as soon as any paragraph in the comments change.
----@field comments_assignment_observable renoise.Document.Observable
+---@field comments_assignment_observable renoise.Document.Observable **READ-ONLY**
 --
 ---Set this to true to show the comments dialog after loading a song
 ---@field show_comments_after_loading  boolean
----@field show_comments_after_loading_observable renoise.Document.Observable
+---@field show_comments_after_loading_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Macro parameter pane visibility in the GUI.
 ---@field macros_visible boolean
----@field macros_visible_observable renoise.Document.Observable
+---@field macros_visible_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Macro parameters. Array with size Instrument.NUMBER_OF_MACROS.
+---Macro parameters. Array with size Instrument.NUMBER_OF_MACROS.
+---**READ-ONLY**
 ---@field macros renoise.InstrumentMacro[]
 ---
 ---Access the MIDI pitch-bend macro
@@ -92,67 +93,67 @@ renoise.Instrument = {
 ---
 ---Global linear volume of the instrument. Applied to all samples, MIDI and
 ---plugins in the instrument.
----@field volume number Range: (0 - math.db2lin(6))
----@field volume_observable renoise.Document.Observable
+---Range: (0 - math.db2lin(6))
+---@field volume number
+---@field volume_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Range: (-120 - 120). Global relative pitch in semi tones.
 ---Applied to all samples, MIDI and plugins in the instrument.
 ---@field transpose integer
----@field transpose_observable renoise.Document.Observable
+---@field transpose_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Global trigger options (quantization and scaling options).
 ---@field trigger_options renoise.InstrumentTriggerOptions
 ---
 ---Sample mapping's overlap trigger mode.
 ---@field sample_mapping_overlap_mode renoise.Instrument.OverlapMode
----@field sample_mapping_overlap_mode_observable renoise.Document.Observable
+---@field sample_mapping_overlap_mode_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Phrase editor pane visibility in the GUI.
 ---@field phrase_editor_visible boolean
----@field phrase_editor_visible_observable renoise.Document.Observable
+---@field phrase_editor_visible_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Phrase playback.
 ---@field phrase_playback_mode renoise.Instrument.PhrasePlaybackMode
----@field phrase_playback_mode_observable renoise.Document.Observable
+---@field phrase_playback_mode_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Phrase playback program: 0 = Off, 1-126 = specific phrase, 127 = keymap.
 ---@field phrase_program integer
----@field phrase_program_observable renoise.Document.Observable
----
----**READ-ONLY** Phrases.
----@field phrases renoise.InstrumentPhrase[]
----@field phrases_observable renoise.Document.ObservableList
----
----**READ-ONLY** Phrase mappings.
----@field phrase_mappings renoise.InstrumentPhraseMapping[]
----@field phrase_mappings_observable renoise.Document.ObservableList
----
----**READ-ONLY** Samples slots.
----@field samples renoise.Sample[]
----@field samples_observable renoise.Document.ObservableList
+---@field phrase_program_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---**READ-ONLY**
+---@field phrases renoise.InstrumentPhrase[]
+---@field phrases_observable renoise.Document.ObservableList **READ-ONLY**
+---
+---**READ-ONLY**
+---@field phrase_mappings renoise.InstrumentPhraseMapping[]
+---@field phrase_mappings_observable renoise.Document.ObservableList **READ-ONLY**
+---
+---**READ-ONLY**
+---@field samples renoise.Sample[]
+---@field samples_observable renoise.Document.ObservableList **READ-ONLY**
+---
 ---Sample mappings (key/velocity to sample slot mappings).
 ---sample_mappings[LAYER_NOTE_ON/OFF][]. Sample mappings also can
 ---be accessed via ---@field samples[].sample_mapping
 ---@field sample_mappings renoise.SampleMapping[]
----@field sample_mappings_observable renoise.Document.ObservableList
+---@field sample_mappings_observable renoise.Document.ObservableList **READ-ONLY**
 ---
----**READ-ONLY** Sample modulation sets.
+---**READ-ONLY**
 ---@field sample_modulation_sets renoise.SampleModulationSet[]
----@field sample_modulation_sets_observable renoise.Document.ObservableList
+---@field sample_modulation_sets_observable renoise.Document.ObservableList **READ-ONLY**
 ---
----**READ-ONLY** Sample device chains.
+---**READ-ONLY**
 ---@field sample_device_chains renoise.SampleDeviceChain[]
----@field sample_device_chains_observable renoise.Document.ObservableList
+---@field sample_device_chains_observable renoise.Document.ObservableList **READ-ONLY**
 ---
----**READ-ONLY** MIDI input properties.
+---**READ-ONLY**
 ---@field midi_input_properties renoise.InstrumentMidiInputProperties
 ---
----**READ-ONLY** MIDI output properties.
+---**READ-ONLY**
 ---@field midi_output_properties renoise.InstrumentMidiOutputProperties
 ---
----**READ-ONLY** Plugin properties.
+---**READ-ONLY**
 ---@field plugin_properties renoise.InstrumentPluginProperties
 
 ---### functions
@@ -305,20 +306,21 @@ renoise.InstrumentTriggerOptions = {
 
 ---@class renoise.InstrumentTriggerOptions
 ---
----**READ-ONLY** List of all available scale modes.
+---List of all available scale modes.
+---**READ-ONLY**
 ---@field available_scale_modes string[]
 ---
 ---Scale to use when transposing. One of 'available_scales'.
 ---@field scale_mode string, one of 'available_scales']
----@field scale_mode_observable renoise.Document.Observable
+---@field scale_mode_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Scale-key to use when transposing (1=C, 2=C#, 3=D, ...)
 ---@field scale_key integer
----@field scale_key_observable renoise.Document.Observable
+---@field scale_key_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---When true, act as MTS ESP client. Disables custom tunings.
 ---@field mts_esp_tuning boolean
----@field mts_esp_tuning_observable renoise.Document.Observable
+---@field mts_esp_tuning_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Array of custom pitch values relative to 1/1, used as custom tuning values for
 ---instrument sample playback. The root key is assumed to be middle C (48 in Renoise),
@@ -340,23 +342,23 @@ renoise.InstrumentTriggerOptions = {
 ---instrument.tuning = well_tempered_tuning
 ---```
 ---@field tuning number[]
----@field tuning_observable renoise.Document.Observable
+---@field tuning_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Name, as displayed in the UI for a custom tuning or a tuning loaded from a file.
 ---@field tuning_name string
----@field tuning_name_observable renoise.Document.Observable
+---@field tuning_name_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Trigger quantization mode.
 ---@field quantize renoise.InstrumentTriggerOptions.QuantizeMode
----@field quantize_observable renoise.Document.Observable
+---@field quantize_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Mono/Poly mode.
 ---@field monophonic boolean
----@field monophonic_observable renoise.Document.Observable
+---@field monophonic_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Glide amount when monophonic. 0 == off, 255 = instant
 ---@field monophonic_glide integer
----@field monophonic_glide_observable renoise.Document.Observable
+---@field monophonic_glide_observable renoise.Document.Observable **READ-ONLY**
 
 ---### functions
 

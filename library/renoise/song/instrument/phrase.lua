@@ -54,96 +54,98 @@ renoise.InstrumentPhrase = {
 ---
 ---Name of the phrase as visible in the phrase editor and piano mappings.
 ---@field name string
----@field name_observable renoise.Document.Observable
+---@field name_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---(Key)Mapping properties of the phrase or nil when no mapping is present.
 ---@field mapping renoise.InstrumentPhraseMapping?
 ---
 ---playback mode
 ---@field playback_mode renoise.InstrumentPhrase.PlaybackMode
----@field playback_mode_observable renoise.Document.Observable
+---@field playback_mode_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Phrase script properties. Only used when `playback_mode` is
+---Phrase script properties. Only used when `playback_mode` is
 ---set to `renoise.InstrumentPhrase.PLAY_SCRIPT`
+---**READ-ONLY**
 ---@field script renoise.InstrumentPhraseScript
 ---
----**READ-ONLY**
 ---Quickly check if a phrase has some non empty pattern lines.
+---**READ-ONLY**
 ---@field is_empty boolean
----@field is_empty_observable renoise.Document.Observable
+---@field is_empty_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Default: 16, Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_LINES)
 ---Number of lines the phrase currently has.
 ---@field number_of_lines integer
----@field number_of_lines_observable renoise.Document.Observable
+---@field number_of_lines_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Get all lines in a range [1, number_of_lines_in_pattern]
+---Get all lines in a range [1, number_of_lines_in_pattern]
+---**READ-ONLY**
 ---@field lines renoise.PatternLine[]
 ---
 ---Range: (MIN_NUMBER_OF_NOTE_COLUMNS - MAX_NUMBER_OF_NOTE_COLUMNS)
 ---How many note columns are visible in the phrase.
 ---@field visible_note_columns integer
----@field visible_note_columns_observable  renoise.Document.Observable
+---@field visible_note_columns_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Range: (MIN_NUMBER_OF_EFFECT_COLUMNS - MAX_NUMBER_OF_EFFECT_COLUMNS)
 ---How many effect columns are visible in the phrase.
 ---@field visible_effect_columns integer
----@field visible_effect_columns_observable renoise.Document.Observable
+---@field visible_effect_columns_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Phrase's key-tracking mode.
 ---@field key_tracking renoise.InstrumentPhrase.KeyTrackingMode
----@field key_tracking_observable  renoise.Document.Observable
+---@field key_tracking_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Range: (0 - 119) where C-4 is 48
 ---Phrase's base-note. Only relevant when key_tracking is set to transpose.
 ---@field base_note integer
----@field base_note_observable  renoise.Document.Observable
+---@field base_note_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Loop mode. The phrase plays as one-shot when disabled.
 ---@field looping boolean
----@field looping_observable  renoise.Document.Observable
+---@field looping_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Range: (1 - number_of_lines)
 ---Loop start. Playback will start from the beginning before entering loop
 ---@field loop_start integer
----@field loop_start_observable  renoise.Document.Observable
+---@field loop_start_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Range: (loop_start - number_of_lines)
 ---Loop end. Needs to be > loop_start and <= number_of_lines
 ---@field loop_end integer
----@field loop_end_observable  renoise.Document.Observable
+---@field loop_end_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Phrase autoseek settings
 ---@field autoseek boolean
----@field autoseek_observable renoise.Document.Observable
+---@field autoseek_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Range: (1 - 256)
 ---Phrase local lines per beat setting. New phrases get initialized with
 ---the song's current LPB setting. TPL can not be configured in phrases.
 ---@field lpb integer
----@field lpb_observable renoise.Document.Observable
+---@field lpb_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Range: (0 - 1)
 ---Shuffle groove amount for a phrase.
 ---0.0 = no shuffle (off), 1.0 = full shuffle
 ---@field shuffle number
----@field shuffle_observable renoise.Document.Observable
+---@field shuffle_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Column visibility.
 ---@field instrument_column_visible boolean
----@field instrument_column_visible_observable renoise.Document.Observable
+---@field instrument_column_visible_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field volume_column_visible boolean
----@field volume_column_visible_observable  renoise.Document.Observable
+---@field volume_column_visible_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field panning_column_visible boolean
----@field panning_column_visible_observable  renoise.Document.Observable
+---@field panning_column_visible_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field delay_column_visible boolean
----@field delay_column_visible_observable  renoise.Document.Observable
+---@field delay_column_visible_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field sample_effects_column_visible boolean
----@field sample_effects_column_visible_observable  renoise.Document.Observable
+---@field sample_effects_column_visible_observable renoise.Document.Observable **READ-ONLY**
 
 
 ---### functions
@@ -220,7 +222,7 @@ function renoise.InstrumentPhrase:remove_line_edited_notifier(func, obj) end
 function renoise.InstrumentPhrase:column_is_muted(column) end
 
 ---@param column integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
----@return renoise.Document.Observable
+---@return renoise.Document.Observable **READ-ONLY**
 function renoise.InstrumentPhrase:column_is_muted_observable(column) end
 
 ---@param column integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
@@ -233,7 +235,7 @@ function renoise.InstrumentPhrase:set_column_is_muted(column, muted) end
 function renoise.InstrumentPhrase:column_name(column) end
 
 ---@param column integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
----@return renoise.Document.Observable
+---@return renoise.Document.Observable **READ-ONLY**
 function renoise.InstrumentPhrase:column_name_observable(column) end
 
 ---@param column integer Range: (1 - renoise.InstrumentPhrase.MAX_NUMBER_OF_NOTE_COLUMNS)
@@ -284,24 +286,26 @@ renoise.InstrumentPhraseMapping = {
 ---
 ---Phrase's key-tracking mode.
 ---@field key_tracking renoise.InstrumentPhraseMapping.KeyTrackingMode
----@field key_tracking_observable  renoise.Document.Observable
+---@field key_tracking_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Phrase's base-note. Only relevant when key_tracking is set to transpose.
----@field base_note integer Range: (0 - 119) where C-4 is 48
----@field base_note_observable  renoise.Document.Observable
+--- Range: (0 - 119) where C-4 is 48
+---@field base_note integer
+---@field base_note_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Note range the mapping is triggered at. Phrases may not overlap, so
 ---note_range start can only be set behind previous's (if any) end and
 ---note_range end can only be set before next mapping's (if any) start.
----@field note_range integer[] Range: (0 - 119) where C-4 is 48
----@field note_range_observable  renoise.Document.Observable
+---Range: (0 - 119) where C-4 is 48
+---@field note_range {[1]: integer, [2]: integer}
+---@field note_range_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Loop mode. The phrase plays as one-shot when disabled.
 ---@field looping boolean
----@field looping_observable  renoise.Document.Observable
+---@field looping_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field loop_start integer
----@field loop_start_observable  renoise.Document.Observable
+---@field loop_start_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---@field loop_end integer
----@field loop_end_observable  renoise.Document.Observable
+---@field loop_end_observable renoise.Document.Observable **READ-ONLY**

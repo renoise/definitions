@@ -69,26 +69,28 @@ renoise.Song = {
 ---Renoise's main document - the song.
 ---@class renoise.Song
 ---
----**READ-ONLY** When the song is loaded from or saved to a file, the absolute
+---When the song is loaded from or saved to a file, the absolute
 ---path and name to the XRNS file, otherwise an empty string.
+---**READ-ONLY**
 ---@field file_name string
 ---
 ---Song Comments
 ---@field artist string
----@field artist_observable renoise.Document.Observable
+---@field artist_observable renoise.Document.Observable **READ-ONLY**
 ---@field name string
----@field name_observable renoise.Document.Observable
+---@field name_observable renoise.Document.Observable **READ-ONLY**
 ---Note: All property tables of basic types in the API are temporary copies.
 ---In other words `comments = { "Hello", "World" }` will work,
 ---`comments[1] = "Hello"; renoise.song().comments[2] = "World"`
 ---will *not* work.
 ---@field comments string[]
----@field comments_observable renoise.Document.ObservableList
----**READ-ONLY** Notifier is called as soon as any paragraph in the comments change.
+---@field comments_observable renoise.Document.ObservableList **READ-ONLY**
+---Notifier is called as soon as any paragraph in the comments change.
+---**READ-ONLY**
 ---@field comments_assignment_observable renoise.Document.Observable
 ---Set this to true to show the comments dialog after loading a song
 ---@field show_comments_after_loading boolean
----@field show_comments_after_loading_observable renoise.Document.Observable
+---@field show_comments_after_loading_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---Inject/fetch custom XRNX scripting tool data into the song. Can only be called
 ---from scripts that are running in Renoise scripting tool bundles; attempts to
@@ -103,87 +105,105 @@ renoise.Song = {
 ---Alternatively, write your own serializers for your custom data.
 ---@field tool_data string?
 ---
----**READ-ONLY** True while rendering is in progress.
+---True while rendering is in progress.
 ---@see renoise.Song.render
+---**READ-ONLY**
 ---@field rendering boolean
----**READ-ONLY** The current render progress amount
+---The current render progress amount
 ---@see renoise.Song.render
----@field rendering_progress number Range: (0.0 - 1.0)
----
+---Range: (0.0 - 1.0)
 ---**READ-ONLY**
----@field transport renoise.Transport
+---@field rendering_progress number
 ---
+---
+---@field transport renoise.Transport **READ-ONLY**
+---
+---
+---@field sequencer renoise.PatternSequencer **READ-ONLY**
+---
+---
+---@field pattern_iterator renoise.PatternIterator **READ-ONLY**
+---
+---number of normal playback tracks (non-master or sends) in song.
 ---**READ-ONLY**
----@field sequencer renoise.PatternSequencer
----
----**READ-ONLY**
----@field pattern_iterator renoise.PatternIterator
----
----**READ-ONLY** number of normal playback tracks (non-master or sends) in song.
 ---@field sequencer_track_count integer
-----**READ-ONLY** number of send tracks in song.
+---number of send tracks in song.
+---**READ-ONLY**
 ---@field send_track_count integer
 ---
----**READ-ONLY** Instrument arrays
+---Instrument arrays
+---**READ-ONLY**
 ---@field instruments renoise.Instrument[]
----@field instruments_observable renoise.Document.ObservableList
----**READ-ONLY** Pattern arrays
+---@field instruments_observable renoise.Document.ObservableList **READ-ONLY**
+---Pattern arrays
+---**READ-ONLY**
 ---@field patterns renoise.Pattern[]
----@field patterns_observable renoise.Document.ObservableList
----**READ-ONLY** Track array
+---@field patterns_observable renoise.Document.ObservableList **READ-ONLY**
+---Track array
+---**READ-ONLY**
 ---@field tracks renoise.Track[]
----@field tracks_observable renoise.Document.ObservableList
+---@field tracks_observable renoise.Document.ObservableList **READ-ONLY**
 ---
----**READ-ONLY** Selected in the instrument box.
+---Selected in the instrument box.
+---**READ-ONLY**
 ---@field selected_instrument renoise.Instrument
----@field selected_instrument_observable renoise.Document.Observable
----**READ-ONLY** Selected instrument index in the instrument box.
+---@field selected_instrument_observable renoise.Document.Observable **READ-ONLY**
+---Selected instrument index in the instrument box.
+---Note, Renoise displays zero-based indices here
+---but this value starts from one.
 ---@field selected_instrument_index integer
----@field selected_instrument_index_observable renoise.Document.Observable
+---@field selected_instrument_index_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Selected phrase the instrument's phrase map piano view.
+---Selected phrase the instrument's phrase map piano view.
+---**READ-ONLY**
 ---@field selected_phrase renoise.InstrumentPhrase?
----@field selected_phrase_observable renoise.Document.Observable
----**READ-ONLY** Selected phrase index the instrument's phrase map piano view.
+---@field selected_phrase_observable renoise.Document.Observable **READ-ONLY**
+---Selected phrase index the instrument's phrase map piano view.
 ---@field selected_phrase_index integer
 ---
----**READ-ONLY** Selected in the instrument's sample list.
+---Selected in the instrument's sample list.
 ---Only nil when no samples are present in the selected instrument.
+---**READ-ONLY**
 ---@field selected_sample renoise.Sample?
----@field selected_sample_observable renoise.Document.Observable
----**READ-ONLY** Selected sample index in the instrument's sample list.
+---@field selected_sample_observable renoise.Document.Observable **READ-ONLY**
+---Selected sample index in the instrument's sample list.
 ---Only 0 when no samples are present in the selected instrument.
 ---@field selected_sample_index integer
 ---
----**READ-ONLY** Selected in the instrument's modulation view.
+---Selected in the instrument's modulation view.
+---**READ-ONLY**
 ---@field selected_sample_modulation_set renoise.SampleModulationSet?
----@field selected_sample_modulation_set_observable renoise.Document.Observable
----**READ-ONLY** Selected modulation set index in the instrument's modulation view.
+---@field selected_sample_modulation_set_observable renoise.Document.Observable **READ-ONLY**
+---Selected modulation set index in the instrument's modulation view.
 ---@field selected_sample_modulation_set_index integer
 ---
----**READ-ONLY** Selected in the instrument's effects view.
+---Selected in the instrument's effects view.
+---**READ-ONLY**
 ---@field selected_sample_device_chain renoise.SampleDeviceChain?
----@field selected_sample_device_chain_observable renoise.Document.Observable
----**READ-ONLY** Selected chain index in the instrument's effects view.
+---@field selected_sample_device_chain_observable renoise.Document.Observable **READ-ONLY**
+---Selected chain index in the instrument's effects view.
 ---@field selected_sample_device_chain_index integer
 ---
----**READ-ONLY** Selected in the sample effect mixer.
+---Selected in the sample effect mixer.
+---**READ-ONLY**
 ---@field selected_sample_device renoise.AudioDevice?
----@field selected_sample_device_observable renoise.Document.Observable
----**READ-ONLY** Selected device index in the sample effect mixer.
+---@field selected_sample_device_observable renoise.Document.Observable **READ-ONLY**
+---Selected device index in the sample effect mixer.
 ---@field selected_sample_device_index integer
 ---
----**READ-ONLY** Selected in the pattern editor or mixer.
+---Selected in the pattern editor or mixer.
+---**READ-ONLY**
 ---@field selected_track renoise.Track
----@field selected_track_observable renoise.Document.Observable
----**READ-ONLY** Selected track index in the pattern editor or mixer.
+---@field selected_track_observable renoise.Document.Observable **READ-ONLY**
+---Selected track index in the pattern editor or mixer.
 ---@field selected_track_index integer
----@field selected_track_index_observable renoise.Document.Observable
+---@field selected_track_index_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** Selected in the track DSP chain editor.
+---Selected in the track DSP chain editor.
+---**READ-ONLY**
 ---@field selected_track_device renoise.AudioDevice?
----@field selected_track_device_observable renoise.Document.Observable
----**READ-ONLY** Selected device index in the track DSP chain editor.
+---@field selected_track_device_observable renoise.Document.Observable **READ-ONLY**
+---Selected device index in the track DSP chain editor.
 ---@field selected_track_device_index integer
 ---
 ---**Deprecated.** **READ-ONLY** Use 'selected_track_device' instead.
@@ -203,41 +223,49 @@ renoise.Song = {
 ---Selected parameter in the automation editor.
 ---When setting a new parameter, parameter must be automateable and
 ---must be one of the currently selected track device chain.
+---**READ-ONLY**
 ---@field selected_automation_parameter renoise.DeviceParameter?
----@field selected_automation_parameter_observable renoise.Document.Observable
----**READ-ONLY** Parent device of 'selected_automation_parameter'.
+---@field selected_automation_parameter_observable renoise.Document.Observable **READ-ONLY**
+---Parent device of 'selected_automation_parameter'.
+---**READ-ONLY**
 ---@field selected_automation_device renoise.AudioDevice?
----@field selected_automation_device_observable renoise.Document.Observable
+---@field selected_automation_device_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** The currently edited pattern.
+---The currently edited pattern.
+---**READ-ONLY**
 ---@field selected_pattern renoise.Pattern
----@field selected_pattern_observable renoise.Document.Observable
----**READ-ONLY** The currently edited pattern index.
+---@field selected_pattern_observable renoise.Document.Observable **READ-ONLY**
+---The currently edited pattern index.
 ---@field selected_pattern_index integer
----@field selected_pattern_index_observable renoise.Document.Observable
+---@field selected_pattern_index_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** The currently edited pattern track object.
+---The currently edited pattern track object.
 ---and selected_track_observable for notifications.
+---**READ-ONLY**
 ---@field selected_pattern_track renoise.PatternTrack
----@field selected_pattern_track_observable renoise.Document.Observable
+---@field selected_pattern_track_observable renoise.Document.Observable **READ-ONLY**
 ---
 ---The currently edited sequence position.
 ---@field selected_sequence_index integer
----@field selected_sequence_index_observable renoise.Document.Observable
+---@field selected_sequence_index_observable renoise.Document.Observable **READ-ONLY**
 ---
----**READ-ONLY** The currently edited line in the edited pattern.
+---The currently edited line in the edited pattern.
+---**READ-ONLY**
 ---@field selected_line renoise.PatternLine
 ---@field selected_line_index integer
----**READ-ONLY** The currently edited column in the selected line in the edited
+---The currently edited column in the selected line in the edited
 ---sequence/pattern. Nil when an effect column is selected.
+---**READ-ONLY**
 ---@field selected_note_column renoise.NoteColumn?
 ---@field selected_note_column_index integer
----**READ-ONLY** The currently edited column in the selected line in the edited
+---The currently edited column in the selected line in the edited
 ---sequence/pattern. Nil when a note column is selected.
+---**READ-ONLY**
 ---@field selected_effect_column renoise.EffectColumn?
 ---@field selected_effect_column_index integer
----**READ-ONLY** The currently edited sub column type within the selected
+---The currently edited sub column type within the selected
 ---note/effect column.
+---**READ-ONLY**
 ---@field selected_sub_column_type renoise.Song.SubColumnType
 ---
 ---Read/write access to the selection in the pattern editor.
@@ -245,7 +273,7 @@ renoise.Song = {
 ---Line indexes are valid from 1 to patterns[].number_of_lines
 ---Track indexes are valid from 1 to #tracks
 ---Column indexes are valid from 1 to
----  (tracks[].visible_note_columns + tracks[].visible_effect_columns)
+--- (tracks[].visible_note_columns + tracks[].visible_effect_columns)
 ---
 ---When setting the selection, all members are optional. Combining them in
 ---various different ways will affect how specific the selection is. When
@@ -254,35 +282,39 @@ renoise.Song = {
 ---### examples:
 ---```lua
 ---renoise.song().selection_in_pattern = {}
----  --> clear
+--- --> clear
 ---renoise.song().selection_in_pattern = { start_line = 1, end_line = 4 }
----  --> select line 1 to 4, first to last track
+--- --> select line 1 to 4, first to last track
 ---renoise.song().selection_in_pattern =
----  { start_line = 1, start_track = 1, end_line = 4, end_track = 1 }
----  --> select line 1 to 4, in the first track only
+--- { start_line = 1, start_track = 1, end_line = 4, end_track = 1 }
+--- --> select line 1 to 4, in the first track only
 ---```
 ---@field selection_in_pattern PatternSelection?
 ---
----**READ-ONLY** The currently edited line in the currently edited phrase.
+---The currently edited line in the currently edited phrase.
 ---Nil when no phrase is selected.
+---**READ-ONLY**
 ---@field selected_phrase_line renoise.PatternLine?
 ---The currently edited line index in the currently edited phrase.
 ---0 when no phrase is selected.
 ---@field selected_phrase_line_index integer
----**READ-ONLY** The currently edited column in the selected line in the currently
+---The currently edited column in the selected line in the currently
 ---edited phrase. Nil when no phrase is selected or when an effect column is selected.
+---**READ-ONLY**
 ---@field selected_phrase_note_column renoise.NoteColumn?
 ---The currently edited column index in the selected line in the currently edited
 ---phrase. 0 when no phrase is selected or when an effect column is selected.
 ---@field selected_phrase_note_column_index integer
----**READ-ONLY** The currently edited column in the selected line in the currently
+---The currently edited column in the selected line in the currently
 ---edited phrase. Nil when no phrase is selected or when a note column is selected.
+---**READ-ONLY**
 ---@field selected_phrase_effect_column renoise.EffectColumn?
 ---The currently edited effect column index in the selected line in the currently
 ---edited phrase. 0 when no phrase is selected or when a note column is selected.
 ---@field selected_phrase_effect_column_index integer
----**READ-ONLY** The currently edited sub column type within the selected
+---The currently edited sub column type within the selected
 ---note/effect column in the current phrase. 0 when no phrase is selected.
+---**READ-ONLY**
 ---@field selected_phrase_sub_column_type renoise.Song.SubColumnType
 ---
 ---Same as `selection_in_pattern` but for the currently selected phrase (if any).
@@ -291,7 +323,7 @@ renoise.Song = {
 ---### functions
 
 ---True while an undo/redo action is invoked. This may be useful to check in notifiers,
---- to figure out if the document currently changes because of an undo/redo operation.
+---to figure out if the document currently changes because of an undo/redo operation.
 function renoise.Song:is_undo_redoing() end
 
 ---Test if something in the song can be undone.
