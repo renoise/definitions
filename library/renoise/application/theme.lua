@@ -136,7 +136,7 @@ renoise.ApplicationTheme = {}
 ---
 ---To get notified of color changes, use `renoise.app().theme_observable`
 ---**READ-ONLY**
----@field colors { [ThemeColor]: RGBColor }
+---@field colors table<ThemeColor, RGBColor>
 ---
 ---Get theme's knob shade setting. Range: (1 - 2)
 ---**READ-ONLY**

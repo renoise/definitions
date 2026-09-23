@@ -142,6 +142,11 @@ renoise.Song = {
 ---Track array
 ---**READ-ONLY**
 ---@field tracks renoise.Track[]
+---Note, when notifiers on this observable fire, only the `tracks` field will reflect
+---the change immediately, other parts of the song that depend on tracks (like `PatternTrack`s in patterns)
+---will still have the old state. Combine with `Tool.app_idle_observable` to react to
+---song-wide changes in a delayed manner, or use a notifiers on the dependent observables you need.
+---**READ-ONLY**
 ---@field tracks_observable renoise.Document.ObservableList **READ-ONLY**
 ---
 ---Selected in the instrument box.

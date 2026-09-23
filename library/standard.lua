@@ -19,11 +19,11 @@ error("Do not try to execute this file. It's just a type definition file.")
 package.path = package.path .. ';Libraries/?.lua'
 
 ---An iterator like ipairs, but in reverse order.
----@generic T: table, V
----@param table T
----@return fun(table: V[], i?: integer):integer, V
----@return T
----@return integer i
+---@generic T
+---@param table T[]
+---@return fun(table: T[], i?: integer):integer, T
+---@return T[]
+---@return integer
 ---### examples:
 ---```lua
 ---t = {"a", "b", "c"}

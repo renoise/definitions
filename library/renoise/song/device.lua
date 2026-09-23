@@ -106,7 +106,14 @@ renoise.DeviceParameter = {
 ---
 ---@field value_min number **READ-ONLY**
 ---@field value_max number **READ-ONLY**
----@field value_quantum number **READ-ONLY**
+---The step size for the parameter:
+---* continuous parameters will have `0` for this
+---* discrete parameters like integers, enums or booleans will have either `1`,
+---or a smaller fraction if the parameter is normalized (for external plugins).
+---For the latter group, this value is the smallest meaningful delta
+---you can apply to change the parameter to a different value.
+---**READ-ONLY**
+---@field value_quantum number
 ---@field value_default number **READ-ONLY**
 ---
 ---The minimum interval in pattern lines (as a number) at which a parameter can
