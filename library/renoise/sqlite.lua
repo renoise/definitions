@@ -218,7 +218,7 @@ function SQLiteDatabase:finalize(temp_only) end
 ---db:execute(sql,show_row,'test_udata')
 ---```
 ---@param sql string
----@param fun? fun(data: any, cols: integer, values: table<SQLiteValue>, names: table<string>)
+---@param fun? fun(data: any, cols: integer, values: SQLiteValue[], names: string[])
 ---@param data? any
 ---@return renoise.SQLite.Status, string?
 function SQLiteDatabase:execute(sql, fun, data) end
