@@ -69,7 +69,7 @@ function rprint(value) end
 ---
 ----- Mammal class (inherits Animal functions and members)
 ------@class Mammal : Animal
------ Construct a new mamal with the given name.
+----- Construct a new mammal with the given name.
 ------@overload fun(string): Mammal
 ---Mammal = {}
 ---class 'Mammal' (Animal)
@@ -80,8 +80,8 @@ function rprint(value) end
 ---  end
 ---
 ----- show() function and base member are available for Mammal too
----local mamal = Mammal("Cow")
----mamal:show()
+---local mammal = Mammal("Cow")
+---mammal:show()
 ---```
 ---@param name string
 function class(name)
