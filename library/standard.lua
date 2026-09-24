@@ -9,7 +9,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 -------------------------------------------------------------------------------
 
 ---All standard Lua libraries are included in Renoise as well. You can find the
----full reference here: <http://www.lua.org/manual/5.1/manual.html#5>
+---full reference here: http://www.lua.org/manual/5.1/manual.html#5
 
 ---## globals
 
@@ -69,7 +69,7 @@ function rprint(value) end
 ---
 ----- Mammal class (inherits Animal functions and members)
 ------@class Mammal : Animal
------ Construct a new mamal with the given name.
+----- Construct a new mammal with the given name.
 ------@overload fun(string): Mammal
 ---Mammal = {}
 ---class 'Mammal' (Animal)
@@ -80,8 +80,8 @@ function rprint(value) end
 ---  end
 ---
 ----- show() function and base member are available for Mammal too
----local mamal = Mammal("Cow")
----mamal:show()
+---local mammal = Mammal("Cow")
+---mammal:show()
 ---```
 ---@param name string
 function class(name)
@@ -190,7 +190,7 @@ function table.is_empty(t) end
 function table.count(t) end
 
 ---Find first match of *value* in the given table, starting from element
----number *start_index*.<br>
+---number *start_index*.
 ---Returns the first *key* that matches the value or nil
 ---@param t table
 ---@param value any
