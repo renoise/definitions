@@ -61,7 +61,7 @@ local Canvas = {}
 ---### functions
 
 ---Request background drawing contents of the canvas to be updated in the next
----UI draw cycle.<br>
+---UI draw cycle.
 ---
 ---Size changes of the canvas view, global UI scaling changes, and color theme
 ---changes will automatically update the canvas, so this is only necessary to
@@ -71,7 +71,7 @@ function Canvas:update() end
 
 --------------------------------------------------------------------------------
 
----Drawing context for a canvas view.<br>
+---Drawing context for a canvas view.
 ---
 ---The context is *similar* to the HTML5 canvas 2d drawing context, with the
 ---following differences and limitations:
@@ -104,42 +104,42 @@ function Canvas:update() end
 ---may change the size further.
 ---**READ-ONLY**
 ---@field size { width: integer, height: integer }
----The degree of opacity applied to all drawing operations.<br>
+---The degree of opacity applied to all drawing operations.
 ---
 ---If an operation already uses a transparent color, this can make it
 ---yet more transparent. It must be in the range from 0 for fully transparent
 ---to 255 for fully opaque. Defaults to 255 (opaque).
 ---@field global_alpha number
----Compositing operation for blending new drawing and old pixels.<br>
+---Compositing operation for blending new drawing and old pixels.
 ---
 ---The source_copy, source_in, source_out, destination_atop, and
 ---destination_in operations may clear parts of the canvas outside the
 ---new drawing but within the clip region. Defaults to "source_over".
 ---@field global_composite_operation "source_atop"|"source_copy"|"source_in"|"source_out"|"source_over"|"destination_atop"|"destination_in"|"destination_out"|"destination_over"|"exclusive_or"|"lighter"
----Set filling to use a constant color and opacity.<br>
+---Set filling to use a constant color and opacity.
 ---
 ---Defaults a constant color with 0,0,0,255 (opaque black).
 ---@field fill_color RGBColor|RGBAColor|ThemeColor
----Set stroking to use a constant color and opacity.<br>
+---Set stroking to use a constant color and opacity.
 ---
 ---Defaults a constant color with 0,0,0,255 (opaque black).
 ---@field stroke_color RGBColor|RGBAColor|ThemeColor
----Cap style for the ends of open subpaths and dash segments.<br>
+---Cap style for the ends of open subpaths and dash segments.
 ---
 ---The actual shape may be affected by the current transform at the time
 ---of drawing. Only affects stroking.  Defaults to "butt".
 ---@field line_cap "butt"|"square"|"circle"
----Join style for connecting lines within the paths.<br>
+---Join style for connecting lines within the paths.
 ---
 ---The actual shape may be affected by the current transform at the time
 ---of drawing. Only affects stroking. Defaults to "miter".
 ---@field line_join "miter"|"bevel"|"rounded"
----The width of the lines when stroking.<br>
+---The width of the lines when stroking.
 ---
 ---Initially this is measured in pixels, though the current transform
 ---at the time of drawing can affect this. Must be positive. Defaults to 1.0.
 ---@field line_width number
----Limit on maximum pointiness allowed for miter joins.<br>
+---Limit on maximum pointiness allowed for miter joins.
 ---
 ---If the distance from the point where the lines intersect to the
 ---point where the outside edges of the join intersect exceeds this
@@ -148,7 +148,7 @@ function Canvas:update() end
 ---pointier miters. Only affects stroking and only when the line join
 ---style is miter. Defaults to 10.0.
 ---@field miter_limit number
----Offset where each subpath starts the dash pattern.<br>
+---Offset where each subpath starts the dash pattern.
 ---
 ---Changing this shifts the location of the dashes along the path and
 ---animating it will produce a marching ants effect. Only affects
@@ -158,7 +158,7 @@ function Canvas:update() end
 ---@field line_dash_offset number
 local CanvasContext = {}
 
----Restrict the clip region by the current path.<br>
+---Restrict the clip region by the current path.
 ---
 ---Intersects the current clip region with the interior of the current
 ---path (the region that would be filled), and replaces the current
@@ -172,7 +172,7 @@ local CanvasContext = {}
 ---state first before clipping then restore the state to reset it.
 function CanvasContext:clip() end
 
----Save the current state as though to a stack.<br>
+---Save the current state as though to a stack.
 ---
 ---The full state of the canvas is saved, except for the pixels in the
 ---canvas buffer, and the current path.
@@ -181,13 +181,13 @@ function CanvasContext:clip() end
 ---state first before clipping then restore the state to reset it.
 function CanvasContext:save() end
 
----Restore a previously saved state as though from a stack.<br>
+---Restore a previously saved state as though from a stack.
 ---
 ---This does not affect the pixels in the canvas buffer or the current
 ---path.  If the stack of canvas states is empty, this does nothing.
 function CanvasContext:restore() end
 
----Fill a rectangular area.<br>
+---Fill a rectangular area.
 ---
 ---This behaves as though the current path were reset to a single
 ---rectangle and then filled as usual. However, the current path is
@@ -201,7 +201,7 @@ function CanvasContext:restore() end
 ---@param height  number height of the rectangle
 function CanvasContext:fill_rect(x, y, width, height) end
 
----Stroke a rectangular area.<br>
+---Stroke a rectangular area.
 ---
 ---This behaves as though the current path were reset to a single
 ---rectangle and then stroked as usual. However, the current path is
@@ -217,7 +217,7 @@ function CanvasContext:fill_rect(x, y, width, height) end
 ---@param height  number height of the rectangle
 function CanvasContext:stroke_rect(x, y, width, height) end
 
----Clear a rectangular area back to transparent black.<br>
+---Clear a rectangular area back to transparent black.
 ---
 ---The clip region may limit the area cleared. The current path is not
 ---affected by this clearing. The current transform at the time that
@@ -230,13 +230,13 @@ function CanvasContext:stroke_rect(x, y, width, height) end
 ---@param height  number height of the rectangle
 function CanvasContext:clear_rect(x, y, width, height) end
 
----Reset the current path.<br>
+---Reset the current path.
 ---
 ---The current path and all subpaths will be cleared after this, and a
 ---new path can be built.
 function CanvasContext:begin_path() end
 
----Close the current subpath.<br>
+---Close the current subpath.
 ---
 ---Adds a straight line from the end of the current subpath back to its
 ---first point and marks the subpath as closed so that this line will
@@ -245,7 +245,7 @@ function CanvasContext:begin_path() end
 ---current path is empty, this does nothing.
 function CanvasContext:close_path() end
 
----Create a new subpath.<br>
+---Create a new subpath.
 ---
 ---The given point will become the first point of the new subpath and
 ---is subject to the current transform at the time this is called.
@@ -253,7 +253,7 @@ function CanvasContext:close_path() end
 ---@param y number vertical coordinate of the new first point
 function CanvasContext:move_to(x, y) end
 
----Extend the current subpath with a straight line.<br>
+---Extend the current subpath with a straight line.
 ---
 ---The line will go from the current end point (if the current path is
 ---not empty) to the given point, which will become the new end point.
@@ -264,7 +264,7 @@ function CanvasContext:move_to(x, y) end
 ---@param y number vertical coordinate of the new end point
 function CanvasContext:line_to(x, y) end
 
----Draw the interior of the current path using the fill style.<br>
+---Draw the interior of the current path using the fill style.
 ---
 ---Interior pixels are determined by the non-zero winding rule, with
 ---all open subpaths implicitly closed by a straight line beforehand.
@@ -279,7 +279,7 @@ function CanvasContext:line_to(x, y) end
 ---current transform is not invertible, this does nothing.
 function CanvasContext:fill() end
 
----Draw the edges of the current path using the stroke style.<br>
+---Draw the edges of the current path using the stroke style.
 ---
 ---Edges of the path will be expanded into strokes according to the
 ---current dash pattern, dash offset, line width, line join style
@@ -298,7 +298,7 @@ function CanvasContext:fill() end
 ---     non-uniform scale transform just before stroking.
 function CanvasContext:stroke() end
 
----Set or clear the line dash pattern.<br>
+---Set or clear the line dash pattern.
 ---
 ---Takes an array with entries alternately giving the lengths of dash
 ---and gap segments. All must be non-negative; if any are not, this
@@ -315,7 +315,7 @@ function CanvasContext:stroke() end
 ---@param segments number[] array for dash pattern
 function CanvasContext:set_line_dash(segments) end
 
----Set filling to use a linear gradient.<br>
+---Set filling to use a linear gradient.
 ---
 ---Positions the start and end points of the gradient and clears all
 ---color stops to reset the gradient to transparent black. Color stops
@@ -329,7 +329,7 @@ function CanvasContext:set_line_dash(segments) end
 ---@param end_y    number vertical coordinate of the end of the gradient
 function CanvasContext:set_fill_linear_gradient(start_x, start_y, end_x, end_y) end
 
----Set filling to use a linear gradient.<br>
+---Set filling to use a linear gradient.
 ---
 ---@see renoise.Views.Canvas.Context:set_fill_linear_gradient
 ---@param start_x  number horizontal coordinate of the start of the gradient
@@ -338,7 +338,7 @@ function CanvasContext:set_fill_linear_gradient(start_x, start_y, end_x, end_y) 
 ---@param end_y    number vertical coordinate of the end of the gradient
 function CanvasContext:set_stroke_linear_gradient(start_x, start_y, end_x, end_y) end
 
----Set filling to use a radial gradient.<br>
+---Set filling to use a radial gradient.
 ---
 ---Positions the start and end circles of the gradient and clears all
 ---color stops to reset the gradient to transparent black. Color stops
@@ -356,7 +356,7 @@ function CanvasContext:set_stroke_linear_gradient(start_x, start_y, end_x, end_y
 ---@param end_radius    number ending radius of the circle
 function CanvasContext:set_fill_radial_gradient(start_x, start_y, start_radius, end_x, end_y, end_radius) end
 
----Set stroke to use a radial gradient.<br>
+---Set stroke to use a radial gradient.
 ---
 ---@see renoise.Views.Canvas.Context:set_fill_radial_gradient
 ---@param start_x       number horizontal starting coordinate of the circle
@@ -367,7 +367,7 @@ function CanvasContext:set_fill_radial_gradient(start_x, start_y, start_radius, 
 ---@param end_radius    number ending radius of the circle
 function CanvasContext:set_stroke_radial_gradient(start_x, start_y, start_radius, end_x, end_y, end_radius) end
 
----Add a color stop to a linear or radial gradient fill.<br>
+---Add a color stop to a linear or radial gradient fill.
 ---
 ---Each color stop has an offset which defines its position from 0.0 at
 ---the start of the gradient to 1.0 at the end. Colors and opacity are
@@ -387,14 +387,14 @@ function CanvasContext:set_stroke_radial_gradient(start_x, start_y, start_radius
 ---@param color RGBColor|RGBAColor|ThemeColor
 function CanvasContext:add_fill_color_stop(offset, color) end
 
----Add a color stop to a linear or radial gradient stroke.<br>
+---Add a color stop to a linear or radial gradient stroke.
 ---
 ---@see renoise.Views.Canvas.Context:add_fill_color_stop
 ---@param offset number
 ---@param color RGBColor|RGBAColor|ThemeColor
 function CanvasContext:add_stroke_color_stop(offset, color) end
 
----Add a closed subpath in the shape of a rectangle.<br>
+---Add a closed subpath in the shape of a rectangle.
 ---
 ---The rectangle has one corner at the given point and then goes in the
 ---direction along the width before going in the direction of the height
@@ -408,7 +408,7 @@ function CanvasContext:add_stroke_color_stop(offset, color) end
 ---@param height  number height of the rectangle
 function CanvasContext:rect(x, y, width, height) end
 
----Extend the current subpath with a cubic Bezier curve.<br>
+---Extend the current subpath with a cubic Bezier curve.
 ---
 ---The curve will go from the current end point (or the first control
 ---point if the current path is empty) to the given point, which will
@@ -427,7 +427,7 @@ function CanvasContext:rect(x, y, width, height) end
 ---@param y           number vertical coordinate of the new end point
 function CanvasContext:bezier_curve_to(control_1_x, control_1_y, control_2_x, control_2_y, x, y) end
 
----Extend the current subpath with an arc between two angles.<br>
+---Extend the current subpath with an arc between two angles.
 ---
 ---The arc is from the circle centered at the given point and with the
 ---given radius. A straight line will be added from the current end
@@ -448,7 +448,7 @@ function CanvasContext:bezier_curve_to(control_1_x, control_1_y, control_2_x, co
 ---@param counter_clockwise  boolean? by default false. set to true to turn the arc counter-clockwise
 function CanvasContext:arc(x, y, radius, start_angle, end_angle, counter_clockwise) end
 
----Extend the current subpath with an arc tangent to two lines.<br>
+---Extend the current subpath with an arc tangent to two lines.
 ---
 ---The arc is from the circle with the given radius tangent to both
 ---the line from the current end point to the vertex, and to the line
@@ -474,7 +474,7 @@ function CanvasContext:arc(x, y, radius, start_angle, end_angle, counter_clockwi
 ---@param radius   number radius of the circle containing the arc
 function CanvasContext:arc_to(vertex_x, vertex_y, x, y, radius) end
 
----Extend the current subpath with a quadratic Bezier curve.<br>
+---Extend the current subpath with a quadratic Bezier curve.
 ---
 ---The curve will go from the current end point (or the control point
 ---if the current path is empty) to the given point, which will become
@@ -490,7 +490,7 @@ function CanvasContext:arc_to(vertex_x, vertex_y, x, y, radius) end
 ---@param y         number vertical coordinate of the new end point
 function CanvasContext:quadratic_curve_to(control_x, control_y, x, y) end
 
----Scale the current transform.<br>
+---Scale the current transform.
 ---
 ---Scaling may be non-uniform if the x and y scaling factors are
 ---different.  When a scale factor is less than one, things will be
@@ -502,7 +502,7 @@ function CanvasContext:quadratic_curve_to(control_x, control_y, x, y) end
 ---@param y number vertical scaling factor
 function CanvasContext:scale(x, y) end
 
----Rotate the current transform.<br>
+---Rotate the current transform.
 ---
 ---The rotation is applied clockwise in a direction around the origin.
 ---
@@ -511,7 +511,7 @@ function CanvasContext:scale(x, y) end
 ---@param angle number clockwise angle in radians
 function CanvasContext:rotate(angle) end
 
----Translate the current transform.<br>
+---Translate the current transform.
 ---
 ---By default, positive x values shift that many pixels to the right,
 ---while negative y values shift left, positive y values shift up, and
@@ -520,7 +520,7 @@ function CanvasContext:rotate(angle) end
 ---@param y number amount to shift vertically
 function CanvasContext:translate(x, y) end
 
----Add an arbitrary transform to the current transform.<br>
+---Add an arbitrary transform to the current transform.
 ---
 ---This takes six values for the upper two rows of a homogenous 3x3
 ---matrix (i.e., {{a, c, e}, {b, d, f}, {0.0, 0.0, 1.0}}) describing an
@@ -537,7 +537,7 @@ function CanvasContext:translate(x, y) end
 ---@param f number vertical translation (m32)
 function CanvasContext:transform(a, b, c, d, e, f) end
 
----Replace the current transform.<br>
+---Replace the current transform.
 ---
 ---This takes six values for the upper two rows of a homogenous 3x3
 ---matrix (i.e., {{a, c, e}, {b, d, f}, {0.0, 0.0, 1.0}}) describing

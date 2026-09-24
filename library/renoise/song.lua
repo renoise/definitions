@@ -514,7 +514,7 @@ function renoise.Song:pattern(index) end
 ---for example loading the file into a sample buffer.
 ---@param options RenderOptions
 ---@param filename string
----@param rendering_done_callback fun()
+---@param rendering_done_callback function
 ---@return boolean success, string error?
 ---@overload fun(self, filename: string, rendering_done_callback: fun()): boolean, string?
 function renoise.Song:render(options, filename, rendering_done_callback) end
