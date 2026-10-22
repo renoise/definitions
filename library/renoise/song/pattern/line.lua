@@ -152,6 +152,7 @@ function renoise.NoteColumn:copy_from(other) end
 
 ---Serialize a column.
 ---@param note_column renoise.NoteColumn
+---@return string
 function tostring(note_column) end
 
 --------------------------------------------------------------------------------
