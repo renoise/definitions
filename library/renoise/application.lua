@@ -113,7 +113,7 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 --- * Linux : "shift", "alt", "control", "meta"
 --- * Mac : "shift", "option", "control", "command".
 ---If multiple modifiers are held down, the string will be formatted as
----"<key> + <key>"
+---`<key> + <key>`
 ---Their order will correspond to the following precedence
 ---`shift + alt/option + control + winkey/meta/command`
 ---If no modifier is pressed, this will be an empty string.
@@ -441,7 +441,7 @@ function renoise.Application:save_theme(filename) end
 ---@field visible boolean
 ---Check if a dialog is visible and is the key window.
 ---**READ-ONLY**
----@field focused boolean 
+---@field focused boolean
 renoise.Dialog = {}
 
 ---### functions

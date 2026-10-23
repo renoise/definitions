@@ -71,7 +71,7 @@ renoise.InstrumentPhraseScript = {}
 ---Fired when script paragraph changes got committed: Either by an explicit
 ---`commit` call or via `auto-commit` in the editor when the script currently is
 ---edited. Script compile errors will be set or cleared *after* the observable
----fires as the commit & compilation happens asynchroniously in the player engine.
+---fires as the commit & compilation happens asynchronously in the player engine.
 ---**READ-ONLY**
 ---@field committed_observable renoise.Document.Observable
 

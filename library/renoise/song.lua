@@ -365,7 +365,7 @@ function renoise.Song:describe_undo(description) end
 ---batches and split the undo action.
 ---
 ---Batches can be useful to combine multiple changes in the document into a single
----udo/redo step, when the changes happen asynchroniously, for example a process
+---udo/redo step, when the changes happen asynchronously, for example a process
 ---sliced action (via Lua coroutines).
 ---@param description string
 ---@param timeout_ms number? Default: 2000
@@ -514,7 +514,7 @@ function renoise.Song:pattern(index) end
 ---for example loading the file into a sample buffer.
 ---@param options RenderOptions
 ---@param filename string
----@param rendering_done_callback fun()
+---@param rendering_done_callback function
 ---@return boolean success, string error?
 ---@overload fun(self, filename: string, rendering_done_callback: fun()): boolean, string?
 function renoise.Song:render(options, filename, rendering_done_callback) end

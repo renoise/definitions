@@ -35,7 +35,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---then still can be read in for example mouse handlers.
 ---@alias ViewOrigin { x: ViewPosition, y: ViewPosition }|{ [1]:ViewPosition, [2]:ViewPosition }
 
----The cursor cursor for this view which apears on mouse hover.
+---The cursor cursor for this view which appears on mouse hover.
 ---Using a "none" shape will use use underlying view's cursor or the default cursor.
 ---@alias ViewCursorShape
 ---|"none"
@@ -133,7 +133,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@field button_flags { left: boolean, right: boolean, middle: boolean }
 ---List of sub views and possible layout subview's subviews, that are located below
 ---the mouse cursor. In other words: all views that are located below the mouse cursor.
----The list is orderd by containing the top-most visible view first, so you usually will
+---The list is ordered by containing the top-most visible view first, so you usually will
 ---need to check the first table entry only.
 ---
 ---NB: Only views that got created with the same view builder instance as the layout,
@@ -146,7 +146,7 @@ error("Do not try to execute this file. It's just a type definition file.")
 ---@alias MouseHandlerNotifierMethod2 {[1]:MouseHandlerNotifierMemberFunction, [2]:NotifierMemberContext}
 ---Optional mouse event handler for a view. return nil when the event got handled
 ---to stop propagating the event. return the event instance, as passed, to pass it
----to the next view in the view hirarchy.
+---to the next view in the view hierarchy.
 ---@alias MouseHandler MouseHandlerNotifierFunction|MouseHandlerNotifierMethod1|MouseHandlerNotifierMethod2
 
 ---The mouse event types that should be passed to your `mouse_handler` function.
