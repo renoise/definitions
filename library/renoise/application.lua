@@ -179,8 +179,7 @@ function renoise.Application:show_prompt(title, message, button_labels) end
 ---@overload fun(title: string, content_view: renoise.Views.View, button_labels: string[], key_handler: KeyHandlerMethod1?, key_handler_options: KeyHandlerOptions?, focus_handler: FocusHandlerMethod1?): string
 ---@overload fun(title: string, content_view: renoise.Views.View, button_labels: string[], key_handler: KeyHandlerMethod2?, key_handler_options: KeyHandlerOptions?, focus_handler: FocusHandlerMethod2?): string
 ---@return string label
-function renoise.Application:show_custom_prompt(title, content_view, button_labels, key_handler, key_handler_options,
-                                                focus_handler) end
+function renoise.Application:show_custom_prompt(title, content_view, button_labels, key_handler, key_handler_options, focus_handler) end
 
 ---Shows a non modal dialog (a floating tool window) with custom content.
 ---When no key_handler is provided, the Escape key is used to close the dialog.
